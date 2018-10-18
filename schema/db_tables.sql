@@ -29,15 +29,14 @@ CREATE TABLE M_Products(
 ) ENGINE=InnoDB;
 
 CREATE TABLE M_Tags(
-        id              varchar(32),
-        name            varchar(64),
-        PRIMARY KEY(id)
+        id              varchar(32)     PRIMARY KEY,
+        name            varchar(64)     NOT NULL,
 ) ENGINE=InnoDB;
 
 CREATE TABLE M_Limits(
         id              varchar(32)     PRIMARY KEY,
         title           varchar(255)    NOT NULL,
-        duration        int
+        duration        int             NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE M_ContactTags(
