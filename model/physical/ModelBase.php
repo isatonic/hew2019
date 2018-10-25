@@ -2,13 +2,14 @@
 
 class ModelBase {
 
-    /**
-     * @var PDO
-     */
+    /** @var PDO */
     protected $db;
     protected $table_name;
 
-    // コンストラクタ (オブジェクト作成時自動実行)
+
+    /**
+     * コンストラクタ: オブジェクト生成時に自動実行
+     */
     public function __construct() {
         $this->initDB();
 
@@ -17,7 +18,11 @@ class ModelBase {
         }
     }
 
-    // DB接続
+    /**
+     *  initDB: DBへ接続
+     *
+     * メンバ変数$db <- PDO
+     */
     public function initDB() {
         try {
             $this->db = new PDO('mysql:host=localhost;dbname=isatonic', 'root', 'root', array(PDO::ATTR_PERSISTENT => true));
@@ -26,13 +31,18 @@ class ModelBase {
         }
     }
 
-    // テーブル名の設定
+    /**
+     * setTableName: テーブル名を設定
+     *
+     * メンバ変数$table_name <- テーブル名 (=クラス名)
+     */
     public function setTableName() {
         $this->table_name = get_class($this);
     }
 
-    // SELECTを実行
     /**
+     * SELECTの結果を取得
+     *
      * @param       $sql
      * @param array $params
      *
@@ -51,8 +61,9 @@ class ModelBase {
         return $rows;
     }
 
-    // INSERTを実行
     /**
+     * INSERTを実行
+     *
      * @param $data
      *
      * @return bool
@@ -79,8 +90,9 @@ class ModelBase {
         return $res;
     }
 
-    // DELETEを実行
     /**
+     * DELETEを実行
+     *
      * @param      $where
      * @param null $params
      *
