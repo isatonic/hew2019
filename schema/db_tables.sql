@@ -30,7 +30,7 @@ CREATE TABLE Products(
 
 CREATE TABLE Tags(
         id              varchar(32)     PRIMARY KEY,
-        name            varchar(64)     NOT NULL,
+        name            varchar(64)     NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE Limits(
