@@ -643,17 +643,62 @@ select {
   }
 }
 /*SNS系統*/
+@font-face {
+  font-family: 'Myfont';
+  src: url("../font/FlopDesignFONT.otf");
+}
+.font{
+  font-family:'Myfont';
+}
+
+/*SNSTOP*/
 .Header{
 	margin-left: 200px;
 	margin-right: 200px;
 	margin-top: 50px;
 	border-bottom: solid 2px #000000;
 }
+
+/*ボタン*/
 .box {
-    margin-left: 230px;	
-	padding: 30px 200px;
-  	width: 800px;
+    margin-left: 280px;	
+	padding: 30px;
+  	width: 700px;
     text-align: center;
     background-color:  #ccc;
 	margin-top: 60px;
+	border-radius: 30px;
 }
+.boxmini {
+	margin-right: 350px;
+	margin-top: 70px;
+	padding: 15px 20px;
+   	float: right;
+    text-align: center;
+    background-color:  #ccc;
+	border-radius: 30px;
+}
+.circle {
+	float: right;
+	margin-right: 400px;
+	margin-top: 150px;
+	position: relative;
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background: #ccc;
+}
+.circle span {
+	position: absolute;
+	display: inline-block;
+	left: 0;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	width :200px;
+	text-align:center;
+}
+
+/*Popup*/
