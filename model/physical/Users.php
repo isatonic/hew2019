@@ -19,12 +19,15 @@ class Users extends ModelBase {
     /**
      * changeInfo: ユーザ情報変更
      *
-     * @param $data:    ["列名"] = 更新値
-     * @param $who:     メールアドレス
+     * @param $data :    ["列名"] = 更新値
+     * @param $who :     メールアドレス
+     *
+     * @return bool
      */
     public function changeInfo($data, $who) {
         $where = sprintf("WHERE email LIKE %s", $who);
-        $this->update($data, $where);
+        $res = $this->update($data, $where);
+        return $res;
     }
 
     /**
