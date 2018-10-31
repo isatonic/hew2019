@@ -127,7 +127,10 @@ class ModelBase {
         foreach ($data as $key => $val) {
             $keyval[] = "${key}=${val}";
         }
-        $sql = sprintf("UPDATE $this->table_name SET %s %s", implode(", ", $keyval), $where);
+        $sql = sprintf("UPDATE $this->table_name SET %s", implode(", ", $keyval));
+        if ($where != "") {
+            $sql .= " WHERE " . $where;
+        }
         $stmt = $this->db->prepare($sql);
         $res = $stmt->execute();
         return $res;
