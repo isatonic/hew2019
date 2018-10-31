@@ -46,7 +46,7 @@ class Users extends ModelBase {
      */
     public function changeStatus($to, $who) {
         $data['flag'] = $to;
-        $res = $this->update($data, $who);
+        $res = $this->changeInfo($data, $who);
         return $res;
     }
 
