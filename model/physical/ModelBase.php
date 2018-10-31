@@ -115,7 +115,7 @@ class ModelBase {
     }
 
     /**
-     * UPDATE文を実行
+     * UPDATEを実行
      *
      * @param $data:    ["列名"] = 更新値
      * @param $where:   条件(WHERE ...)
