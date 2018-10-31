@@ -114,4 +114,22 @@ class ModelBase {
         return $res;
     }
 
+    /**
+     * UPDATE文を実行
+     *
+     * @param $data:    ["列名"] = 更新値
+     * @param $where:   条件(WHERE ...)
+     *
+     * @return bool
+     */
+    public function update($data, $where) {
+        $keyval = array();
+        foreach ($data as $key => $val) {
+            $keyval[] = "${key}=${val}";
+        }
+        $sql = sprintf("UPDATE $this->table_name SET %s %s", implode(", ", $keyval), $where);
+        $stmt = $this->db->prepare($sql);
+        $res = $stmt->execute();
+        return $res;
+    }
 }

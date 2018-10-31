@@ -17,25 +17,31 @@ class Users extends ModelBase {
     }
 
     /**
-     * update: ユーザ情報の更新
+     * changeInfo: ユーザ情報変更
      *
-     * @param $data
-     *      $data[列名] = 値
+     * @param $data:    ["列名"] = 更新値
+     * @param $who:     メールアドレス
+     */
+    public function changeInfo($data, $who) {
+        $where = sprintf("WHERE email LIKE %s", $who);
+        $this->update($data, $where);
+    }
+
+    /**
+     * changeStatus: 利用状況変更
+     *
+     * @param $to
+     *      メール認証完了 -> "active"
+     *      退会           -> "unsubscribed"
+     *      一時利用停止   -> "paused"
+     *      BAN            -> "banned"
+     *
      * @param $who
      *      メールアドレス
-     *
-     * @return bool
      */
-    public function update($data, $who) {
-        $keyval = array();
-        foreach ($data as $key => $val) {
-            $keyval[] = "${key}=${val}";
-        }
-        $sql = sprintf("UPDATE %s SET", $this->table_name);
-        $sql = sprintf("$sql %s WHERE email LIKE %s", implode(", ", $keyval), $who);
-        $stmt = $this->db->prepare($sql);
-        $res = $stmt->execute();
-        return $res;
+    public function changeStatus($to, $who) {
+        $data['flag'] = $to;
+        $this->update($data, $who);
     }
 
 }
