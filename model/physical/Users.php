@@ -38,10 +38,13 @@ class Users extends ModelBase {
      *
      * @param $who
      *      メールアドレス
+     *
+     * @return bool
      */
     public function changeStatus($to, $who) {
         $data['flag'] = $to;
-        $this->update($data, $who);
+        $res = $this->update($data, $who);
+        return $res;
     }
 
 }
