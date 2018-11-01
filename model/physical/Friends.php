@@ -48,7 +48,7 @@ class Friends extends ModelBase {
      *      フレンドのメールアドレス
      */
     public function fetchList($user) {
-        $sql = "SELECT friend FROM $this->table_name WHERE user LIKE :user";
+        $sql = "SELECT friend FROM Friends WHERE user LIKE :user";
         $param = array(
             "user"  => $user
         );
