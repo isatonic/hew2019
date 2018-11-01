@@ -25,7 +25,7 @@ class ModelBase {
      */
     public function initDB() {
         try {
-            $this->db = new PDO('mysql:host=localhost;dbname=isatonic', 'root', 'root', array(PDO::ATTR_PERSISTENT => true));
+            $this->db = new PDO('mysql:host=db;dbname=isatonic', 'root', 'root', array(PDO::ATTR_PERSISTENT => true));
         } catch (PDOException $e) {
             die();
         }
