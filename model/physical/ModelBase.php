@@ -56,7 +56,10 @@ class ModelBase {
             }
         }
         $stmt->execute();
-        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
+        $rows = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $rows[] = $row;
+        }
 
         return $rows;
     }
