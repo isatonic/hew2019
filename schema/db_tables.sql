@@ -162,7 +162,7 @@ CREATE TABLE UserLimit(
 CREATE TABLE Friends(
         user    varchar(255),
         friend  varchar(255),
-        flag    enum("active", "block"),
+        flag    enum('active', 'block'),
         PRIMARY KEY(user, friend),
         FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE,
         FOREIGN KEY (friend) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
