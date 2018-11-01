@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script src="js/gooey.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
     
@@ -82,37 +83,103 @@
 		
 		<script src="js/popup.js"></script>
 		<div class="box_wrap">
+			
 			<div class="boxmini">
-				<h3 class="open_message">メッセージを確認する</h3>
+				<button id="openModal">
+				<h3>メッセージを確認する</h3>
+				</button>
 			</div>
+<!-- モーダルエリアここから -->
+		<section id="modalArea" class="modalArea">
+			<div id="modalBg" class="modalBg"></div>
+				<div class="modalWrapper">
+					<div class="modalContents">
+						<!-- 内容記述 -->
+						<h2 class="Header2">　　Messeage List</h2>
+						<!-- 内容記述終わり -->
+					</div>
+					<div id="closeModal" class="closeModal">
+						×
+					</div>
+				</div>
+		</section>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- モーダルエリアここまで -->
+
+			
 			<div class="box">
+				<button class="messeage">
 				<h2>新着メッセージ</h2>
 				<h2>○件</h2>
+				</button>
 			</div>
-			<div class="circle">
-			<h2 class="open_friend_list">
-				<span>フレンド<br>一覧</span></h2>
-			</div>
-			<div class="box">
-				<h2 class="open_new_messeage">新規メッセージ作成</h2>
-			</div>
-			<div class="box">
-				<h2><button class="open_friend_search">フレンド検索</button></h2>
-			</div>
-		</div>
+			
+			<button id="openModal_Friend_List" class="circle">
+			<h2>フレンド<br>一覧</h2>
+			</button>
+<!-- モーダルエリアここから -->
+			<section id="modalArea_Friend_List" class="modalArea">
+				<div id="modalBg_Friend_List" class="modalBg"></div>
+					<div class="modalWrapper">
+						<div class="modalContents">
+							<!-- 内容記述 -->
+							<h2 class="Header2">　　Friend List</h2>
+							<!-- 内容記述終わり -->
+						</div>
+						<div id="closeModal_Friend_List" class="closeModal">
+							×
+						</div>
+					</div>
+			</section>
+			<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- モーダルエリアここまで -->
 
-		<div class="popup-overlay">
-<!--Creates the popup content-->
-		  	<div class="popup-content">
-			  <h2>Pop-Up</h2>
-			  <p> This is an example pop-up that you can make using jQuery.</p>
-<!--popup's close button-->
-			  <button class="close">Close</button>
+				
 			</div>
-		</div>
-
+			<div class="box2">
+				<button id="openModal_Friend_Select">
+				<h2>新規メッセージ作成</h2>
+				</button>
+			</div>
+<!-- モーダルエリアここから -->
+			<section id="modalArea_Friend_Select" class="modalArea">
+				<div id="modalBg_Friend_Select" class="modalBg"></div>
+					<div class="modalWrapper">
+						<div class="modalContents">
+							<!-- 内容記述 -->
+							<h2 class="Header2">　　Friend Select</h2>
+							<!-- 内容記述終わり -->
+						</div>
+						<div id="closeModal_Friend_Select" class="closeModal">
+							×
+						</div>
+					</div>
+			</section>
+			<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- モーダルエリアここまで -->
 			
 			
+			<div class="box3">
+				<button id="openModal_Friend_Search">
+				<h2>フレンド検索</h2>
+				</button>
+			</div>
+<!-- モーダルエリアここから -->
+			<section id="modalArea_Friend_Search" class="modalArea">
+				<div id="modalBg_Friend_Search" class="modalBg"></div>
+					<div class="modalWrapper">
+						<div class="modalContents">
+							<!-- 内容記述 -->
+							<h2 class="Header2">　　Friend Search</h2>
+							<!-- 内容記述終わり -->
+						</div>
+						<div id="closeModal_Friend_Search" class="closeModal">
+							×
+						</div>
+					</div>
+			</section>
+			<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- モーダルエリアここまで -->
 			
 			
 		</div>

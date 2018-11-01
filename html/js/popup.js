@@ -1,10 +1,39 @@
-//appends an "active" class to .popup and .popup-content when the "Open" button is clicked
-$(".open_friend_search").on("click", function(){
-  $(".popup-overlay, .popup-content").addClass("active");
+//Messeage List
+$(function () {
+  $('#openModal').click(function(){
+      $('#modalArea').fadeIn();
+  });
+  $('#closeModal , #modalBg').click(function(){
+    $('#modalArea').fadeOut();
+  });
 });
 
-//removes the "active" class to .popup and .popup-content when the "Close" button is clicked 
-$(".close, .popup-overlay").on("click", function(){
-  $(".popup-overlay, .popup-content").removeClass("active");
+//Friend List
+$(function () {
+  $('#openModal_Friend_List').click(function(){
+      $('#modalArea_Friend_List').fadeIn();
+  });
+  $('#closeModal_Friend_List , #modalBg_Friend_List').click(function(){
+    $('#modalArea_Friend_List').fadeOut();
+  });
 });
-// JavaScript Document
+
+//Friend Select
+$(function () {
+  $('#openModal_Friend_Select').click(function(){
+      $('#modalArea_Friend_Select').fadeIn();
+  });
+  $('#closeModal_Friend_Select , #modalBg_Friend_Select').click(function(){
+    $('#modalArea_Friend_Select').fadeOut();
+  });
+});
+
+//Friend Search
+$(function () {
+  $('#openModal_Friend_Search').click(function(){
+      $('#modalArea_Friend_Search').fadeIn();
+  });
+  $('#closeModal_Friend_Search , #modalBg_Friend_Search').click(function(){
+    $('#modalArea_Friend_Search').fadeOut();
+  });
+});
