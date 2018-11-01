@@ -96,12 +96,12 @@ class ModelBase {
     /**
      * DELETEを実行
      *
-     * @param      $where
-     * @param null $params
+     * @param       $where
+     * @param array $params
      *
      * @return bool
      */
-    public function delete($where, $params = null) {
+    public function delete($where, array $params = array()) {
         $sql = sprintf("DELETE FROM %s", $this->table_name);
         if ($where != "") {
             $sql .= " WHERE " . $where;
