@@ -159,4 +159,12 @@ CREATE TABLE UserLimit(
         FOREIGN KEY (limitType) REFERENCES Limits(id) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE Friends(
+        user    varchar(255),
+        friend  varchar(255),
+        PRIMARY KEY(user, friend),
+        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY (friend) REFERENCEES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
+)
+
 COMMIT;
