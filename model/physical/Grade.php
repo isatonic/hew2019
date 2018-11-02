@@ -20,17 +20,17 @@ class Grade extends ModelBase {
         $gpoint = $rows[0]["gpoint"];
         $grade = 0;
         if ($gpoint < 100) {
-            $grade = 1;
-        } else if ($gpoint >= 100 and $gpoint < 200) {
-            $grade = 2;
-        } else if ($gpoint >= 200 and $gpoint < 300) {
-            $grade = 3;
-        } else if ($gpoint >= 300 and $gpoint < 400) {
-            $grade = 4;
-        } else if ($gpoint >= 400 and $gpoint < 500) {
-            $grade = 5;
-        } else if ($gpoint >= 500) {
             $grade = 6;
+        } else if ($gpoint >= 100 and $gpoint < 300) {
+            $grade = 5;
+        } else if ($gpoint >= 300 and $gpoint < 700) {
+            $grade = 4;
+        } else if ($gpoint >= 700 and $gpoint < 1500) {
+            $grade = 3;
+        } else if ($gpoint >= 1500 and $gpoint < 3100) {
+            $grade = 2;
+        } else if ($gpoint >= 3100) {
+            $grade = 1;
         }
 
         return array(
