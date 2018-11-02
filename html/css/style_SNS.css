@@ -82,42 +82,61 @@ body{
   width: 100%;
   height: 100%;
 }
-
 .modalBg {
   width: 100%;
   height: 100%;
   background-color: rgba(30,30,30,0.9);
 }
-
+/*　.modalWrapperの上にYを縮小した.modalWrapper2を設置することでヘッダー固定化スクロール　*/
 .modalWrapper {	
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform:translate(-50%,-50%);
-	width: 70%;
 	width: 1500px;
 	height: 800px;
 	padding: 10px 30px;
 	background-color: #fff;
 }
-
-.closeModal {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  cursor: pointer;
+.modalWrapper2 {
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform:translate(-50%,-80%);
+	width: 1500px;
+	height: 700px;
+	padding: 10px 30px;
+	background-color: #fff;
+	overflow-y: auto;/*スクロール*/
 }
+.closeModal {
+	position: absolute;
+	top: 0.5rem;
+	right: 1rem;
+	cursor: pointer;
+}
+.inbox,.inbox2,.inbox3,.inbox4,.inbox5{
+	background-color: #FFF3F3;
+	width: 1450px;
+	height: 180px;
+	position: relative;
+	left: 50%;
+	margin-bottom: 20px;
+	transform: translateX(-50%);
+}
+
+
 
 /* 以下ボタン系統 */
 
 /*メッセージを確認する*/
 #openModal{
-   position: relative;
-   display: inline-block;
-   font-weight: bold;
-   padding: 0.25em 0;
-   text-decoration: none;
-   color: #67c5ff;   
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 0.25em 0;
+	text-decoration: none;
+	color: #67c5ff;
 }
 #openModal:before{
    position: absolute;
@@ -131,8 +150,8 @@ body{
    transition: .2s;
 }
 #openModal:hover:before {
-    top: -webkit-calc(100% - 3px);
-    top: calc(100% - 3px);
+    top: -webkit-calc(95% - 3px);
+    top: calc(95% - 3px);
 }
 
 
@@ -239,25 +258,25 @@ body{
 }
 
 
+
 /*SN1-2 Messeage List*/
 .sns_top_image{
 	max-width: auto;
 	height: 180px;
 	position: absolute;
-	top: 15%;
 	left: 12%;
 	border: solid 2px #000000;
 }
 .sns_name{
 	position: absolute;
-	top: 21.5%;
+	top: 32%;
 	left: 50%;
 	transform: translateX(-50%)
 	
 }
 .go_messeage {
     position: absolute;
-	top: 20%;
+	top: 24.5%;
 	left: 72%;
     display: inline-block;
     font-weight: bold;
@@ -289,8 +308,8 @@ body{
    transition: .2s;
 }
 .go_messeage:hover:before {
-    top: -webkit-calc(100% - 4px);
-    top: calc(100% - 4px);
+    top: -webkit-calc(95% - 4px);
+    top: calc(95% - 4px);
 }
 .go_messeage:hover:after {
     top: 4px;
