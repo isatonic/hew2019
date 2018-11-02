@@ -89,7 +89,7 @@ body{
   background-color: rgba(30,30,30,0.9);
 }
 
-.modalWrapper {
+.modalWrapper {	
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -236,4 +236,62 @@ body{
 .messeage:hover {/*ボタンに触れたとき*/
     background: #ffc25c;
     color: #FFF;
+}
+
+
+/*SN1-2 Messeage List*/
+.sns_top_image{
+	max-width: auto;
+	height: 180px;
+	position: absolute;
+	top: 15%;
+	left: 12%;
+	border: solid 2px #000000;
+}
+.sns_name{
+	position: absolute;
+	top: 21.5%;
+	left: 50%;
+	transform: translateX(-50%)
+	
+}
+.go_messeage {
+    position: absolute;
+	top: 20%;
+	left: 72%;
+    display: inline-block;
+    font-weight: bold;
+    padding: 12px 0 8px;
+    text-decoration: none;
+    color: #67c5ff;
+    transition: .4s;
+}
+.go_messeage:before{
+   position: absolute;
+   content: '';
+   width: 100%;
+   height: 4px;
+   top:100%;
+   left: 0;
+   border-radius: 3px;
+   background:#67c5ff;
+   transition: .2s;
+}
+.go_messeage:after{
+   position: absolute;
+   content: '';
+   width: 100%;
+   height: 4px;
+   top: 0;
+   left: 0;
+   border-radius: 4px;
+   background:#67c5ff;
+   transition: .2s;
+}
+.go_messeage:hover:before {
+    top: -webkit-calc(100% - 4px);
+    top: calc(100% - 4px);
+}
+.go_messeage:hover:after {
+    top: 4px;
 }
