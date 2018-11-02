@@ -8,8 +8,8 @@ class Grade extends ModelBase {
      * @param $user
      *
      * @return array
-     *      ["grade"]   => グレード
-     *      ["gpoint"]  => グレードポイント
+     *      int ["grade"]   => グレード
+     *      int ["gpoint"]  => グレードポイント
      */
     public function getPoint($user) {
         $sql = "SELECT gpoint FROM Grade WHERE user LIKE :user";
@@ -17,7 +17,7 @@ class Grade extends ModelBase {
             "user" => $user
         );
         $rows = $this->query($sql, $params);
-        $gpoint = $rows[0]["gpoint"];
+        $gpoint = (int) $rows[0]["gpoint"];
         $grade = 0;
         if ($gpoint < 100) {
             $grade = 6;
