@@ -25,7 +25,7 @@ class Users extends ModelBase {
      * @return bool
      */
     public function changeInfo($data, $who) {
-        $where = sprintf("WHERE email LIKE %s", $who);
+        $where = sprintf("email LIKE %s", $who);
         $res = $this->update($data, $where);
         return $res;
     }

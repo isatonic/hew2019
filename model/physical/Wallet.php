@@ -34,7 +34,7 @@ class Wallet extends ModelBase {
         $data = array(
             "point" => $newPoint
         );
-        $where = "WHERE user LIKE $user";
+        $where = "user LIKE $user";
         $res = $this->update($data, $where);
 
         return $res;
@@ -57,7 +57,7 @@ class Wallet extends ModelBase {
             $data = array(
                 "point" => $newPoint
             );
-            $where = "WHERE user LIKE $user";
+            $where = "user LIKE $user";
             $res = $this->update($data, $where);
         }
 

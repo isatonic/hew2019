@@ -51,7 +51,7 @@ class Grade extends ModelBase {
     public function addPoint($user, $point) {
         $nowPoint = $this->getPoint($user);
         $data["gpoint"] = $point + $nowPoint["gpoint"];
-        $where = "WHERE user LIKE $user";
+        $where = "user LIKE $user";
         $res = $this->update($data, $where);
 
         return $res;
