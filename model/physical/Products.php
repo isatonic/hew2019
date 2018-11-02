@@ -33,7 +33,7 @@ class Products extends ModelBase {
      *      authorComment: String   -> 投稿者コメント
      */
     public function fetchAllImage() {
-        $sql = "SELECT id, fileName, title, author, postDate, price, authorComment";
+        $sql = "SELECT id, fileName, title, author, postDate, price, authorComment FROM Products";
         $rows = $this->query($sql);
         return $rows;
     }
