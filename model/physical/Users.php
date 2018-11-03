@@ -5,12 +5,19 @@ class Users extends ModelBase {
     /**
      * ユーザ登録
      *
-     * @param $data
-     *      $data[列名] = 値
+     * @param mixed[] $data {
+     *      @type string "email"
+     *      @type string "id"
+     *      @type string "userName"
+     *      @type string "firstName"
+     *      @type string "birth"
+     *      @type string "icon"
+     * }
      *
      * @return bool
      */
-    public function regist($data) {
+    public function regist(array $data) {
+        $data["flag"] = "verifying";
         $res = $this->insert($data);
         return $res;
     }
@@ -18,12 +25,12 @@ class Users extends ModelBase {
     /**
      * ユーザ情報変更
      *
-     * @param $data :    ["列名"] = 更新値
-     * @param $who :     メールアドレス
+     * @param array     $data   ["変更する列名"] = 更新値
+     * @param string    $who    メールアドレス
      *
      * @return bool
      */
-    public function changeInfo($data, $who) {
+    public function changeInfo(array $data, string $who) {
         $where = sprintf("email LIKE %s", $who);
         $res = $this->update($data, $where);
         return $res;
@@ -32,18 +39,17 @@ class Users extends ModelBase {
     /**
      * 利用状況変更
      *
-     * @param $to
+     * @param string $to
      *      メール認証完了 -> "active"
      *      退会           -> "unsubscribed"
      *      一時利用停止   -> "paused"
      *      BAN            -> "banned"
      *
-     * @param $who
-     *      メールアドレス
+     * @param string $who メールアドレス
      *
      * @return bool
      */
-    public function changeStatus($to, $who) {
+    public function changeStatus(string $to, string $who) {
         $data['flag'] = $to;
         $res = $this->changeInfo($data, $who);
         return $res;

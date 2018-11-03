@@ -3,15 +3,16 @@
 class Products extends ModelBase {
 
     /**
-     * 画像登録
+     * 商品登録
      *
-     * @param $data[]
-     *      id: String              -> 作品ID
-     *      fileName: String        -> ファイル名
-     *      title: String           -> タイトル
-     *      author: String          -> 投稿者メールアドレス
-     *      price: int              -> 価格
-     *      authorComment: String   -> 投稿者コメント
+     * @param mixed[] $data {
+     *      @type string    "id"            商品ID
+     *      @type string    "fileName"      ファイル名
+     *      @type string    "title"         タイトル
+     *      @type string    "author"        作者メールアドレス
+     *      @type int       "price"         価格
+     *      @type string    "authorComment" 作者コメント
+     * }
      *
      * @return bool
      */
@@ -23,14 +24,15 @@ class Products extends ModelBase {
     /**
      * 全画像データの取得
      *
-     * @return mixed[]: 連想配列
-     *      id: String              -> 作品ID
-     *      fileName: String        -> ファイル名
-     *      title: String           -> タイトル
-     *      author: String          -> 投稿者メールアドレス
-     *      postDate: String        -> 投稿日時
-     *      price: int              -> 価格
-     *      authorComment: String   -> 投稿者コメント
+     * @return mixed[] {
+     *      @type string    "id"            商品ID
+     *      @type string    "fileName"      ファイル名
+     *      @type string    "title"         タイトル
+     *      @type string    "author"        作者メールアドレス
+     *      @type string    "postDate"      投稿日時("YYYY-MM-DD HH-mm-SS")
+     *      @type int       "price"         価格
+     *      @type string    "authorComment" 作者コメント
+     * }
      */
     public function fetchAllImage() {
         $sql = "SELECT id, fileName, title, author, postDate, price, authorComment FROM Products";

@@ -5,13 +5,12 @@ class Tag extends ModelBase {
     /**
      * 商品にタグ付けする
      *
-     * @param       $product
-     * @param array $tag
-     *      タグIDを値とする配列
+     * @param string    $product    商品ID
+     * @param string[]  $tag        タグIDを値とする配列
      *
      * @return bool
      */
-    public function putTagOn($product, array $tag = array()) {
+    public function putTagOn(string $product, array $tag = array()) {
         if ($tag == null) {
             return false;
         } else {
@@ -28,13 +27,12 @@ class Tag extends ModelBase {
     /**
      * 商品からタグを外す
      *
-     * @param       $product
-     * @param array $tag
-     *      タグIDを値とする配列
+     * @param string    $product    商品ID
+     * @param string[]  $tag        タグIDを値とする配列
      *
      * @return bool
      */
-    public function takeTagOff($product, array $tag = array()) {
+    public function takeTagOff(string $product, array $tag = array()) {
         if ($tag == null) {
             return false;
         } else {
@@ -54,20 +52,21 @@ class Tag extends ModelBase {
     /**
      * タグから商品IDを検索
      *
-     * @param $tag
-     *      タグIDを値とする配列
+     * @param string[] $tag タグIDを値とする配列
      *
-     * @return mixed
-     *      [0..*]["product"] = 商品ID
+     * @return string[] 商品IDの配列
      */
-    public function searchTag($tag) {
+    public function searchTag(array $tag) {
         $sql = "SELECT product FROM Tag WHERE tagID LIKE :tag";
         $params = array(
             "tag" => $tag
         );
         $rows = $this->query($sql, $params);
-
-        return $rows;
+        $ret = array();
+        foreach ($rows as $row) {
+            $ret[] = $row["product"];
+        }
+        return $ret;
     }
 
 }

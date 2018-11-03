@@ -1,8 +1,15 @@
 <?php
 
+/**
+ * Class ModelBase
+ *
+ * DBに関する基本処理をまとめたクラス
+ *
+ * @property PDO    $db
+ * @property string $table_name
+ */
 class ModelBase {
 
-    /** @var PDO */
     protected $db;
     protected $table_name;
 
@@ -19,7 +26,7 @@ class ModelBase {
     }
 
     /**
-     *  DBへ接続
+     * DBへ接続
      *
      * メンバ変数$db <- PDO
      */
@@ -43,12 +50,12 @@ class ModelBase {
     /**
      * SELECTの結果を取得
      *
-     * @param       $sql
-     * @param array $params
+     * @param string    $sql
+     * @param array     $params
      *
-     * @return mixed
+     * @return mixed[]
      */
-    public function query($sql, array $params = array()) {
+    public function query(string $sql, array $params = array()) {
         $stmt = $this->db->prepare($sql);
         if ($params != null) {
             foreach ($params as $key => $val) {
@@ -67,11 +74,11 @@ class ModelBase {
     /**
      * INSERTを実行
      *
-     * @param $data
+     * @param array $data
      *
      * @return bool
      */
-    public function insert($data) {
+    public function insert(array $data) {
         $fields = array();
         $values = array();
         foreach ($data as $key => $val) {
@@ -96,12 +103,12 @@ class ModelBase {
     /**
      * DELETEを実行
      *
-     * @param       $where
-     * @param array $params
+     * @param string    $where
+     * @param array     $params
      *
      * @return bool
      */
-    public function delete($where, array $params = array()) {
+    public function delete(string $where, array $params = array()) {
         $sql = sprintf("DELETE FROM %s", $this->table_name);
         if ($where != "") {
             $sql .= " WHERE " . $where;
@@ -120,14 +127,16 @@ class ModelBase {
     /**
      * UPDATEを実行
      *
-     * @param $data
-     *      ["列名"] = 更新値
-     * @param $where
-     *      条件(WHERE ...)
+     * @param mixed[] $data {
+     *      "列名": 更新値
+     * }
+     *
+     * @param string $where
+     *      条件("WHERE ..."の"...")
      *
      * @return bool
      */
-    public function update($data, $where) {
+    public function update(array $data, string $where) {
         $keyval = array();
         foreach ($data as $key => $val) {
             $keyval[] = "${key}=${val}";

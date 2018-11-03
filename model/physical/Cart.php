@@ -5,12 +5,12 @@ class Cart extends ModelBase {
     /**
      * カートに商品を追加
      *
-     * @param $user
-     * @param $product
+     * @param string $user      ユーザのメールアドレス
+     * @param string $product   商品ID
      *
      * @return bool
      */
-    public function add($user, $product) {
+    public function add(string $user, string $product) {
         $data = array(
             "product" => $product,
             "user" => $user
@@ -23,12 +23,12 @@ class Cart extends ModelBase {
     /**
      * カートから商品を削除
      *
-     * @param $user
-     * @param $product
+     * @param string $user      メールアドレス
+     * @param string $product   商品ID
      *
      * @return bool
      */
-    public function remove($user, $product) {
+    public function remove(string $user, string $product) {
         $where = "user LIKE :user and product LIKE :product";
         $params = array(
             "user" => $user,

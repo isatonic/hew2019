@@ -5,11 +5,11 @@ class Wallet extends ModelBase {
     /**
      * ウォレット(所持Tポイント)を取得
      *
-     * @param $user
+     * @param string $user メールアドレス
      *
      * @return int
      */
-    public function checkWallet($user) {
+    public function checkWallet(string $user) {
         $sql = "SELECT point FROM Wallet WHERE user LIKE :user";
         $params = array(
             "user" => $user
@@ -23,13 +23,12 @@ class Wallet extends ModelBase {
     /**
      * Tポイントをウォレットに追加
      *
-     * @param $user
-     * @param $point
-     *      追加分ポイント
+     * @param string    $user   メールアドレス
+     * @param int       $point  追加分ポイント
      *
      * @return bool
      */
-    public function charge($user, $point) {
+    public function charge(string $user, int $point) {
         $newPoint = $this->checkWallet($user) + $point;
         $data = array(
             "point" => $newPoint
@@ -43,13 +42,12 @@ class Wallet extends ModelBase {
     /**
      * Tポイントを消費
      *
-     * @param $user
-     * @param $point
-     *      消費分ポイント
+     * @param string    $user   メールアドレス
+     * @param int       $point  消費分ポイント
      *
      * @return bool
      */
-    public function usePoint($user, $point) {
+    public function usePoint(string $user, int $point) {
         $newPoint = $this->checkWallet($user) - $point;
         if ($newPoint < 0) {
             $res = false;

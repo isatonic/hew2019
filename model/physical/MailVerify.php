@@ -5,11 +5,11 @@ class MailVerify extends ModelBase {
     /**
      * メール認証を追加
      *
-     * @param $email
+     * @param string $email メールアドレス
      *
      * @return bool
      */
-    public function add($email) {
+    public function add(string $email) {
         $data = array(
             "email" => $email,
             "verifycode" => $this->makeRandStr(4),
@@ -22,13 +22,11 @@ class MailVerify extends ModelBase {
     /**
      * ランダム文字列を生成
      *
-     * @param int $length
-     *      文字数
-     *      default: 4
+     * @param int $length 文字数 Default: 4
      *
      * @return string
      */
-    private function makeRandStr($length = 4) {
+    private function makeRandStr(int $length = 4) {
         static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
         $str = '';
         for ($i = 0; $i < $length; ++$i) {
@@ -41,33 +39,32 @@ class MailVerify extends ModelBase {
     /**
      * 認証期限日時を取得
      *
-     * @param int $minute
-     *      制限までの時間(分)
-     *      default: 30
+     * @param int $minute 制限までの時間(分) Default: 30
      *
-     * @return string
-     *      例: 2018-11-03 00:00:00
+     * @return string (YYYY-MM-DD HH:mm:SS)
      */
-    private function setLimit($minute = 30) {
+    private function setLimit(int $minute = 30) {
         return date('Y-m-d H:i:s', strtotime("+ $minute minute"));
     }
 
     /**
      * fetchCode: コードを取得
      *
-     * @param $email
+     * @param string $email メールアドレス
      *
-     * @return mixed
-     *      string ["verifycode"] => コード
-     *      string ["verifyLimit"] => 期限(例: "2018-11-04 23:02:21")
+     * @return array {
+     *      @type string "verifycode"   認証コード
+     *      @type string "verifyLimit"  認証期限
+     * }
      */
-    public function fetchCode($email) {
+    public function fetchCode(string $email) {
         $sql = "SELECT verifycode, verifyLimit FROM MailVerify WHERE email LIKE :email";
         $params = array(
             "email" => $email
         );
+        $res = $this->query($sql, $params);
 
-        return $this->query($sql, $params);
+        return $res[0];
     }
 
 }

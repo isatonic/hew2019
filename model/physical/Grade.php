@@ -5,13 +5,14 @@ class Grade extends ModelBase {
     /**
      * 現在のグレード, グレードポイントを取得
      *
-     * @param $user
+     * @param string $user ユーザのメールアドレス
      *
-     * @return array
-     *      int ["grade"]   => グレード
-     *      int ["gpoint"]  => グレードポイント
+     * @return array {
+     *      @type "grade"   グレード
+     *      @type "gpoint"  グレードポイント
+     * }
      */
-    public function getPoint($user) {
+    public function getPoint(string $user) {
         $sql = "SELECT gpoint FROM Grade WHERE user LIKE :user";
         $params = array(
             "user" => $user
@@ -42,13 +43,12 @@ class Grade extends ModelBase {
     /**
      * グレードポイントを追加
      *
-     * @param $user
-     * @param $point
-     *      追加分のポイント
+     * @param string    $user   ユーザのメールアドレス
+     * @param int       $point  追加分のポイント
      *
      * @return bool
      */
-    public function addPoint($user, $point) {
+    public function addPoint(string $user, int $point) {
         $nowPoint = $this->getPoint($user);
         $data["gpoint"] = $point + $nowPoint["gpoint"];
         $where = "user LIKE $user";

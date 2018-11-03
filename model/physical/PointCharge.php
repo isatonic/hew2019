@@ -5,13 +5,12 @@ class PointCharge extends ModelBase {
     /**
      * Tポイントチャージ履歴を保存
      *
-     * @param $user
-     * @param $point
-     *      追加分ポイント
+     * @param string    $user   ユーザのメールアドレス
+     * @param int       $point  追加分ポイント
      *
      * @return bool
      */
-    public function charge($user, $point) {
+    public function charge(string $user, int $point) {
         $data = array(
             "user" => $user,
             "point" => $point
@@ -24,15 +23,18 @@ class PointCharge extends ModelBase {
     /**
      * チャージ履歴を取得
      *
-     * @param      $user
-     * @param null $start
-     *      検索したい期間の開始日時(option)
-     * @param null $end
-     *      検索したい期間の終了日時(option)
+     * @param string        $user   ユーザのメールアドレス
+     * @param string null   $start  検索したい期間の開始日時(option, 例:"2018-10-03 23:01:10")
+     * @param string null   $end    検索したい期間の終了日時(option 例:"2018-10-03 23:01:10")
      *
-     * @return mixed
+     * @return array {
+     *      @type array {
+     *          @type int       "point"     チャージしたポイント量
+     *          @type string    "datetime"  チャージした日付(例:"2018-10-02 01:01:01")
+     *      }
+     * }
      */
-    public function getLog($user, $start = null, $end = null) {
+    public function getLog(string $user, string $start = null, string $end = null) {
         $sql = "SELECT point, datetime FROM PointCharge WHERE user LIKE :user";
         $params["user"] = $user;
         if ($start != null and $end == null) {
