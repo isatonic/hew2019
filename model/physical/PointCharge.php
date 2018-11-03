@@ -3,7 +3,7 @@
 class PointCharge extends ModelBase {
 
     /**
-     * charge: Tポイントチャージ履歴を保存
+     * Tポイントチャージ履歴を保存
      *
      * @param $user
      * @param $point
@@ -22,7 +22,7 @@ class PointCharge extends ModelBase {
     }
 
     /**
-     * getLog: チャージ履歴を取得
+     * チャージ履歴を取得
      *
      * @param      $user
      * @param null $start

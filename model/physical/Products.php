@@ -3,7 +3,7 @@
 class Products extends ModelBase {
 
     /**
-     * regist: 画像登録
+     * 画像登録
      *
      * @param $data[]
      *      id: String              -> 作品ID
@@ -21,7 +21,7 @@ class Products extends ModelBase {
     }
 
     /**
-     * fetchAllImage: 全画像データの取得
+     * 全画像データの取得
      *
      * @return mixed[]: 連想配列
      *      id: String              -> 作品ID

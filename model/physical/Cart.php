@@ -3,7 +3,7 @@
 class Cart extends ModelBase {
 
     /**
-     * add: カートに商品を追加
+     * カートに商品を追加
      *
      * @param $user
      * @param $product
@@ -21,7 +21,7 @@ class Cart extends ModelBase {
     }
 
     /**
-     * remove: カートから商品を削除
+     * カートから商品を削除
      *
      * @param $user
      * @param $product

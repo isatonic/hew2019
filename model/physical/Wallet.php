@@ -3,7 +3,7 @@
 class Wallet extends ModelBase {
 
     /**
-     * checkWallet: ウォレット(所持Tポイント)を取得
+     * ウォレット(所持Tポイント)を取得
      *
      * @param $user
      *
@@ -21,7 +21,7 @@ class Wallet extends ModelBase {
     }
 
     /**
-     * charge: Tポイントをウォレットに追加
+     * Tポイントをウォレットに追加
      *
      * @param $user
      * @param $point
@@ -41,7 +41,7 @@ class Wallet extends ModelBase {
     }
 
     /**
-     * usePoint: Tポイントを消費
+     * Tポイントを消費
      *
      * @param $user
      * @param $point

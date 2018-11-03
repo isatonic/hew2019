@@ -3,8 +3,7 @@
 class Users extends ModelBase {
 
     /**
-     * regist: ユーザ登録
-     *      (参照: ./ModelBase.php)
+     * ユーザ登録
      *
      * @param $data
      *      $data[列名] = 値
@@ -17,7 +16,7 @@ class Users extends ModelBase {
     }
 
     /**
-     * changeInfo: ユーザ情報変更
+     * ユーザ情報変更
      *
      * @param $data :    ["列名"] = 更新値
      * @param $who :     メールアドレス
@@ -31,7 +30,7 @@ class Users extends ModelBase {
     }
 
     /**
-     * changeStatus: 利用状況変更
+     * 利用状況変更
      *
      * @param $to
      *      メール認証完了 -> "active"

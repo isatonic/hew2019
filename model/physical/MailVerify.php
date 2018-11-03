@@ -3,7 +3,7 @@
 class MailVerify extends ModelBase {
 
     /**
-     * add: メール認証を追加
+     * メール認証を追加
      *
      * @param $email
      *
@@ -20,7 +20,7 @@ class MailVerify extends ModelBase {
     }
 
     /**
-     * makeRandStr: ランダム文字列を生成
+     * ランダム文字列を生成
      *
      * @param int $length
      *      文字数
@@ -39,14 +39,14 @@ class MailVerify extends ModelBase {
     }
 
     /**
-     * setLimit: 認証期限日時を取得
-     *      例: 2018-11-03 00:00:00
+     * 認証期限日時を取得
      *
      * @param int $minute
      *      制限までの時間(分)
      *      default: 30
      *
      * @return string
+     *      例: 2018-11-03 00:00:00
      */
     private function setLimit($minute = 30) {
         return date('Y-m-d H:i:s', strtotime("+ $minute minute"));

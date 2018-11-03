@@ -3,7 +3,7 @@
 class Tag extends ModelBase {
 
     /**
-     * putTagOn: 商品にタグ付けする
+     * 商品にタグ付けする
      *
      * @param       $product
      * @param array $tag
@@ -26,7 +26,7 @@ class Tag extends ModelBase {
     }
 
     /**
-     * takeTagOff: 商品からタグを外す
+     * 商品からタグを外す
      *
      * @param       $product
      * @param array $tag
@@ -52,7 +52,7 @@ class Tag extends ModelBase {
     }
 
     /**
-     * searchTag: タグから商品IDを検索
+     * タグから商品IDを検索
      *
      * @param $tag
      *      タグIDを値とする配列

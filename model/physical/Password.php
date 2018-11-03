@@ -3,7 +3,7 @@
 class Password extends ModelBase {
 
     /**
-     * regist: パスワード登録
+     * パスワード登録
      *      ユーザ登録時にUsers.registと同トランザクション内で実行
      *
      * @param $user
@@ -22,7 +22,7 @@ class Password extends ModelBase {
     }
 
     /**
-     * check: パスワード照合
+     * パスワード照合
      *
      * @param $user
      * @param $pass
@@ -39,7 +39,7 @@ class Password extends ModelBase {
     }
 
     /**
-     * change: パスワード変更
+     * パスワード変更
      *
      * @param $user
      * @param $pass

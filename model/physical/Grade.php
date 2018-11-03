@@ -3,7 +3,7 @@
 class Grade extends ModelBase {
 
     /**
-     * getPoint: 現在のグレード, グレードポイントを取得
+     * 現在のグレード, グレードポイントを取得
      *
      * @param $user
      *
@@ -40,7 +40,7 @@ class Grade extends ModelBase {
     }
 
     /**
-     * addPoint: グレードポイントを追加
+     * グレードポイントを追加
      *
      * @param $user
      * @param $point

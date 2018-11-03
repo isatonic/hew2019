@@ -3,7 +3,7 @@
 class Friends extends ModelBase {
 
     /**
-     * add: フレンド登録
+     * フレンド登録
      *
      * @param $user
      *      主体となるユーザのメールアドレス
@@ -22,7 +22,7 @@ class Friends extends ModelBase {
     }
 
     /**
-     * block: フレンドをブロック
+     * フレンドをブロック
      *
      * @param $user
      *      主体となるユーザのメールアドレス
@@ -39,7 +39,7 @@ class Friends extends ModelBase {
     }
 
     /**
-     * fetchList: フレンドリスト取得
+     * フレンドリスト取得
      *
      * @param $user
      *      メールアドレス

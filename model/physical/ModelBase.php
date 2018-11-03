@@ -19,7 +19,7 @@ class ModelBase {
     }
 
     /**
-     *  initDB: DBへ接続
+     *  DBへ接続
      *
      * メンバ変数$db <- PDO
      */
@@ -32,7 +32,7 @@ class ModelBase {
     }
 
     /**
-     * setTableName: テーブル名を設定
+     * テーブル名を設定
      *
      * メンバ変数$table_name <- テーブル名 (=クラス名)
      */
@@ -120,8 +120,10 @@ class ModelBase {
     /**
      * UPDATEを実行
      *
-     * @param $data:    ["列名"] = 更新値
-     * @param $where:   条件(WHERE ...)
+     * @param $data
+     *      ["列名"] = 更新値
+     * @param $where
+     *      条件(WHERE ...)
      *
      * @return bool
      */
