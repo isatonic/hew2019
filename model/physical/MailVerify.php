@@ -58,7 +58,7 @@ class MailVerify extends ModelBase {
      * }
      */
     public function fetchCode(string $email) {
-        $sql = "SELECT verifycode, verifyLimit FROM MailVerify WHERE email LIKE :email";
+        $sql = "SELECT verifycode, verifyLimit FROM MailVerify WHERE email LIKE :email ORDER BY verifyLimit DESC";
         $params = array(
             "email" => $email
         );
