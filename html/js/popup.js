@@ -10,6 +10,15 @@ $(function () {
   });
 });
 
+$(function(){
+	var repeatHtml = document.getElementsByClassName("modalWrapper2");
+	var changeHtml="";
+	for (var i=1 ; i<=20 ; i++){
+		changeHtml += repeatHtml[0].innerHTML;
+	}
+	repeatHtml[0].innerHTML = changeHtml;
+});
+
 //Friend List
 $(function () {
   $('#openModal_Friend_List').click
