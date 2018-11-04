@@ -16,11 +16,18 @@ class Tag extends ModelBase {
         } else {
             $data["product"] = $product;
             $res = array();
-            foreach ($tag as $val) {
-                $data["tagID"] = $val;
-                $res[] = $this->insert($data);
+            try {
+                $this->db->beginTransaction();
+                foreach ($tag as $val) {
+                    $data["tagID"] = $val;
+                    $res[] = $this->insert($data);
+                }
+                $this->db->commit();
+                return true;
+            } catch (Exception $e) {
+                $this->db->rollBack();
+                return false;
             }
-            return in_array(false, $res, true) ? false : true;
         }
     }
 
