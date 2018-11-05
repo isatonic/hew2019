@@ -115,7 +115,7 @@ body{
 	right: 1rem;
 	cursor: pointer;
 }
-.inbox,.inbox2,.inbox3,.inbox4,.inbox5{
+.inbox{
 	background-color: #FFF3F3;
 	width: 1300px;
 	height: 180px;
