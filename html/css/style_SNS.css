@@ -98,7 +98,40 @@ body{
 	padding: 10px 30px;
 	background-color: #fff;
 }
-.modalWrapper2 {
+.modalWrapper2 {/*Messeage List*/
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform:translate(-50%,-80%);
+	width: 1500px;
+	height: 700px;
+	padding: 10px 30px;
+	background-color: #fff;
+	overflow-y: auto;/*スクロール*/
+}
+.modalWrapper3 {/*Friend List*/
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform:translate(-50%,-80%);
+	width: 1500px;
+	height: 700px;
+	padding: 10px 30px;
+	background-color: #fff;
+	overflow-y: auto;/*スクロール*/
+}
+.modalWrapper4 {/*Create Messeage*/
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform:translate(-50%,-80%);
+	width: 1500px;
+	height: 700px;
+	padding: 10px 30px;
+	background-color: #fff;
+	overflow-y: auto;/*スクロール*/
+}
+.modalWrapper5 {/*Friend Search*/
 	position: absolute;
 	top: 80%;
 	left: 50%;
@@ -114,15 +147,6 @@ body{
 	top: 0.5rem;
 	right: 1rem;
 	cursor: pointer;
-}
-.inbox{
-	background-color: #FFF3F3;
-	width: 1300px;
-	height: 180px;
-	position: relative;
-	left: 50%;
-	margin-bottom: 20px;
-	transform: translateX(-50%);
 }
 
 
@@ -260,6 +284,15 @@ body{
 
 
 /*SN1-2 Messeage List*/
+.inbox{
+	background-color: #FFF3F3;
+	width: 1300px;
+	height: 180px;
+	position: relative;
+	left: 50%;
+	margin-bottom: 20px;
+	transform: translateX(-50%);
+}
 .sns_top_image{
 	max-width: auto;
 	height: 180px;
@@ -312,5 +345,72 @@ body{
     top: calc(95% - 4px);
 }
 .go_messeage:hover:after {
+    top: 4px;
+}
+
+
+
+/*SN2 Friend List*/
+.inbox2{
+	background-color: #FFFEEA;
+	width: 1300px;
+	height: 180px;
+	position: relative;
+	left: 50%;
+	margin-bottom: 20px;
+	transform: translateX(-50%);
+}
+.sns_top_image2{
+	max-width: auto;
+	height: 180px;
+	position: absolute;
+	left: 12%;
+	border: solid 2px #000000;
+}
+.sns_name2{
+	position: absolute;
+	top: 32%;
+	left: 50%;
+	transform: translateX(-50%)
+	
+}
+.go_chat {
+    position: absolute;
+	top: 24.5%;
+	left: 72%;
+    display: inline-block;
+    font-weight: bold;
+    padding: 12px 0 8px;
+    text-decoration: none;
+    color: #67c5ff;
+    transition: .4s;
+}
+.go_chat:before{
+   position: absolute;
+   content: '';
+   width: 100%;
+   height: 4px;
+   top:100%;
+   left: 0;
+   border-radius: 3px;
+   background:#67c5ff;
+   transition: .2s;
+}
+.go_chat:after{
+   position: absolute;
+   content: '';
+   width: 100%;
+   height: 4px;
+   top: 0;
+   left: 0;
+   border-radius: 4px;
+   background:#67c5ff;
+   transition: .2s;
+}
+.go_chat:hover:before {
+    top: -webkit-calc(95% - 4px);
+    top: calc(95% - 4px);
+}
+.go_chat:hover:after {
     top: 4px;
 }

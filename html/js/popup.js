@@ -19,6 +19,9 @@ $(function(){
 	repeatHtml[0].innerHTML = changeHtml;
 });
 
+
+
+
 //Friend List
 $(function () {
   $('#openModal_Friend_List').click
@@ -31,6 +34,18 @@ $(function () {
   });
 });
 
+$(function(){
+	var repeatHtml = document.getElementsByClassName("modalWrapper3");
+	var changeHtml="";
+	for (var i=1 ; i<=20 ; i++){
+		changeHtml += repeatHtml[0].innerHTML;
+	}
+	repeatHtml[0].innerHTML = changeHtml;
+});
+
+
+
+
 //Friend Select
 $(function () {
   $('#openModal_Friend_Select').click
@@ -42,6 +57,9 @@ $(function () {
     $('#modalArea_Friend_Select').fadeOut();
   });
 });
+
+
+
 
 //Friend Search
 $(function () {
