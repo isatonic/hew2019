@@ -133,11 +133,11 @@ body{
 }
 .modalWrapper5 {/*Friend Search*/
 	position: absolute;
-	top: 80%;
+	top: 97%;
 	left: 50%;
-	transform:translate(-50%,-80%);
+	transform:translate(-50%,-100%);
 	width: 1500px;
-	height: 700px;
+	height: 300px;
 	padding: 10px 30px;
 	background-color: #fff;
 	overflow-y: auto;/*スクロール*/
@@ -418,33 +418,33 @@ body{
 
 
 /*SN5 Friend Search*/
-.inbox3{
+.inbox4{
 	background-color: #FFFEEA;
 	width: 1300px;
-	height: 180px;
+	height: 100px;
 	position: relative;
 	left: 50%;
 	margin-bottom: 20px;
 	transform: translateX(-50%);
 }
-.sns_top_image3{
+.sns_top_image4{
 	max-width: auto;
-	height: 180px;
+	height: 100px;
 	position: absolute;
 	left: 12%;
 	border: solid 2px #000000;
 }
-.sns_name3{
+.sns_name4{
 	position: absolute;
-	top: 32%;
-	left: 50%;
-	transform: translateX(-50%)
+	top: 20.5%;
+	left: 45%;
+	transform: translateX(-45%)
 	
 }
-.go_chat {
+.friend_request {
     position: absolute;
-	top: 24.5%;
-	left: 72%;
+	top: 20.5%;
+	left: 65%;
     display: inline-block;
     font-weight: bold;
     padding: 12px 0 8px;
@@ -452,7 +452,18 @@ body{
     color: #67c5ff;
     transition: .4s;
 }
-.go_chat:before{
+.send_messeage {
+    position: absolute;
+	top: 20.5%;
+	left: 80%;
+    display: inline-block;
+    font-weight: bold;
+    padding: 12px 0 8px;
+    text-decoration: none;
+    color: #67c5ff;
+    transition: .4s;
+}
+.friend_request:before,.send_messeage:before {
    position: absolute;
    content: '';
    width: 100%;
@@ -463,7 +474,7 @@ body{
    background:#67c5ff;
    transition: .2s;
 }
-.go_chat:after{
+.friend_request:after,.send_messeage:after {
    position: absolute;
    content: '';
    width: 100%;
@@ -474,10 +485,10 @@ body{
    background:#67c5ff;
    transition: .2s;
 }
-.go_chat:hover:before {
+.friend_request:hover:before,.send_messeage:hover:before {
     top: -webkit-calc(95% - 4px);
     top: calc(95% - 4px);
 }
-.go_chat:hover:after {
+.friend_request:hover:after,.send_messeage:hover:after {
     top: 4px;
 }

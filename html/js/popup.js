@@ -34,19 +34,10 @@ $(function () {
   });
 });
 
-$(function(){
-	var repeatHtml = document.getElementsByClassName("modalWrapper4");
-	var changeHtml="";
-	for (var i=1 ; i<=20 ; i++){
-		changeHtml += repeatHtml[0].innerHTML;
-	}
-	repeatHtml[0].innerHTML = changeHtml;
-});
 
 
 
-
-//Friend Select
+//Create Messeage
 $(function () {
   $('#openModal_Friend_Select').click
   (function(){
@@ -56,6 +47,15 @@ $(function () {
   (function(){
     $('#modalArea_Friend_Select').fadeOut();
   });
+});
+
+$(function(){
+	var repeatHtml = document.getElementsByClassName("modalWrapper4");
+	var changeHtml="";
+	for (var i=1 ; i<=20 ; i++){
+		changeHtml += repeatHtml[0].innerHTML;
+	}
+	repeatHtml[0].innerHTML = changeHtml;
 });
 
 
@@ -71,4 +71,13 @@ $(function () {
   (function(){
     $('#modalArea_Friend_Search').fadeOut();
   });
+});
+
+$(function(){
+	var repeatHtml = document.getElementsByClassName("modalWrapper5");
+	var changeHtml="";
+	for (var i=1 ; i<=20 ; i++){
+		changeHtml += repeatHtml[0].innerHTML;
+	}
+	repeatHtml[0].innerHTML = changeHtml;
 });
