@@ -36,20 +36,20 @@ class Contact extends ModelBase {
      */
     public function getAll() {
         $sql = <<<SQL
-                SELECT
-                  C.id as id,
-                  C.contactDate as contactDate,
-                  C.flag as flag,
-                  C.name as name,
-                  C.email as email,
-                  C.title as title,
-                  CT.name as tag,
-                  C.detail as detail
-                FROM Contact C
-                JOIN ContactTags CT on C.tag = CT.id
-                ORDER BY
-                  C.contactDate DESC,
-                  C.flag ASC
+            SELECT
+                C.id as id,
+                C.contactDate as contactDate,
+                C.flag as flag,
+                C.name as name,
+                C.email as email,
+                C.title as title,
+                CT.name as tag,
+                C.detail as detail
+            FROM Contact C
+            JOIN ContactTags CT on C.tag = CT.id
+            ORDER BY
+                C.contactDate DESC,
+                C.flag ASC
 SQL;
         $rows = $this->query($sql);
 
@@ -73,20 +73,20 @@ SQL;
      */
     public function get(int $id) {
         $sql = <<<SQL
-                SELECT
-                  C.contactDate as contactDate,
-                  C.flag as flag,
-                  C.name as name,
-                  C.email as email,
-                  C.title as title,
-                  CT.name as tag,
-                  C.detail as detail
-                FROM Contact C
-                JOIN ContactTags CT on C.tag = CT.id
-                WHERE C.id = :id
-                ORDER BY
-                  C.contactDate DESC,
-                  C.flag ASC
+            SELECT
+                C.contactDate as contactDate,
+                C.flag as flag,
+                C.name as name,
+                C.email as email,
+                C.title as title,
+                CT.name as tag,
+                C.detail as detail
+            FROM Contact C
+            JOIN ContactTags CT on C.tag = CT.id
+            WHERE C.id = :id
+            ORDER BY
+                C.contactDate DESC,
+                C.flag ASC
 SQL;
         $params["id"] = $id;
         $rows = $this->query($sql, $params);
