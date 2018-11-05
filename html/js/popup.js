@@ -35,7 +35,7 @@ $(function () {
 });
 
 $(function(){
-	var repeatHtml = document.getElementsByClassName("modalWrapper3");
+	var repeatHtml = document.getElementsByClassName("modalWrapper4");
 	var changeHtml="";
 	for (var i=1 ; i<=20 ; i++){
 		changeHtml += repeatHtml[0].innerHTML;
