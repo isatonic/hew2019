@@ -27,6 +27,14 @@ body{
 .Header2{
 	border-bottom: solid 2px #000000;
 }
+.Header3{
+	border-bottom: solid 2px #000000;
+	position: absolute;
+	top: 38%;
+	left: 50%;
+	transform:translateX(-50%);
+	width: 1440px;
+}
 
 /*配置*/
 .box {
@@ -133,11 +141,11 @@ body{
 }
 .modalWrapper5 {/*Friend Search*/
 	position: absolute;
-	top: 97%;
+	top: 94.5%;
 	left: 50%;
-	transform:translate(-50%,-100%);
+	transform:translate(-50%,-95%);
 	width: 1500px;
-	height: 300px;
+	height: 400px;
 	padding: 10px 30px;
 	background-color: #fff;
 	overflow-y: auto;/*スクロール*/
