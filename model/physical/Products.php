@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Productsテーブル操作クラス
+ */
 class Products extends ModelBase {
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Walletテーブル操作クラス
+ */
 class Wallet extends ModelBase {
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Usersテーブル操作クラス
+ */
 class Users extends ModelBase {
 
     /**

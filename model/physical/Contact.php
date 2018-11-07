@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Contactテーブル操作クラス
+ */
 class Contact extends ModelBase {
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * PointChargeテーブル操作クラス
+ */
 class PointCharge extends ModelBase {
 
     /**

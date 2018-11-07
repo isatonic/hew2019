@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Tagテーブル操作クラス
+ */
 class Tag extends ModelBase {
 
     /**

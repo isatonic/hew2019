@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * MailVerifyテーブル操作クラス
+ */
 class MailVerify extends ModelBase {
 
     /**

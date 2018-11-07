@@ -1,16 +1,13 @@
 <?php
 
 /**
- * Class ModelBase
- *
  * DBに関する基本処理をまとめたクラス
- *
- * @property PDO    $db
- * @property string $table_name
  */
 class ModelBase {
 
+    /** @var PDO $db DB接続用PDO */
     protected $db;
+    /** @var string $table_name テーブル名格納用変数 */
     protected $table_name;
 
 

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Purchaseテーブル操作クラス
+ */
 class Purchase extends ModelBase {
 
     /**

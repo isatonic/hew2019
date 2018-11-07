@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Friendsテーブル操作クラス
+ */
 class Friends extends ModelBase {
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Gradeテーブル操作クラス
+ */
 class Grade extends ModelBase {
 
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Cartテーブル操作クラス
+ */
 class Cart extends ModelBase {
 
     /**

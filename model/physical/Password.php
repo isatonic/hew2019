@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Passwordテーブル操作クラス
+ */
 class Password extends ModelBase {
 
     /**
