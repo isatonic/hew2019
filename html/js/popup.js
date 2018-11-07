@@ -10,14 +10,15 @@ $(function () {
   });
 });
 
-$(function(){
-	var repeatHtml = document.getElementsByClassName("modalWrapper2");
-	var changeHtml="";
-	for (var i=1 ; i<=20 ; i++){
-		changeHtml += repeatHtml[0].innerHTML;
-	}
-	repeatHtml[0].innerHTML = changeHtml;
-});
+	//内容周回
+	$(function(){
+		var repeatHtml = document.getElementsByClassName("modalWrapper2");
+		var changeHtml="";
+		for (var i=1 ; i<=20 ; i++){
+			changeHtml += repeatHtml[0].innerHTML;
+		}
+		repeatHtml[0].innerHTML = changeHtml;
+	});
 
 
 
@@ -49,14 +50,15 @@ $(function () {
   });
 });
 
-$(function(){
-	var repeatHtml = document.getElementsByClassName("modalWrapper4");
-	var changeHtml="";
-	for (var i=1 ; i<=20 ; i++){
-		changeHtml += repeatHtml[0].innerHTML;
-	}
-	repeatHtml[0].innerHTML = changeHtml;
-});
+	//内容周回
+	$(function(){
+		var repeatHtml = document.getElementsByClassName("modalWrapper4");
+		var changeHtml="";
+		for (var i=1 ; i<=20 ; i++){
+			changeHtml += repeatHtml[0].innerHTML;
+		}
+		repeatHtml[0].innerHTML = changeHtml;
+	});
 
 
 
@@ -81,3 +83,6 @@ $(function(){
 	}
 	repeatHtml[0].innerHTML = changeHtml;
 });
+
+	//検索関連
+	

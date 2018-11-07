@@ -5,6 +5,7 @@ body{
 	background-repeat: no-repeat;
 	background-attachment: fixed; 
 	background-size: 30%;
+	
 }
 @font-face {
   font-family: 'Myfont';
@@ -30,7 +31,7 @@ body{
 .Header3{
 	border-bottom: solid 2px #000000;
 	position: absolute;
-	top: 38%;
+	top: 26.5%;
 	left: 50%;
 	transform:translateX(-50%);
 	width: 1440px;
@@ -141,11 +142,11 @@ body{
 }
 .modalWrapper5 {/*Friend Search*/
 	position: absolute;
-	top: 94.5%;
+	top: 94%;
 	left: 50%;
-	transform:translate(-50%,-95%);
+	transform:translate(-50%,-94%);
 	width: 1500px;
-	height: 400px;
+	height: 500px;
 	padding: 10px 30px;
 	background-color: #fff;
 	overflow-y: auto;/*スクロール*/
@@ -427,31 +428,34 @@ body{
 
 /*SN5 Friend Search*/
 .inbox4{
-	background-color: #FFFEEA;
 	width: 1300px;
-	height: 100px;
+	height: 120px;
 	position: relative;
 	left: 50%;
 	margin-bottom: 20px;
 	transform: translateX(-50%);
+	border-radius: 20px;
+	background: #FFF;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
 }
 .sns_top_image4{
 	max-width: auto;
 	height: 100px;
 	position: absolute;
 	left: 12%;
+	top: 8%;
 	border: solid 2px #000000;
 }
 .sns_name4{
 	position: absolute;
-	top: 20.5%;
+	top: 22.5%;
 	left: 45%;
 	transform: translateX(-45%)
 	
 }
 .friend_request {
     position: absolute;
-	top: 20.5%;
+	top: 23.5%;
 	left: 65%;
     display: inline-block;
     font-weight: bold;
@@ -462,7 +466,7 @@ body{
 }
 .send_messeage {
     position: absolute;
-	top: 20.5%;
+	top: 23.5%;
 	left: 80%;
     display: inline-block;
     font-weight: bold;
@@ -499,4 +503,90 @@ body{
 }
 .friend_request:hover:after,.send_messeage:hover:after {
     top: 4px;
+}
+
+/*Friend検索バー*/
+.search_friend{
+	position: absolute;
+	left: 19%;
+	top: 10%;
+	width: 900px;
+	height: 100px;
+	padding: 20px;
+	margin: 2em;
+	border-radius: 20px;
+	background: #FFF;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+
+}
+.search_content form{
+  height:50px;
+  width:700px;
+  position:relative;
+}
+.search_content form input[type=text]{
+	font-size: 25px;
+  width: 700px;
+  height:50px;
+  padding:4px 165px 4px 20px;
+  border:none;
+  -webkit-border-radius:32px;
+     -moz-border-radius:32px;
+          border-radius:32px;
+  -webkit-appearance: none;
+  outline: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position:absolute;
+  background:#EEEEEE;
+  top:0;
+  right:0;
+  backface-visibility: hidden;
+  -webkit-transition: 0.25s ease-out;
+     -moz-transition: 0.25s ease-out;
+       -o-transition: 0.25s ease-out;
+          transition: 0.25s ease-out;
+}
+.search_content form input[type=text]:focus{
+  background:#F6F6F6;
+}
+.search_content form button{
+	font-size: 19px;
+	width: 150px;
+	height: 50px;
+	color:#fff;
+	border:none;
+	-webkit-border-radius:16px;
+	-moz-border-radius:16px;
+			border-radius:16px;
+	background:#1B73BA;
+	display:inline-block;
+	-webkit-appearance: none;
+	outline: 0;
+	position:absolute;
+	top:0;
+	right:0;
+	cursor:pointer;
+	backface-visibility: hidden;
+	-webkit-transition: 0.3s ease-out;
+	-moz-transition: 0.3s ease-out;
+	-o-transition: 0.3s ease-out;
+	transition: 0.3s ease-out;
+}
+.search_content form button:hover{
+  opacity:0.8;
+}
+.search_content{/*フォームの位置*/
+	position: absolute;
+	top: 50%;
+	left: 60%;
+	transform: translate(-60%,-50%);
+}
+.friend_id{/*ID:の位置*/
+	position: absolute;
+	top: 22.5%;
+	left: 6%;
+	z-index: 20;
+	transform: translate(-6%,-22.5%);
 }
