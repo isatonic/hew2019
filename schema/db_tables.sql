@@ -91,6 +91,14 @@ CREATE TABLE Contact(
         FOREIGN KEY (tag) REFERENCES ContactTags(id) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE ContactReply (
+        id      int             PRIMARY KEY,
+        source  int,
+        date    datetime        DEFAULT CURRENT_TIMESTAMP,
+        detail  varchar(2000)   NOT NULL,
+        FOREIGN KEY (source) REFERENCES Contact(id) ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE=InnoDB;
+
 CREATE TABLE Password(
         user    varchar(255)    PRIMARY KEY,
         pass    varchar(128)    NOT NULL,
