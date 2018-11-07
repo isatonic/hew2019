@@ -2,6 +2,11 @@
 
 namespace model\physical;
 
+/**
+ * ContactReplyテーブル操作クラス
+ *
+ * @package model\physical
+ */
 class ContactReply extends ModelBase {
 
     /**
