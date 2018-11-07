@@ -42,6 +42,21 @@ class Friends extends ModelBase {
     }
 
     /**
+     * ブロック解除
+     *
+     * @param string $user      主体となるユーザのメールアドレス
+     * @param string $target    ブロック解除する対象のメールアドレス
+     *
+     * @return bool
+     */
+    public function unblock(string $user, string $target) {
+        $data["flag"] = "active";
+        $where = "user LIKE $user and friend LIKE $target";
+        return $this->update($data, $where);
+    }
+
+
+    /**
      * フレンドリスト取得
      *
      * @param string $user  メールアドレス
