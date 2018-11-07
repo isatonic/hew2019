@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Usersテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Users extends ModelBase {
 

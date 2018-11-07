@@ -1,7 +1,14 @@
 <?php
 
+namespace model\physical;
+
+use PDO;
+use PDOException;
+
 /**
  * DBに関する基本処理をまとめたクラス
+ *
+ * @package model\physical
  */
 class ModelBase {
 

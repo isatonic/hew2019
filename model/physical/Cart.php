@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Cartテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Cart extends ModelBase {
 

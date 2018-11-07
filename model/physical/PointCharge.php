@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * PointChargeテーブル操作クラス
+ *
+ * @package model\physical
  */
 class PointCharge extends ModelBase {
 

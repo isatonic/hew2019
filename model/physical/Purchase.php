@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Purchaseテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Purchase extends ModelBase {
 

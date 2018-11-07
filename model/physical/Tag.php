@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Tagテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Tag extends ModelBase {
 

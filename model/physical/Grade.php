@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Gradeテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Grade extends ModelBase {
 

@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Passwordテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Password extends ModelBase {
 

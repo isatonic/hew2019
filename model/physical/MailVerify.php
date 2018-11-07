@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * MailVerifyテーブル操作クラス
+ *
+ * @package model\physical
  */
 class MailVerify extends ModelBase {
 

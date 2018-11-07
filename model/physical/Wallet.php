@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Walletテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Wallet extends ModelBase {
 

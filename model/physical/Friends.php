@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Friendsテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Friends extends ModelBase {
 

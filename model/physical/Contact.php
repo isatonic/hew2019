@@ -1,7 +1,11 @@
 <?php
 
+namespace model\physical;
+
 /**
  * Contactテーブル操作クラス
+ *
+ * @package model\physical
  */
 class Contact extends ModelBase {
 
