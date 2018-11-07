@@ -62,17 +62,9 @@ class ContactReply extends ModelBase {
         $params = array(
             "id" => $id
         );
-        $arr = array();
         $rows = $this->query($sql, $params);
-        foreach ($rows as $row) {
-            $arr = array(
-                "source" => $row["source"],
-                "date" => $row["date"],
-                "detail" => $row["detail"]
-            );
-        }
 
-        return $arr;
+        return $rows[0];
     }
 
 }

@@ -59,7 +59,8 @@ class Cart extends ModelBase {
             "user" => $user
         );
         $array = array();
-        foreach ($this->query($sql, $params) as $row) {
+        $rows = $this->query($sql, $params);
+        foreach ($rows as $row) {
             $array[] = $row["product"];
         }
 

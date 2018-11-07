@@ -2,6 +2,8 @@
 
 namespace model\physical;
 
+use Exception;
+
 /**
  * Tagテーブル操作クラス
  *
