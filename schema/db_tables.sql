@@ -92,7 +92,7 @@ CREATE TABLE Contact(
 ) ENGINE=InnoDB;
 
 CREATE TABLE ContactReply (
-        id      int             PRIMARY KEY,
+        id      int             PRIMARY KEY AUTO_INCREMENT,
         source  int,
         date    datetime        DEFAULT CURRENT_TIMESTAMP,
         detail  varchar(2000)   NOT NULL,
