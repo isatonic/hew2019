@@ -24,12 +24,11 @@ class Tag extends ModelBase {
             return false;
         } else {
             $data["product"] = $product;
-            $res = array();
             try {
                 $this->db->beginTransaction();
                 foreach ($tag as $val) {
                     $data["tagID"] = $val;
-                    $res[] = $this->insert($data);
+                    $this->insert($data);
                 }
                 $this->db->commit();
                 return true;
