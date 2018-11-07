@@ -46,4 +46,24 @@ class Cart extends ModelBase {
         return $res;
     }
 
+    /**
+     * カート内の商品のIDを一覧取得
+     *
+     * @param string $user メールアドレス
+     *
+     * @return string[] 商品IDの配列
+     */
+    public function get(string $user) {
+        $sql = "SELECT product FROM Cart WHERE user LIKE :user";
+        $params = array(
+            "user" => $user
+        );
+        $array = array();
+        foreach ($this->query($sql, $params) as $row) {
+            $array[] = $row["product"];
+        }
+
+        return $array;
+    }
+
 }
