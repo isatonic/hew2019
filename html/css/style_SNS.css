@@ -296,29 +296,32 @@ body{
 .inbox{
 	background-color: #FFF3F3;
 	width: 1300px;
-	height: 180px;
+	height: 200px;
 	position: relative;
 	left: 50%;
 	margin-bottom: 20px;
 	transform: translateX(-50%);
+	border-radius: 20px;
+	box-shadow: 0 0px 10px rgba(0,0,0,0.2);
 }
 .sns_top_image{
 	max-width: auto;
 	height: 180px;
 	position: absolute;
+	top: 5%;
 	left: 12%;
 	border: solid 2px #000000;
 }
 .sns_name{
 	position: absolute;
-	top: 32%;
+	top: 36%;
 	left: 50%;
 	transform: translateX(-50%)
 	
 }
 .go_messeage {
     position: absolute;
-	top: 24.5%;
+	top: 29%;
 	left: 72%;
     display: inline-block;
     font-weight: bold;
@@ -363,29 +366,32 @@ body{
 .inbox3{
 	background-color: #FFFEEA;
 	width: 1300px;
-	height: 180px;
+	height: 200px;
 	position: relative;
 	left: 50%;
 	margin-bottom: 20px;
 	transform: translateX(-50%);
+	border-radius: 20px;
+	box-shadow: 0 0px 10px rgba(0,0,0,0.2);
 }
 .sns_top_image3{
 	max-width: auto;
 	height: 180px;
 	position: absolute;
+	top: 5%;
 	left: 12%;
 	border: solid 2px #000000;
 }
 .sns_name3{
 	position: absolute;
-	top: 32%;
+	top: 36%;
 	left: 50%;
 	transform: translateX(-50%)
 	
 }
 .go_chat {
     position: absolute;
-	top: 24.5%;
+	top: 29%;
 	left: 72%;
     display: inline-block;
     font-weight: bold;
@@ -435,8 +441,8 @@ body{
 	margin-bottom: 20px;
 	transform: translateX(-50%);
 	border-radius: 20px;
-	background: #FFF;
-	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+	background: #F5FFFE;
+	box-shadow: 0 0px 10px rgba(0,0,0,0.2);
 }
 .sns_top_image4{
 	max-width: auto;
