@@ -153,4 +153,33 @@ class ModelBase {
         $res = $stmt->execute();
         return $res;
     }
+
+    /**
+     * ランダム文字列を生成
+     *
+     * @param int $length 文字数 Default: 4
+     *
+     * @return string
+     */
+    protected function makeRandStr(int $length = 4) {
+        static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
+        $str = '';
+        for ($i = 0; $i < $length; ++$i) {
+            $str .= $chars[mt_rand(0, strlen($chars)-1)];
+        }
+
+        return $str;
+    }
+
+    /**
+     * 期限日時を設定
+     *
+     * @param int $minute 制限までの時間(分) Default: 30
+     *
+     * @return string (YYYY-MM-DD HH:mm:SS)
+     */
+    protected function setLimit(int $minute = 30) {
+        return date('Y-m-d H:i:s', strtotime("+ $minute minute"));
+    }
+
 }
