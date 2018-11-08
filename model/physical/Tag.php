@@ -72,9 +72,9 @@ class Tag extends ModelBase {
      * @return string[] 商品IDの配列
      */
     public function searchTag(array $tag) {
-        $sql = "SELECT product FROM Tag WHERE tagID LIKE :tag";
+        $sql = "SELECT product FROM Tag WHERE tagID in (:tags)";
         $params = array(
-            "tag" => $tag
+            "tags" => implode(", ", $tag)
         );
         $rows = $this->query($sql, $params);
         $ret = array();
