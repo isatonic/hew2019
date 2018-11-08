@@ -17,6 +17,15 @@ CREATE TABLE Users(
         flag            enum('verifying', 'active', 'unsubscribe', 'paused', 'banned')  NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE Admins(
+        email           varchar(255)    PRIMARY KEY,
+        userName        varchar(32)     NOT NULL,
+        firstName       varchar(32)     NOT NULL,
+        lastName        varchar(32)     NOT NULL,
+        birth           date            NOT NULL,
+        regDate         datetime        DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
 CREATE TABLE Products(
         id              varchar(255)    PRIMARY KEY,
         fileName        varchar(255)    NOT NULL,
@@ -92,11 +101,13 @@ CREATE TABLE Contact(
 ) ENGINE=InnoDB;
 
 CREATE TABLE ContactReply (
-        id      int             PRIMARY KEY AUTO_INCREMENT,
-        source  int,
-        date    datetime        DEFAULT CURRENT_TIMESTAMP,
-        detail  varchar(2000)   NOT NULL,
-        FOREIGN KEY (source) REFERENCES Contact(id) ON UPDATE CASCADE ON DELETE SET NULL
+        id              int             PRIMARY KEY AUTO_INCREMENT,
+        source          int,
+        operator        varchar(255),
+        date            datetime        DEFAULT CURRENT_TIMESTAMP,
+        detail          varchar(2000)   NOT NULL,
+        FOREIGN KEY (source) REFERENCES Contact(id) ON UPDATE CASCADE ON DELETE SET NULL,
+        FOREIGN KEY (operator) REFERENCES Admins(email) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE Password(

@@ -12,14 +12,16 @@ class ContactReply extends ModelBase {
     /**
      * お問い合わせへの返信を登録
      *
-     * @param int       $source お問い合わせID
-     * @param string    $detail 内容
+     * @param int    $source お問い合わせID
+     * @param string $detail 内容
+     * @param string $admin  担当管理者
      *
      * @return bool
      */
-    public function add($source, $detail) {
+    public function add(int $source, string $detail, string $admin) {
         $data = array(
             "source" => $source,
+            "operator" => $admin,
             "detail" => $detail
         );
         return $this->insert($data);
@@ -31,7 +33,7 @@ class ContactReply extends ModelBase {
      * @return mixed[]
      */
     public function getAll() {
-        $sql = "SELECT id, source, date, detail FROM ContactReply";
+        $sql = "SELECT id, source, operator, date, detail FROM ContactReply";
         return $this->query($sql);
     }
 
@@ -70,6 +72,22 @@ class ContactReply extends ModelBase {
         $rows = $this->query($sql, $params);
 
         return $rows[0];
+    }
+
+    /**
+     * 特定の管理者による返信を取得
+     *
+     * @param string $who 管理者のメールアドレス
+     *
+     * @return mixed[]
+     */
+    public function getOperator(string $who) {
+        $sql = "SELECT id, source, date, detail FROM ContactReply WHERE operator LIKE :who";
+        $params = array(
+            "operator" => $who
+        );
+
+        return $this->query($sql, $params);
     }
 
 }
