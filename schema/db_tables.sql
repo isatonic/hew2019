@@ -1,190 +1,296 @@
-START TRANSACTION;
-DROP DATABASE IF EXISTS isatonic;
-CREATE DATABASE isatonic CHARACTER SET UTF8;
+START TRANSACTION
+;
 
-use isatonic;
-SET sql_mode='strict_all_tables';
+DROP DATABASE IF EXISTS isatonic
+;
 
-CREATE TABLE Users(
-        email           varchar(255)    PRIMARY KEY,
-        id              varchar(255),
-        userName        varchar(32)     NOT NULL,
-        firstName       varchar(32)     NOT NULL,
-        lastName        varchar(32)     NOT NULL,
-        birth           date            NOT NULL,
-        icon            varchar(255),
-        regDate         datetime        DEFAULT CURRENT_TIMESTAMP,
-        flag            enum('verifying', 'active', 'unsubscribe', 'paused', 'banned')  NOT NULL
-) ENGINE=InnoDB;
+CREATE DATABASE isatonic
+    CHARACTER SET utf8
+    COLLATE utf8_general_ci
+;
 
-CREATE TABLE Admins(
-        email           varchar(255)    PRIMARY KEY,
-        userName        varchar(32)     NOT NULL,
-        firstName       varchar(32)     NOT NULL,
-        lastName        varchar(32)     NOT NULL,
-        birth           date            NOT NULL,
-        regDate         datetime        DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+USE isatonic
+;
 
-CREATE TABLE Products(
-        id              varchar(255)    PRIMARY KEY,
-        fileName        varchar(255)    NOT NULL,
-        title           varchar(64)     NOT NULL,
-        author          varchar(255),
-        postDate        datetime        DEFAULT CURRENT_TIMESTAMP,
-        price           int             NOT NULL,
-        authorComment   varchar(255),
-        FOREIGN KEY (author) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE SET NULL
-) ENGINE=InnoDB;
+SET sql_mode = 'strict_all_tables'
+;
 
-CREATE TABLE Tags(
-        id              varchar(32)     PRIMARY KEY,
-        name            varchar(64)     NOT NULL
-) ENGINE=InnoDB;
+CREATE TABLE Users (
+    id        char(25) PRIMARY KEY,
+    regDate   datetime DEFAULT CURRENT_TIMESTAMP,
+    birth     date                                                            NOT NULL,
+    firstName varchar(32)                                                     NOT NULL,
+    lastName  varchar(32)                                                     NOT NULL,
+    flag      enum ('verifying', 'active', 'unsubscribe', 'paused', 'banned') NOT NULL
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Limits(
-        id              varchar(32)     PRIMARY KEY,
-        title           varchar(255)    NOT NULL,
-        duration        int             NOT NULL
-) ENGINE=InnoDB;
+CREATE TABLE UserDetails (
+    id       char(25) PRIMARY KEY,
+    userName varchar(32) NOT NULL,
+    icon     varchar(255),
+    FOREIGN KEY (id) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE ContactTags(
-        id              varchar(32)     PRIMARY KEY,
-        name            varchar(64)     NOT NULL
-) ENGINE=InnoDB;
+CREATE TABLE Products (
+    id            char(35) PRIMARY KEY,
+    author        char(25),
+    postDate      datetime DEFAULT CURRENT_TIMESTAMP,
+    price         int          NOT NULL,
+    title         varchar(64)  NOT NULL,
+    fileName      varchar(255) NOT NULL,
+    authorComment varchar(255),
+    FOREIGN KEY (author) REFERENCES Users (id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Tag(
-        product         varchar(255),
-        tagID           varchar(32),
-        PRIMARY KEY (product, tagID),
-        FOREIGN KEY (product) REFERENCES Products(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        FOREIGN KEY (tagID) REFERENCES Tags(id) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE Tags (
+    id   char(6) PRIMARY KEY,
+    name varchar(64) NOT NULL
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Cart(
-        product         varchar(255),
-        user            varchar(255),
-        PRIMARY KEY (product, user),
-        FOREIGN KEY (product) REFERENCES Products(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE Limits (
+    id       char(4) PRIMARY KEY,
+    duration int          NOT NULL,
+    title    varchar(255) NOT NULL
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Purchase(
-        product                 varchar(255),
-        buyer                   varchar(255),
-        purchaseDate            datetime       DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (product, buyer),
-        FOREIGN KEY (product) REFERENCES Products(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        FOREIGN KEY (buyer) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE ContactTags (
+    id   char(5) PRIMARY KEY,
+    name varchar(64) NOT NULL
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE ProductReport(
-        reporter                varchar(255),
-        product                 varchar(255)                                            NOT NULL,
-        reportDate              datetime                                                DEFAULT CURRENT_TIMESTAMP,
-        flag                    enum('unconfirm', 'progress', 'complete', 'hold')       NOT NULL,
-        reason                  varchar(255),
-        FOREIGN KEY (reporter) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE SET NULL,
-        FOREIGN KEY (product) REFERENCES Products(id) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE Tag (
+    product char(35),
+    tagID   char(6),
+    PRIMARY KEY (product, tagID),
+    FOREIGN KEY (product) REFERENCES Products (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (tagID) REFERENCES Tags (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Contact(
-        id              int                                             PRIMARY KEY AUTO_INCREMENT,
-        contactDate     datetime                                        DEFAULT CURRENT_TIMESTAMP,
-        flag            enum('unconfirm', 'progress', 'complete')       NOT NULL,
-        name            varchar(32)                                     NOT NULL,
-        email           varchar(255)                                    NOT NULL,
-        title           varchar(255)                                    NOT NULL,
-        tag             varchar(32),
-        detail          varchar(2000)                                   NOT NULL,
-        FOREIGN KEY (tag) REFERENCES ContactTags(id) ON UPDATE CASCADE ON DELETE SET NULL
-) ENGINE=InnoDB;
+CREATE TABLE Cart (
+    product char(35),
+    user    char(25),
+    PRIMARY KEY (product, user),
+    FOREIGN KEY (product) REFERENCES Products (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (user) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
+
+CREATE TABLE Purchase (
+    product      char(35),
+    buyer        char(25),
+    purchaseDate datetime DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (product, buyer),
+    FOREIGN KEY (product) REFERENCES Products (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (buyer) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
+
+CREATE TABLE ProductReport (
+    reporter   char(25),
+    product    char(35),
+    reportDate datetime DEFAULT CURRENT_TIMESTAMP,
+    flag       enum ('unconfirm', 'progress', 'complete', 'hold') NOT NULL,
+    reason     varchar(255),
+    FOREIGN KEY (reporter) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+    FOREIGN KEY (product) REFERENCES Products (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
+
+CREATE TABLE Contact (
+    id          int PRIMARY KEY AUTO_INCREMENT,
+    tag         char(5),
+    contactDate datetime        DEFAULT CURRENT_TIMESTAMP,
+    flag        enum ('unconfirm', 'progress', 'complete') NOT NULL,
+    name        varchar(32)                                NOT NULL,
+    email       varchar(255)                               NOT NULL,
+    title       varchar(255)                               NOT NULL,
+    detail      varchar(2000)                              NOT NULL,
+    FOREIGN KEY (tag) REFERENCES ContactTags (id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+)
+    ENGINE = InnoDB
+;
 
 CREATE TABLE ContactReply (
-        id              int             PRIMARY KEY AUTO_INCREMENT,
-        source          int,
-        operator        varchar(255),
-        date            datetime        DEFAULT CURRENT_TIMESTAMP,
-        detail          varchar(2000)   NOT NULL,
-        FOREIGN KEY (source) REFERENCES Contact(id) ON UPDATE CASCADE ON DELETE SET NULL,
-        FOREIGN KEY (operator) REFERENCES Admins(email) ON UPDATE CASCADE ON DELETE SET NULL
-) ENGINE=InnoDB;
+    id       int PRIMARY KEY AUTO_INCREMENT,
+    source   int,
+    operator char(25),
+    date     datetime        DEFAULT CURRENT_TIMESTAMP,
+    detail   varchar(2000) NOT NULL,
+    FOREIGN KEY (source) REFERENCES Contact (id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+    FOREIGN KEY (operator) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Password(
-        user    varchar(255)    PRIMARY KEY,
-        pass    varchar(128)    NOT NULL,
-        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE Login (
+    id    char(25) PRIMARY KEY,
+    email varchar(255) UNIQUE,
+    pass  varchar(255) NOT NULL,
+    FOREIGN KEY (id) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE PassReset(
-        user            varchar(255)    NOT NULL,
-        newpass         varchar(128)    NOT NULL,
-        code            char(4)         NOT NULL,
-        resetLimit      datetime        NOT NULL,
-        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE PassReset (
+    user       char(25)     NOT NULL,
+    code       char(4)      NOT NULL,
+    resetLimit datetime     NOT NULL,
+    newpass    varchar(255) NOT NULL,
+    FOREIGN KEY (user) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE MessageReport(
-        reporter                varchar(255),
-        accused                 varchar(255)                                            NOT NULL,
-        reportDate              datetime                                                DEFAULT CURRENT_TIMESTAMP,
-        flag                    enum('unconfirm', 'progress', 'complete', 'hold')       NOT NULL,
-        reason                  varchar(2000)                                           NOT NULL,
-        FOREIGN KEY (reporter) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE SET NULL,
-        FOREIGN KEY (accused) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE MessageReport (
+    reporter   char(25),
+    accused    char(25)                                           NOT NULL,
+    reportDate datetime DEFAULT CURRENT_TIMESTAMP,
+    flag       enum ('unconfirm', 'progress', 'complete', 'hold') NOT NULL,
+    reason     varchar(2000)                                      NOT NULL,
+    FOREIGN KEY (reporter) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+    FOREIGN KEY (accused) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Message(
-        sender          varchar(255)    NOT NULL,
-        destination     varchar(255),
-        message         varchar(255)    NOT NULL,
-        sendDate        datetime       DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (sender) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE,
-        FOREIGN KEY (destination) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE SET NULL
-) ENGINE=InnoDB;
+CREATE TABLE Message (
+    sender      char(25)     NOT NULL,
+    destination char(25),
+    message     varchar(255) NOT NULL,
+    sendDate    datetime DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (destination) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE PointCharge(
-        user            varchar(255),
-        point           int             NOT NULL,
-        datetime       datetime       DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE PointCharge (
+    user     char(25),
+    point    int NOT NULL,
+    datetime datetime DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Wallet(
-        user    varchar(255)    PRIMARY KEY,
-        point   int             DEFAULT 0,
-        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE Wallet (
+    user  char(25) PRIMARY KEY,
+    point int DEFAULT 0,
+    FOREIGN KEY (user) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE MailVerify(
-        email           varchar(255),
-        verifycode      char(4),
-        verifyLimit     datetime
-) ENGINE=InnoDB;
+CREATE TABLE MailVerify (
+    verifycode  char(4),
+    verifyLimit datetime,
+    email       varchar(255),
+    FOREIGN KEY (email) REFERENCES Login (email)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Grade(
-        user    varchar(255)    PRIMARY KEY,
-        gpoint  int             DEFAULT 0,
-        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE Grade (
+    user   char(25) PRIMARY KEY,
+    gpoint int DEFAULT 0,
+    FOREIGN KEY (user) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE UserLimit(
-        user            varchar(255),
-        limitType       varchar(32),
-        limitStart      datetime       DEFAULT CURRENT_TIMESTAMP,
-        limitEnd        datetime,
-        reason          varchar(2000)   NOT NULL,
-        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE,
-        FOREIGN KEY (limitType) REFERENCES Limits(id) ON UPDATE CASCADE ON DELETE SET NULL
-) ENGINE=InnoDB;
+CREATE TABLE UserLimit (
+    user       char(25),
+    limitType  char(4),
+    limitStart datetime DEFAULT CURRENT_TIMESTAMP,
+    limitEnd   datetime,
+    reason     varchar(2000) NOT NULL,
+    FOREIGN KEY (user) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (limitType) REFERENCES Limits (id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+)
+    ENGINE = InnoDB
+;
 
-CREATE TABLE Friends(
-        user    varchar(255),
-        friend  varchar(255),
-        flag    enum('active', 'block'),
-        PRIMARY KEY(user, friend),
-        FOREIGN KEY (user) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE,
-        FOREIGN KEY (friend) REFERENCES Users(email) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB;
+CREATE TABLE Friends (
+    user   char(25),
+    friend char(25),
+    flag   enum ('active', 'block'),
+    PRIMARY KEY (user, friend),
+    FOREIGN KEY (user) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (friend) REFERENCES Users (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+    ENGINE = InnoDB
+;
 
-COMMIT;
+COMMIT
+;
