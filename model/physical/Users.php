@@ -76,4 +76,56 @@ class Users extends ModelBase {
         return $res;
     }
 
+    /**
+     * ユーザ情報を取得
+     *
+     * ユーザが存在しない場合は`false`を返す
+     *
+     * @param string|null $id ユーザID (Default: ログイン中ID)
+     *
+     * @return bool|array {
+     * @type string "regDate"   登録日時
+     * @type string "birth"     生年月日
+     * @type string "firstName" 名(本名)
+     * @type string "lastName"  氏(本名)
+     * @type string "flag"      利用状況
+     * }
+     */
+    public function get(string $id = null) {
+        $id = $this->setUser($id);
+        $sql = "SELECT regDate, birth, firstName, lastName, flag FROM Users WHERE id LIKE :id";
+        $params = array(
+            "id" => $id
+        );
+        $rows = $this->query($sql, $params);
+        if (!is_null($rows)) {
+            return $rows[0];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * ユーザの利用状況のみ取得
+     *
+     * ユーザが存在しない場合は`false`を返す
+     *
+     * @param string|null $id ユーザID (Default: ログイン中ID)
+     *
+     * @return bool|string
+     */
+    public function getStatus(string $id = null) {
+        $id = $this->setUser($id);
+        $sql = "SELECT flag FROM Users WHERE id LIKE :id";
+        $params = array(
+            "id" => $id
+        );
+        $rows = $this->query($sql, $params);
+        if (!is_null($rows) or $rows) {
+            return $rows[0]["flag"];
+        } else {
+            return false;
+        }
+    }
+
 }
