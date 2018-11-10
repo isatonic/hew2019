@@ -27,4 +27,26 @@ class Purchase extends ModelBase {
         return $this->insert($data);
     }
 
+    /**
+     * 購入履歴を取得
+     *
+     * @param string|null $user ユーザID (Default: ログイン中ID)
+     *
+     * @return array {
+     *      @type string[] {
+     *          @type string "purchaseDate" 購入日時
+     *          @type string "product"      購入した商品のID
+     *      }
+     * }
+     */
+    public function get(string $user = null) {
+        $user = $this->setUser($user);
+        $sql = "SELECT purchaseDate, product FROM Purchase WHERE buyer LIKE :buyer";
+        $params = array(
+            "buyer" => $user
+        );
+
+        return $this->query($sql, $params);
+    }
+
 }
