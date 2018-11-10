@@ -16,16 +16,24 @@ class ModelBase {
     protected $db;
     /** @var string $table_name テーブル名格納用変数 */
     protected $table_name;
+    /** @var string $user_id ユーザID */
+    protected $user_id;
 
 
     /**
      * コンストラクタ: オブジェクト生成時に自動実行
+     *
+     * @param string|null $user
      */
-    public function __construct() {
+    public function __construct(string $user = null) {
         $this->initDB();
 
         if ($this->table_name == null) {
             $this->setTableName();
+        }
+
+        if ($user != null) {
+            $this->user_id = $user;
         }
     }
 
@@ -180,6 +188,21 @@ class ModelBase {
      */
     protected function setLimit(int $minute = 30) {
         return date('Y-m-d H:i:s', strtotime("+ $minute minute"));
+    }
+
+    /**
+     * ユーザIDが引数にあるか判定し, 無ければ $this->user_id を返す
+     *
+     * @param string|null $user
+     *
+     * @return string
+     */
+    protected function setUser(string $user = null) {
+        if ($user == null) {
+            return $this->user_id;
+        } else {
+            return $user;
+        }
     }
 
 }

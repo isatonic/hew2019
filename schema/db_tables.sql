@@ -177,11 +177,11 @@ CREATE TABLE Login (
 ;
 
 CREATE TABLE PassReset (
-    user       char(25)     NOT NULL,
     code       char(4)      NOT NULL,
     resetLimit datetime     NOT NULL,
+    email      varchar(255) NOT NULL,
     newpass    varchar(255) NOT NULL,
-    FOREIGN KEY (user) REFERENCES Users (id)
+    FOREIGN KEY (email) REFERENCES Login (email)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 )

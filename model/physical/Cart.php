@@ -12,15 +12,16 @@ class Cart extends ModelBase {
     /**
      * カートに商品を追加
      *
-     * @param string $user      ユーザのメールアドレス
-     * @param string $product   商品ID
+     * @param string      $product 商品ID
+     * @param string|null $who ユーザID (Default: ログイン中ID)
      *
      * @return bool
      */
-    public function add(string $user, string $product) {
+    public function add(string $product, string $who = null) {
+        $who = $this->setUser($who);
         $data = array(
             "product" => $product,
-            "user" => $user
+            "user" => $who
         );
         $res = $this->insert($data);
 
@@ -30,15 +31,16 @@ class Cart extends ModelBase {
     /**
      * カートから商品を削除
      *
-     * @param string $user      メールアドレス
-     * @param string $product   商品ID
+     * @param string      $product 商品ID
+     * @param string|null $who ユーザID (Default: ログイン中ID)
      *
      * @return bool
      */
-    public function remove(string $user, string $product) {
+    public function remove(string $product, string $who = null) {
+        $who = $this->setUser($who);
         $where = "user LIKE :user and product LIKE :product";
         $params = array(
-            "user" => $user,
+            "user" => $who,
             "product" => $product
         );
         $res = $this->delete($where, $params);
@@ -49,14 +51,15 @@ class Cart extends ModelBase {
     /**
      * カート内の商品のIDを一覧取得
      *
-     * @param string $user メールアドレス
+     * @param string|null $who ユーザID (Default: ログイン中ID)
      *
      * @return string[] 商品IDの配列
      */
-    public function get(string $user) {
+    public function get(string $who = null) {
+        $who = $this->setUser($who);
         $sql = "SELECT product FROM Cart WHERE user LIKE :user";
         $params = array(
-            "user" => $user
+            "user" => $who
         );
         $array = array();
         $rows = $this->query($sql, $params);

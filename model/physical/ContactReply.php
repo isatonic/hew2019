@@ -14,14 +14,13 @@ class ContactReply extends ModelBase {
      *
      * @param int    $source お問い合わせID
      * @param string $detail 内容
-     * @param string $admin  担当管理者
      *
      * @return bool
      */
-    public function add(int $source, string $detail, string $admin) {
+    public function add(int $source, string $detail) {
         $data = array(
             "source" => $source,
-            "operator" => $admin,
+            "operator" => $this->user_id,
             "detail" => $detail
         );
         return $this->insert($data);
@@ -77,11 +76,13 @@ class ContactReply extends ModelBase {
     /**
      * 特定の管理者による返信を取得
      *
-     * @param string $who 管理者のメールアドレス
+     *
+     * @param string|null $who 管理者ID (Default: ログイン中の管理者ID)
      *
      * @return mixed[]
      */
-    public function getOperator(string $who) {
+    public function getOperator(string $who = null) {
+        $who = $this->setUser($who);
         $sql = "SELECT id, source, date, detail FROM ContactReply WHERE operator LIKE :who";
         $params = array(
             "operator" => $who

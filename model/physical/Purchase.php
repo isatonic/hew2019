@@ -12,12 +12,13 @@ class Purchase extends ModelBase {
     /**
      * 購入履歴の追加
      *
-     * @param string $user ユーザのメールアドレス
-     * @param string $product 商品ID
+     * @param string        $product 商品ID
+     * @param string|null   $user ユーザID (Default: ログイン中ID)
      *
      * @return bool
      */
-    public function buy(string $user, string $product) {
+    public function buy(string $product, string $user = null) {
+        $user = $this->setUser($user);
         $data = array(
             "buyer" => $user,
             "product" => $product

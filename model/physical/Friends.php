@@ -12,14 +12,15 @@ class Friends extends ModelBase {
     /**
      * フレンド登録
      *
-     * @param string $user      主体となるユーザのメールアドレス
-     * @param string $friend    フレンドに登録する相手のメールアドレス
+     * @param string      $friend   フレンドに登録する相手のID
+     * @param string|null $who      ユーザID (Default: ログイン中ID)
      *
      * @return bool
      */
-    public function add(string $user, string $friend) {
+    public function add(string $friend, string $who = null) {
+        $who = $this->setUser($who);
         $data = array(
-            "user"      => $user,
+            "user"      => $who,
             "friend"    => $friend
         );
         $res = $this->insert($data);
@@ -29,14 +30,15 @@ class Friends extends ModelBase {
     /**
      * フレンドをブロック
      *
-     * @param string $user      主体となるユーザのメールアドレス
-     * @param string $friend    ブロックする相手のメールアドレス
+     * @param string      $friend   ブロックする相手のID
+     * @param string|null $who      ユーザID (Default: ログイン中ID)
      *
      * @return bool
      */
-    public function block(string $user, string $friend) {
+    public function block(string $friend, string $who = null) {
+        $who = $this->setUser($who);
         $data["flag"] = "block";
-        $where = "user LIKE '$user' and friend LIKE '$friend'";
+        $where = "user LIKE '$who' and friend LIKE '$friend'";
         $res = $this->update($data, $where);
         return $res;
     }
@@ -44,14 +46,15 @@ class Friends extends ModelBase {
     /**
      * ブロック解除
      *
-     * @param string $user      主体となるユーザのメールアドレス
-     * @param string $target    ブロック解除する対象のメールアドレス
+     * @param string      $target   ブロック解除する対象のID
+     * @param string|null $who      ユーザID (Default: ログイン中ID)
      *
      * @return bool
      */
-    public function unblock(string $user, string $target) {
+    public function unblock(string $target, string $who = null) {
+        $who = $this->setUser($who);
         $data["flag"] = "active";
-        $where = "user LIKE $user and friend LIKE $target";
+        $where = "user LIKE $who and friend LIKE $target";
         return $this->update($data, $where);
     }
 
@@ -59,21 +62,22 @@ class Friends extends ModelBase {
     /**
      * フレンドリスト取得
      *
-     * @param string $user  メールアドレス
+     * @param string|null $who ユーザID (Default: ログイン中ID)
      *
      * @return array {
      *      数字配列のフレンドリスト
      *
      *      @type array {
-     *          @type string "friend"   フレンドのメールアドレス
+     *          @type string "friend"   フレンドのID
      *          @type string "flag"     フレンドの状態("active":通常, "block":ブロック中)
      *      }
      * }
      */
-    public function fetchList(string $user) {
+    public function fetchList(string $who = null) {
+        $who = $this->setUser($who);
         $sql = "SELECT friend, flag FROM Friends WHERE user LIKE :user";
         $param = array(
-            "user"  => $user
+            "user"  => $who
         );
         $rows = $this->query($sql, $param);
         return $rows;

@@ -12,19 +12,29 @@ class Users extends ModelBase {
     /**
      * ユーザ登録
      *
-     * @param mixed[] $data {
-     *      @type string "email"
-     *      @type string "id"
-     *      @type string "userName"
-     *      @type string "firstName"
-     *      @type string "birth"
-     *      @type string "icon"
-     * }
+     *
+     * @param string $email
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $birth
+     * @param bool   $isAdmin 一般ユーザ => false, 管理者 => true (Default: false)
      *
      * @return bool
      */
-    public function regist(array $data) {
-        $data["flag"] = "verifying";
+    public function regist(string $email, string $firstName, string $lastName, string $birth, bool $isAdmin = false) {
+        if ($isAdmin) {
+            $prefix = "A";
+        } else {
+            $prefix = "U";
+        }
+        $prefix .= substr($email, 0, 1);
+        $data["id"] = uniqid($prefix, true);
+        $data = array(
+            "email" => $email,
+            "firstName" => $firstName,
+            "lastName" => $lastName,
+            "birth" => $birth
+        );
         $res = $this->insert($data);
         return $res;
     }
@@ -32,12 +42,13 @@ class Users extends ModelBase {
     /**
      * ユーザ情報変更
      *
-     * @param array     $data   ["変更する列名"] = 更新値
-     * @param string    $who    メールアドレス
+     * @param array         $data   ["変更する列名"] = 更新値
+     * @param string|null   $who    ユーザID (Default: ログイン中ID)
      *
      * @return bool
      */
-    public function changeInfo(array $data, string $who) {
+    public function changeInfo(array $data, string $who = null) {
+        $who = $this->setUser($who);
         $where = sprintf("email LIKE %s", $who);
         $res = $this->update($data, $where);
         return $res;
@@ -52,7 +63,7 @@ class Users extends ModelBase {
      *      一時利用停止   -> "paused"
      *      BAN            -> "banned"
      *
-     * @param string $who メールアドレス
+     * @param string $who ユーザID
      *
      * @return bool
      */

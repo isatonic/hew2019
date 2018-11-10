@@ -16,7 +16,7 @@ class Products extends ModelBase {
      *      @type string    "id"            商品ID
      *      @type string    "fileName"      ファイル名
      *      @type string    "title"         タイトル
-     *      @type string    "author"        作者メールアドレス
+     *      @type string    "author"        作者のユーザID
      *      @type int       "price"         価格
      *      @type string    "authorComment" 作者コメント
      * }
@@ -24,6 +24,9 @@ class Products extends ModelBase {
      * @return bool
      */
     public function regist($data) {
+        if (!isset($data["author"]) or is_null($data["author"])) {
+            $data["author"] = $this->user_id;
+        }
         $res = $this->insert($data);
         return $res;
     }
@@ -35,7 +38,7 @@ class Products extends ModelBase {
      *      @type string    "id"            商品ID
      *      @type string    "fileName"      ファイル名
      *      @type string    "title"         タイトル
-     *      @type string    "author"        作者メールアドレス
+     *      @type string    "author"        作者のユーザID
      *      @type string    "postDate"      投稿日時("YYYY-MM-DD HH-mm-SS")
      *      @type int       "price"         価格
      *      @type string    "authorComment" 作者コメント
