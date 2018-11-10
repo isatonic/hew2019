@@ -19,7 +19,7 @@ class Users extends ModelBase {
      * @param string $birth
      * @param bool   $isAdmin 一般ユーザ => false, 管理者 => true (Default: false)
      *
-     * @return bool
+     * @return bool|string
      */
     public function regist(string $email, string $firstName, string $lastName, string $birth, bool $isAdmin = false) {
         if ($isAdmin) {
@@ -35,8 +35,11 @@ class Users extends ModelBase {
             "lastName" => $lastName,
             "birth" => $birth
         );
-        $res = $this->insert($data);
-        return $res;
+        if ($this->insert($data)) {
+            return $data["id"];
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -49,7 +52,7 @@ class Users extends ModelBase {
      */
     public function changeInfo(array $data, string $who = null) {
         $who = $this->setUser($who);
-        $where = sprintf("email LIKE %s", $who);
+        $where = sprintf("id LIKE %s", $who);
         $res = $this->update($data, $where);
         return $res;
     }

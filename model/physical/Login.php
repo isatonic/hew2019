@@ -14,6 +14,7 @@ class Login extends ModelBase {
      *
      * ユーザ登録時に同一トランザクション内で
      *      Users.regist()
+     *      UserDetails.regist() (一般ユーザの場合)
      *      Login.regist()
      *      MailVerify.add()
      * の順に実行
