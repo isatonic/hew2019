@@ -32,7 +32,7 @@ $(function () {
   $('#closeModal_Friend_List , #modalBg_Friend_List').click
   (function(){
     $('#modalArea_Friend_List').fadeOut();
-  });
+  });	
 });
 
 

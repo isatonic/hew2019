@@ -531,14 +531,14 @@ body{
   position:relative;
 }
 .search_content form input[type=text]{
-	font-size: 25px;
+  font-size: 25px;
   width: 700px;
   height:50px;
   padding:4px 165px 4px 20px;
   border:none;
   -webkit-border-radius:32px;
-     -moz-border-radius:32px;
-          border-radius:32px;
+  -moz-border-radius:32px;
+  border-radius:32px;
   -webkit-appearance: none;
   outline: 0;
   -webkit-box-sizing: border-box;
@@ -550,9 +550,9 @@ body{
   right:0;
   backface-visibility: hidden;
   -webkit-transition: 0.25s ease-out;
-     -moz-transition: 0.25s ease-out;
-       -o-transition: 0.25s ease-out;
-          transition: 0.25s ease-out;
+  -moz-transition: 0.25s ease-out;
+  -o-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
 }
 .search_content form input[type=text]:focus{
   background:#F6F6F6;
@@ -565,7 +565,7 @@ body{
 	border:none;
 	-webkit-border-radius:16px;
 	-moz-border-radius:16px;
-			border-radius:16px;
+	border-radius:16px;
 	background:#1B73BA;
 	display:inline-block;
 	-webkit-appearance: none;
@@ -596,3 +596,83 @@ body{
 	z-index: 20;
 	transform: translate(-6%,-22.5%);
 }
+
+
+
+/*SN1-1 Friend List*/
+@keyframes tabAnim{
+	0%{opacity:0;}
+	100%{opacity:1;}
+}
+#tab1:checked ~ .tab_area .tab1_label{/*TAB1を選択したときの色*/
+	background: #B8E4E7;
+	color:#000;
+}
+#tab1:checked ~ .panel_area #panel1{
+	display:block; 
+	animation:tabAnim ease 0.8s forwards;
+	-ms-animation:tabAnim ease 0.8s forwards;
+}
+#tab2:checked ~ .tab_area .tab2_label{/*TAB2を選択したときの色*/
+	background: #B8E4E7;
+	color:#000;
+}
+#tab2:checked ~ .panel_area #panel2{
+	display:block; 
+	animation:tabAnim ease 0.8s forwards;
+	-ms-animation:tabAnim ease 0.8s forwards;
+}
+input[type="radio"]{
+	display:none;
+}
+.tab_wrap{/*TABチェックの範囲*/
+	width: 1400px;
+	margin: 20px auto;
+}
+.tab_area{/*TABチェックの裏の範囲*/
+	font-size:0; 
+	margin:0 290px 0 290px;
+	/*background: #558858;*/
+}
+.tab_area label{
+	width: 400px; 
+	margin: 5px; 
+	display: inline-block; 
+	transition: ease 0.2s border-radius, ease 0.2s transform;
+	vertical-align: bottom; 
+	padding: 14px 0 12px; 
+	color: #000; 
+	background: #fff;/*選択していないTABの背景色*/
+	text-align: center; 
+	font-size: 13px; 
+	cursor: pointer;
+	border-top-left-radius: 20px; 
+	border-top-right-radius: 20px; 
+	box-sizing: border-box;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+}
+.tab_area label:hover{
+	opacity:0.7;
+}
+.tab_panel{/*TAB内のCSS*/
+	width:100%; 
+	padding:80px 0;
+	opacity:0;
+	display:none; 
+	background:#fff; 
+	border-radius:0 0 20px 20px;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+}
+.tab_panel p{
+	font-size:14px; 
+	letter-spacing:1px;
+	text-align:center;
+}
+.panel_area{
+	position:relative; 
+	background: #ABABAB; 
+	border-radius:15px 15px 20px 20px;
+	border-top:15px solid #d7e9ea;
+}
+
+
