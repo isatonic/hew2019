@@ -10,6 +10,20 @@ namespace model\physical;
 class Grade extends ModelBase {
 
     /**
+     * ユーザを追加
+     *
+     * 一般ユーザの新規登録時に実行
+     *
+     * @param string|null $id
+     *
+     * @return bool
+     */
+    public function init(string $id = null) {
+        $data["user"] = $id;
+        return $this->insert($data);
+    }
+
+    /**
      * 現在のグレード, グレードポイントを取得
      *
      * @param string|null $user ユーザID (Default: ログイン中ID)
