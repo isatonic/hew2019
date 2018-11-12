@@ -12,28 +12,30 @@ class Users extends ModelBase {
     /**
      * ユーザ登録
      *
-     *
-     * @param string $email
-     * @param string $firstName
-     * @param string $lastName
-     * @param string $birth
-     * @param bool   $isAdmin 一般ユーザ => false, 管理者 => true (Default: false)
+     * @param array $data {
+     *      "email"     メールアドレス
+     *      "firstName" 氏名(名)
+     *      "lastName"  氏名(氏)
+     *      "birth"     生年月日
+     * }
+     * @param bool $isAdmin 一般ユーザ => false, 管理者 => true (Default: false)
      *
      * @return bool|string
      */
-    public function regist(string $email, string $firstName, string $lastName, string $birth, bool $isAdmin = false) {
+    public function regist(array $data, bool $isAdmin = false) {
         if ($isAdmin) {
             $prefix = "A";
         } else {
             $prefix = "U";
         }
-        $prefix .= substr($email, 0, 1);
-        $data["id"] = uniqid($prefix, true);
+        $prefix .= substr($data["email"], 0, 1);
         $data = array(
-            "email" => $email,
-            "firstName" => $firstName,
-            "lastName" => $lastName,
-            "birth" => $birth
+            "id" => uniqid($prefix, true),
+            "birth" => $data["birth"],
+            "firstName" => $data["firstName"],
+            "lastName" => $data["lastName"],
+            "email" => $data["email"],
+            "flag" => "verifying"
         );
         if ($this->insert($data)) {
             return $data["id"];
@@ -88,12 +90,13 @@ class Users extends ModelBase {
      * @type string "birth"     生年月日
      * @type string "firstName" 名(本名)
      * @type string "lastName"  氏(本名)
+     * @type string "email"     メールアドレス
      * @type string "flag"      利用状況
      * }
      */
     public function get(string $id = null) {
         $id = $this->setUser($id);
-        $sql = "SELECT regDate, birth, firstName, lastName, flag FROM Users WHERE id LIKE :id";
+        $sql = "SELECT regDate, birth, firstName, lastName, email, flag FROM Users WHERE id LIKE :id";
         $params = array(
             "id" => $id
         );

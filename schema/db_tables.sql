@@ -21,6 +21,7 @@ CREATE TABLE Users (
     birth     date                                                            NOT NULL,
     firstName varchar(32)                                                     NOT NULL,
     lastName  varchar(32)                                                     NOT NULL,
+    email     varchar(255) UNIQUE,
     flag      enum ('verifying', 'active', 'unsubscribe', 'paused', 'banned') NOT NULL
 )
     ENGINE = InnoDB
@@ -165,10 +166,9 @@ CREATE TABLE ContactReply (
     ENGINE = InnoDB
 ;
 
-CREATE TABLE Login (
-    id    char(25) PRIMARY KEY,
-    email varchar(255) UNIQUE,
-    pass  varchar(255) NOT NULL,
+CREATE TABLE Password (
+    id   char(25) PRIMARY KEY,
+    pass varchar(255) NOT NULL,
     FOREIGN KEY (id) REFERENCES Users (id)
         ON UPDATE CASCADE
         ON DELETE CASCADE
@@ -181,7 +181,7 @@ CREATE TABLE PassReset (
     resetLimit datetime     NOT NULL,
     email      varchar(255) NOT NULL,
     newpass    varchar(255) NOT NULL,
-    FOREIGN KEY (email) REFERENCES Login (email)
+    FOREIGN KEY (email) REFERENCES Users (email)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 )
@@ -244,7 +244,7 @@ CREATE TABLE MailVerify (
     verifycode  char(4),
     verifyLimit datetime,
     email       varchar(255),
-    FOREIGN KEY (email) REFERENCES Login (email)
+    FOREIGN KEY (email) REFERENCES Users (email)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 )
@@ -290,6 +290,13 @@ CREATE TABLE Friends (
         ON DELETE CASCADE
 )
     ENGINE = InnoDB
+;
+
+CREATE VIEW Auth AS
+    SELECT U.id AS id, P.pass AS pass, U.flag AS flag
+        FROM Users U,
+             Password P
+        WHERE U.id = P.id
 ;
 
 COMMIT
