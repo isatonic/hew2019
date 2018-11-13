@@ -1,7 +1,7 @@
 /*SNS系統*/
 body{
 	background-image: url("../img/LOGO/LOGO BT.png");
-	background-position: center center; 
+	background-position: center 60%; 
 	background-repeat: no-repeat;
 	background-attachment: fixed; 
 	background-size: 30%;
@@ -13,15 +13,13 @@ body{
 }
 .font{
 	font-family:'Myfont';
-	height: 100%;
-	width: 100%;
 	background: rgba(255,255,255,0.5);
 }
 
 /*アンダーバー*/
 .Header {
-	margin-left: 200px;
-	margin-right: 200px;
+	margin-left: 10%;
+	margin-right: 10%;
 	margin-top: 80px;
 	border-bottom: solid 2px #000000;
 }
@@ -34,27 +32,27 @@ body{
 	top: 26.5%;
 	left: 50%;
 	transform:translateX(-50%);
-	width: 1440px;
+	width: 95.5%;
 }
 
 /*配置*/
 .box {
 	position: absolute;
-	top: 22%;
+	top: 27%;
 	left: 15%;
 	padding: 30px;
     text-align: center;
 }
 .box2 {
 	position: absolute;
-	top: 40%;
+	top: 44%;
 	left: 15%;
 	padding: 30px;
     text-align: center;
 }
 .box3 {
 	position: absolute;
-	top: 58%;
+	top: 61%;
 	left: 15%;
 	padding: 30px;
     text-align: center;
@@ -97,56 +95,46 @@ body{
   background-color: rgba(30,30,30,0.9);
 }
 /*　.modalWrapperの上にYを縮小した.modalWrapper2を設置することでヘッダー固定化スクロール　*/
+/*
+--modalWrapper
+width:1500px→90%
+height:800px→85%
+--modalWrapper2,3,4
+width:1500px→98%
+height:700px→85%
+--modalWrapper5
+width:1500px→98%
+height:500px→60%
+*/
 .modalWrapper {	
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform:translate(-50%,-50%);
-	width: 1500px;
-	height: 800px;
+	width: 90%;
+	height: 85%;
 	padding: 10px 30px;
 	background-color: #fff;
 }
-.modalWrapper2 {/*Messeage List*/
+.modalWrapper2,.modalWrapper3,.modalWrapper4 {/*Messeage List*//*Friend List*//*Create Messeage*/
 	position: absolute;
 	top: 80%;
 	left: 50%;
 	transform:translate(-50%,-80%);
-	width: 1500px;
-	height: 700px;
+	width: 98%;
+	height: 85%;
 	padding: 10px 30px;
 	background-color: #fff;
 	overflow-y: auto;/*スクロール*/
 }
-.modalWrapper3 {/*Friend List*/
-	position: absolute;
-	top: 80%;
-	left: 50%;
-	transform:translate(-50%,-80%);
-	width: 1500px;
-	height: 700px;
-	padding: 10px 30px;
-	background-color: #fff;
-	overflow-y: auto;/*スクロール*/
-}
-.modalWrapper4 {/*Create Messeage*/
-	position: absolute;
-	top: 80%;
-	left: 50%;
-	transform:translate(-50%,-80%);
-	width: 1500px;
-	height: 700px;
-	padding: 10px 30px;
-	background-color: #fff;
-	overflow-y: auto;/*スクロール*/
-}
+
 .modalWrapper5 {/*Friend Search*/
 	position: absolute;
 	top: 94%;
 	left: 50%;
 	transform:translate(-50%,-94%);
-	width: 1500px;
-	height: 500px;
+	width: 98%;
+	height: 60%;
 	padding: 10px 30px;
 	background-color: #fff;
 	overflow-y: auto;/*スクロール*/
@@ -214,7 +202,7 @@ body{
 }
 
 
-/*新着メッセージ作成*/
+/*新規メッセージ作成*/
 #openModal_Friend_Select {
     padding: 0.5em 1em;
     text-decoration: none;
@@ -222,8 +210,8 @@ body{
 	border-bottom: solid 4px #FFA000;
 	background: #fff1da;
 	color: #FFA000;
-	width: 500px;
-	height: 150px;
+	width: 430px;
+	height: 120px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -247,8 +235,8 @@ body{
     text-decoration: none;
     color: #FFA000;
     background: #fff1da;
-	width: 500px;
-	height: 150px;
+	width: 430px;
+	height: 120px;
 	border-top: solid 4px #FFA000;
 	border-radius: 0 0 40px 40px;
 	display: flex;
@@ -279,8 +267,8 @@ body{
     border-bottom: solid 4px #FFA000;
     border-radius: 40px 40px 0 0;
     transition: .4s;
-	width: 500px;
-	height: 150px;
+	width: 430px;
+	height: 120px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -296,7 +284,7 @@ body{
 .inbox{
 	background-color: #FFF3F3;
 	width: 1300px;
-	height: 200px;
+	height: 150px;
 	position: relative;
 	left: 50%;
 	margin-bottom: 20px;
@@ -306,22 +294,22 @@ body{
 }
 .sns_top_image{
 	max-width: auto;
-	height: 180px;
+	height: 130px;
 	position: absolute;
-	top: 5%;
+	top: 7%;
 	left: 12%;
 	border: solid 2px #000000;
 }
 .sns_name{
 	position: absolute;
-	top: 36%;
+	top: 32%;
 	left: 50%;
 	transform: translateX(-50%)
 	
 }
 .go_messeage {
     position: absolute;
-	top: 29%;
+	top: 23%;
 	left: 72%;
     display: inline-block;
     font-weight: bold;
@@ -366,7 +354,7 @@ body{
 .inbox3{
 	background-color: #FFFEEA;
 	width: 1300px;
-	height: 200px;
+	height: 150px;
 	position: relative;
 	left: 50%;
 	margin-bottom: 20px;
@@ -376,22 +364,22 @@ body{
 }
 .sns_top_image3{
 	max-width: auto;
-	height: 180px;
+	height: 130px;
 	position: absolute;
-	top: 5%;
+	top: 7%;
 	left: 12%;
 	border: solid 2px #000000;
 }
 .sns_name3{
 	position: absolute;
-	top: 36%;
+	top: 32%;
 	left: 50%;
 	transform: translateX(-50%)
 	
 }
 .go_chat {
     position: absolute;
-	top: 29%;
+	top: 23%;
 	left: 72%;
     display: inline-block;
     font-weight: bold;
@@ -455,8 +443,8 @@ body{
 .sns_name4{
 	position: absolute;
 	top: 22.5%;
-	left: 45%;
-	transform: translateX(-45%)
+	left: 42%;
+	transform: translateX(-42%)
 	
 }
 .friend_request {
@@ -514,7 +502,7 @@ body{
 /*Friend検索バー*/
 .search_friend{
 	position: absolute;
-	left: 19%;
+	left: 16%;
 	top: 10%;
 	width: 900px;
 	height: 100px;
@@ -626,13 +614,17 @@ input[type="radio"]{
 	display:none;
 }
 .tab_wrap{/*TABチェックの範囲*/
-	width: 1400px;
-	margin: 20px auto;
+	width: 100%;
 }
 .tab_area{/*TABチェックの裏の範囲*/
 	font-size:0; 
-	margin:0 290px 0 290px;
-	/*background: #558858;*/
+	width: 63.4%;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-bottom: 5px;
+	/*margin:0 290px 0 290px;
+	background: #558858;*/
 }
 .tab_area label{
 	width: 400px; 
@@ -640,7 +632,7 @@ input[type="radio"]{
 	display: inline-block; 
 	transition: ease 0.2s border-radius, ease 0.2s transform;
 	vertical-align: bottom; 
-	padding: 14px 0 12px; 
+	padding: 15px 0 12px; 
 	color: #000; 
 	background: #fff;/*選択していないTABの背景色*/
 	text-align: center; 
@@ -655,7 +647,8 @@ input[type="radio"]{
 	opacity:0.7;
 }
 .tab_panel{/*TAB内のCSS*/
-	width:100%; 
+	width:100%;
+	height: 100%;
 	padding:80px 0;
 	opacity:0;
 	display:none; 
@@ -670,9 +663,13 @@ input[type="radio"]{
 }
 .panel_area{
 	position:relative; 
+	height: 550px;
 	background: #ABABAB; 
 	border-radius:15px 15px 20px 20px;
 	border-top:15px solid #d7e9ea;
 }
+
+
+
 
 
