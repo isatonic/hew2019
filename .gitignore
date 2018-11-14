@@ -81,3 +81,9 @@ fabric.properties
 
 
 # End of https://www.gitignore.io/api/intellij
+
+
+############### db schema ##################
+#
+# sql to create user that connect to db from IDE with
+schema/user_for_pstorm.sql
