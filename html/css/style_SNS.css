@@ -167,6 +167,7 @@ height:500px→60%
    top:100%;
    left: 0;
    border-radius: 3px;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.3);
    background:#67c5ff;
    transition: .2s;
 }
@@ -184,6 +185,7 @@ height:500px→60%
 	height: 250px;
 	line-height: 120px;
 	border-radius: 50%;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
 	border: solid 2px #668ad8;
 	text-align: center;
 	vertical-align: middle;
@@ -208,6 +210,7 @@ height:500px→60%
     text-decoration: none;
 	border-top: solid 4px #FFA000;
 	border-bottom: solid 4px #FFA000;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
 	background: #fff1da;
 	color: #FFA000;
 	width: 430px;
@@ -239,6 +242,7 @@ height:500px→60%
 	height: 120px;
 	border-top: solid 4px #FFA000;
 	border-radius: 0 0 40px 40px;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -266,6 +270,7 @@ height:500px→60%
     background: #fff1da;
     border-bottom: solid 4px #FFA000;
     border-radius: 40px 40px 0 0;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
     transition: .4s;
 	width: 430px;
 	height: 120px;
@@ -443,8 +448,8 @@ height:500px→60%
 .sns_name4{
 	position: absolute;
 	top: 22.5%;
-	left: 42%;
-	transform: translateX(-42%)
+	left: 44%;
+	transform: translateX(-50%);
 	
 }
 .friend_request {
@@ -618,7 +623,7 @@ input[type="radio"]{
 }
 .tab_area{/*TABチェックの裏の範囲*/
 	font-size:0; 
-	width: 63.4%;
+	width: 64.2%;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
@@ -636,7 +641,7 @@ input[type="radio"]{
 	color: #000; 
 	background: #fff;/*選択していないTABの背景色*/
 	text-align: center; 
-	font-size: 13px; 
+	font-size: 20px; 
 	cursor: pointer;
 	border-top-left-radius: 20px; 
 	border-top-right-radius: 20px; 
@@ -649,27 +654,120 @@ input[type="radio"]{
 .tab_panel{/*TAB内のCSS*/
 	width:100%;
 	height: 100%;
-	padding:80px 0;
+	padding:20px 0;
 	opacity:0;
 	display:none; 
 	background:#fff; 
 	border-radius:0 0 20px 20px;
 	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
-}
-.tab_panel p{
-	font-size:14px; 
-	letter-spacing:1px;
-	text-align:center;
+	overflow-y: auto;
 }
 .panel_area{
 	position:relative; 
-	height: 550px;
+	height: 540px;
 	background: #ABABAB; 
 	border-radius:15px 15px 20px 20px;
 	border-top:15px solid #d7e9ea;
 }
 
+/*フレンド一覧*/
+.inbox5{
+	background: #FCFCFC;
+	width: 1200px;
+	height: 150px;
+	position: relative;
+	left: 50%;
+	margin-bottom: 20px;
+	transform: translateX(-50%);
+	border-radius: 20px;
+}
+.sns_top_image5{
+	max-width: auto;
+	height: 150px;
+	position: absolute;
+	top: 0;
+	left: 12%;
+	border: solid 2px #000000;
+}
+.sns_name5{
+	position: absolute;
+	top: 3%;
+	font-size: 200%;
+	left: 62.5%;
+	transform: translateX(-50%);
+}
+.create_messeage {
+    position: absolute;
+	top: 50%;
+	left: 65%;
+}
+.block {
+    position: absolute;
+	top: 50%;
+	left: 40%;
+}
+.create_messeage,.block {
+    display: inline-block;
+	width: 250px;
+	text-align: center;
+	padding: 5px;
+    text-decoration: none;
+    color: #67c5ff;
+    border: double 4px #67c5ff;
+    border-radius: 3px;
+    transition: .2s;
+}
+.create_messeage:hover,.block:hover {
+    background: #fffbef;
+}
 
-
-
-
+/*フレンド承認待ち一覧*/
+.inbox6{
+	background: #FCFCFC;
+	width: 1200px;
+	height: 150px;
+	position: relative;
+	left: 50%;
+	margin-bottom: 20px;
+	transform: translateX(-50%);
+	border-radius: 20px;
+}
+.sns_top_image6{
+	max-width: auto;
+	height: 150px;
+	position: absolute;
+	top: 0;
+	left: 12%;
+	border: solid 2px #000000;
+}
+.sns_name6{
+	position: absolute;
+	top: 3%;
+	font-size: 200%;
+	left: 62.5%;
+	transform: translateX(-50%);
+}
+.ok {
+    position: absolute;
+	top: 50%;
+	left: 65%;
+}
+.no {
+    position: absolute;
+	top: 50%;
+	left: 43.5%;
+}
+.ok,.no {
+    display: inline-block;
+	width: 200px;
+	text-align: center;
+	padding: 5px;
+    text-decoration: none;
+    color: #67c5ff;
+    border: double 4px #67c5ff;
+    border-radius: 3px;
+    transition: .2s;
+}
+.ok:hover,.no:hover {
+    background: #fffbef;
+}
