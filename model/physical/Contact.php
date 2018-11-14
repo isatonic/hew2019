@@ -58,9 +58,9 @@ class Contact extends ModelBase {
                 C.contactDate DESC,
                 C.flag ASC
 SQL;
-        $rows = $this->query($sql);
-
-        return $rows;
+        $this->exec($sql);
+        $this->getAssoc();
+        return $this->getRows();
     }
 
     /**
@@ -90,13 +90,14 @@ SQL;
                 C.detail as detail
             FROM Contact C
             JOIN ContactTags CT on C.tag = CT.id
-            WHERE C.id = :id
+            WHERE C.id = $id
             ORDER BY
                 C.contactDate DESC,
                 C.flag ASC
 SQL;
-        $params["id"] = $id;
-        $rows = $this->query($sql, $params);
+        $this->exec($sql);
+        $this->getAssoc();
+        $rows = $this->getRows();
 
         return $rows[0];
     }

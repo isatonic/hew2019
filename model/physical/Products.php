@@ -45,9 +45,19 @@ class Products extends ModelBase {
      * }
      */
     public function fetchAllImage() {
-        $sql = "SELECT id, fileName, title, author, postDate, price, authorComment FROM Products";
-        $rows = $this->query($sql);
-        return $rows;
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "author",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $this->setSql($wants);
+        $this->exec();
+        $this->getAssoc();
+        return $this->getRows();
     }
 
     /**

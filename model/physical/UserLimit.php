@@ -47,12 +47,18 @@ class UserLimit extends ModelBase {
      * }
      */
     public function fetch(string $user) {
-        $sql = "SELECT limitType, limitStart, limitEnd, reason from UserLimit WHERE user LIKE :user";
-        $params = array(
-            "user" => $user
+        $wants = array(
+            "limitType",
+            "limitStart",
+            "limitEnd",
+            "reason"
         );
+        $where = ["user" => $user];
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
 
-        return $this->query($sql, $params);
+        return $this->getRows();
     }
 
     /**
@@ -63,11 +69,13 @@ class UserLimit extends ModelBase {
      * @return true|int 制限無し:true, 制限あり:残り時間(h)
      */
     public function check(string $user) {
-        $sql = "SELECT limitEnd from UserLimit WHERE user LIKE :user ORDER BY limitEnd DESC";
-        $params = array(
-            "user" => $user
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["limitEnd"];
+        $where = ["user" => $user];
+        $order = ["limitEnd" => "DESC"];
+        $this->setSql($wants, $where, $order);
+        $this->exec();
+        $this->getAssoc();
+        $rows = $this->getRows();
         if ($rows != null) {
             $limit = new \DateTime($rows[0]["limitEnd"]);
             $now = new \DateTime();

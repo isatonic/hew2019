@@ -35,11 +35,12 @@ class Grade extends ModelBase {
      */
     public function getPoint(string $user = null) {
         $user = $this->setUser($user);
-        $sql = "SELECT gpoint FROM Grade WHERE user LIKE :user";
-        $params = array(
-            "user" => $user
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["gpoint"];
+        $where = ["user" => $user];
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
+        $rows = $this->getRows();
         $gpoint = (int) $rows[0]["gpoint"];
         $grade = 0;
         if ($gpoint < 100) {

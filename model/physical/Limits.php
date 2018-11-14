@@ -15,9 +15,11 @@ class Limits extends ModelBase {
      * @return mixed[]
      */
     public function getAll() {
-        $sql = "SELECT id, duration, title FROM Limits";
-        $rows = $this->query($sql);
-        return $rows;
+        $wants = ["id", "duration", "title"];
+        $this->setSql($wants);
+        $this->exec();
+        $this->getAssoc();
+        return $this->getRows();
     }
 
     /**
@@ -28,11 +30,12 @@ class Limits extends ModelBase {
      * @return bool|array
      */
     public function get(string $id) {
-        $sql = "SELECT duration, title FROM Limits WHERE id = :id";
-        $params = array(
-            "id" => $id
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["duration", "title"];
+        $where = ["id" => $id];
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
+        $rows = $this->getRows();
         if ($rows != null) {
             return $rows[0];
         } else {

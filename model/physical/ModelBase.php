@@ -3,14 +3,18 @@
 namespace model\physical;
 
 use PDO;
-use PDOException;
+
+interface ModelBaseInterface {
+    public function __construct(PDO $pdo, string $user = null);
+    // public function setSql(array $want = array("*"), array $where = null, array $order = null);
+}
 
 /**
  * DBに関する基本処理をまとめたクラス
  *
  * @package model\physical
  */
-class ModelBase {
+abstract class ModelBase implements ModelBaseInterface {
 
     /** @var PDO $db DB接続用PDO */
     protected $db;
@@ -18,69 +22,77 @@ class ModelBase {
     protected $table_name;
     /** @var string $user_id ユーザID */
     protected $user_id;
+    protected $sql;
+    /** @var \PDOStatement */
+    protected $stmt;
+    protected $rows;
 
 
     /**
      * コンストラクタ: オブジェクト生成時に自動実行
      *
+     * @param PDO $pdo
      * @param string|null $user
      */
-    public function __construct(string $user = null) {
-        $this->initDB();
-
-        if ($this->table_name == null) {
-            $this->setTableName();
-        }
+    public function __construct(PDO $pdo, string $user = null) {
+        $this->db = $pdo;
+        $this->table_name = get_class($this);
 
         if ($user != null) {
             $this->user_id = $user;
         }
     }
 
-    /**
-     * DBへ接続
-     *
-     * メンバ変数$db <- PDO
-     */
-    public function initDB() {
-        try {
-            $this->db = new PDO('mysql:host=db;dbname=isatonic', 'root', 'root', array(PDO::ATTR_PERSISTENT => true));
-        } catch (PDOException $e) {
-            die();
-        }
-    }
-
-    /**
-     * テーブル名を設定
-     *
-     * メンバ変数$table_name <- テーブル名 (=クラス名)
-     */
-    public function setTableName() {
-        $this->table_name = get_class($this);
-    }
-
-    /**
-     * SELECTの結果を取得
-     *
-     * @param string    $sql
-     * @param array     $params
-     *
-     * @return mixed[]
-     */
-    public function query(string $sql, array $params = array()) {
-        $stmt = $this->db->prepare($sql);
-        if ($params != null) {
-            foreach ($params as $key => $val) {
-                $stmt->bindValue(':' . $key, $val);
+    protected function setSql(array $want = array("*"), array $where = null, array $order = null) {
+        $sql = sprintf("SELECT %s FROM %s", implode(", ", $want), $this->table_name);
+        if ($where != null) {
+            $sql .= " WHERE ";
+            $condition = array();
+            foreach ($where as $key => $val) {
+                $condition[] = "$key = $val";
+            }
+            foreach ($condition as $val2) {
+                $sql .= implode("and ", $val2);
             }
         }
+        if ($order != null) {
+            $sql .= " ORDER BY ";
+            $set = array();
+            foreach ($order as $key3 => $val3) {
+                $set[] = "$key3 $val3";
+            }
+            foreach ($set as $val4) {
+                $sql .= implode(", ", $val4);
+            }
+        }
+        $this->sql = $sql;
+    }
+
+    /**
+     * @param string|null $sql
+     *
+     * @return void
+     */
+    protected function exec(string $sql = null) {
+        if ($sql == null) {
+            $sql = $this->sql;
+        }
+        $stmt = $this->db->prepare($sql);
         $stmt->execute();
+
+        $this->stmt = $stmt;
+    }
+
+    protected function getAssoc() {
         $rows = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $this->stmt->fetch(PDO::FETCH_ASSOC)) {
             $rows[] = $row;
         }
+        $this->rows = $rows;
+    }
 
-        return $rows;
+    protected function getRows() {
+        return $this->rows;
     }
 
     /**
@@ -90,7 +102,7 @@ class ModelBase {
      *
      * @return bool
      */
-    public function insert(array $data) {
+    protected function insert(array $data) {
         $fields = array();
         $values = array();
         foreach ($data as $key => $val) {
@@ -120,7 +132,7 @@ class ModelBase {
      *
      * @return bool
      */
-    public function delete(string $where, array $params = array()) {
+    protected function delete(string $where, array $params = array()) {
         $sql = sprintf("DELETE FROM %s", $this->table_name);
         if ($where != "") {
             $sql .= " WHERE " . $where;
@@ -148,7 +160,7 @@ class ModelBase {
      *
      * @return bool
      */
-    public function update(array $data, string $where) {
+    protected function update(array $data, string $where) {
         $keyval = array();
         foreach ($data as $key => $val) {
             $keyval[] = "${key}=${val}";

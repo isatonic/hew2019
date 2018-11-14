@@ -32,11 +32,12 @@ class Wallet extends ModelBase {
      */
     public function checkWallet(string $user = null) {
         $user = $this->setUser($user);
-        $sql = "SELECT point FROM Wallet WHERE user LIKE :user";
-        $params = array(
-            "user" => $user
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["point"];
+        $where = ["user" => $user];
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
+        $rows = $this->getRows();
         $point = $rows[0]["point"];
 
         return $point;

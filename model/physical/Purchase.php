@@ -41,12 +41,13 @@ class Purchase extends ModelBase {
      */
     public function get(string $user = null) {
         $user = $this->setUser($user);
-        $sql = "SELECT purchaseDate, product FROM Purchase WHERE buyer LIKE :buyer";
-        $params = array(
-            "buyer" => $user
-        );
+        $wants = ["purchaseDate", "product"];
+        $where = ["buyer" => $user];
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
 
-        return $this->query($sql, $params);
+        return $this->getRows();
     }
 
 }

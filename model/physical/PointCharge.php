@@ -43,22 +43,17 @@ class PointCharge extends ModelBase {
      * }
      */
     public function getLog(string $user, string $start = null, string $end = null) {
-        $sql = "SELECT point, datetime FROM PointCharge WHERE user LIKE :user";
-        $params["user"] = $user;
+        $sql = "SELECT point, datetime FROM PointCharge WHERE user LIKE $user";
         if ($start != null and $end == null) {
-            $sql .= " and datetime >= :start";
-            $params["start"] = $start;
+            $sql .= " and datetime >= $start";
         } else if ($start == null and $end != null) {
-            $sql .= " and datetime <= :end";
-            $params["end"] = $end;
+            $sql .= " and datetime <= $end";
         } else if ($start != null and $end != null) {
-            $sql .= " and datetime BETWEEN :start and :end";
-            $params += array(
-                "start" => $start,
-                "end" => $end
-            );
+            $sql .= " and datetime BETWEEN $start and $end";
         }
-        $rows = $this->query($sql, $params);
+        $this->exec($sql);
+        $this->getAssoc();
+        $rows = $this->getRows();
 
         return $rows;
     }

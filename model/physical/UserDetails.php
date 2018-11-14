@@ -12,15 +12,14 @@ class UserDetails extends ModelBase {
     /**
      * ユーザ登録
      *
-     * @param string      $id       ユーザID
      * @param string      $userName アプリ内で公開されるユーザ名
-     * @param string|null $icon     アイコンのファイルパス (Default: null)
+     * @param string|null $icon アイコンのファイルパス (Default: null)
      *
      * @return bool
      */
-    public function regist(string $id, string $userName, string $icon = null) {
+    public function regist(string $userName, string $icon = null) {
         $data = array(
-            "id" => $id,
+            "id" => $this->user_id,
             "userName" => $userName,
             "icon" => $icon
         );
@@ -58,11 +57,12 @@ class UserDetails extends ModelBase {
      */
     public function get(string $id = null) {
         $id = $this->setUser($id);
-        $sql = "SELECT userName, icon FROM UserDetails WHERE id LIKE :id";
-        $params = array(
-            "id" => $id
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["userName", "icon"];
+        $where = ["id" => $id];
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
+        $rows = $this->getRows();
         if (!is_null($rows)) {
             return $rows[0];
         } else {

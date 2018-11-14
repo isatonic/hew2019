@@ -57,12 +57,13 @@ class Cart extends ModelBase {
      */
     public function get(string $who = null) {
         $who = $this->setUser($who);
-        $sql = "SELECT product FROM Cart WHERE user LIKE :user";
-        $params = array(
-            "user" => $who
-        );
+        $wants = array("product");
+        $where = array("user" => $who);
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
+        $rows = $this->getRows();
         $array = array();
-        $rows = $this->query($sql, $params);
         foreach ($rows as $row) {
             $array[] = $row["product"];
         }

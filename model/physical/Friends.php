@@ -75,12 +75,12 @@ class Friends extends ModelBase {
      */
     public function fetchList(string $who = null) {
         $who = $this->setUser($who);
-        $sql = "SELECT friend, flag FROM Friends WHERE user LIKE :user";
-        $param = array(
-            "user"  => $who
-        );
-        $rows = $this->query($sql, $param);
-        return $rows;
+        $wants = ["friend", "flag"];
+        $where = ["user" => $who];
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
+        return $this->getRows();
     }
 
 }

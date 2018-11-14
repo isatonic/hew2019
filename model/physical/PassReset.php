@@ -36,11 +36,13 @@ class PassReset extends ModelBase {
      * @return string[]
      */
     public function get(string $email) {
-        $sql = "SELECT code, resetLimit FROM PassReset WHERE email LIKE :email ORDER BY resetLimit DESC";
-        $params = array(
-            "email" => $email
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["code", "resetLimit"];
+        $where = ["email" => $email];
+        $order = ["resetLimit" => "DESC"];
+        $this->setSql($wants, $where, $order);
+        $this->exec();
+        $this->getAssoc();
+        $rows = $this->getRows();
         $ret = array(
             "code" => $rows[0]["code"],
             "limit" => $rows[0]["resetLimit"]

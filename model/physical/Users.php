@@ -96,11 +96,20 @@ class Users extends ModelBase {
      */
     public function get(string $id = null) {
         $id = $this->setUser($id);
-        $sql = "SELECT regDate, birth, firstName, lastName, email, flag FROM Users WHERE id LIKE :id";
-        $params = array(
+        $wants = array(
+            "regDate",
+            "birth",
+            "firstName",
+            "lastName",
+            "email",
+            "flag"
+        );
+        $where = array(
             "id" => $id
         );
-        $rows = $this->query($sql, $params);
+        $this->setSql($wants, $where);
+        $this->exec();
+        $rows = $this->getRows();
         if (!is_null($rows)) {
             return $rows[0];
         } else {
@@ -119,11 +128,16 @@ class Users extends ModelBase {
      */
     public function getStatus(string $id = null) {
         $id = $this->setUser($id);
-        $sql = "SELECT flag FROM Users WHERE id LIKE :id";
-        $params = array(
+        $wants = array(
+            "flag"
+        );
+        $where = array(
             "id" => $id
         );
-        $rows = $this->query($sql, $params);
+        $this->setSql($wants, $where);
+        $this->exec();
+        $this->getAssoc();
+        $rows = $this->getRows();
         if (!is_null($rows) or $rows) {
             return $rows[0]["flag"];
         } else {
