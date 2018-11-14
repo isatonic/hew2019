@@ -50,4 +50,19 @@ class Products extends ModelBase {
         return $rows;
     }
 
+    /**
+     * 商品を削除
+     *
+     * @param string $id
+     *
+     * @return bool
+     */
+    public function remove(string $id) {
+        $where = "id = :id";
+        $params = array(
+            "id" => $id
+        );
+        return $this->delete($where, $params);
+    }
+
 }
