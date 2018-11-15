@@ -41,10 +41,7 @@ class ContactReply extends ModelBase {
             "date",
             "detail"
         );
-        $this->selectSql($wants);
-        $this->exec();
-        $this->getAssoc();
-        return $this->getRows();
+        return $this->getRows($wants);
     }
 
     /**
@@ -65,10 +62,7 @@ class ContactReply extends ModelBase {
             "detail"
         );
         $where["source"] = $source;
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        return $this->getRows();
+        return $this->getRows($wants, $where);
     }
 
     /**
@@ -85,10 +79,7 @@ class ContactReply extends ModelBase {
             "detail"
         );
         $where["id"] = $id;
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
 
         return $rows[0];
     }
@@ -110,10 +101,8 @@ class ContactReply extends ModelBase {
             "detail"
         );
         $where["who"] = $who;
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        return $this->getRows();
+
+        return $this->getRows($wants, $where);
     }
 
 }

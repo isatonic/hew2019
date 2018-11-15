@@ -26,10 +26,7 @@ class Auth extends ModelBase {
             "flag"
         );
         $where["id"] = $id;
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
 
         if ($rows != null) {
             if ($rows[0]["flag"] != "active") {

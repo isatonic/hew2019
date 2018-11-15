@@ -45,11 +45,8 @@ class Purchase extends ModelBase {
         $user = $this->setUser($user);
         $wants = ["purchaseDate", "product"];
         $where = ["buyer" => $user];
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
 
-        return $this->getRows();
+        return $this->getRows($wants, $where);
     }
 
 }

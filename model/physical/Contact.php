@@ -61,8 +61,8 @@ class Contact extends ModelBase {
                 C.flag ASC
 SQL;
         $this->exec(null, $sql);
-        $this->getAssoc();
-        return $this->getRows();
+        $this->setAssoc();
+        return $this->returnRows();
     }
 
     /**
@@ -98,8 +98,8 @@ SQL;
                 C.flag ASC
 SQL;
         $this->exec(null, $sql);
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $this->setAssoc();
+        $rows = $this->returnRows();
 
         return $rows[0];
     }
@@ -114,9 +114,9 @@ SQL;
      */
     public function updateStatus(int $id, string $to) {
         $data["flag"] = $to;
-        $where = "id = $id";
+        $where["id"] = $id;
 
-        return $this->update($data, $where);
+        return $this->execUpdate($data, $where);
     }
 
 }

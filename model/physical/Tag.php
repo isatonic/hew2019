@@ -53,15 +53,21 @@ class Tag extends ModelBase {
             return false;
         } else {
             $where = "product LIKE :product and tagID LIKE :tag";
-            $res[] = array();
+            $params = array();
             foreach ($tag as $val) {
                 $params = array(
                     "product" => $product,
                     "tag" => $val
                 );
-                $res[] = $this->deleteSql($where, $params);
             }
-            return in_array(false, $res, true) ? false: true;
+            try {
+                $this->db->beginTransaction();
+                $this->deleteSql($where);
+                $this->exec($params);
+                return $this->getResult();
+            } catch (\PDOException $d) {
+                return false;
+            }
         }
     }
 
@@ -75,9 +81,9 @@ class Tag extends ModelBase {
     public function searchTag(array $tag) {
         $tags = implode(", ", $tag);
         $sql = "SELECT product FROM Tag WHERE tagID in ($tags)";
-        $this->exec(, $sql);
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $this->exec(null, $sql);
+        $this->setAssoc();
+        $rows = $this->returnRows();
         $ret = array();
         foreach ($rows as $row) {
             $ret[] = $row["product"];

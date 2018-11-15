@@ -41,10 +41,7 @@ class PassReset extends ModelBase {
         $wants = ["code", "resetLimit"];
         $where = ["email" => $email];
         $order = ["resetLimit" => "DESC"];
-        $this->selectSql($wants, $where, $order);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where, $order);
         $ret = array(
             "code" => $rows[0]["code"],
             "limit" => $rows[0]["resetLimit"]

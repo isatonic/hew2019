@@ -56,11 +56,8 @@ class UserLimit extends ModelBase {
             "reason"
         );
         $where = ["user" => $user];
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
 
-        return $this->getRows();
+        return $this->getRows($wants, $where);
     }
 
     /**
@@ -74,10 +71,7 @@ class UserLimit extends ModelBase {
         $wants = ["limitEnd"];
         $where = ["user" => $user];
         $order = ["limitEnd" => "DESC"];
-        $this->selectSql($wants, $where, $order);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where, $order);
         if ($rows != null) {
             $limit = new \DateTime($rows[0]["limitEnd"]);
             $now = new \DateTime();

@@ -39,10 +39,9 @@ class UserDetails extends ModelBase {
      */
     public function changeInfo(array $data, string $id = null) {
         $id = $this->setUser($id);
-        $where = sprintf("id LIKE %s", $id);
-        $res = $this->update($data, $where);
+        $where["id"] = $id;
 
-        return $res;
+        return $this->execUpdate($data, $where);
     }
 
     /**
@@ -61,10 +60,7 @@ class UserDetails extends ModelBase {
         $id = $this->setUser($id);
         $wants = ["userName", "icon"];
         $where = ["id" => $id];
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
         if (!is_null($rows)) {
             return $rows[0];
         } else {

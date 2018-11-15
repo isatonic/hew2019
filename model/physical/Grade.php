@@ -39,10 +39,7 @@ class Grade extends ModelBase {
         $user = $this->setUser($user);
         $wants = ["gpoint"];
         $where = ["user" => $user];
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
         $gpoint = (int) $rows[0]["gpoint"];
         $grade = 0;
         if ($gpoint < 100) {
@@ -77,10 +74,9 @@ class Grade extends ModelBase {
         $user = $this->setUser($user);
         $nowPoint = $this->getPoint($user);
         $data["gpoint"] = $point + $nowPoint["gpoint"];
-        $where = "user LIKE $user";
-        $res = $this->update($data, $where);
+        $where["user"] = $user;
 
-        return $res;
+        return $this->execUpdate($data, $where);
     }
 
 }

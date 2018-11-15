@@ -53,8 +53,8 @@ class PointCharge extends ModelBase {
             $sql .= " and datetime BETWEEN $start and $end";
         }
         $this->exec(null, $sql);
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $this->setAssoc();
+        $rows = $this->returnRows();
 
         return $rows;
     }

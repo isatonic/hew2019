@@ -25,10 +25,8 @@ class ContactTags extends ModelBase {
             "name"
         );
         $order = array("id" => "ASC");
-        $this->selectSql($wants, null, $order);
-        $this->exec();
-        $this->getAssoc();
-        return $this->getRows();
+
+        return $this->getRows($wants, null, $order);
     }
 
     /**
@@ -45,10 +43,7 @@ class ContactTags extends ModelBase {
             "name"
         );
         $order = array("id" => "DESC");
-        $this->selectSql($wants, null, $order);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, null, $order);
 
         if ($rows == null) {
             $id = "C0001";
@@ -82,10 +77,7 @@ class ContactTags extends ModelBase {
     public function getName(string $id) {
         $wants = ["name"];
         $where = array("id" => $id);
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
 
         if ($rows == null) {
             return false;

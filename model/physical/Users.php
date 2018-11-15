@@ -56,9 +56,9 @@ class Users extends ModelBase {
      */
     public function changeInfo(array $data, string $who = null) {
         $who = $this->setUser($who);
-        $where = sprintf("id LIKE %s", $who);
-        $res = $this->update($data, $where);
-        return $res;
+        $where["id"] = $who;
+
+        return $this->execUpdate($data, $where);
     }
 
     /**
@@ -109,9 +109,7 @@ class Users extends ModelBase {
         $where = array(
             "id" => $id
         );
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
         if (!is_null($rows)) {
             return $rows[0];
         } else {
@@ -136,10 +134,7 @@ class Users extends ModelBase {
         $where = array(
             "id" => $id
         );
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
         if (!is_null($rows) or $rows) {
             return $rows[0]["flag"];
         } else {

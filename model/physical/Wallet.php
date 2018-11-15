@@ -36,10 +36,7 @@ class Wallet extends ModelBase {
         $user = $this->setUser($user);
         $wants = ["point"];
         $where = ["user" => $user];
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
         $point = $rows[0]["point"];
 
         return $point;
@@ -59,10 +56,9 @@ class Wallet extends ModelBase {
         $data = array(
             "point" => $newPoint
         );
-        $where = "user LIKE $user";
-        $res = $this->update($data, $where);
+        $where["user"] = $user;
 
-        return $res;
+        return $this->execUpdate($data, $where);
     }
 
     /**
@@ -76,17 +72,15 @@ class Wallet extends ModelBase {
     public function usePoint(int $point, string $user = null) {
         $user = $this->setUser($user);
         $newPoint = $this->checkWallet($user) - $point;
-        if ($newPoint < 0) {
-            $res = false;
-        } else {
+        if ($newPoint >= 0) {
             $data = array(
                 "point" => $newPoint
             );
-            $where = "user LIKE $user";
-            $res = $this->update($data, $where);
+            $where["user"] = $user;
+            return $this->execUpdate($data, $where);
         }
 
-        return $res;
+        return false;
 
     }
 }

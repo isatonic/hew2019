@@ -16,10 +16,7 @@ class Limits extends ModelBase {
      */
     public function getAll() {
         $wants = ["id", "duration", "title"];
-        $this->selectSql($wants);
-        $this->exec();
-        $this->getAssoc();
-        return $this->getRows();
+        return $this->getRows($wants);
     }
 
     /**
@@ -32,10 +29,7 @@ class Limits extends ModelBase {
     public function get(string $id) {
         $wants = ["duration", "title"];
         $where = ["id" => $id];
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        $rows = $this->getRows();
+        $rows = $this->getRows($wants, $where);
         if ($rows != null) {
             return $rows[0];
         } else {

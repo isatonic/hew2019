@@ -56,10 +56,7 @@ class Products extends ModelBase {
             "price",
             "authorComment"
         );
-        $this->selectSql($wants);
-        $this->exec();
-        $this->getAssoc();
-        return $this->getRows();
+        return $this->getRows($wants);
     }
 
     /**
@@ -75,7 +72,8 @@ class Products extends ModelBase {
             "id" => $id
         );
         $this->deleteSql($where);
-        return $this->deleteSql($where, $params);
+        $this->exec($params);
+        return $this->getResult();
     }
 
 }

@@ -39,8 +39,11 @@ class Friends extends ModelBase {
     public function block(string $friend, string $who = null) {
         $who = $this->setUser($who);
         $data["flag"] = "block";
-        $where = "user LIKE '$who' and friend LIKE '$friend'";
-        $res = $this->update($data, $where);
+        $where = array(
+            "user" => $who,
+            "friend" => $friend
+        );
+        $res = $this->execUpdate($data, $where);
         return $res;
     }
 
@@ -55,8 +58,11 @@ class Friends extends ModelBase {
     public function unblock(string $target, string $who = null) {
         $who = $this->setUser($who);
         $data["flag"] = "active";
-        $where = "user LIKE $who and friend LIKE $target";
-        return $this->update($data, $where);
+        $where = array(
+            "user" => $who,
+            "friend" => $target
+        );
+        return $this->execUpdate($data, $where);
     }
 
 
@@ -78,10 +84,8 @@ class Friends extends ModelBase {
         $who = $this->setUser($who);
         $wants = ["friend", "flag"];
         $where = ["user" => $who];
-        $this->selectSql($wants, $where);
-        $this->exec();
-        $this->getAssoc();
-        return $this->getRows();
+
+        return $this->getRows($wants, $where);
     }
 
 }
