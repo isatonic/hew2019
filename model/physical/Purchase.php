@@ -23,8 +23,10 @@ class Purchase extends ModelBase {
             "buyer" => $user,
             "product" => $product
         );
+        $this->insertSql($data);
+        $this->exec($data, null);
 
-        return $this->insert($data);
+        return $this->getResult();
     }
 
     /**
@@ -41,12 +43,10 @@ class Purchase extends ModelBase {
      */
     public function get(string $user = null) {
         $user = $this->setUser($user);
-        $sql = "SELECT purchaseDate, product FROM Purchase WHERE buyer LIKE :buyer";
-        $params = array(
-            "buyer" => $user
-        );
+        $wants = ["purchaseDate", "product"];
+        $where = ["buyer" => $user];
 
-        return $this->query($sql, $params);
+        return $this->getRows($wants, $where);
     }
 
 }

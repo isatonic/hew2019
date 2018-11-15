@@ -27,8 +27,10 @@ class Products extends ModelBase {
         if (!isset($data["author"]) or is_null($data["author"])) {
             $data["author"] = $this->user_id;
         }
-        $res = $this->insert($data);
-        return $res;
+        $this->insertSql($data);
+        $this->exec($data);
+
+        return $this->getResult();
     }
 
     /**
@@ -45,9 +47,16 @@ class Products extends ModelBase {
      * }
      */
     public function fetchAllImage() {
-        $sql = "SELECT id, fileName, title, author, postDate, price, authorComment FROM Products";
-        $rows = $this->query($sql);
-        return $rows;
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "author",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        return $this->getRows($wants);
     }
 
     /**
@@ -62,7 +71,9 @@ class Products extends ModelBase {
         $params = array(
             "id" => $id
         );
-        return $this->delete($where, $params);
+        $this->deleteSql($where);
+        $this->exec($params);
+        return $this->getResult();
     }
 
 }

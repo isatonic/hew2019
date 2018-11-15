@@ -23,7 +23,9 @@ class ContactReply extends ModelBase {
             "operator" => $this->user_id,
             "detail" => $detail
         );
-        return $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data);
+        return $this->getResult();
     }
 
     /**
@@ -32,8 +34,14 @@ class ContactReply extends ModelBase {
      * @return mixed[]
      */
     public function getAll() {
-        $sql = "SELECT id, source, operator, date, detail FROM ContactReply";
-        return $this->query($sql);
+        $wants = array(
+            "id",
+            "source",
+            "operator",
+            "date",
+            "detail"
+        );
+        return $this->getRows($wants);
     }
 
     /**
@@ -48,12 +56,13 @@ class ContactReply extends ModelBase {
      * }
      */
     public function getReply(int $source) {
-        $sql = "SELECT id, date, detail FROM ContactReply WHERE source = :source";
-        $params = array(
-            "source" => $source
+        $wants = array(
+            "id",
+            "date",
+            "detail"
         );
-
-        return $this->query($sql, $params);
+        $where["source"] = $source;
+        return $this->getRows($wants, $where);
     }
 
     /**
@@ -64,11 +73,13 @@ class ContactReply extends ModelBase {
      * @return array
      */
     public function get(int $id) {
-        $sql = "SELECT source, date, detail FROM ContactReply WHERE id = :id";
-        $params = array(
-            "id" => $id
+        $wants = array(
+            "source",
+            "date",
+            "detail"
         );
-        $rows = $this->query($sql, $params);
+        $where["id"] = $id;
+        $rows = $this->getRows($wants, $where);
 
         return $rows[0];
     }
@@ -83,12 +94,15 @@ class ContactReply extends ModelBase {
      */
     public function getOperator(string $who = null) {
         $who = $this->setUser($who);
-        $sql = "SELECT id, source, date, detail FROM ContactReply WHERE operator LIKE :who";
-        $params = array(
-            "operator" => $who
+        $wants = array(
+            "id",
+            "source",
+            "date",
+            "detail"
         );
+        $where["who"] = $who;
 
-        return $this->query($sql, $params);
+        return $this->getRows($wants, $where);
     }
 
 }

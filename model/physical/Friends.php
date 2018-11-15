@@ -23,8 +23,9 @@ class Friends extends ModelBase {
             "user"      => $who,
             "friend"    => $friend
         );
-        $res = $this->insert($data);
-        return $res;
+        $this->insertSql($data);
+        $this->exec($data);
+        return $this->getResult();
     }
 
     /**
@@ -38,8 +39,11 @@ class Friends extends ModelBase {
     public function block(string $friend, string $who = null) {
         $who = $this->setUser($who);
         $data["flag"] = "block";
-        $where = "user LIKE '$who' and friend LIKE '$friend'";
-        $res = $this->update($data, $where);
+        $where = array(
+            "user" => $who,
+            "friend" => $friend
+        );
+        $res = $this->execUpdate($data, $where);
         return $res;
     }
 
@@ -54,8 +58,11 @@ class Friends extends ModelBase {
     public function unblock(string $target, string $who = null) {
         $who = $this->setUser($who);
         $data["flag"] = "active";
-        $where = "user LIKE $who and friend LIKE $target";
-        return $this->update($data, $where);
+        $where = array(
+            "user" => $who,
+            "friend" => $target
+        );
+        return $this->execUpdate($data, $where);
     }
 
 
@@ -75,12 +82,10 @@ class Friends extends ModelBase {
      */
     public function fetchList(string $who = null) {
         $who = $this->setUser($who);
-        $sql = "SELECT friend, flag FROM Friends WHERE user LIKE :user";
-        $param = array(
-            "user"  => $who
-        );
-        $rows = $this->query($sql, $param);
-        return $rows;
+        $wants = ["friend", "flag"];
+        $where = ["user" => $who];
+
+        return $this->getRows($wants, $where);
     }
 
 }

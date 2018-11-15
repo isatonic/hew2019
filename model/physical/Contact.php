@@ -24,7 +24,9 @@ class Contact extends ModelBase {
      */
     public function add(array $data) {
         $data["flag"] = "unconfirm";
-        return $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data, null);
+        return $this->getResult();
     }
 
     /**
@@ -58,9 +60,9 @@ class Contact extends ModelBase {
                 C.contactDate DESC,
                 C.flag ASC
 SQL;
-        $rows = $this->query($sql);
-
-        return $rows;
+        $this->exec(null, $sql);
+        $this->setAssoc();
+        return $this->returnRows();
     }
 
     /**
@@ -90,13 +92,14 @@ SQL;
                 C.detail as detail
             FROM Contact C
             JOIN ContactTags CT on C.tag = CT.id
-            WHERE C.id = :id
+            WHERE C.id = $id
             ORDER BY
                 C.contactDate DESC,
                 C.flag ASC
 SQL;
-        $params["id"] = $id;
-        $rows = $this->query($sql, $params);
+        $this->exec(null, $sql);
+        $this->setAssoc();
+        $rows = $this->returnRows();
 
         return $rows[0];
     }
@@ -111,9 +114,9 @@ SQL;
      */
     public function updateStatus(int $id, string $to) {
         $data["flag"] = $to;
-        $where = "id = $id";
+        $where["id"] = $id;
 
-        return $this->update($data, $where);
+        return $this->execUpdate($data, $where);
     }
 
 }

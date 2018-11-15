@@ -23,9 +23,8 @@ class Cart extends ModelBase {
             "product" => $product,
             "user" => $who
         );
-        $res = $this->insert($data);
 
-        return $res;
+        return $this->execInsert($data);
     }
 
     /**
@@ -38,14 +37,12 @@ class Cart extends ModelBase {
      */
     public function remove(string $product, string $who = null) {
         $who = $this->setUser($who);
-        $where = "user LIKE :user and product LIKE :product";
         $params = array(
             "user" => $who,
             "product" => $product
         );
-        $res = $this->delete($where, $params);
 
-        return $res;
+        return $this->execDelete($params);
     }
 
     /**
@@ -57,12 +54,10 @@ class Cart extends ModelBase {
      */
     public function get(string $who = null) {
         $who = $this->setUser($who);
-        $sql = "SELECT product FROM Cart WHERE user LIKE :user";
-        $params = array(
-            "user" => $who
-        );
+        $wants = array("product");
+        $where = array("user" => $who);
+        $rows = $this->getRows($wants, $where);
         $array = array();
-        $rows = $this->query($sql, $params);
         foreach ($rows as $row) {
             $array[] = $row["product"];
         }

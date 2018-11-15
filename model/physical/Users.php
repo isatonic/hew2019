@@ -37,7 +37,9 @@ class Users extends ModelBase {
             "email" => $data["email"],
             "flag" => "verifying"
         );
-        if ($this->insert($data)) {
+        $this->insertSql($data);
+        $this->exec($data);
+        if ($this->getResult()) {
             return $data["id"];
         } else {
             return false;
@@ -54,9 +56,9 @@ class Users extends ModelBase {
      */
     public function changeInfo(array $data, string $who = null) {
         $who = $this->setUser($who);
-        $where = sprintf("id LIKE %s", $who);
-        $res = $this->update($data, $where);
-        return $res;
+        $where["id"] = $who;
+
+        return $this->execUpdate($data, $where);
     }
 
     /**
@@ -96,11 +98,18 @@ class Users extends ModelBase {
      */
     public function get(string $id = null) {
         $id = $this->setUser($id);
-        $sql = "SELECT regDate, birth, firstName, lastName, email, flag FROM Users WHERE id LIKE :id";
-        $params = array(
+        $wants = array(
+            "regDate",
+            "birth",
+            "firstName",
+            "lastName",
+            "email",
+            "flag"
+        );
+        $where = array(
             "id" => $id
         );
-        $rows = $this->query($sql, $params);
+        $rows = $this->getRows($wants, $where);
         if (!is_null($rows)) {
             return $rows[0];
         } else {
@@ -119,11 +128,13 @@ class Users extends ModelBase {
      */
     public function getStatus(string $id = null) {
         $id = $this->setUser($id);
-        $sql = "SELECT flag FROM Users WHERE id LIKE :id";
-        $params = array(
+        $wants = array(
+            "flag"
+        );
+        $where = array(
             "id" => $id
         );
-        $rows = $this->query($sql, $params);
+        $rows = $this->getRows($wants, $where);
         if (!is_null($rows) or $rows) {
             return $rows[0]["flag"];
         } else {

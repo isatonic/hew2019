@@ -3,14 +3,18 @@
 namespace model\physical;
 
 use PDO;
-use PDOException;
+
+interface ModelBaseInterface {
+    public function __construct(PDO $pdo, string $user = null);
+    // public function setSql(array $want = array("*"), array $where = null, array $order = null);
+}
 
 /**
  * DBに関する基本処理をまとめたクラス
  *
  * @package model\physical
  */
-class ModelBase {
+abstract class ModelBase implements ModelBaseInterface {
 
     /** @var PDO $db DB接続用PDO */
     protected $db;
@@ -18,19 +22,22 @@ class ModelBase {
     protected $table_name;
     /** @var string $user_id ユーザID */
     protected $user_id;
+    protected $sql;
+    /** @var \PDOStatement */
+    protected $stmt;
+    protected $result;
+    protected $rows;
 
 
     /**
      * コンストラクタ: オブジェクト生成時に自動実行
      *
+     * @param PDO $pdo
      * @param string|null $user
      */
-    public function __construct(string $user = null) {
-        $this->initDB();
-
-        if ($this->table_name == null) {
-            $this->setTableName();
-        }
+    public function __construct(PDO $pdo, string $user = null) {
+        $this->db = $pdo;
+        $this->table_name = get_class($this);
 
         if ($user != null) {
             $this->user_id = $user;
@@ -38,59 +45,95 @@ class ModelBase {
     }
 
     /**
-     * DBへ接続
+     * @param array|null  $params
      *
-     * メンバ変数$db <- PDO
+     * @param string|null $sql
+     *
+     * @return void
      */
-    public function initDB() {
-        try {
-            $this->db = new PDO('mysql:host=db;dbname=isatonic', 'root', 'root', array(PDO::ATTR_PERSISTENT => true));
-        } catch (PDOException $e) {
-            die();
+    protected function exec(array $params = null, string $sql = null) {
+        if ($sql == null) {
+            $sql = $this->sql;
         }
-    }
-
-    /**
-     * テーブル名を設定
-     *
-     * メンバ変数$table_name <- テーブル名 (=クラス名)
-     */
-    public function setTableName() {
-        $this->table_name = get_class($this);
-    }
-
-    /**
-     * SELECTの結果を取得
-     *
-     * @param string    $sql
-     * @param array     $params
-     *
-     * @return mixed[]
-     */
-    public function query(string $sql, array $params = array()) {
         $stmt = $this->db->prepare($sql);
+
+        // toDO: SQL Injection 対策
         if ($params != null) {
             foreach ($params as $key => $val) {
                 $stmt->bindValue(':' . $key, $val);
             }
         }
-        $stmt->execute();
+
+        $this->result = $stmt->execute();
+        $this->stmt = $stmt;
+    }
+
+    protected function setAssoc() {
         $rows = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $this->stmt->fetch(PDO::FETCH_ASSOC)) {
             $rows[] = $row;
         }
+        $this->rows = $rows;
+    }
 
-        return $rows;
+    protected function getResult() {
+        return $this->result;
+    }
+
+    protected function returnRows() {
+        return $this->rows;
+    }
+
+    protected function getRows(array $want, array $where = null, array $order = null) {
+        $this->selectSql($want, $where, $order);
+        $this->exec($where);
+        $this->setAssoc();
+        $this->returnRows();
+    }
+
+    protected function execInsert(array $data) {
+        $this->insertSql($data);
+        $this->exec($data);
+        return $this->getResult();
+    }
+
+    protected function execDelete(array $params) {
+        $this->deleteSql($params);
+        $this->exec($params);
+        return $this->getResult();
+    }
+
+    protected function execUpdate(array $new, array $param) {
+        $this->updateSql($new, $param);
+        $this->exec($param);
+        return $this->getResult();
+    }
+
+
+    protected function selectSql(array $want = array("*"), array $where = null, array $order = null) {
+        $sql = sprintf("SELECT %s FROM %s", implode(", ", $want), $this->table_name);
+        if ($where != null) {
+            $sql .= $this->addWhere($where);
+        }
+        if ($order != null) {
+            $sql .= " ORDER BY ";
+            $set = array();
+            foreach ($order as $key3 => $val3) {
+                $set[] = "$key3 $val3";
+            }
+            foreach ($set as $val4) {
+                $sql .= implode(", ", $val4);
+            }
+        }
+        $this->sql = $sql;
     }
 
     /**
-     * INSERTを実行
+     * INSERT文を準備
      *
      * @param array $data
-     *
-     * @return bool
      */
-    public function insert(array $data) {
+    protected function insertSql(array $data) {
         $fields = array();
         $values = array();
         foreach ($data as $key => $val) {
@@ -103,63 +146,55 @@ class ModelBase {
             implode(',', $fields),
             implode(',', $values)
         );
-        $stmt = $this->db->prepare($sql);
-        foreach ($data as $key => $val) {
-            $stmt->bindValue(':' . $key, $val);
-        }
-        $res = $stmt->execute();
-
-        return $res;
+        $this->sql = $sql;
     }
 
     /**
-     * DELETEを実行
+     * DELETE文を準備
      *
-     * @param string    $where
-     * @param array     $params
-     *
-     * @return bool
+     * @param array $where
      */
-    public function delete(string $where, array $params = array()) {
+    protected function deleteSql(array $where = null) {
         $sql = sprintf("DELETE FROM %s", $this->table_name);
-        if ($where != "") {
-            $sql .= " WHERE " . $where;
+        if ($where != null) {
+            $sql .= $this->addWhere($where);
         }
-        $stmt = $this->db->prepare($sql);
-        if ($params != null) {
-            foreach ($params as $key => $val) {
-                $stmt->bindValue(':' . $key, $val);
-            }
-        }
-        $res = $stmt->execute();
-
-        return $res;
+        $this->sql = $sql;
     }
 
     /**
-     * UPDATEを実行
+     * UPDATE文を準備
      *
      * @param mixed[] $data {
      *      "列名": 更新値
      * }
      *
-     * @param string $where
+     * @param array   $where
      *      条件("WHERE ..."の"...")
-     *
-     * @return bool
      */
-    public function update(array $data, string $where) {
+    protected function updateSql(array $data, array $where) {
         $keyval = array();
         foreach ($data as $key => $val) {
             $keyval[] = "${key}=${val}";
         }
         $sql = sprintf("UPDATE $this->table_name SET %s", implode(", ", $keyval));
-        if ($where != "") {
-            $sql .= " WHERE " . $where;
+        if ($where != null) {
+            $sql .= $this->addWhere($where);
         }
-        $stmt = $this->db->prepare($sql);
-        $res = $stmt->execute();
-        return $res;
+        $this->sql = $sql;
+    }
+
+    protected function addWhere(array $where) {
+        $add = " WHERE ";
+        $condition = array();
+        foreach ($where as $key => $val) {
+            $condition[] = "$key = :$key";
+        }
+        foreach ($condition as $val2) {
+            $add .= implode("and ", $val2);
+        }
+
+        return $add;
     }
 
     /**

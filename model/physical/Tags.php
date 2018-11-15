@@ -20,8 +20,10 @@ class Tags extends ModelBase {
      * }
      */
     public function getAll() {
-        $sql = "SELECT id, name FROM Tags ORDER BY id ASC";
-        return $this->query($sql);
+        $wants = ["id", "name"];
+        $order = ["id" => "ASC"];
+
+        return $this->getRows($wants, null, $order);
     }
 
     /**
@@ -33,8 +35,9 @@ class Tags extends ModelBase {
      * @return bool
      */
     public function add(string $name) {
-        $sql = "SELECT id, name FROM Tags ORDER BY id DESC";
-        $rows = $this->query($sql);
+        $wants = ["id", "name"];
+        $order = ["id" => "DESC"];
+        $rows = $this->getRows($wants, null, $order);
 
         if ($rows == null) {
             $id = "T00001";
@@ -48,7 +51,9 @@ class Tags extends ModelBase {
                 "id" => $id,
                 "name" => $name
             );
-            return $this->insert($data);
+            $this->insertSql($data);
+            $this->exec($data);
+            return $this->getResult();
         } else {
             return false;
         }
@@ -64,11 +69,9 @@ class Tags extends ModelBase {
      * @return bool|string
      */
     public function getName(string $id) {
-        $sql = "SELECT name FROM Tags WHERE id LIKE :id";
-        $params = array(
-            "id" => $id
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["name"];
+        $where = ["id" => $id];
+        $rows = $this->getRows($wants, $where);
 
         if ($rows == null) {
             return false;

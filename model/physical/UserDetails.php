@@ -12,20 +12,21 @@ class UserDetails extends ModelBase {
     /**
      * ユーザ登録
      *
-     * @param string      $id       ユーザID
      * @param string      $userName アプリ内で公開されるユーザ名
-     * @param string|null $icon     アイコンのファイルパス (Default: null)
+     * @param string|null $icon アイコンのファイルパス (Default: null)
      *
      * @return bool
      */
-    public function regist(string $id, string $userName, string $icon = null) {
+    public function regist(string $userName, string $icon = null) {
         $data = array(
-            "id" => $id,
+            "id" => $this->user_id,
             "userName" => $userName,
             "icon" => $icon
         );
+        $this->insertSql($data);
+        $this->exec($data, null);
 
-        return $this->insert($data);
+        return $this->getResult();
     }
 
     /**
@@ -38,10 +39,9 @@ class UserDetails extends ModelBase {
      */
     public function changeInfo(array $data, string $id = null) {
         $id = $this->setUser($id);
-        $where = sprintf("id LIKE %s", $id);
-        $res = $this->update($data, $where);
+        $where["id"] = $id;
 
-        return $res;
+        return $this->execUpdate($data, $where);
     }
 
     /**
@@ -58,11 +58,9 @@ class UserDetails extends ModelBase {
      */
     public function get(string $id = null) {
         $id = $this->setUser($id);
-        $sql = "SELECT userName, icon FROM UserDetails WHERE id LIKE :id";
-        $params = array(
-            "id" => $id
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["userName", "icon"];
+        $where = ["id" => $id];
+        $rows = $this->getRows($wants, $where);
         if (!is_null($rows)) {
             return $rows[0];
         } else {

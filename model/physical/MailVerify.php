@@ -22,8 +22,10 @@ class MailVerify extends ModelBase {
             "verifycode" => $this->makeRandStr(4),
             "verifyLimit" => $this->setLimit()
         );
+        $this->insertSql($data);
+        $this->exec($data);
 
-        return $this->insert($data);
+        return $this->getResult();
     }
 
     /**
@@ -37,11 +39,10 @@ class MailVerify extends ModelBase {
      * }
      */
     public function fetchCode(string $email) {
-        $sql = "SELECT verifycode, verifyLimit FROM MailVerify WHERE email LIKE :email ORDER BY verifyLimit DESC";
-        $params = array(
-            "email" => $email
-        );
-        $res = $this->query($sql, $params);
+        $wants = ["verifycode", "verifyLimit"];
+        $where = ["email" => $email];
+        $order = array("verifyLimit" => "DESC");
+        $res = $this->getRows($wants, $where, $order);
 
         return $res[0];
     }

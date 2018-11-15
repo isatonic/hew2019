@@ -21,18 +21,20 @@ class Auth extends ModelBase {
      * @return bool
      */
     public function check(string $pass, string $id = null) {
-        $sql = "SELECT pass FROM Auth WHERE id = :id";
-        $params = array(
-            "id" => $id
+        $wants = array(
+            "pass",
+            "flag"
         );
-        $rows = $this->query($sql, $params);
+        $where["id"] = $id;
+        $rows = $this->getRows($wants, $where);
 
         if ($rows != null) {
-            $hash = $rows[0]["pass"];
-            return password_verify($pass, $hash);
-        } else {
-            return false;
+            if ($rows[0]["flag"] != "active") {
+                $hash = $rows[0]["pass"];
+                return password_verify($pass, $hash);
+            }
         }
+        return false;
     }
 
 }

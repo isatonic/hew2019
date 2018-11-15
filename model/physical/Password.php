@@ -32,9 +32,10 @@ class Password extends ModelBase {
             "id" => $id,
             "pass" => password_hash($pass, PASSWORD_DEFAULT)
         );
-        $res = $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data);
 
-        return $res;
+        return $this->getResult();
     }
 
     /**
@@ -50,10 +51,9 @@ class Password extends ModelBase {
         $data = array(
             "pass" => password_hash($pass, PASSWORD_DEFAULT)
         );
-        $where = "user LIKE $user";
-        $res = $this->update($data, $where);
+        $where["user"] = $user;
 
-        return $res;
+        return $this->execUpdate($data, $where);
     }
 
 }

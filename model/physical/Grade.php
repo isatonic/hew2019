@@ -20,7 +20,9 @@ class Grade extends ModelBase {
      */
     public function init(string $id = null) {
         $data["user"] = $id;
-        return $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data);
+        return $this->getResult();
     }
 
     /**
@@ -35,11 +37,9 @@ class Grade extends ModelBase {
      */
     public function getPoint(string $user = null) {
         $user = $this->setUser($user);
-        $sql = "SELECT gpoint FROM Grade WHERE user LIKE :user";
-        $params = array(
-            "user" => $user
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["gpoint"];
+        $where = ["user" => $user];
+        $rows = $this->getRows($wants, $where);
         $gpoint = (int) $rows[0]["gpoint"];
         $grade = 0;
         if ($gpoint < 100) {
@@ -74,10 +74,9 @@ class Grade extends ModelBase {
         $user = $this->setUser($user);
         $nowPoint = $this->getPoint($user);
         $data["gpoint"] = $point + $nowPoint["gpoint"];
-        $where = "user LIKE $user";
-        $res = $this->update($data, $where);
+        $where["user"] = $user;
 
-        return $res;
+        return $this->execUpdate($data, $where);
     }
 
 }

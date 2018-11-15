@@ -20,7 +20,9 @@ class Wallet extends ModelBase {
      */
     public function init(string $id = null) {
         $data["user"] = $id;
-        return $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data);
+        return $this->getResult();
     }
 
     /**
@@ -32,11 +34,9 @@ class Wallet extends ModelBase {
      */
     public function checkWallet(string $user = null) {
         $user = $this->setUser($user);
-        $sql = "SELECT point FROM Wallet WHERE user LIKE :user";
-        $params = array(
-            "user" => $user
-        );
-        $rows = $this->query($sql, $params);
+        $wants = ["point"];
+        $where = ["user" => $user];
+        $rows = $this->getRows($wants, $where);
         $point = $rows[0]["point"];
 
         return $point;
@@ -56,10 +56,9 @@ class Wallet extends ModelBase {
         $data = array(
             "point" => $newPoint
         );
-        $where = "user LIKE $user";
-        $res = $this->update($data, $where);
+        $where["user"] = $user;
 
-        return $res;
+        return $this->execUpdate($data, $where);
     }
 
     /**
@@ -73,17 +72,15 @@ class Wallet extends ModelBase {
     public function usePoint(int $point, string $user = null) {
         $user = $this->setUser($user);
         $newPoint = $this->checkWallet($user) - $point;
-        if ($newPoint < 0) {
-            $res = false;
-        } else {
+        if ($newPoint >= 0) {
             $data = array(
                 "point" => $newPoint
             );
-            $where = "user LIKE $user";
-            $res = $this->update($data, $where);
+            $where["user"] = $user;
+            return $this->execUpdate($data, $where);
         }
 
-        return $res;
+        return false;
 
     }
 }
