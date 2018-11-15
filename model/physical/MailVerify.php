@@ -22,8 +22,10 @@ class MailVerify extends ModelBase {
             "verifycode" => $this->makeRandStr(4),
             "verifyLimit" => $this->setLimit()
         );
+        $this->insertSql($data);
+        $this->exec($data);
 
-        return $this->insert($data);
+        return $this->getResult();
     }
 
     /**
@@ -40,7 +42,7 @@ class MailVerify extends ModelBase {
         $wants = ["verifycode", "verifyLimit"];
         $where = ["email" => $email];
         $order = array("verifyLimit" => "DESC");
-        $this->setSql($wants, $where, $order);
+        $this->selectSql($wants, $where, $order);
         $this->exec();
         $this->getAssoc();
         $res = $this->getRows();

@@ -23,9 +23,10 @@ class PointCharge extends ModelBase {
             "user" => $user,
             "point" => $point
         );
-        $res = $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data);
 
-        return $res;
+        return $this->getResult();
     }
 
     /**
@@ -51,7 +52,7 @@ class PointCharge extends ModelBase {
         } else if ($start != null and $end != null) {
             $sql .= " and datetime BETWEEN $start and $end";
         }
-        $this->exec($sql);
+        $this->exec(null, $sql);
         $this->getAssoc();
         $rows = $this->getRows();
 

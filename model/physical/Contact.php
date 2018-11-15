@@ -24,7 +24,9 @@ class Contact extends ModelBase {
      */
     public function add(array $data) {
         $data["flag"] = "unconfirm";
-        return $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data, null);
+        return $this->getResult();
     }
 
     /**
@@ -58,7 +60,7 @@ class Contact extends ModelBase {
                 C.contactDate DESC,
                 C.flag ASC
 SQL;
-        $this->exec($sql);
+        $this->exec(null, $sql);
         $this->getAssoc();
         return $this->getRows();
     }
@@ -95,7 +97,7 @@ SQL;
                 C.contactDate DESC,
                 C.flag ASC
 SQL;
-        $this->exec($sql);
+        $this->exec(null, $sql);
         $this->getAssoc();
         $rows = $this->getRows();
 

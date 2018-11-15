@@ -28,7 +28,8 @@ class Tag extends ModelBase {
                 $this->db->beginTransaction();
                 foreach ($tag as $val) {
                     $data["tagID"] = $val;
-                    $this->insert($data);
+                    $this->insertSql($data);
+                    $this->exec($data, null);
                 }
                 $this->db->commit();
                 return true;
@@ -58,7 +59,7 @@ class Tag extends ModelBase {
                     "product" => $product,
                     "tag" => $val
                 );
-                $res[] = $this->delete($where, $params);
+                $res[] = $this->deleteSql($where, $params);
             }
             return in_array(false, $res, true) ? false: true;
         }
@@ -74,7 +75,7 @@ class Tag extends ModelBase {
     public function searchTag(array $tag) {
         $tags = implode(", ", $tag);
         $sql = "SELECT product FROM Tag WHERE tagID in ($tags)";
-        $this->exec($sql);
+        $this->exec(, $sql);
         $this->getAssoc();
         $rows = $this->getRows();
         $ret = array();

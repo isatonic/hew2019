@@ -37,7 +37,9 @@ class Users extends ModelBase {
             "email" => $data["email"],
             "flag" => "verifying"
         );
-        if ($this->insert($data)) {
+        $this->insertSql($data);
+        $this->exec($data);
+        if ($this->getResult()) {
             return $data["id"];
         } else {
             return false;
@@ -107,7 +109,7 @@ class Users extends ModelBase {
         $where = array(
             "id" => $id
         );
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $rows = $this->getRows();
         if (!is_null($rows)) {
@@ -134,7 +136,7 @@ class Users extends ModelBase {
         $where = array(
             "id" => $id
         );
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();

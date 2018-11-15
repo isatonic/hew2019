@@ -23,8 +23,10 @@ class UserDetails extends ModelBase {
             "userName" => $userName,
             "icon" => $icon
         );
+        $this->insertSql($data);
+        $this->exec($data, null);
 
-        return $this->insert($data);
+        return $this->getResult();
     }
 
     /**
@@ -59,7 +61,7 @@ class UserDetails extends ModelBase {
         $id = $this->setUser($id);
         $wants = ["userName", "icon"];
         $where = ["id" => $id];
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();

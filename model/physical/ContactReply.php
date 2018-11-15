@@ -23,7 +23,9 @@ class ContactReply extends ModelBase {
             "operator" => $this->user_id,
             "detail" => $detail
         );
-        return $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data);
+        return $this->getResult();
     }
 
     /**
@@ -39,7 +41,7 @@ class ContactReply extends ModelBase {
             "date",
             "detail"
         );
-        $this->setSql($wants);
+        $this->selectSql($wants);
         $this->exec();
         $this->getAssoc();
         return $this->getRows();
@@ -63,7 +65,7 @@ class ContactReply extends ModelBase {
             "detail"
         );
         $where["source"] = $source;
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         return $this->getRows();
@@ -83,7 +85,7 @@ class ContactReply extends ModelBase {
             "detail"
         );
         $where["id"] = $id;
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();
@@ -108,7 +110,7 @@ class ContactReply extends ModelBase {
             "detail"
         );
         $where["who"] = $who;
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         return $this->getRows();

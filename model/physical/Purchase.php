@@ -23,8 +23,10 @@ class Purchase extends ModelBase {
             "buyer" => $user,
             "product" => $product
         );
+        $this->insertSql($data);
+        $this->exec($data, null);
 
-        return $this->insert($data);
+        return $this->getResult();
     }
 
     /**
@@ -43,7 +45,7 @@ class Purchase extends ModelBase {
         $user = $this->setUser($user);
         $wants = ["purchaseDate", "product"];
         $where = ["buyer" => $user];
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
 

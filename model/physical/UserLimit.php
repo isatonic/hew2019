@@ -28,8 +28,10 @@ class UserLimit extends ModelBase {
 		if ($duration != null) {
 			$data["limitEnd"] = date('Y-m-d H:i:s', strtotime("+ $duration hour"));
 		}
+		$this->insertSql($data);
+		$this->exec($data, null);
 
-		return $this->insert($data);
+		return $this->getResult();
 	}
 
     /**
@@ -54,7 +56,7 @@ class UserLimit extends ModelBase {
             "reason"
         );
         $where = ["user" => $user];
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
 
@@ -72,7 +74,7 @@ class UserLimit extends ModelBase {
         $wants = ["limitEnd"];
         $where = ["user" => $user];
         $order = ["limitEnd" => "DESC"];
-        $this->setSql($wants, $where, $order);
+        $this->selectSql($wants, $where, $order);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();

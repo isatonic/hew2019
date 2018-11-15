@@ -23,9 +23,10 @@ class Cart extends ModelBase {
             "product" => $product,
             "user" => $who
         );
-        $res = $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data);
 
-        return $res;
+        return $this->getResult();
     }
 
     /**
@@ -43,9 +44,10 @@ class Cart extends ModelBase {
             "user" => $who,
             "product" => $product
         );
-        $res = $this->delete($where, $params);
+        $this->deleteSql($where);
+        $this->exec($params);
 
-        return $res;
+        return $this->getResult();
     }
 
     /**
@@ -59,7 +61,7 @@ class Cart extends ModelBase {
         $who = $this->setUser($who);
         $wants = array("product");
         $where = array("user" => $who);
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();

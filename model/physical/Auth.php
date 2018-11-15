@@ -26,7 +26,7 @@ class Auth extends ModelBase {
             "flag"
         );
         $where["id"] = $id;
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();

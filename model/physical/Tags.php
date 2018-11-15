@@ -22,7 +22,7 @@ class Tags extends ModelBase {
     public function getAll() {
         $wants = ["id", "name"];
         $order = ["id" => "ASC"];
-        $this->setSql($wants, null, $order);
+        $this->selectSql($wants, null, $order);
         $this->exec();
         $this->getAssoc();
         return $this->getRows();
@@ -39,7 +39,7 @@ class Tags extends ModelBase {
     public function add(string $name) {
         $wants = ["id", "name"];
         $order = ["id" => "DESC"];
-        $this->setSql($wants, null, $order);
+        $this->selectSql($wants, null, $order);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();
@@ -56,7 +56,9 @@ class Tags extends ModelBase {
                 "id" => $id,
                 "name" => $name
             );
-            return $this->insert($data);
+            $this->insertSql($data);
+            $this->exec($data, null);
+            return $this->getResult();
         } else {
             return false;
         }
@@ -74,7 +76,7 @@ class Tags extends ModelBase {
     public function getName(string $id) {
         $wants = ["name"];
         $where = ["id" => $id];
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();

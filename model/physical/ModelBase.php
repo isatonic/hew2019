@@ -25,6 +25,7 @@ abstract class ModelBase implements ModelBaseInterface {
     protected $sql;
     /** @var \PDOStatement */
     protected $stmt;
+    protected $result;
     protected $rows;
 
 
@@ -43,7 +44,7 @@ abstract class ModelBase implements ModelBaseInterface {
         }
     }
 
-    protected function setSql(array $want = array("*"), array $where = null, array $order = null) {
+    protected function selectSql(array $want = array("*"), array $where = null, array $order = null) {
         $sql = sprintf("SELECT %s FROM %s", implode(", ", $want), $this->table_name);
         if ($where != null) {
             $sql .= " WHERE ";
@@ -69,17 +70,26 @@ abstract class ModelBase implements ModelBaseInterface {
     }
 
     /**
+     * @param array|null  $params
+     *
      * @param string|null $sql
      *
      * @return void
      */
-    protected function exec(string $sql = null) {
+    protected function exec(array $params = null, string $sql = null) {
         if ($sql == null) {
             $sql = $this->sql;
         }
         $stmt = $this->db->prepare($sql);
-        $stmt->execute();
 
+        // toDO: SQL Injection 対策
+        if ($params != null) {
+            foreach ($params as $key => $val) {
+                $stmt->bindValue(':' . $key, $val);
+            }
+        }
+
+        $this->result = $stmt->execute();
         $this->stmt = $stmt;
     }
 
@@ -95,14 +105,18 @@ abstract class ModelBase implements ModelBaseInterface {
         return $this->rows;
     }
 
+    protected function getResult() {
+        return $this->result;
+    }
+
     /**
      * INSERTを実行
      *
      * @param array $data
      *
-     * @return bool
+     * @return void
      */
-    protected function insert(array $data) {
+    protected function insertSql(array $data) {
         $fields = array();
         $values = array();
         foreach ($data as $key => $val) {
@@ -115,37 +129,22 @@ abstract class ModelBase implements ModelBaseInterface {
             implode(',', $fields),
             implode(',', $values)
         );
-        $stmt = $this->db->prepare($sql);
-        foreach ($data as $key => $val) {
-            $stmt->bindValue(':' . $key, $val);
-        }
-        $res = $stmt->execute();
-
-        return $res;
+        $this->sql = $sql;
     }
 
     /**
      * DELETEを実行
      *
-     * @param string    $where
-     * @param array     $params
+     * @param string $where
      *
-     * @return bool
+     * @return void
      */
-    protected function delete(string $where, array $params = array()) {
+    protected function deleteSql(string $where) {
         $sql = sprintf("DELETE FROM %s", $this->table_name);
         if ($where != "") {
             $sql .= " WHERE " . $where;
         }
-        $stmt = $this->db->prepare($sql);
-        if ($params != null) {
-            foreach ($params as $key => $val) {
-                $stmt->bindValue(':' . $key, $val);
-            }
-        }
-        $res = $stmt->execute();
-
-        return $res;
+        $this->sql = $sql;
     }
 
     /**

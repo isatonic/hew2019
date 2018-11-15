@@ -24,8 +24,10 @@ class PassReset extends ModelBase {
             "code" => $this->makeRandStr(4),
             "resetLimit" => $this->setLimit(30)
         );
+        $this->insertSql($data);
+        $this->exec($data);
 
-        return $this->insert($data);
+        return $this->getResult();
     }
 
     /**
@@ -39,7 +41,7 @@ class PassReset extends ModelBase {
         $wants = ["code", "resetLimit"];
         $where = ["email" => $email];
         $order = ["resetLimit" => "DESC"];
-        $this->setSql($wants, $where, $order);
+        $this->selectSql($wants, $where, $order);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();

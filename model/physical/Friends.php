@@ -23,8 +23,9 @@ class Friends extends ModelBase {
             "user"      => $who,
             "friend"    => $friend
         );
-        $res = $this->insert($data);
-        return $res;
+        $this->insertSql($data);
+        $this->exec($data);
+        return $this->getResult();
     }
 
     /**
@@ -77,7 +78,7 @@ class Friends extends ModelBase {
         $who = $this->setUser($who);
         $wants = ["friend", "flag"];
         $where = ["user" => $who];
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         return $this->getRows();

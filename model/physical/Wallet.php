@@ -20,7 +20,9 @@ class Wallet extends ModelBase {
      */
     public function init(string $id = null) {
         $data["user"] = $id;
-        return $this->insert($data);
+        $this->insertSql($data);
+        $this->exec($data);
+        return $this->getResult();
     }
 
     /**
@@ -34,7 +36,7 @@ class Wallet extends ModelBase {
         $user = $this->setUser($user);
         $wants = ["point"];
         $where = ["user" => $user];
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();

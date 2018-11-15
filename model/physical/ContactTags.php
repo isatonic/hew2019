@@ -25,7 +25,7 @@ class ContactTags extends ModelBase {
             "name"
         );
         $order = array("id" => "ASC");
-        $this->setSql($wants, null, $order);
+        $this->selectSql($wants, null, $order);
         $this->exec();
         $this->getAssoc();
         return $this->getRows();
@@ -45,7 +45,7 @@ class ContactTags extends ModelBase {
             "name"
         );
         $order = array("id" => "DESC");
-        $this->setSql($wants, null, $order);
+        $this->selectSql($wants, null, $order);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();
@@ -61,7 +61,9 @@ class ContactTags extends ModelBase {
             $data = array("id" => $id,
                 "name" => $name
             );
-            return $this->insert($data);
+            $this->insertSql($data);
+            $this->exec($data);
+            return $this->getResult();
         } else {
             return false;
         }
@@ -80,7 +82,7 @@ class ContactTags extends ModelBase {
     public function getName(string $id) {
         $wants = ["name"];
         $where = array("id" => $id);
-        $this->setSql($wants, $where);
+        $this->selectSql($wants, $where);
         $this->exec();
         $this->getAssoc();
         $rows = $this->getRows();
