@@ -28,8 +28,7 @@ class Tag extends ModelBase {
                 $this->db->beginTransaction();
                 foreach ($tag as $val) {
                     $data["tagID"] = $val;
-                    $this->insertSql($data);
-                    $this->exec($data, null);
+                    $this->execInsert($data);
                 }
                 $this->db->commit();
                 return true;
@@ -52,19 +51,17 @@ class Tag extends ModelBase {
         if ($tag == null) {
             return false;
         } else {
-            $where = "product LIKE :product and tagID LIKE :tag";
-            $params = array();
-            foreach ($tag as $val) {
-                $params = array(
-                    "product" => $product,
-                    "tag" => $val
-                );
-            }
             try {
                 $this->db->beginTransaction();
-                $this->deleteSql($where);
-                $this->exec($params);
-                return $this->getResult();
+                foreach ($tag as $val) {
+                    $params = array(
+                        "product" => $product,
+                        "tag" => $val
+                    );
+                    $this->execDelete($params);
+                }
+                $this->db->commit();
+                return true;
             } catch (\PDOException $d) {
                 return false;
             }
@@ -80,7 +77,7 @@ class Tag extends ModelBase {
      */
     public function searchTag(array $tag) {
         $tags = implode(", ", $tag);
-        $sql = "SELECT product FROM Tag WHERE tagID in ($tags)";
+        $sql = "SELECT product FROM Tag WHERE tagID in ({$tags})";
         $this->exec(null, $sql);
         $this->setAssoc();
         $rows = $this->returnRows();

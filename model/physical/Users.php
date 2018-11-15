@@ -37,9 +37,7 @@ class Users extends ModelBase {
             "email" => $data["email"],
             "flag" => "verifying"
         );
-        $this->insertSql($data);
-        $this->exec($data);
-        if ($this->getResult()) {
+        if ($this->execInsert($data)) {
             return $data["id"];
         } else {
             return false;

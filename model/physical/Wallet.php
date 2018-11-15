@@ -20,9 +20,7 @@ class Wallet extends ModelBase {
      */
     public function init(string $id = null) {
         $data["user"] = $id;
-        $this->insertSql($data);
-        $this->exec($data);
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**

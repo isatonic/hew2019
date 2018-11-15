@@ -27,10 +27,8 @@ class Products extends ModelBase {
         if (!isset($data["author"]) or is_null($data["author"])) {
             $data["author"] = $this->user_id;
         }
-        $this->insertSql($data);
-        $this->exec($data);
 
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**
@@ -67,13 +65,11 @@ class Products extends ModelBase {
      * @return bool
      */
     public function remove(string $id) {
-        $where = "id = :id";
         $params = array(
             "id" => $id
         );
-        $this->deleteSql($where);
-        $this->exec($params);
-        return $this->getResult();
+
+        return $this->execDelete($params);
     }
 
 }

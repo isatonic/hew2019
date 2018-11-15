@@ -24,10 +24,8 @@ class PassReset extends ModelBase {
             "code" => $this->makeRandStr(4),
             "resetLimit" => $this->setLimit(30)
         );
-        $this->insertSql($data);
-        $this->exec($data);
 
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**

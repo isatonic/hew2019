@@ -23,10 +23,8 @@ class Purchase extends ModelBase {
             "buyer" => $user,
             "product" => $product
         );
-        $this->insertSql($data);
-        $this->exec($data, null);
 
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**

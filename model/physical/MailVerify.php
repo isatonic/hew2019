@@ -22,10 +22,8 @@ class MailVerify extends ModelBase {
             "verifycode" => $this->makeRandStr(4),
             "verifyLimit" => $this->setLimit()
         );
-        $this->insertSql($data);
-        $this->exec($data);
 
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**

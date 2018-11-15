@@ -32,10 +32,8 @@ class Password extends ModelBase {
             "id" => $id,
             "pass" => password_hash($pass, PASSWORD_DEFAULT)
         );
-        $this->insertSql($data);
-        $this->exec($data);
 
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**

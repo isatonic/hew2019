@@ -28,10 +28,8 @@ class UserLimit extends ModelBase {
 		if ($duration != null) {
 			$data["limitEnd"] = date('Y-m-d H:i:s', strtotime("+ $duration hour"));
 		}
-		$this->insertSql($data);
-		$this->exec($data, null);
 
-		return $this->getResult();
+		return $this->execInsert($data);
 	}
 
     /**

@@ -24,9 +24,7 @@ class Contact extends ModelBase {
      */
     public function add(array $data) {
         $data["flag"] = "unconfirm";
-        $this->insertSql($data);
-        $this->exec($data, null);
-        return $this->getResult();
+        return $this->getRows($data);
     }
 
     /**

@@ -23,10 +23,8 @@ class UserDetails extends ModelBase {
             "userName" => $userName,
             "icon" => $icon
         );
-        $this->insertSql($data);
-        $this->exec($data, null);
 
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**

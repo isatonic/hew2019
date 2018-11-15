@@ -23,9 +23,7 @@ class Friends extends ModelBase {
             "user"      => $who,
             "friend"    => $friend
         );
-        $this->insertSql($data);
-        $this->exec($data);
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**
@@ -43,8 +41,7 @@ class Friends extends ModelBase {
             "user" => $who,
             "friend" => $friend
         );
-        $res = $this->execUpdate($data, $where);
-        return $res;
+        return $this->execUpdate($data, $where);
     }
 
     /**

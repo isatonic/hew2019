@@ -50,10 +50,8 @@ class Limits extends ModelBase {
             "duration" => $add["duration"],
             "title" => $add["title"]
         );
-        $this->insertSql($data);
-        $this->exec($data);
 
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
 }

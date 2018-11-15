@@ -56,9 +56,7 @@ class ContactTags extends ModelBase {
             $data = array("id" => $id,
                 "name" => $name
             );
-            $this->insertSql($data);
-            $this->exec($data);
-            return $this->getResult();
+            return $this->execInsert($data);
         } else {
             return false;
         }

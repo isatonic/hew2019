@@ -23,9 +23,7 @@ class ContactReply extends ModelBase {
             "operator" => $this->user_id,
             "detail" => $detail
         );
-        $this->insertSql($data);
-        $this->exec($data);
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**

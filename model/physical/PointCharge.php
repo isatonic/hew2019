@@ -23,10 +23,8 @@ class PointCharge extends ModelBase {
             "user" => $user,
             "point" => $point
         );
-        $this->insertSql($data);
-        $this->exec($data);
 
-        return $this->getResult();
+        return $this->execInsert($data);
     }
 
     /**
