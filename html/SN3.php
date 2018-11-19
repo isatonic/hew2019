@@ -16,6 +16,7 @@
     <script src="js/gooey.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style_SNS.css">
+	<link rel="stylesheet" href="css/style_Chat.css">
 	</head>
 	<body>
     
@@ -84,12 +85,23 @@
         <h2 class="Header">　　Chat</h2>
 		<script src="js/popup.js"></script>
 			
+			<!-- Chat内容記述 -->
 			
+			<div class="F5"></div><!-- 更新ボタン -->
+			<div class="chat_bigarea"><!-- ChatArea -->
+
+			</div>
 			
+			<div class="in_messeage_in"><!-- 文字入力バー -->
+				<div class="in_messeage">
+					<form>				
+						<input type="text" value="" placeholder="メッセージを入力してください">
+							<button type="submit">送信</button>
+					</form>
+				</div>
+			</div>
 			
-			
-			
-			
+			<!-- Chat内容記述終了 -->
 		</div>
 	</body>
 </html>

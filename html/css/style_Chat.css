@@ -1,0 +1,105 @@
+/*チャットエリア*/
+.chat_bigarea{
+	position: absolute;
+	left: 44.5%;
+	transform: translateX(-50%);
+	width: 65%;
+	height: 50%;
+	margin-top: 20px;
+	background-color: rgb(243,243,243,0.8);
+	border-radius: 80px 0px 80px 0px;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+}
+/*更新ボタン*/
+.F5{
+	position: absolute;
+	left: 84%;
+	transform: translateX(-50%);
+	width: 125px;
+	height: 125px;
+	margin-top: 20px;
+	background-color: rgb(243,243,243,0.8);
+	border-radius: 0px 30px 0px 30px;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+}
+/*メッセージバー*/
+/*親*/
+.in_messeage_in{
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 79%;
+	width: 60%;
+	height: 90px;
+	margin-top: 20px;
+	border-radius: 20px;
+	background: #FFF;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+
+}
+/*子*/
+.in_messeage form{
+  height:50px;
+  width:850px;
+  position:relative;
+}
+.in_messeage form input[type=text]{/*検索の中の文字*/
+  font-size: 25px;
+  width: 850px;
+  height:50px;
+  padding:4px 165px 4px 20px;
+  border:none;
+  -webkit-border-radius:32px;
+  -moz-border-radius:32px;
+  border-radius:32px;
+  -webkit-appearance: none;
+  outline: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position:absolute;
+  background:#EEEEEE;
+  top:0;
+  right:0;
+  backface-visibility: hidden;
+  -webkit-transition: 0.25s ease-out;
+  -moz-transition: 0.25s ease-out;
+  -o-transition: 0.25s ease-out;
+  transition: 0.25s ease-out;
+}
+.in_messeage form input[type=text]:focus{
+  background:#F6F6F6;
+}
+.in_messeage form button{
+	font-size: 19px;
+	width: 150px;
+	height: 50px;
+	color:#fff;
+	border:none;
+	-webkit-border-radius:16px;
+	-moz-border-radius:16px;
+	border-radius:16px;
+	background:#1B73BA;
+	display:inline-block;
+	-webkit-appearance: none;
+	outline: 0;
+	position:absolute;
+	top:0;
+	right:0;
+	cursor:pointer;
+	backface-visibility: hidden;
+	-webkit-transition: 0.3s ease-out;
+	-moz-transition: 0.3s ease-out;
+	-o-transition: 0.3s ease-out;
+	transition: 0.3s ease-out;
+}
+.in_messeage form button:hover{
+  opacity:0.8;
+}
+/*フォームの位置*/
+.in_messeage{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
