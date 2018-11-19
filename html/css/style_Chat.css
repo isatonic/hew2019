@@ -8,20 +8,85 @@
 	margin-top: 20px;
 	background-color: rgb(243,243,243,0.8);
 	border-radius: 80px 0px 80px 0px;
-	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+/*チャット*/
+.balloon5 {
+    width: 900px;
+    margin: 1.5em 0;
+	margin-bottom: 50px;
+	margin-left: 20px;
+}
+.balloon5 .faceicon {
+    float: left;
+    margin-right: -90px;
+    width: 80px;
+	height: 80px;
+}
+.balloon5 .faceicon{
+	width: 100px;
+	height: 100px;
+    border: solid 3px #d7ebfe;
+    border-radius: 50%;
+}
+.img{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	max-width: 82%;
+	max-height: 82%;
+	
+}
+.balloon5 .chatting {
+    width: 100%;
+}
+.says {
+    display: inline-block;
+    position: relative; 
+    margin: 5px 0 0 105px;
+    padding: 17px 13px;
+    border-radius: 12px;
+    background: #d7ebfe;
+	max-width: 850px;
+}
+.says:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 18px; 
+    left: -24px;
+    border: 12px solid transparent;
+    border-right: 12px solid #d7ebfe;
+}
+.says .messeage_nan {
+    margin: 0;
+    padding: 0;
+	word-break: break-all;
+}
+
+
 /*更新ボタン*/
 .F5{
 	position: absolute;
-	left: 84%;
+	left: 83%;
 	transform: translateX(-50%);
-	width: 125px;
-	height: 125px;
+	width: 120px;
+	height: 130px;
 	margin-top: 20px;
 	background-color: rgb(243,243,243,0.8);
 	border-radius: 0px 30px 0px 30px;
-	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+.refresh{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 125%;
+	font-weight: bold;
+}
+
 /*メッセージバー*/
 /*親*/
 .in_messeage_in{
@@ -39,36 +104,36 @@
 }
 /*子*/
 .in_messeage form{
-  height:50px;
-  width:850px;
-  position:relative;
+	height:50px;
+	width:850px;
+	position:relative;
 }
 .in_messeage form input[type=text]{/*検索の中の文字*/
-  font-size: 25px;
-  width: 850px;
-  height:50px;
-  padding:4px 165px 4px 20px;
-  border:none;
-  -webkit-border-radius:32px;
-  -moz-border-radius:32px;
-  border-radius:32px;
-  -webkit-appearance: none;
-  outline: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  position:absolute;
-  background:#EEEEEE;
-  top:0;
-  right:0;
-  backface-visibility: hidden;
-  -webkit-transition: 0.25s ease-out;
-  -moz-transition: 0.25s ease-out;
-  -o-transition: 0.25s ease-out;
-  transition: 0.25s ease-out;
+	font-size: 25px;
+	width: 850px;
+	height:50px;
+	padding:4px 165px 4px 20px;
+	border:none;
+	-webkit-border-radius:32px;
+	-moz-border-radius:32px;
+	border-radius:32px;
+	-webkit-appearance: none;
+	outline: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position:absolute;
+	background:#EEEEEE;
+	top:0;
+	right:0;
+	backface-visibility: hidden;
+	-webkit-transition: 0.25s ease-out;
+	-moz-transition: 0.25s ease-out;
+	-o-transition: 0.25s ease-out;
+	transition: 0.25s ease-out;
 }
 .in_messeage form input[type=text]:focus{
-  background:#F6F6F6;
+	background:#F6F6F6;
 }
 .in_messeage form button{
 	font-size: 19px;
@@ -94,7 +159,7 @@
 	transition: 0.3s ease-out;
 }
 .in_messeage form button:hover{
-  opacity:0.8;
+	opacity:0.8;
 }
 /*フォームの位置*/
 .in_messeage{

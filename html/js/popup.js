@@ -9,7 +9,6 @@ $(function () {
     $('#modalArea').fadeOut();
   });
 });
-
 	//内容周回
 	$(function(){
 		var repeatHtml = document.getElementsByClassName("modalWrapper2");
@@ -19,7 +18,6 @@ $(function () {
 		}
 		repeatHtml[0].innerHTML = changeHtml;
 	});
-
 
 
 
@@ -34,7 +32,6 @@ $(function () {
     $('#modalArea_Friend_List').fadeOut();
   });	
 });
-
 	//内容周回
 		$(function(){
 			var repeatHtml = document.getElementsByClassName("tab_panel");
@@ -52,7 +49,6 @@ $(function () {
 			}
 			repeatHtml[0].innerHTML = changeHtml;
 		});
-
 	//block
 		  $(function () {
 		  $('.openModal_block').click
@@ -64,7 +60,6 @@ $(function () {
 			$('#modalArea_block').fadeOut();
 		  });
 		});
-
 	//blockの名前継承
 	function func() {
 		var x = document.getElementById('num').value;
@@ -73,6 +68,7 @@ $(function () {
 		document.getElementById('answer').innerHTML = x;
 	}
 	
+
 
 //Create Messeage
 $(function () {
@@ -85,7 +81,6 @@ $(function () {
     $('#modalArea_Friend_Select').fadeOut();
   });
 });
-
 	//内容周回
 	$(function(){
 		var repeatHtml = document.getElementsByClassName("modalWrapper4");
@@ -119,3 +114,10 @@ $(function(){
 	}
 	repeatHtml[0].innerHTML = changeHtml;
 });
+
+
+
+//F5
+function F5(){
+	 window.location.reload(true);
+}

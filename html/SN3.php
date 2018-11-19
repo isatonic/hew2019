@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 	<head>
 	<title>SNS - チャット</title>
@@ -87,11 +86,28 @@
 			
 			<!-- Chat内容記述 -->
 			
-			<div class="F5"></div><!-- 更新ボタン -->
-			<div class="chat_bigarea"><!-- ChatArea -->
-
+			<div class="F5" onClick="F5()"><!-- 更新ボタン -->
+				<div class="refresh">
+					<img src="https://img.icons8.com/linen/100/000000/cloud-refresh.png">
+					<p>UPDATE</p>
+				</div>
 			</div>
-			
+			<div class="chat_bigarea"><!-- ChatArea -->
+				<!--吹き出しはじまり-->
+				<div class="balloon5">
+					<div class="faceicon">
+						<img class="img" src="img/maxwidth-height250.jpg">
+					</div>
+					<div class="chatting">
+						<div class="says">
+							<p class="messeage_nan">ぶんしょおおおおおおおおおお</p>
+						</div>
+					</div>
+				</div>
+				<!--吹き出し終わり-->
+				
+				
+			</div>
 			<div class="in_messeage_in"><!-- 文字入力バー -->
 				<div class="in_messeage">
 					<form>				
