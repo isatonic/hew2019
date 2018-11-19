@@ -22,7 +22,7 @@
     <div class="cd-main-content">
        <header class="cd-main-header animate-search">
 		<nav class="cd-main-nav-wrapper">
-        　　 <img src="img/LOGO/LOGO W.png">
+        　　 <img src="img/LOGO/LOGO W.png" class="logo">
 			<a href="" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
@@ -143,16 +143,20 @@
 								<div class="panel_area">
 									<div id="panel1" class="tab_panel">
 										<div class="inbox5">
-											<img src="img/SNSアイコン.png" alt="アイコン" class="sns_top_image5"><!-- トプ画のこと -->
-											<h3  class="sns_name5">FRIEND NAME HOGEHOGEO</h3><!-- ユーザ名 -->
+											<form name="param" action="#">
+												<img src="img/SNSアイコン.png" alt="アイコン" class="sns_top_image5"><!-- トプ画のこと -->
+													<input type="hidden" id="num" value="POSTTTT"><!-- Block画面でのユーザ名 -->
+											</form>
+											<h3 class="sns_name5">NAMEHGRGRG</h3>
+											<!-- 表示されるユーザ名 -->
 											<div class="create_messeage"><h3>&nbsp;&nbsp;メッセージ作成&nbsp;&nbsp;</h3></div><!-- メッセージへのボタン -->
-											<div class="block"><h3>&nbsp;&nbsp;ブロック&nbsp;&nbsp;</h3></div><br><!-- ブロックのボタン -->
+											<div class="block openModal_block" onClick="func()"><h3>&nbsp;&nbsp;ブロック&nbsp;&nbsp;</h3></div><br><!-- ブロックのボタン -->
 										</div>
-									</div>
+									</div>								
 									<div id="panel2" class="tab_panel tab_panel2">
 										<div class="inbox6">
 											<img src="img/SNSアイコン.png" alt="アイコン" class="sns_top_image6"><!-- トプ画のこと -->
-											<h3  class="sns_name6">NAME HOGETER</h3><!-- ユーザ名 -->
+											<h3  class="sns_name6">AWAWAWAWAD</h3><!-- ユーザ名 -->
 											<div class="ok"><h3>&nbsp;&nbsp;承認する&nbsp;&nbsp;</h3></div><!-- 承認のボタン -->
 											<div class="no"><h3>&nbsp;&nbsp;拒否する&nbsp;&nbsp;</h3></div><br><!-- 拒否のボタン -->
 										</div>
@@ -165,7 +169,32 @@
 			</section>
 			<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- モーダルエリアここまで -->
-
+							<!-- Block -->		
+								<!-- モーダルエリアここから -->
+										<section id="modalArea_block" class="modalArea">
+											<div id="modalBg_block" class="modalBg"></div>
+												<div class="modalWrapper_block">
+													<h2 class="Header2">　　Block</h2>
+													<div id="closeModal_block" class="closeModal">
+														×
+													</div>
+													<div class="modalWrapper6">
+														<!-- 内容記述 -->
+													<div class="inbox7">
+														<img src="img/SNSアイコン.png" alt="アイコン" class="sns_top_image7"><!-- トプ画のこと -->
+														<h3 class="sns_name7"><div id="answer"></div></h3><!-- ユーザ名 -->
+														<br>
+														<h3 class="Are_you_ok">このユーザをブロックしますか？</h3>
+														<div class="block_ok"><h3>&nbsp;&nbsp;はい&nbsp;&nbsp;</h3></div><br><!-- ブロックのボタン -->
+														<div class="block_no"><h3>&nbsp;&nbsp;いいえ&nbsp;&nbsp;</h3></div><br><!-- ブロック撤回のボタン -->
+													</div>
+														<!-- 内容記述終わり -->
+													</div>
+												</div>
+										</section>
+										<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+							<!-- モーダルエリアここまで -->
+			
 				
 			</div>
 			<div class="box2">
@@ -210,10 +239,9 @@
 							×
 						</div>
 						<div class="search_friend">
-							<h2 class="friend_id">ID:</h2>
 							<div class="search_content">
 							  <form>				
-								<input type="text" value="" placeholder="IDを入力してください">
+								<input type="text" value="" placeholder="IDまたはユーザ名を入力してください">
 								<button type="submit">Search</button>
 							  </form>
 							</div>

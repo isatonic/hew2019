@@ -116,7 +116,17 @@ height:500px→60%
 	padding: 10px 30px;
 	background-color: #fff;
 }
-.modalWrapper2,.modalWrapper3,.modalWrapper4 {/*Messeage List*//*Friend List*//*Create Messeage*/
+.modalWrapper_block {	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform:translate(-50%,-50%);
+	width: 80%;
+	height: 75%;
+	padding: 10px 30px;
+	background-color: #fff;
+}
+.modalWrapper2,.modalWrapper3,.modalWrapper4,.modalWrapper6 {/*Messeage List*//*Friend List*//*Create Messeage*//*Block*/
 	position: absolute;
 	top: 80%;
 	left: 50%;
@@ -139,6 +149,7 @@ height:500px→60%
 	background-color: #fff;
 	overflow-y: auto;/*スクロール*/
 }
+
 .closeModal {
 	position: absolute;
 	top: 0.5rem;
@@ -507,12 +518,12 @@ height:500px→60%
 /*Friend検索バー*/
 .search_friend{
 	position: absolute;
-	left: 16%;
+	left: 50%;
+	transform: translateX(-50%);
 	top: 10%;
-	width: 900px;
+	width: 80%;
 	height: 100px;
-	padding: 20px;
-	margin: 2em;
+	margin-top: 22px;
 	border-radius: 20px;
 	background: #FFF;
 	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
@@ -520,12 +531,12 @@ height:500px→60%
 }
 .search_content form{
   height:50px;
-  width:700px;
+  width:850px;
   position:relative;
 }
-.search_content form input[type=text]{
+.search_content form input[type=text]{/*検索の中の文字*/
   font-size: 25px;
-  width: 700px;
+  width: 850px;
   height:50px;
   padding:4px 165px 4px 20px;
   border:none;
@@ -579,17 +590,17 @@ height:500px→60%
 .search_content{/*フォームの位置*/
 	position: absolute;
 	top: 50%;
-	left: 60%;
-	transform: translate(-60%,-50%);
+	left: 50%;
+	transform: translate(-50%,-50%);
 }
-.friend_id{/*ID:の位置*/
+/*.friend_id{/*ID:の位置
 	position: absolute;
 	top: 22.5%;
 	left: 6%;
 	z-index: 20;
 	transform: translate(-6%,-22.5%);
 }
-
+/*
 
 
 /*SN1-1 Friend List*/
@@ -672,7 +683,7 @@ input[type="radio"]{
 
 /*フレンド一覧*/
 .inbox5{
-	background: #FCFCFC;
+	background: #F8F8F8;
 	width: 1200px;
 	height: 150px;
 	position: relative;
@@ -723,7 +734,7 @@ input[type="radio"]{
 
 /*フレンド承認待ち一覧*/
 .inbox6{
-	background: #FCFCFC;
+	background: #F8F8F8;
 	width: 1200px;
 	height: 150px;
 	position: relative;
@@ -770,4 +781,79 @@ input[type="radio"]{
 }
 .ok:hover,.no:hover {
     background: #fffbef;
+}
+
+/*Block*/
+.inbox7{
+	background: #F1F1F1;
+	width: 1150px;
+	height: 540px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 20px;
+}
+.sns_top_image7{
+	max-width: auto;
+	height: 340px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 6%;
+	border: solid 2px #000000;
+}
+.sns_name7{
+	position: absolute;
+	top: 25%;
+	width: 600px;
+	text-align: center;
+	font-size: 250%;
+	border-bottom: solid 2px #000000;
+	left: 66%;
+	transform: translate(-50%,-50%);
+}
+.Are_you_ok{
+	position: absolute;
+	top: 50%;
+	width: 600px;
+	text-align: center;
+	font-size: 250%;
+	left: 66%;
+	transform: translate(-50%,-50%);
+}
+.block_no {
+    position: absolute;
+	top: 70%;
+	left: 68%;
+}
+.block_ok {
+    position: absolute;
+	top: 70%;
+	left: 45%;
+}
+.block_no,.block_ok {
+    display: inline-block;
+	width: 200px;
+	height: 80px;
+	text-align: center;
+	padding: 5px;
+    text-decoration: none;
+    color: #FFAB67;
+    border: double 5px #FFAB67;
+    border-radius: 3px;
+    transition: .2s;
+}
+.block_no:hover,.block_ok:hover {
+	opacity:0.45;
+	font-size: 200%
+}
+.block_ok:hover {
+    background: #FF8E8E;
+	color: #FFF;
+    border: double 5px #FF0003;
+}
+.block_no:hover {
+    background: #67C5FF;
+	color: #FFF;
+    border: double 5px #0005FF;
 }

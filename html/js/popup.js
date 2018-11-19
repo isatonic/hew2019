@@ -40,7 +40,7 @@ $(function () {
 			var repeatHtml = document.getElementsByClassName("tab_panel");
 			var changeHtml="";
 			for (var i=1 ; i<=20 ; i++){
-				changeHtml += repeatHtml[0].innerHTML;
+				changeHtml += repeatHtml[0].innerHTML;	
 			}
 			repeatHtml[0].innerHTML = changeHtml;
 		});
@@ -53,9 +53,26 @@ $(function () {
 			repeatHtml[0].innerHTML = changeHtml;
 		});
 
+	//block
+		  $(function () {
+		  $('.openModal_block').click
+		  (function(){
+			  $('#modalArea_block').fadeIn(); 
+		  });	
+		  $('#closeModal_block , #modalBg_Friend_List , #modalBg_block , .block_no').click
+		  (function(){
+			$('#modalArea_block').fadeOut();
+		  });
+		});
 
-
-
+	//blockの名前継承
+	function func() {
+		var x = document.getElementById('num').value;
+		numx = parseInt(x);
+		numx = numx + 1;
+		document.getElementById('answer').innerHTML = x;
+	}
+	
 
 //Create Messeage
 $(function () {
