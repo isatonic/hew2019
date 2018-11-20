@@ -96,11 +96,24 @@
 				<!--吹き出しはじまり-->
 				<div class="balloon5">
 					<div class="faceicon">
-						<img class="img" src="img/maxwidth-height250.jpg">
+						<img class="img" src="http://placehold.jp/400x400.png">
 					</div>
 					<div class="chatting">
 						<div class="says">
 							<p class="messeage_nan">ぶんしょおおおおおおおおおお</p>
+						</div>
+					</div>
+				</div>
+				<!--吹き出し終わり-->
+				
+				<!--吹き出しはじまり-->
+				<div class="balloon5">
+					<div class="faceicon">
+						<img class="img" src="http://placehold.jp/600x800.png">
+					</div>
+					<div class="chatting">
+						<div class="says">
+							<p class="messeage_nan">ぶんしょおおおおおおおおいいいいいいいおおおおおおいいいいいおおおおおおいいいいいいいいいいいいおお</p>
 						</div>
 					</div>
 				</div>

@@ -11,6 +11,7 @@
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 /*チャット*/
+/*吹き出し*/
 .balloon5 {
     width: 900px;
     margin: 1.5em 0;
@@ -20,32 +21,39 @@
 .balloon5 .faceicon {
     float: left;
     margin-right: -90px;
-    width: 80px;
-	height: 80px;
-}
-.balloon5 .faceicon{
-	width: 100px;
-	height: 100px;
+	width: 90px;
+	height: 90px;
     border: solid 3px #d7ebfe;
     border-radius: 50%;
-}
-.img{
+	overflow: hidden;
+	display: inline-block;
 	position: relative;
+	border-radius: 50%;
+}
+/*アイコン*/
+.img{
+	position: absolute;
+	left: -100%;
+	right: -100%;
+	top: -100%;
+ 	bottom: -100%;
+ 	margin: auto;
+	/*position: relative;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 	max-width: 82%;
-	max-height: 82%;
-	
+	max-height: 82%;*/
 }
+/*吹き出しの中身*/
 .balloon5 .chatting {
     width: 100%;
 }
 .says {
     display: inline-block;
     position: relative; 
-    margin: 5px 0 0 105px;
-    padding: 17px 13px;
+    margin: 15px 0 0 105px;
+    padding: 18px 13px;
     border-radius: 12px;
     background: #d7ebfe;
 	max-width: 850px;
