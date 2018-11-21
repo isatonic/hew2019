@@ -28,7 +28,7 @@
 			<ul class="cd-main-nav">
 				<li><a href="about.html" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-				<li><a href="">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+				<li><a href="SN1.html">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">カート</a></li>
 			</ul> 
 		</nav>
@@ -92,7 +92,30 @@
 					<p>UPDATE</p>
 				</div>
 			</div>
+			<div class="sendmes"><!-- 送信相手表示 -->
+				<div class="sendmes_name">
+					<h3>Chat partner</h3>
+					<div class="faceicon position">
+						<img class="img" src="http://placehold.jp/600x800.png">
+					</div>
+					<p>あだだだだだ</p>
+				</div>
+			</div>
+			
 			<div class="chat_bigarea"><!-- ChatArea -->
+				<!--吹き出しはじまり-->
+				<div class="balloon5">
+					<div class="faceicon">
+						<img class="img" src="http://placehold.jp/400x400.png">
+					</div>
+					<div class="chatting">
+						<div class="says">
+							<p class="messeage_nan">ぶんしょおおおおおおおおおお</p>
+						</div>
+					</div>
+				</div>
+				<!--吹き出し終わり-->
+				
 				<!--吹き出しはじまり-->
 				<div class="balloon5">
 					<div class="faceicon">
@@ -117,7 +140,40 @@
 						</div>
 					</div>
 				</div>
-				<!--吹き出し終わり-->
+				<!--吹き出し終わり-->		
+				
+				<!--吹き出しはじまり-->
+				<div class="balloon5">
+					<div class="faceicon">
+						<img class="img" src="http://placehold.jp/600x800.png">
+					</div>
+					<div class="chatting">
+						<div class="says">
+							<p class="messeage_nan">ぶんしょおおおおおおおおいいいいいいいおおおおおおいいいいいおおおおおいいいいいいいおおおおおおいいいいいおおおおおおいいいいいいいいいいいいおお</p>
+						</div>
+					</div>
+				</div>
+				<!--吹き出し終わり-->	
+				
+				<!--自分のメッセージ吹き出しはじまり-->
+				<div class="balloon6">
+					<div class="chatting2">
+						<div class="says2">
+							<p class="messeage_nan2">ぶんしょおおおおおおおおいいいいいいいおおおおおおいいいいいおおおいいいいいおおおおおおいいいいいおおおいいいいいおおおおおおいいいいいおおおいいいいいおおおおおおいいいいいおおおおおおいいいいいいいいいいいいおお</p>
+						</div>
+					</div>
+				</div>
+				<!--自分のメッセージ吹き出し終わり-->
+				
+				<!--自分のメッセージ吹き出しはじまり-->
+				<div class="balloon6">
+					<div class="chatting2">
+						<div class="says2">
+							<p class="messeage_nan2">ぶんしょおおおおおおおおいいいいいいいおおおおおおいいいいいおおおいいいいいおおおおおおいいいいいおおおいいいいいおおおおおおいいいいいおおおいいいいいおおおおおおいいいいいおおおおおおいいいいいいいいいいいいおお</p>
+						</div>
+					</div>
+				</div>
+				<!--自分のメッセージ吹き出し終わり-->
 				
 				
 			</div>
