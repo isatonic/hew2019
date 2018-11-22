@@ -7,6 +7,10 @@
 @import "gooey.min.css";
 @import "livedemo.css";
 
+* {
+  color: #ffffff;
+}
+
 html, body {
   height: 100%;
 }
