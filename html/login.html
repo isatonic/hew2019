@@ -1,83 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title></title>
-  <link rel="stylesheet" href="css/login.css">
-  <script src="layui/css/layui.mobile.css"></script>
-  <script src="layui/css/layui.css"></script>
   <script src="js/jquery-2.1.4.js"></script>
   <script src="layui/layui.all.js"></script>
   <script src="layui/layui.js"></script>
   <script src="js/main-j.js"></script>
+  <link rel="stylesheet" href="css/login.css">
 </head>
 <script>
     function goon() {
+        let heredoc = (function (){/*
+            <form action="#" method="post">
+              <div id="tcwindow">
+                <p>
+                  ID: <input type="text" id="name" placeholder="IDまたはメールアドレス"><br>
+                  パスワード: <input type="password" name="pass" id="PW"><br>
+                </p>
+                <p>
+                  <a href="javascript:void(0)" id="lostpw">パスワードを忘れた方</a>
+                  <input type="submit" value="ログイン" style="margin-left: 50px;">
+                </p>
+              </div>
+            </form>
+        */}).toString().replace(/(\n)/g, '').split('*')[1];
+
         layer.open({
             type: 1,
-            content: '<form action="#" method="post"><div id="tcwindow">&nbsp;&nbsp;&nbsp;NAME:&nbsp;<input type="NAME">&nbsp;&nbsp;&nbsp;<p>&nbsp;&nbsp;&nbsp;&nbsp;PW:&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="PW">&nbsp;&nbsp;&nbsp;</p><P>&nbsp;&nbsp;&nbsp;<input type="submit" value="check">&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" id="lostpw">パスワードを忘れた方</a></P></div></form>'
+            title: "ログイン",
+            content: heredoc
         });
     }
 
     function int() {
+        let heredoc = (function (){/*
+          <form action="#" method="post">
+            <div id="tcwindow">
+              ニックネーム: <input type="text" id="user">
+              <p>
+                氏名: <input type="text" id="NAME" size="5" placeholder="氏"><input type="text" id="SEX" size="8" placeholder="名">
+              </p>
+              <p>性別: 男<input name="SEX" id="MAN" type="radio" value="男" checked> 女<input name="SEX" id="WOMAN" type="radio" value="女"></p>
+              <p>
+                生年月日: <input type="number" name="year" min="1900" max="2999" value="1990" style="width: 4em;">年
+                <select>
+                  <option value="Jan">Jan</option>
+                  <option value="Feb">Feb</option>
+                  <option value="Mar">Mar</option>
+                  <option value="Apr">Apr</option>
+                  <option value="Jun">Jun</option>
+                  <option value="Jul">Jul</option>
+                  <option value="Aug">Aug</option>
+                  <option value="Sep">Sep</option>
+                  <option value="Oct">Oct</option>
+                  <option value="Nov">Nov</option>
+                  <option value="Dec">Dec</option>
+                </select>
+              </p>
+              <p>
+                メールアドレス: <input type="TEXT" id="MAIL" size="10">
+                @
+                <select>
+                  <option value="gmail">gmail.com</option>
+                  <option value="QQmail">QQ.com</option>
+                </select>
+              </p>
+              <p>
+                <input type="password" id="PW" placeholder="パスワード">
+              </p>
+              <p><input type="password" id="re-PW" placeholder="パスワード再入力"></p>
+              <p style="text-align: center;"><input type="submit" value="登録"><input type="reset" value="キャンセル"></p>
+            </div>
+          </form>
+        */}).toString().replace(/(\n)/g, '').split('*')[1];
+
         layer.open({
             type: 1,
-            content: '<form action="#" method="post"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新規登録&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1><div id="tcwindow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id = "user" value="ニックネーム">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type ="text" id = "NAME" size ="5" value="氏">&nbsp;&nbsp;<input type ="text" id = "SEX" size="8" value = "名"></p><p style="front-size:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;男：<input name="SEX" id ="MAN" type="radio" value="男" checked>&nbsp;女：<input name="SEX" id="WOMAN" type="radio" value="女"</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type = "text" vlaue= "年" name ="year" size =4;>&nbsp;&nbsp;<select><option value="Jan">Jan</option><option value="Feb">Feb</option><option value="Mar">Mar</option><option value="Apr">Apr</option><option value="Jun">Jun</option><option value="Jul">Jul</option><option value="Aug">Aug</option><option value="Sep">Sep</option><option value="Oct">Oct</option><option value="Nov">Nov</option><option value="Dec">Dec</option></select></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="TEXT" id="MALE" value = "E-MAIL" size = "10">&nbsp;@&nbsp;&nbsp;<select><option value="googlemail">google.com</option><option value="QQmail">QQ.com</option></select></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="PW" value = "PW">&nbsp;&nbsp;&nbsp;</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="PW" value = "PW">&nbsp;&nbsp;&nbsp;</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="TEL" value ="TEL">&nbsp;&nbsp;&nbsp;</p><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="check">&nbsp;&nbsp;&nbsp;<input type="submit" value="キャンセル"></P></div></form>'
+            title: "新規登録",
+            content: heredoc
         });
     }
 </script>
 <body>
-  <header class="cd-main-header animate-search">
-    <nav class="cd-main-nav-wrapper">
-      <img src="img/LOGO/LOGO%20W.png" alt="">
-      <a href="" class="cd-search-trigger cd-text-replace">Search</a>
 
-      <ul class="cd-main-nav">
-        <!--<li><a href="./login.html" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>-->
-        <li><a href="./login.html">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-        <li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-        <li><a href="">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-        <li><a href="">カート&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-      </ul>
-    </nav>
+<header class="cd-main-header animate-search">
+  <nav class="cd-main-nav-wrapper">
+    <a href="./index.html"><img src="img/LOGO/LOGO%20W.png" alt=""></a>
+    <a href="" class="cd-search-trigger cd-text-replace">Search</a>
 
-    <a href="" class="cd-nav-trigger cd-text-replace">Menu<span></span></a>
-  </header>
+    <ul class="cd-main-nav">
+      <!--<li><a href="" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>-->
+      <li><a href="./login.html">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+      <li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+      <li><a href="">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+      <li><a href="">カート&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+    </ul>
+  </nav>
+  <a href="" class="cd-nav-trigger cd-text-replace">Menu<span></span></a>
+  <div id="search" class="cd-main-search">
+    <form action="" method="post">
+      <input type="search" placeholder="入力してください">
+    </form>
+    <div class="cd-search-suggestions">
+      <div class="news">
+        <h3>News</h3>
+        <ul>
+          <li>
+            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+            <h4><a class="cd-nowrap" href="">1</a></h4>
+          </li>
+          <li>
+            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+            <h4><a class="cd-nowrap" href="">2</a></h4>
+          </li>
+          <li>
+            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+            <h4><a class="cd-nowrap" href="">3</a></h4>
+          </li>
+          <li>
+            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+            <h4><a class="cd-nowrap" href="">4</a></h4>
+          </li>
+          <li>
+            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+            <h4><a class="cd-nowrap" href="">5</a></h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <a href="#0" class="close cd-text-replace">Close Form</a>
+  </div>
+</header>
 <div class="panels">
 
-  <div class="panel panel1">
-    <!--<p>登録希望者が当社の定める方法によって利用登録を申請し，当社がこれを承認することによって，利用登録が完了するものとします。</p>-->
+  <div class="panel panel1" id="panel1">
     <p></p>
     <p><a href="javascript:void(0);" onClick="goon()">ログイン</a></p>
     <p></p>
-    <!--<p>-->
-    <!--ユーザーは，いかなる場合にも，ユーザーIDおよびパスワードを第三者に譲渡または貸与することはできません。当社は，ユーザーIDとパスワードの組み合わせが登録情報と一致してログインされた場合には，そのユーザーIDを登録しているユーザー自身による利用とみなします。-->
-    <!--</p>-->
   </div>
-  <div class="panel panel2">
-    <!--<p>本規約は，ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>-->
+  <div class="panel panel2" id="panel2">
     <p></p>
     <p><a href="javascript:void(0);" onClick="int()">新規登録</a></p>
     <p></p>
-    <!--<p>ユーザーは，自己の責任において，本サービスのユーザーIDおよびパスワードを管理するものとします。</p>-->
   </div>
 </div>
 <script>
-    const panels = document.querySelectorAll('.panel');
+    const panel1 = document.getElementById("panel1");
+    const panel2 = document.getElementById("panel2");
 
-    function toggleOpen() {
+    function toggleOpen1() {
         this.classList.toggle('open');
-    }
-
-    function toggleActive(e) {
-        console.log(e.propertyName);
-        if (e.propertyName.includes('flex')) {
-            this.classList.toggle('open-active');
+        if (panel2.classList.contains("open")) {
+            panel2.classList.toggle("open")
         }
     }
 
-    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
-    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+    function toggleOpen2() {
+        this.classList.toggle('open');
+        if (panel1.classList.contains("open")) {
+            panel1.classList.toggle("open")
+        }
+    }
+
+    panel1.addEventListener('click', toggleOpen1);
+    panel2.addEventListener('click', toggleOpen2);
 </script>
 </body>
 </html>

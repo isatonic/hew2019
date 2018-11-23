@@ -8,7 +8,6 @@
   <script type="text/javascript" src="js/modernizr.js"></script>
   <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
   <script type="text/javascript" src="js/gooey.min.js"></script>
-  <link rel="stylesheet" href="css/index.css">
   <script>
       // 左下のリンクが出てくるボタン
       $(function ($) {
@@ -42,30 +41,82 @@
   <script src="js/tween.min.js"></script>
   <script src="js/TrackballControls.js"></script>
   <script src="js/CSS3DRenderer.js"></script>
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <main>
 
+  <!----------------------------- header ------------------------------------>
+  <header class="cd-main-header animate-search">
+    <nav class="cd-main-nav-wrapper">
+      <img src="img/LOGO/LOGO%20W.png" alt="">
+      <a href="./search.html" class="cd-search-trigger cd-text-replace">Search</a>
+
+      <ul class="cd-main-nav">
+        <!--<li><a href="" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>-->
+        <li><a href="./login.html">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+        <li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+        <li><a href="">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+        <li><a href="">カート&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+      </ul>
+    </nav>
+    <a href="" class="cd-nav-trigger cd-text-replace">Menu<span></span></a>
+    <div id="search" class="cd-main-search">
+      <form action="" method="post">
+        <input type="search" placeholder="入力してください">
+      </form>
+      <div class="cd-search-suggestions">
+        <div class="news">
+          <h3>News</h3>
+          <ul>
+            <li>
+              <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+              <h4><a class="cd-nowrap" href="">1</a></h4>
+            </li>
+            <li>
+              <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+              <h4><a class="cd-nowrap" href="">2</a></h4>
+            </li>
+            <li>
+              <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+              <h4><a class="cd-nowrap" href="">3</a></h4>
+            </li>
+            <li>
+              <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+              <h4><a class="cd-nowrap" href="">4</a></h4>
+            </li>
+            <li>
+              <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
+              <h4><a class="cd-nowrap" href="">5</a></h4>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <a href="#0" class="close cd-text-replace">Close Form</a>
+    </div>
+  </header>
+
   <div id="container"></div>
   <div id="info"></div>
+
+  <!---------------------- menu button (left bottom) ------------------------>
   <div class="row">
     <div class="col-md-5 col-xs-12 vertical-example">
       <nav id="gooey-v">
-        <input type="checkbox" class="menu-open" name="menu-open4" id="menu-open4"/>
+        <input type="checkbox" class="menu-open" name="menu-open4" id="menu-open4">
         <label class="open-button" for="menu-open4">
           <span class="burger burger-1"></span>
           <span class="burger burger-2"></span>
           <span class="burger burger-3"></span>
         </label>
-
-        <a href="#" class="gooey-menu-item">Help</a>
-        <a href="#" class="gooey-menu-item">My Page</a>
+        <a href="#" class="gooey-menu-item">help</a>
+        <a href="https://xd.adobe.com/view/4a9bddbc-f96f-4ecb-53a0-bcaa337d52a2-3caa/" class="gooey-menu-item">My Page</a>
       </nav>
     </div>
-    <div class="col-md-7 col-xs-12 code-example">
-    </div>
+    <!--<div class="col-md-7 col-xs-12 code-example"></div>-->
   </div>
 
+  <!-------------------- bottom menu ------------------------------------------>
   <div class="menu">
     <div class="topfoot"><img src="img/line.png" alt=""></div>
     <!--<a href="privacy_policy.html" data-type="page-transition">プライバシーポリシー</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;-->
@@ -73,7 +124,8 @@
     <!--<a href="rules.html" data-type="page-transition">利用規約</a>-->
     <a href="rules.html">利用規約</a>
   </div>
-  <script defer>
+
+  <script>
 
       let newArray = [];
       let make_for_limudi = 0;
@@ -303,7 +355,6 @@
 
       }
   </script>
-  </div>
 </main>
 <div class="cd-cover-layer"></div>
 <div class="cd-loading-bar"></div>

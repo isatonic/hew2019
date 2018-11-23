@@ -1,9 +1,11 @@
-@import "style.css";
+@charset "UTF-8";
+@import "base_style.css";
+@import "../layui/css/layui.css";
+@import "../layui/css/layui.mobile.css";
+@import "header.css";
+
 html {
   box-sizing: border-box;
-  font-family: 'Varela Round', sans-serif;
-  font-size: 20px;
-  font-weight: 400;
 }
 
 body {
@@ -17,9 +19,11 @@ body {
 }
 
 .panels {
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   overflow: hidden;
   display: flex;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .panel {
@@ -27,10 +31,9 @@ body {
   color: #000;
   text-align: center;
   align-items: center;
-  transition:
-    font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
-    flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
-    background 0.2s;
+  transition: font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+  flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+  background 0.2s;
   font-size: 20px;
   background-size: cover;
   background-position: center;
@@ -45,7 +48,7 @@ body {
 }
 
 .panel2 {
-  background: #333;
+  background: #909090;
 }
 
 
@@ -67,12 +70,12 @@ body {
 }
 
 
-
-.panelb > *:first-child{
-  transform:translateX(-500%);
+.panelb > *:first-child {
+  transform: translateX(-500%);
 }
-.panelb.open-active > *:first-child{
-  transform:translateX(0); 
+
+.panelb.open-active > *:first-child {
+  transform: translateX(0);
 }
 
 
@@ -87,6 +90,7 @@ body {
 .panel p {
   font-size: 0.8em;
   opacity: 0.3;
+  text-shadow: #090909 1px 1px 0;
 }
 
 .panel p:nth-child(2) {
@@ -99,26 +103,36 @@ body {
 }
 
 .panelb p {
-  border-style: solid; border-width: 5px;
+  border-style: solid;
+  border-width: 5px;
   font-size: 0.8em;
 }
 
 .panelb.open {
   flex: 5;
 }
-a{
-  text-decoration:none;
-  color:#000;
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
 }
-#tcwindow{
-	height:500px;
-	width:500px;
+
+#tcwindow {
+  width: 400px;
+  padding: 10px 30px;
 }
-#lostpw{
-	font-size:10px;
-	color:#333;
+
+#lostpw {
+  font-size: 10px;
+  color: #333;
 }
 
 .panel p a:hover {
   color: #FFFFFF;
 }
+
+/*select {*/
+/*background-color: transparent;*/
+/*cursor: pointer;*/
+/*}*/
