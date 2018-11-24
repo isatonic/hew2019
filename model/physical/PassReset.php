@@ -20,7 +20,7 @@ class PassReset extends ModelBase {
     public function add(string $email, string $newPass) {
         $data = array(
             "email" => $email,
-            "newpass" => $newPass,
+            "newpass" => password_hash($newPass, PASSWORD_DEFAULT),
             "code" => $this->makeRandStr(4),
             "resetLimit" => $this->setLimit(30)
         );
