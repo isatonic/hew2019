@@ -140,4 +140,11 @@ class Users extends ModelBase {
         }
     }
 
+    public function getIdByMail(string $email) {
+        $want = ["id"];
+        $where = ["email" => $email];
+        $rows = $this->getRows($want, $where);
+        return $rows[0]["id"];
+    }
+
 }
