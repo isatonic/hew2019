@@ -154,7 +154,7 @@ abstract class ModelBase implements ModelBaseInterface {
      *
      * @param array $where
      */
-    protected function deleteSql(array $where = null) {
+    protected function deleteSql(array $where) {
         $sql = sprintf("DELETE FROM %s", $this->table_name);
         if ($where != null) {
             $sql .= $this->addWhere($where);

@@ -3,7 +3,7 @@ namespace model;
 
 interface DataInterface {
     public function __construct(array $data);
-    public function get();
+    public function get() : array;
     public function extend(string $target);
 }
 
@@ -15,7 +15,7 @@ class Data implements DataInterface {
         $this->arr = $data;
     }
 
-    public function get() {
+    public function get() : array {
         return $this->arr;
     }
 
