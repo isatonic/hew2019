@@ -209,6 +209,7 @@ CREATE TABLE Message (
     destination char(25),
     message     varchar(255) NOT NULL,
     sendDate    datetime DEFAULT CURRENT_TIMESTAMP,
+    INDEX (sender, destination),
     FOREIGN KEY (sender) REFERENCES Users (id)
         ON UPDATE CASCADE
         ON DELETE CASCADE,

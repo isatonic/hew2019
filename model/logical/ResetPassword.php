@@ -26,6 +26,7 @@ class ResetPassword extends LogicalBase {
     }
 
     public function transaction() {
+        $this->pdo->beginTransaction();
         try {
             $get = $this->PassReset->get($this->email);
             if ($this->inputCode === $get["code"]) {

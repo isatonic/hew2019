@@ -15,7 +15,7 @@ class myPDO implements myPdoInterface {
 
     public function __construct() {
         try {
-            $this->pdo = new PDO('mysql:host=db;dbname=isatonic', "root", "root");
+            $this->pdo = new PDO('mysql:host=localhost;dbname=isatonic', "root", "root");
         } catch (PDOException $e) {
             $errNum = $e->getCode();
             $errMessage = $e->getMessage();

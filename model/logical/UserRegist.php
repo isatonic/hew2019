@@ -44,7 +44,7 @@ class UserRegist extends LogicalBase {
             $this->Verify = new MailVerify($this->pdo, $id);
             $this->Verify->add($this->Data->extend("email"));
 
-            return true;
+            return $id;
         } catch (\PDOException $e) {
             $code = $e->getCode();
             $message = $e->getMessage();
