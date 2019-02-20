@@ -80,6 +80,7 @@ body{
 	position: absolute;
 	top: 10%;
 	left: 36.5%;
+	white-space: nowrap;
 }
 .tonic_name p{/*氏名*/
 	font-size: 1.7em;

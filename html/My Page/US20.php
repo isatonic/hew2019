@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>MyPage | ISATONIC</title>
+	<title>My Page | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -92,18 +92,22 @@
 						<div class="tonic_name">
 							<p class="simei">
 								<?php
-									print 'oooooo';
+									print 'ISATONIC';
 								?>
 								<!-- ユーザ名 --> 様</p>
 						</div>
 						<div class="nicname">
-							<p class="user_name">ゆーざーめい</p>
+							<p class="user_name">
+								<?php
+									print 'Administrator';
+								?>
+							</p>
 						</div>
 						<!-- 三種ボタン -->
 						<div class="messeage_aleat">
 							<p>新着メッセージ： 
 								<?php 
-									echo '○件';
+									echo '10件';
 								?></p>			
 						</div>
 						<a href="../SNS/SN1.html">

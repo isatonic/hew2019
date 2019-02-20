@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script src="js/gooey.min.js"></script>
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<style type="text/css">
 		h1{
 			text-align: center;
@@ -20,106 +21,77 @@
 		</style>
 		<style>
 
-	  .ac-container{
-	    width: 600px;
-	    margin: 30px auto;
-	}
-	.ac-container label{
-	    width: 600px;
-	    text-align: center;
-	    background: #00BBFF;
-	    margin: auto;
-	    padding: 10px 5px;
-	    position: relative;
-	    display: block;
-	    height: 40px;
-	    cursor: pointer;
-	    color: #FFF;
-	}
-	.ac-container label:hover{/*触れたときの色*/
-	    background: rgba( 255, 155, 155, 0.55 );
-	    -webkit-transition: all .3s;
-	    transition: all .3s;
-	}
-	.ac-container label:after{
-	 color: #fff;
-	    font-family:"FontAwesome";
-	    content:"\f067";
-	}
-	.ac-container input:checked ~ label::after {
-	 color: #fff;
-	   font-family:"FontAwesome";
-	   content:"\f068";
-	}
-	.ac-container input{
-	   display: none;
-
-	}
-	.ac-container div{/*もどるやつ!!!!!!*/
-	   background: rgba(255, 255, 255, 0.5);
-	   margin-top: -1px;
-	   overflow: hidden;
-	   height: 0px;
-	   position: relative;
-	   z-index: 10;
-		width: 600px;
-		transition: height 0.3s ease-in-out,box-shadow 0.6s linear;
-		left: 50%;
-			  text-align: center;
-		transform: translateX(-50%);
-
-
-	}
-	.ac-container input:checked ~ div{/*下がるやつのボックス？*/
-	   transition:height 0.5s ease-in-out,box-shadow 0.1s linear;
-	   box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
-	}
-	.ac-container div p{
-	   color: #777;
-	   line-height: 23px;
-	   font-size: 14px;
-	   padding: 20px;
-	}
-	.ac-container input:checked ~ div.ac-small{/*下がるやつ!!!!!!*/
-	  width: 600px;
+.ac-container{
+	width: 600px;
+	margin: 30px auto;
+}
+.ac-container label{
+	width: 600px;
+	text-align: center;
+	background: #00BBFF;
+	margin: auto;
+	padding: 10px 5px;
+	position: relative;
+	display: block;
+	height: 40px;
+	cursor: pointer;
+	color: #FFF;
+}
+.ac-container label:hover{/*触れたときの色*/
+	background: rgba( 255, 155, 155, 0.55 );
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+.ac-container label:after{
+	color: #fff;
+}
+.ac-container input:checked ~ label::after {
+	color: #fff;
+}
+.ac-container input{
+	display: none;
+}
+.ac-container div{/*もどるやつ!!!!!!*/
+	background: rgba(255, 255, 255, 0.5);
+	margin-top: -1px;
+	overflow: hidden;
+	height: 0px;
+	position: relative;
+	z-index: 10;
+	width: 590px;
+	transition: height 0.5s ease-in-out,box-shadow 0.6s linear;
+	left: 50%;
+	text-align: center;
+	transform: translateX(-50%);
+	overflow-y: auto;
+}
+.ac-container input:checked ~ div{
+	transition:height 0.5s ease-in-out,box-shadow 0.1s linear;
+	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+}
+.ac-container div p{
+	color: #777;
+	line-height: 23px;
+	font-size: 14px;
+	padding: 20px;
+}
+.ac-container input:checked ~ div.ac-small{/*下がるやつ!!!!!!*/
+	width: 590px;
 	height: 100px;
-		position: relative;
-	  text-align: center;
-	  margin: auto;
-		left: 19.65%;
-		overflow-y: scroll;
-
-	}
-/*
-	.ac-container input:checked ~ div.ac-sma22{
-	  width: 600px;
-	   height: 200px;
-	  text-align: center;
-	  margin: auto;
-
-	}
-	.ac-container input:checked ~ div.ac-sma33{
-	  width: 600px;
-	   height: 200px;
-	  text-align: center;
-	  margin: auto;
-
-	}
-	.ac-container input:checked ~ div.ac-sma44{
-	  width: 600px;
-	   height: 100px;
-	  margin: auto;
-
-	}
-	*/
-	.ac-container input:checked ~ div.ac-medium{
-	   height: 200px;
-	   margin: auto;
-	}
-	.ac-container input:checked ~ div.ac-large{
-	   height: 300px;
-	   margin: auto;
-	}
+	position: relative;
+	text-align: center;
+	margin: auto;
+	left: 15.38%;
+	overflow-y: auto;
+}
+.ac-container input:checked ~ div.ac-medium{
+	height: 200px;
+	margin: auto;
+}
+.ac-container input:checked ~ div.ac-large{
+	height: 300px;
+	margin: auto;
+}
 	  </style>
 
 	</head>
@@ -186,106 +158,62 @@
         </div>
         <script src="js/jquery-2.1.4.js"></script>
         <script src="js/main.js"></script>
-				<div1 class="ac-container">
+				
 				</br></br>
 				<h1>よくある質問</h1>
 			</br></br>
-			<input id="ac-1" name="accordion-1" type="checkbox" />
-			<label for="ac-1">Q：携帯電話（スマートフォン）から投稿できますか？</label>
-<div class="ac-small">
-<p>A：はい。可能です。
-しかし、携帯端末での投稿は当サイトでは推奨しておりません。
-よって、携帯端末からの投稿に関しての不具合については一切の責任を負いません。
 
-</p>
-</div>
+
+<div1 class="ac-container">
+	<input id="ac-1" name="accordion-1" type="checkbox" />
+		<label for="ac-1">Q：携帯電話（スマートフォン）から投稿できますか？</label>
+			<div class="ac-small">
+				<p>
+					A：はい。可能です。しかし、携帯端末での投稿は当サイトでは推奨しておりません。よって、携帯端末からの投稿に関しての不具合については一切の責任を負いません。
+				</p>
+			</div>
 </div1>
-</br></br>
+<br><br>
+
 <div2 class="ac-container">
-<input id="ac-2" name="accordion-2" type="checkbox" />
-<label for="ac-2">Q：他の素材サイトで販売している作品の販売は可能ですか。</label>
-<div class="ac-small">
-<p>A：投稿する作品については、自分が著作権を有しているもの、作品の著作者から掲載の許諾を受けているものに限ります。
-著作者に無断で作品を転載するなどの行為はご遠慮ください。
-著作権の侵害などが発覚した場合、規約違反となりますので、アカウント停止などの対応をする可能性がございます。
-詳細は利用規約（リンク）にありますのでご確認ください。
-</p>
-</div>
+	<input id="ac-2" name="accordion-2" type="checkbox" />
+		<label for="ac-2">Q：他の素材サイトで販売している作品の販売は可能ですか。</label>
+			<div class="ac-small">
+				<p>
+					A：投稿する作品については、自分が著作権を有しているもの、作品の著作者から掲載の許諾を受けているものに限ります。
+					著作者に無断で作品を転載するなどの行為はご遠慮ください。
+					著作権の侵害などが発覚した場合、規約違反となりますので、アカウント停止などの対応をする可能性がございます。
+					詳細は利用規約（リンク）にありますのでご確認ください。
+				</p>
+			</div>
 </div2>
-</br></br>
+<br><br>
+
 <div2 class="ac-container">
-<input id="ac-3" name="accordion-3" type="checkbox" />
-<label for="ac-3">Q：推奨環境はなんですか？</label>
-<div class="ac-small">
-<p>A：推奨ブラウザ　windows10  MacOS 10.12.6　Google Chrome最新版　Firefox最新版
-※iOS / Androidでの操作は推奨しておりません。そのため、一部のスマートフォン・タブレットではレイアウトが崩れる可能性あります。
-</p>
-</div>
+	<input id="ac-3" name="accordion-3" type="checkbox" />
+		<label for="ac-3">Q：推奨環境はなんですか？</label>
+			<div class="ac-small">
+				<p>
+					A：推奨OS：windows10・MacOS 10.12.6<br>推奨ブラウザ：Google Chrome最新版・Firefox最新版<br>
+					※iOS / Androidでの操作は推奨しておりません。そのため、一部のスマートフォン・タブレットではレイアウトが崩れる可能性あります。
+				</p>
+			</div>
 </div2>
-</br></br>
+<br><br>
 <div2 class="ac-container">
-<input id="ac-4" name="accordion-4" type="checkbox" />
-<label for="ac-4">Q：登録に費用はかかりますか？</label>
-<div class="ac-small">
-<p>A：いいえ。登録費用・会費などの料金はかかりません。</p>
-</div>
+	<input id="ac-4" name="accordion-4" type="checkbox" />
+		<label for="ac-4">Q：登録に費用はかかりますか？</label>
+			<div class="ac-small">
+			<p>
+				A：いいえ。登録費用・会費などの料金はかかりません。
+			</p>
+			</div>
 </div2>
+<br><br>
 
 <!-- 試験的loop -->
 
-</br></br>
-<div2 class="ac-container">
-<input id="ac-5" name="accordion-2" type="checkbox" />
-<label for="ac-5">Q：他の素材サイトで販売している作品の販売は可能ですか。</label>
-<div class="ac-small">
-<p>A：投稿する作品については、自分が著作権を有しているもの、作品の著作者から掲載の許諾を受けているものに限ります。
-著作者に無断で作品を転載するなどの行為はご遠慮ください。
-著作権の侵害などが発覚した場合、規約違反となりますので、アカウント停止などの対応をする可能性がございます。
-詳細は利用規約（リンク）にありますのでご確認ください。
-</p>
-</div>
-</div2>
 
-</br></br>
-<div2 class="ac-container">
-<input id="ac-6" name="accordion-2" type="checkbox" />
-<label for="ac-6">Q：他の素材サイトで販売している作品の販売は可能ですか。</label>
-<div class="ac-small">
-<p>A：投稿する作品については、自分が著作権を有しているもの、作品の著作者から掲載の許諾を受けているものに限ります。
-著作者に無断で作品を転載するなどの行為はご遠慮ください。
-著作権の侵害などが発覚した場合、規約違反となりますので、アカウント停止などの対応をする可能性がございます。
-詳細は利用規約（リンク）にありますのでご確認ください。
-</p>
-</div>
-</div2>
-
-</br></br>
-<div2 class="ac-container">
-<input id="ac-7" name="accordion-2" type="checkbox" />
-<label for="ac-7">Q：他の素材サイトで販売している作品の販売は可能ですか。</label>
-<div class="ac-small">
-<p>A：投稿する作品については、自分が著作権を有しているもの、作品の著作者から掲載の許諾を受けているものに限ります。
-著作者に無断で作品を転載するなどの行為はご遠慮ください。
-著作権の侵害などが発覚した場合、規約違反となりますので、アカウント停止などの対応をする可能性がございます。
-詳細は利用規約（リンク）にありますのでご確認ください。
-</p>
-</div>
-</div2>
-
-<!-- ここから -->
-</br></br>
-<div2 class="ac-container">
-<input id="ac-8" name="accordion-2" type="checkbox" />
-<label for="ac-8">Q：他の素材サイトで販売している作品の販売は可能ですか。</label>
-<div class="ac-small">
-<p>A：投稿する作品については、自分が著作権を有しているもの、作品の著作者から掲載の許諾を受けているものに限ります。
-著作者に無断で作品を転載するなどの行為はご遠慮ください。
-著作権の侵害などが発覚した場合、規約違反となりますので、アカウント停止などの対応をする可能性がございます。
-詳細は利用規約（リンク）にありますのでご確認ください。
-</p>
-</div>
-</div2>
-<!-- ここまで -->
 
 
 

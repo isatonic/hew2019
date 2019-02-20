@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>HELP | ISATONIC</title>
+	<title>お問い合わせ | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -84,17 +84,15 @@
         <script src="js/main.js"></script>
 		<script src="js/Mypage.js"></script>
 		<div class="font">
-			<h2 class="Header">　　Help</h2>
+			<h2 class="Header">　　お問い合わせ</h2>
 				<div class="mype_main">
-
-					<div class="fontttttt">
-						<p class="font1">FAQ</p>
-						<img src="./img/question.png" alt="" class="font1img" onClick="location.href='./US16.php'">
-
-						<p class="font2">CONTACT</p>
-						<img src="./img/faq.png" alt="" class="font2img" onClick="location.href='./US17.php'">
-					</div>
-
+					
+					<form action="./US18.php" method="POST">
+						
+						
+						
+					</form>
+					
 				</div>
 <!-- フローティング操作ボタン -->
 			<a id="fab" href="US15.php">
