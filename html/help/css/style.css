@@ -16,9 +16,13 @@ table {
 	border-spacing: 0;
 }
 .logo{
-	padding-left:700px;
+	/*padding-left:700px;
 	padding-top:10px;
-	margin-bottom:10px;	 
+	margin-bottom:10px;	 */
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-left: 10px;
 	}
 .nr{
 	margin-left:300px;
@@ -642,4 +646,3 @@ select {
     transform: translateX(-50%) translateY(-50%) scale(1);
   }
 }
-

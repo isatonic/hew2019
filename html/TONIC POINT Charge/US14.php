@@ -32,11 +32,11 @@
     <div class="cd-main-content">
        <header class="cd-main-header animate-search">
 		<nav class="cd-main-nav-wrapper">
-        　　 <img src="img/LOGO/LOGO W.png" class="logo" alt="">
+        　　 <img src="img/LOGO/LOGO W.png" class="logo" alt="" onClick="location.href='../index/index.html'">
 			<a href="" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
-				<li><a href="about.html" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+				<li><a href="" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">カート</a></li>
@@ -98,7 +98,7 @@
 				<div class="Confirmation">
 					<h3 class="finmes">&nbsp;&nbsp;&nbsp;TONIC POINTチャージが完了しました。&nbsp;&nbsp;</h3>
 				</div>
-				<div class="nextpage_okokmypage" onClick="location.href='US14.php?bk=1'"><h3>&nbsp;&nbsp;マイページに進む&nbsp;&nbsp;</h3></div><br>
+				<div class="nextpage_okokmypage" onClick="location.href='../My Page/US20.php?bk=1'"><h3>&nbsp;&nbsp;マイページに進む&nbsp;&nbsp;</h3></div><br>
 			</div>
 
 		</div>

@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>My Page | ISATONIC</title>
+	<title>HELP | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,13 +23,13 @@
     <div class="cd-main-content">
        <header class="cd-main-header animate-search">
 		<nav class="cd-main-nav-wrapper">
-        　　 <img src="img/LOGO/LOGO W.png" class="logo" alt="">
+        　　 <img src="img/LOGO/LOGO W.png" class="logo" alt="" onClick="location.href='../index/index.html'">
 			<a href="" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
-				<li><a href="about.html" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+				<li><a href="" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-				<li><a href="">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+				<li><a href="../SNS/SN1.html">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">カート</a></li>
 			</ul> 
 		</nav>
@@ -69,7 +69,7 @@
 					</li>
                     <li>
 						<a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-						<h4><a class="cd-nowrap" href="">5</a></h4>
+						<h4><a class="cd-nowrap" href="">5</a></h4>	
 					</li>
 
 				</ul>
@@ -83,17 +83,16 @@
         <script src="js/main.js"></script>
 		<script src="js/Mypage.js"></script>
 		<div class="font">
-			<h2 class="Header">　　My Page</h2>
+			<h2 class="Header">　　Help</h2>
 				<div class="mype_main">
-					<div class="password_fin">
-						
-						<p class="pass_fin">パスワード変更完了しました。</p>
-						
-						
-					</div>
+					
+					
+					
+					
+					
 				</div>
 <!-- フローティング操作ボタン -->
-			<a id="fab" href="US20.php">
+			<a id="fab" href="US15.php">
 				<i class="fas fa-home"></i>
 			</a>
 			
