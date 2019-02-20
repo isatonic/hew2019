@@ -88,7 +88,11 @@
 					
 					
 					
+					<p class="font1">FAQ</p>
+					<img src="./img/faq.png" alt="" class="">
 					
+					<p class="font2">CONTACT</p>
+					<img src="./img/question.png">
 					
 				</div>
 <!-- フローティング操作ボタン -->
