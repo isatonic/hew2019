@@ -208,3 +208,101 @@
 	border-radius: 3px;
 	overflow-y: scroll;
 }
+
+
+
+																																										/* US17 */
+
+.fooooorm1,.fooooorm2,.fooooorm3,.fooooorm4,.fooooorm5{
+	width: 90%;
+	height: 7%;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	border-radius: 3px;
+	background: #E4E4E4;
+}
+										/* フォーム長さ */
+.fooooorm1 input{
+	width: 200px;
+}
+.fooooorm2 input,.fooooorm3 input{
+	width: 500px;
+}
+.fooooorm5 input{
+	width: 800px;
+}
+.fooooorm6 input{
+	width: 1300px;
+	height: 200px;
+	overflow-y: auto;
+}
+.fooooorm1 p,.fooooorm2 p,.fooooorm3 p,.fooooorm4 p,.fooooorm5 p,.fooooorm6 p{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	white-space: nowrap;
+	font-size: 1.5em;
+}
+.fooooorm1 {
+	position: absolute;
+	top: 6%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.fooooorm2 {
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.fooooorm3 {
+	position: absolute;
+	top: 24%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.fooooorm4 {
+	position: absolute;
+	top: 33%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.fooooorm5 {
+	position: absolute;
+	top: 42%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.fooooorm6 {
+	position: absolute;
+	width: 90%;
+	height: 31%;
+	top: 51%;
+	left: 50%;
+	transform: translateX(-50%);
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	border-radius: 3px;
+	background: #E4E4E4;
+}
+.fooooorm7 {
+	position: absolute;
+	width: 15%;
+	height: 10%;
+	top: 86%;
+	left: 50%;
+	transform: translateX(-50%);
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	border-radius: 3px;
+	background: #E4E4E4;
+}
+.fooooorm7 p{
+	font-size: 2em;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+
+
+

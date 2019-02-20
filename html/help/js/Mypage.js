@@ -132,3 +132,16 @@ $(function () {
 		$('#modalArea7').fadeOut();
 	});
 });
+
+
+
+
+
+//送信
+function submiiiit(){
+	var target = document.getElementById("form001");
+	target.method = "post";
+	target.submit();
+}
+ 
+ 

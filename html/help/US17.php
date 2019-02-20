@@ -87,8 +87,62 @@
 			<h2 class="Header">　　お問い合わせ</h2>
 				<div class="mype_main">
 					
-					<form action="./US18.php" method="POST">
-						
+					<form action="./US18.php" method="POST" id="form001">
+						<div class="fooooorm1">
+							<p>
+								氏名（姓）：&nbsp;<input type="text" name="name_s" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								氏名（名）：&nbsp;<input type="text" name="name_m" required>
+							</p>
+						</div>
+						<div class="fooooorm2">
+							<p>
+								メールアドレス：&nbsp;<input type="text" name="mail" required>
+								&nbsp;＠&nbsp;
+								<select name="mail_af" size="1">
+									<option value="@gmail.com">gmail.com</option>
+									<option value="@yahoo.co.jp">yahoo.co.jp</option>
+									<option value="@docomo.ne.jp">docomo.ne.jp</option>
+									<option value="@ezweb.ne.jp">ezweb.ne.jp</option>
+									<option value="@softbank.ne.jp">softbank.ne.jp</option>
+								</select>
+							</p>
+						</div>
+						<div class="fooooorm3">
+							<p>
+								メールアドレス（確認）：&nbsp;
+								<input type="text" name="mail" required>
+								&nbsp;＠&nbsp;
+								<select name="mail_af2" size="1">
+									<option value="@gmail.com">gmail.com</option>
+									<option value="@yahoo.co.jp">yahoo.co.jp</option>
+									<option value="@docomo.ne.jp">docomo.ne.jp</option>
+									<option value="@ezweb.ne.jp">ezweb.ne.jp</option>
+									<option value="@softbank.ne.jp">softbank.ne.jp</option>
+								</select>
+							</p>
+						</div>
+						<div class="fooooorm4">
+							<p>
+								カテゴリ：&nbsp;
+								<select name="category" size="1">
+									<option value="K_1">動作環境</option>
+									<option value="K_2">作品について</option>
+									<option value="K_3">退会</option>
+									<option value="K_4">ログイン</option>
+									<option value="K_5">購入</option>
+									<option value="K_6">その他</option>
+								</select>
+							</p>
+						</div>
+						<div class="fooooorm5">
+							<p>タイトル：&nbsp;<input type="text" name="title" required</p>
+						</div>
+						<div class="fooooorm6">
+							<p>本文：&nbsp;<input type="text" name="main_text" required></p>
+						</div>
+						<div class="fooooorm7"  onClick="submiiiit()">
+							<p>確認</p>
+						</div>
 						
 						
 					</form>
