@@ -20,7 +20,7 @@ class PassReset extends ModelBase {
     public function add(string $email, string $newPass) {
         $data = array(
             "email" => $email,
-            "newpass" => $newPass,
+            "newpass" => password_hash($newPass, PASSWORD_DEFAULT),
             "code" => $this->makeRandStr(4),
             "resetLimit" => $this->setLimit(30)
         );
@@ -36,13 +36,14 @@ class PassReset extends ModelBase {
      * @return string[]
      */
     public function get(string $email) {
-        $wants = ["code", "resetLimit"];
+        $wants = ["code", "newpass", "resetLimit"];
         $where = ["email" => $email];
         $order = ["resetLimit" => "DESC"];
         $rows = $this->getRows($wants, $where, $order);
         $ret = array(
             "code" => $rows[0]["code"],
-            "limit" => $rows[0]["resetLimit"]
+            "limit" => $rows[0]["resetLimit"],
+            "newpass" => $rows[0]["newpass"]
         );
 
         return $ret;

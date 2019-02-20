@@ -29,7 +29,7 @@ class Auth extends ModelBase {
         $rows = $this->getRows($wants, $where);
 
         if ($rows != null) {
-            if ($rows[0]["flag"] != "active") {
+            if ($rows[0]["flag"] == "active") {
                 $hash = $rows[0]["pass"];
                 return password_verify($pass, $hash);
             }
