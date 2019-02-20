@@ -27,7 +27,7 @@
 			<a href="" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
-				<li><a href="about.html" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+				<li><a href="" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="../SNS/SN1.html">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">カート</a></li>
@@ -135,9 +135,11 @@
 								 P
 							</p>
 						</div>
-						<div class="tonic_point_charge flat_button">
-							<p>チャージする</p>
-						</div>
+						<a href="../TONIC POINT Charge/US12.html">
+							<div class="tonic_point_charge flat_button">
+								<p>チャージする</p>
+							</div>
+						</a>
 					</div>
 					
 
