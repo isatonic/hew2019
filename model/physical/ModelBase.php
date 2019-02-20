@@ -154,8 +154,9 @@ abstract class ModelBase implements ModelBaseInterface {
      *
      * @param array $where
      */
-    protected function deleteSql(array $where = null) {
-        $sql = sprintf("DELETE FROM %s", $this->table_name);
+    protected function deleteSql(array $where) {
+        $sql = sprintf(/** @lang text */
+            "DELETE FROM %s", $this->table_name);
         if ($where != null) {
             $sql .= $this->addWhere($where);
         }
@@ -177,21 +178,22 @@ abstract class ModelBase implements ModelBaseInterface {
         foreach ($data as $key => $val) {
             $keyval[] = "${key}=${val}";
         }
-        $sql = sprintf("UPDATE $this->table_name SET %s", implode(", ", $keyval));
+        $sql = sprintf(/** @lang text */
+            "UPDATE $this->table_name SET %s", implode(", ", $keyval));
         if ($where != null) {
             $sql .= $this->addWhere($where);
         }
         $this->sql = $sql;
     }
 
-    protected function addWhere(array $where) {
+    protected function addWhere(array $where, string $andor = "and") {
         $add = " WHERE ";
         $condition = array();
         foreach ($where as $key => $val) {
             $condition[] = "$key = :$key";
         }
         foreach ($condition as $val2) {
-            $add .= implode("and ", $val2);
+            $add .= implode("${andor} ", $val2);
         }
 
         return $add;

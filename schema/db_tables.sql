@@ -209,12 +209,26 @@ CREATE TABLE Message (
     destination char(25),
     message     varchar(255) NOT NULL,
     sendDate    datetime DEFAULT CURRENT_TIMESTAMP,
+    INDEX (sender, destination),
     FOREIGN KEY (sender) REFERENCES Users (id)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     FOREIGN KEY (destination) REFERENCES Users (id)
         ON UPDATE CASCADE
         ON DELETE SET NULL
+)
+    ENGINE = InnoDB
+;
+
+CREATE TABLE MessageCheck (
+    user      char(25) NOT NULL,
+    target char(25),
+    lastCheck   timestamp DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (user, target),
+    FOREIGN KEY (user, target) REFERENCES Message (sender, destination)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 )
     ENGINE = InnoDB
 ;

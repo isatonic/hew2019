@@ -57,6 +57,71 @@ class Products extends ModelBase {
         return $this->getRows($wants);
     }
 
+    public function searchFromTitle(string $words) {
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "author",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $where = array(
+            "title" => "%${words}%"
+        );
+        $order = ["id" => "asc"];
+        return $this->getRows($wants, $where, $order);
+    }
+
+    public function searchFromComment(string $words) {
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "author",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $where = array(
+            "authorComment" => "%${words}%"
+        );
+        $order = ["id" => "asc"];
+        return $this->getRows($wants, $where, $order);
+    }
+
+    public function searchFromID(string $id) {
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "author",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $where = array(
+            "id" => $id
+        );
+        $order = ["id" => "asc"];
+        return $this->getRows($wants, $where, $order);
+    }
+
+    public function searchFromAuthor(string $author) {
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $where = ["author" => $author];
+        $order = ["postDate" => "ASC"];
+        return $this->getRows($wants, $where, $order);
+    }
+
     /**
      * 商品を削除
      *

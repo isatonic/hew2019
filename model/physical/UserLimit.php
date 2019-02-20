@@ -64,6 +64,7 @@ class UserLimit extends ModelBase {
      * @param string $user ユーザID
      *
      * @return true|int 制限無し:true, 制限あり:残り時間(h)
+     * @throws \Exception
      */
     public function check(string $user) {
         $wants = ["limitEnd"];
