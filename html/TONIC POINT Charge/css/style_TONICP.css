@@ -1,0 +1,427 @@
+/*フェードイン*/
+body{
+	animation: fadeIn 1s ease 0s 1 normal;
+    -webkit-animation: fadeIn 1s ease 0s 1 normal;
+	width: 100%;
+}
+@keyframes fadeIn {
+    0% {
+		opacity: 0
+	}
+    100% {
+		opacity: 1
+	}
+}
+@-webkit-keyframes fadeIn {
+    0% {
+		opacity: 0
+	}
+    100% {
+		opacity: 1
+	}
+}
+/*フォント系統*/
+@font-face {
+  font-family: 'Myfont';
+  src: url("../font/FlopDesignFONT.otf");
+}
+.font{
+	font-family:'Myfont';
+}
+
+/*アンダーバー*/
+.Header {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 80px;
+	border-bottom: solid 2px #000000;
+}
+
+/*クレジットカートブランド*/
+.creditB{
+	position: absolute;
+	top: 23.8%;
+	right: 11%;
+	width: 250px;
+	height: auto;
+}
+
+/*灰色の全体のエリア*/
+.TONICarea{
+	background: #F2F2F2;
+	background-image: url("../img/TONIC POINT.png");
+	background-position: center center; 
+	background-repeat: no-repeat;
+	background-attachment: fixed; 
+	background-size: 40%;
+	position: absolute;
+	top: 61.5%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 75%;
+	height: 59%;
+	border-radius: 30px;
+}
+
+/*チャージポイント数の文字*/
+.chargeP {
+	font-size: 190%;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+}
+
+/*チャージポイント数1POINT単位での変更*/
+.pointform{
+	width: 200px;
+	text-align: center;
+}
+
+/*ポイント数選択の親div*/
+.TP{
+	width: 850px;
+	height: 58px;
+	/*background: #E9B9BA;*/
+	position: absolute;
+	top: 11%;
+	left: 62%;
+	transform: translateX(-50%);
+}
+
+/*ポイント数選択のボタン*/
+.tp100,.tp500,.tp1000,.tp2000,.tp5000{
+	font-size: 25px;
+	width: 150px;
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: #676767;
+	border-radius: 30px;
+	text-align: center;
+	margin-right: 20px;
+	float: left;
+}
+.tp100:hover,.tp500:hover,.tp1000:hover,.tp2000:hover,.tp5000:hover{
+	opacity:0.7;
+	cursor: pointer;
+}
+.tp100:active,.tp500:active,.tp1000:active,.tp2000:active,.tp5000:active{
+	margin-top: 5px;
+}
+
+/*1POINT単位での入力欄*/
+.POINThand{
+	position: absolute;
+	top: 26%;
+	left: 60%;
+	transform: translateX(-50%);
+	font-size: 130%;
+}
+
+/*クレジットカード番号*/
+.credit{
+	font-size: 190%;
+	position: absolute;
+	top: 37%;
+	left: 10%;
+}
+.CK{
+	width: 850px;
+	height: 50px;
+	/*background: #E9B9BA;*/
+	position: absolute;
+	top: 38%;
+	left: 62%;
+	transform: translateX(-50%);
+	font-size: 20px;
+}
+.c1,.c2,.c3,.c4{
+	width: 180px;
+	height: 50px;
+	font-size: 40px;
+	text-align: center;
+	float: left;
+}
+.mar{
+	margin-right: 20px;
+}
+
+/*期限*/
+.rimit{
+	font-size: 190%;
+	position: absolute;
+	top: 52%;
+	left: 10%;
+}
+.CK2{
+	width: 850px;
+	height: 50px;
+	/*background: #E9B9BA;*/
+	position: absolute;
+	top: 53%;
+	left: 62%;
+	transform: translateX(-50%);
+	font-size: 20px;
+}
+.d1,.d2 {
+	width: 200px;
+	height: 50px;
+	font-size: 40px;
+	text-align: center;
+	float: left;
+}
+.CK2 h2{
+	float: right;
+}
+
+/*セキュリティコード*/
+.security{
+	font-size: 190%;
+	position: absolute;
+	top: 67%;
+	left: 10%;
+}
+.CK3{
+	width: 850px;
+	height: 50px;
+	/*background: #E9B9BA;*/
+	position: absolute;
+	top: 68%;
+	left: 62%;
+	transform: translateX(-50%);
+	font-size: 20px;
+}
+.e1 {
+	width: 200px;
+	height: 50px;
+	font-size: 40px;
+	text-align: center;
+}
+
+/*遷移ボタン*/
+.nextpage_ok,.nextpage_okok,.nextpage_okokmypage{
+	position: absolute;
+	top: 83%;
+	left: 79%;
+}
+.nextpage_no{
+	position: absolute;
+	top: 83%;
+	left: 64%;
+}
+.nextpage_no,.nextpage_ok,.nextpage_okok,.nextpage_okokmypage {
+    display: inline-block;
+	width: 200px;
+	height: 80px;
+	text-align: center;
+	padding: 5px;
+    text-decoration: none;
+    color: #FFAB67;
+    border: double 5px #FFAB67;
+    border-radius: 3px;
+    transition: .2s;
+}
+.nextpage_okokmypage{/*マイページに進むだけちょっと違う*/
+	width: 300px;
+	left: 75%;
+}
+.nextpage_no:hover,.nextpage_ok:hover,.nextpage_okok:hover,.nextpage_okokmypage:hover {
+	opacity:0.45;
+	font-size: 200%
+}
+.nextpage_ok:hover {
+    background: #FF8E8E;
+	color: #FFF;
+    border: double 5px #FF0003;
+}
+.nextpage_okok:hover {
+    background: #FF8E8E;
+	color: #FFF;
+    border: double 5px #FF0003;
+}
+.nextpage_okokmypage:hover {
+    background: #65FD60;
+	color: #FFF;
+    border: double 5px #0CFF03;
+}
+.nextpage_no:hover {
+    background: #67C5FF;
+	color: #FFF;
+    border: double 5px #0005FF;
+}
+
+/*遷移の注意書き*/
+.jump_ok{
+	position: absolute;
+	top: 92%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+/* US13 */
+
+/*入力内容確認*/
+.Confirmation{
+	position: absolute;
+	top: 5%;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 250%;
+	text-shadow: 2px 2px 1px #999999;
+	border-bottom: solid 2px #000000;
+}
+
+/*チャージポイント数のフォントサイズ*/
+.chargeP2 {
+	font-size: 190%;
+	position: absolute;
+	top: 22%;
+	left: 10%;
+}
+
+/*ポイント数表示の親div*/
+.TP2{
+	width: 850px;
+	height: 58px;
+	/*background: #E9B9BA;*/
+	position: absolute;
+	top: 21%;
+	left: 65.1%;
+	transform: translateX(-50%);
+}
+
+/*チャージポイント数*/
+.tpshow{
+	font-size: 40px;
+	width: 150px;
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+/*チャージ完了しました*/
+.finmes{
+	font-size: 50px;
+	white-space: nowrap;
+	margin-top: 225px;
+}
+
+
+/*ロード系*/
+.loaderTP {
+  color: #000;
+  font-size: 90px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 72px auto;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+  animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+}
+@-webkit-keyframes load6 {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+@keyframes load6 {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+@-webkit-keyframes round {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes round {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+#loader-bg {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  z-index: 100;
+}
+#loader {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
+  text-align: center;
+  color: #fff;
+  z-index: 200;
+}
+#loader p{
+	font-family: 'Myfont';
+	color: #000;
+	white-space: nowrap;
+	position: relative;
+	right: 25%;
+}
+#loader img{
+	margin-bottom: 20px;
+	width: 1000px;
+	height: auto;
+}
