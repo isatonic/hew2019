@@ -41,7 +41,7 @@ class UserHome extends LogicalBase {
             return false;
         }
 
-        $userDetail = $this->UserDetail->get();
+        $userDetail = $this->UserDetail->getUserName();
         if ($userDetail === false) {
             return false;
         }

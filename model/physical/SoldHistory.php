@@ -11,7 +11,8 @@ class SoldHistory extends ModelBase {
                 pr.title        as title,
                 pr.filename     as file,
                 pr.price        as price,
-                pu.purchaseDate as date
+                pu.purchaseDate as date,
+                pu.getPoint     as get
             FROM Purchase pu
             INNER JOIN Products pr ON pu.product = pr.id
             WHERE pr.author = {$this->user_id}

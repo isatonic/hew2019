@@ -30,7 +30,6 @@ CREATE TABLE Users (
 CREATE TABLE UserDetails (
     id       char(25) PRIMARY KEY,
     userName varchar(32) NOT NULL,
-    icon     varchar(255),
     FOREIGN KEY (id) REFERENCES Users (id)
         ON UPDATE CASCADE
         ON DELETE CASCADE

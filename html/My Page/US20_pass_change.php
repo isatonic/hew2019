@@ -86,8 +86,13 @@
 			<h2 class="Header">　　My Page</h2>
 				<div class="mype_main">
 					<div class="password_fin">
-						
-						<p class="pass_fin">パスワード変更完了しました。</p>
+
+						<p class="pass_fin">
+                <?php
+                // 参照: ../controller/userPassChange.php
+                echo $msg;
+                ?>
+            </p>
 						
 						
 					</div>

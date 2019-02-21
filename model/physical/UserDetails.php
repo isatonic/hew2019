@@ -13,15 +13,13 @@ class UserDetails extends ModelBase {
      * ユーザ登録
      *
      * @param string      $userName アプリ内で公開されるユーザ名
-     * @param string|null $icon アイコンのファイルパス (Default: null)
      *
      * @return bool
      */
-    public function regist(string $userName, string $icon = null) {
+    public function regist(string $userName) {
         $data = array(
             "id" => $this->user_id,
-            "userName" => $userName,
-            "icon" => $icon
+            "userName" => $userName
         );
 
         return $this->execInsert($data);
@@ -49,18 +47,15 @@ class UserDetails extends ModelBase {
      *
      * @param string|null $id ユーザID (Default: ログイン中ID)
      *
-     * @return bool|array {
-     *      @type string "userName"  アプリケーション中で公開されるユーザ名
-     *      @type string "icon"      アイコンのファイルパス (""の可能性あり)
-     * }
+     * @return string アプリケーション中で公開されるユーザ名
      */
-    public function get(string $id = null) {
+    public function getUserName(string $id = null) {
         $id = $this->setUser($id);
         $wants = ["userName", "icon"];
         $where = ["id" => $id];
         $rows = $this->getRows($wants, $where);
         if (!is_null($rows)) {
-            return $rows[0];
+            return $rows[0]["userName"];
         } else {
             return false;
         }

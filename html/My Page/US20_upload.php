@@ -87,18 +87,8 @@
 				<div class="mype_main">
 					<div class="upload_fin">
 						<?php
-						$tempfile = $_FILES['uploadfile']['tmp_name'];
-						$filename = 'images/' . $_FILES['uploadfile']['name'];
-
-						if (is_uploaded_file($tempfile)) {
-							if ( move_uploaded_file($tempfile , $filename )) {
-							echo "アイコン画像をアップロードしました。";
-							} else {
-								echo "ファイルをアップロードできません。";
-							}
-						} else {
-							echo "ファイルが選択されていません。";
-						} 
+              // 参照: ../controller/changeIcon.php
+              echo $msg;
 						?>
 					</div>
 				</div>
