@@ -90,13 +90,13 @@
 					<form action="./US18.php" method="POST" id="form001" name="form1" onSubmit="return check_sub()">
 						<div class="fooooorm1">
 							<p>
-								氏名（姓）：&nbsp;<input type="text" name="name_s" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								氏名（名）：&nbsp;<input type="text" name="name_m" required>
+								氏名（姓）：&nbsp;<input type="text" name="name_s" required maxlength="10" autofocus>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								氏名（名）：&nbsp;<input type="text" name="name_m" required maxlength="10">
 							</p>
 						</div>
 						<div class="fooooorm2">
 							<p>
-								メールアドレス：&nbsp;<input type="text" name="mail" required>
+								メールアドレス：&nbsp;<input type="text" name="mail" required maxlength="30" pattern="[a-z0-9._%+-]+$">
 								&nbsp;＠&nbsp;
 								<select name="mail_af" size="1">
 									<option value="@gmail.com">gmail.com</option>
@@ -110,7 +110,7 @@
 						<div class="fooooorm3">
 							<p>
 								メールアドレス（確認）：&nbsp;
-								<input type="text" name="mail2" required>
+								<input type="text" name="mail2" required maxlength="30" pattern="^[a-z0-9._%+-]+$">
 								&nbsp;＠&nbsp;
 								<select name="mail_af2" size="1">
 									<option value="@gmail.com">gmail.com</option>
@@ -135,10 +135,10 @@
 							</p>
 						</div>
 						<div class="fooooorm5">
-							<p>タイトル：&nbsp;<input type="text" name="title" required</p>
+							<p>タイトル：&nbsp;<input type="text" name="title" required maxlength="20"></p>
 						</div>
 						<div class="fooooorm6">
-							<p>本文：&nbsp;<input type="text" name="main_text" required></p>
+							<p class="main_Bunshou">本文：&nbsp;</p><p class="textarea"><textarea name="main_text" rows="4" cols="70" required maxlength="100"></textarea></p>
 						</div>
 						<div class="fooooorm7" onClick="check_sub()">
 							<p>確認</p>

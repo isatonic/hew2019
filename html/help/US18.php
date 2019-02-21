@@ -88,9 +88,11 @@
 				<div class="mype_main">
 					
 					<form action="./US19.php" method="POST" id="form001">
-						<div class="fooooorm1">
-							<p>
+						<div class="fooooorm1_2">
+							<p class="nameee">
 								氏名：&nbsp;
+							</p>
+							<p class="otoiawase">
 								<?php
 									echo $_POST['name_s'];
 								?>
@@ -98,11 +100,14 @@
 								<?php
 									echo $_POST['name_m'];
 								?>
+								&nbsp;&nbsp;様
 							</p>
 						</div>
-						<div class="fooooorm2">
-							<p>
+						<div class="fooooorm2_2">
+							<p class="nameee">
 								メールアドレス：&nbsp;
+							</p>
+							<p class="otoiawase">
 								<?php
 									echo $_POST['mail'];
 								?>
@@ -112,27 +117,34 @@
 								?>
 							</p>
 						</div>
-
-						</div>
 						<div class="fooooorm4_3">
-							<p>
+							<p class="nameee">
 								カテゴリ：&nbsp;
+							</p>
+							<p class="otoiawase">
 								<?php
 									echo $_POST['category'];
 								?>
 							</p>
 						</div>
 						<div class="fooooorm5_4">
-							<p>タイトル：&nbsp;
+							<p class="nameee">
+								タイトル：&nbsp;
+							</p>
+							<p class="otoiawase">
 								<?php
 									echo $_POST['title'];
 								?>
 							</p>
 						</div>
 						<div class="fooooorm6_5">
-							<p>本文：&nbsp;
+							<p class="nameee">
+								本文：&nbsp;
+							</p>
+							<p class="otoiawase">
 								<?php
-									echo $_POST['main_text'];
+									$data_main = $_POST['main_text'];
+									echo nl2br($data_main);
 								?>
 							</p>
 						</div>
