@@ -87,61 +87,57 @@
 			<h2 class="Header">　　お問い合わせ</h2>
 				<div class="mype_main">
 					
-					<form action="./US18.php" method="POST" id="form001" name="form1" onSubmit="return check_sub()">
+					<form action="./US19.php" method="POST" id="form001">
 						<div class="fooooorm1">
 							<p>
-								氏名（姓）：&nbsp;<input type="text" name="name_s" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								氏名（名）：&nbsp;<input type="text" name="name_m" required>
+								氏名：&nbsp;
+								<?php
+									echo $_POST['name_s'];
+								?>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<?php
+									echo $_POST['name_m'];
+								?>
 							</p>
 						</div>
 						<div class="fooooorm2">
 							<p>
-								メールアドレス：&nbsp;<input type="text" name="mail" required>
-								&nbsp;＠&nbsp;
-								<select name="mail_af" size="1">
-									<option value="@gmail.com">gmail.com</option>
-									<option value="@yahoo.co.jp">yahoo.co.jp</option>
-									<option value="@docomo.ne.jp">docomo.ne.jp</option>
-									<option value="@ezweb.ne.jp">ezweb.ne.jp</option>
-									<option value="@softbank.ne.jp">softbank.ne.jp</option>
-								</select>
+								メールアドレス：&nbsp;
+								<?php
+									echo $_POST['mail'];
+								?>
+								&nbsp;&nbsp;
+								<?php
+									echo $_POST['mail_af'];
+								?>
 							</p>
 						</div>
-						<div class="fooooorm3">
-							<p>
-								メールアドレス（確認）：&nbsp;
-								<input type="text" name="mail2" required>
-								&nbsp;＠&nbsp;
-								<select name="mail_af2" size="1">
-									<option value="@gmail.com">gmail.com</option>
-									<option value="@yahoo.co.jp">yahoo.co.jp</option>
-									<option value="@docomo.ne.jp">docomo.ne.jp</option>
-									<option value="@ezweb.ne.jp">ezweb.ne.jp</option>
-									<option value="@softbank.ne.jp">softbank.ne.jp</option>
-								</select>
-							</p>
+
 						</div>
-						<div class="fooooorm4">
+						<div class="fooooorm4_3">
 							<p>
 								カテゴリ：&nbsp;
-								<select name="category" size="1">
-									<option value="動作環境">動作環境</option>
-									<option value="作品について">作品について</option>
-									<option value="退会">退会</option>
-									<option value="ログイン">ログイン</option>
-									<option value="購入">購入</option>
-									<option value="その他">その他</option>
-								</select>
+								<?php
+									echo $_POST['category'];
+								?>
 							</p>
 						</div>
-						<div class="fooooorm5">
-							<p>タイトル：&nbsp;<input type="text" name="title" required</p>
+						<div class="fooooorm5_4">
+							<p>タイトル：&nbsp;
+								<?php
+									echo $_POST['title'];
+								?>
+							</p>
 						</div>
-						<div class="fooooorm6">
-							<p>本文：&nbsp;<input type="text" name="main_text" required></p>
+						<div class="fooooorm6_5">
+							<p>本文：&nbsp;
+								<?php
+									echo $_POST['main_text'];
+								?>
+							</p>
 						</div>
-						<div class="fooooorm7" onClick="check_sub()">
-							<p>確認</p>
+						<div class="fooooorm7_6"  onClick="submiiiit_s()">
+							<p>送信</p>
 						</div>
 						
 						

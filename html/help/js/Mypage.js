@@ -136,12 +136,43 @@ $(function () {
 
 
 
+																								//US17-18
 
-//送信
-function submiiiit(){
+//送信_2
+function submiiiit_s(){
 	var target = document.getElementById("form001");
 	target.method = "post";
 	target.submit();
 }
  
- 
+ //入力チェック
+function check_sub(){ 
+	var flag = 0
+	if(document.form1.name_s.value == ""){
+		flag = 1;
+	}
+	else if(document.form1.name_m.value == ""){
+		flag = 1;
+	}
+	else if(document.form1.mail.value == ""){
+		flag = 1;
+	}	
+	else if(document.form1.mail2.value == ""){
+		flag = 1;
+	}
+	else if(document.form1.title.value == ""){
+		flag = 1;
+	}
+	else if(document.form1.main_text.value == ""){
+		flag = 1;
+	}
+	if(flag){
+		window.alert('必須項目に未入力がありました');
+		return false; // 送信を中止
+	}
+	else{
+		var target = document.getElementById("form001");
+		target.method = "post";
+		target.submit();
+	}
+}

@@ -286,14 +286,16 @@
 }
 .fooooorm7 {
 	position: absolute;
-	width: 15%;
-	height: 10%;
+	width: 11%;
+	height: 8%;
 	top: 86%;
 	left: 50%;
 	transform: translateX(-50%);
-	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
-	border-radius: 3px;
-	background: #E4E4E4;
+	border-radius: 5px;
+	border: solid 2px #707070;
+}
+.fooooorm7:active {
+	top: 87%;
 }
 .fooooorm7 p{
 	font-size: 2em;
@@ -304,5 +306,48 @@
 }
 
 
+
+.fooooorm4_3 {
+	position: absolute;
+	top: 33%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.fooooorm5_4 {
+	position: absolute;
+	top: 42%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.fooooorm6_5 {
+	position: absolute;
+	width: 90%;
+	height: 31%;
+	top: 51%;
+	left: 50%;
+	transform: translateX(-50%);
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	border-radius: 3px;
+	background: #E4E4E4;
+}
+.fooooorm7_6 {
+	position: absolute;
+	width: 11%;
+	height: 8%;
+	top: 86%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 5px;
+	border: solid 2px #707070;
+}
+.fooooorm7_6:active {
+	top: 87%;
+}
+.fooooorm7_6 p{
+	font-size: 2em;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 
 
