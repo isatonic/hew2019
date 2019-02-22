@@ -80,7 +80,6 @@ body{
 	position: absolute;
 	top: 10%;
 	left: 36.5%;
-	white-space: nowrap;
 }
 .tonic_name p{/*氏名*/
 	font-size: 1.7em;
@@ -308,7 +307,6 @@ body{
 	font-size: 30px;
 	color: #FFF;
 }
-
 /*投稿作品一覧*/
 .push_cre{
 	position: absolute;
@@ -326,28 +324,6 @@ body{
 	font-size: 30px;
 	color: #FFF;
 }
-.upload_pagego{/*アップロード*/
-	width: 90%;
-	height: 45px;
-	border: solid 2px #ADADAD;
-	border-radius: 3px;
-	position: absolute;
-	top: 5%;
-	left: 48.5%;
-	transform: translateX(-50%);
-}
-.upload_pagego p{
-	font-size: 1.3em;
-	color: #42A5F5;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-}
-
-
-
-
 /*購入作品一覧*/
 .buy_cre{
 	position: absolute;
@@ -489,12 +465,6 @@ body{
 	margin-bottom: 10px;
 }
 .imageee{
-	margin: 15px 0 0 10px;
-}
-.imageee1_1{
-	margin: 100px 0 0 10px;
-}
-.imageee1{
 	margin: 15px 0 0 10px;
 }
 

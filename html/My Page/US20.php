@@ -256,33 +256,33 @@
 					  <div id="modalBg3" class="modalBg3"></div>
 						<div class="modalWrapper3">
 							<div class="modalContents3">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
-								<img src="img/placeholder.png" alt="" class="imageee">
+								<div class="upload_pagego flat_button" onClick="location.href='../Upload/US21.php'">
+									<p>アップロード</p>
+								</div>
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
 							</div>
 						<div id="closeModal" class="closeModal">
 						  ×
