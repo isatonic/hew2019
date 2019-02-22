@@ -401,5 +401,15 @@ textarea {
 }
 
 
+																																										/* US19 */
 
-
+.Q_finished {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 2em;
+	text-align: center;
+	white-space: nowrap;
+	line-height: 1.7em;
+}

@@ -86,22 +86,25 @@
 		<div class="font">
 			<h2 class="Header">　　お問い合わせ完了</h2>
 				<div class="mype_main">
-																			<!-- POST内容（上から順に）-->
-																			<?php echo $_POST['name_s_K']; ?>
-																			<?php echo $_POST['name_m_K']; ?>
-																			<?php echo $_POST['mail_K']; ?>
-																			<?php echo $_POST['mail_af_K']; ?>
-																			<?php echo $_POST['category_K']; ?>
-																			<?php echo $_POST['title_K']; ?>
-																			<?php $data_main = $_POST['main_text_K']; echo nl2br($data_main); ?>
+																			<!-- POST内容（上から順に）
+																			echo $_POST['name_s_K'];>
+																			echo $_POST['name_m_K'];
+																			echo $_POST['mail_K'];
+																			echo $_POST['mail_af_K'];
+																			echo $_POST['category_K'];
+																			echo $_POST['title_K'];
+																			$data_main = $_POST['main_text_K']; 
+																			echo nl2br($data_main);
+																			-->
 					
 					
 					
-					
-					
-					
-					
-					
+					<p class="Q_finished">
+						お問い合わせありがとうございます。<br>
+						ご記入いただいたメールアドレス宛にご回答差し上げますので、恐れ入りますがしばらくお待ちください。<br>
+						お問い合わせ内容によりましては、ご返答にお時間かかる場合もございます。予めご了承ください。
+
+					</p>
 					
 					
 					
