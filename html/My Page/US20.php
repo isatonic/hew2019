@@ -19,7 +19,7 @@ $upload_dir = "";
 ?>
 <html>
 	<head>
-	<title>MyPage | ISATONIC</title>
+	<title>My Page | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -292,13 +292,39 @@ $upload_dir = "";
 					  <div id="modalBg3" class="modalBg3"></div>
 						<div class="modalWrapper3">
 							<div class="modalContents3">
-                <img src="img/placeholder.png" alt="" class="imageee">
-<!--                  --><?php
-//                  $product = $data["product"];
-//                  foreach ($product as $row) {
-//                      echo "<img src='${upload_dir}/{$row['fileName']}' alt='' class='imageee'";
-//                  }
-//                  ?>
+								<div class="upload_pagego flat_button" onClick="location.href='../Upload/US21.php'">
+									<p>アップロード</p>
+								</div>
+                <!--                  --><?php
+                  //                  $product = $data["product"];
+                  //                  foreach ($product as $row) {
+                  //                      echo "<img src='${upload_dir}/{$row['fileName']}' alt='' class='imageee'";
+                  //                  }
+                  //                  ?>
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1_1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
+								<img src="img/placeholder.png" alt="" class="imageee1">
 							</div>
 						<div id="closeModal" class="closeModal">
 						  ×

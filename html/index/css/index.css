@@ -19,6 +19,28 @@ body {
   font-family: Helvetica, sans-serif;
   overflow: hidden;
 }
+/*フェードイン*/
+body{
+	animation: fadeIn 8s ease 0s 1 normal;
+    -webkit-animation: fadeIn 8s ease 0s 1 normal;
+	width: 100%;
+}
+@keyframes fadeIn {
+    0% {
+		opacity: 0
+	}
+    100% {
+		opacity: 1
+	}
+}
+@-webkit-keyframes fadeIn {
+    0% {
+		opacity: 0
+	}
+    100% {
+		opacity: 1
+	}
+}
 
 a {
   color: #535966;

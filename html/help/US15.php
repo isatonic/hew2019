@@ -15,6 +15,7 @@
     <script src="js/gooey.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style_MyPage.css">
+	<link rel="stylesheet" href="css/help_ozawa.css">
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
 	</head>	
@@ -85,11 +86,15 @@
 		<div class="font">
 			<h2 class="Header">　　Help</h2>
 				<div class="mype_main">
-					
-					
-					
-					
-					
+
+					<div class="fontttttt">
+						<p class="font1">FAQ</p>
+						<img src="./img/question.png" alt="" class="font1img" onClick="location.href='./US16.php'">
+
+						<p class="font2">CONTACT</p>
+						<img src="./img/faq.png" alt="" class="font2img" onClick="location.href='./US17.php'">
+					</div>
+
 				</div>
 <!-- フローティング操作ボタン -->
 			<a id="fab" href="US15.php">
