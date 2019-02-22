@@ -106,17 +106,21 @@ $upload_dir = "";
 				<div class="mype_main">
 					<div class="mype_name">
 						<div class="photo">
-							<img src="./icon/<?php echo $user;?>.png" alt=""> <!-- ユーザのアイコン -->
+							<img src="./icon/<?php echo $user;?>.png" alt="アイコン"> <!-- ユーザのアイコン -->
 						</div>
 						<div class="tonic_name">
 							<p class="simei">
-								<?php
-									echo $data["usr_detail"];
-								?>
+                  <?php
+                  echo "{$data["user_info"]["lastName"]} ${data["user_info"]["firstName"]}";
+                  ?>
 								<!-- ユーザ名 --> 様</p>
 						</div>
 						<div class="nicname">
-							<p class="user_name">ゆーざーめい</p>
+							<p class="user_name">
+                  <?php
+                  echo $data["usr_detail"];
+                  ?>
+              </p>
 						</div>
 						<!-- 三種ボタン -->
 						<div class="messeage_aleat">
