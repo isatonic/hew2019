@@ -318,7 +318,7 @@
 .fooooorm7:active {
 	top: 87%;
 }
-.fooooorm7 p{
+.fooooorm7 p {
 	font-size: 2em;
 	position: absolute;
 	top: 50%;
@@ -348,28 +348,31 @@
 	border-radius: 3px;
 	background: #E4E4E4;
 }
-.fooooorm7_6 {
+.fooooorm7_6,.fooooorm8 {
 	position: absolute;
 	width: 11%;
 	height: 8%;
 	top: 86%;
-	left: 50%;
+	left: 60%;
 	transform: translateX(-50%);
 	border-radius: 5px;
 	border: solid 2px #707070;
 }
-.fooooorm7_6:active {
+.fooooorm7_6:active,.fooooorm8:active {
 	top: 87%;
 }
-.fooooorm7_6:hover,.fooooorm7:hover{
+.fooooorm7_6:hover,.fooooorm7:hover,.fooooorm8:hover{
 	background-color: #C6C6C6;
 }
-.fooooorm7_6 p{
+.fooooorm7_6 p,.fooooorm8 p{
 	font-size: 2em;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
+}
+.fooooorm8{
+	left: 40%;
 }
 textarea {
 	resize: none;
@@ -389,6 +392,12 @@ textarea {
 	transform: translate(0%,-50%);
 	white-space: nowrap;
 	font-size: 1.5em;
+}
+.otoiawase_h{
+	white-space: normal;
+	overflow-y: auto;
+	width: 52%;
+	height: 60%;
 }
 
 

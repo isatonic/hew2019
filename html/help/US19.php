@@ -84,86 +84,29 @@
         <script src="js/main.js"></script>
 		<script src="js/Mypage.js"></script>
 		<div class="font">
-			<h2 class="Header">　　お問い合わせ内容確認</h2>
+			<h2 class="Header">　　お問い合わせ完了</h2>
 				<div class="mype_main">
+																			<!-- POST内容（上から順に）-->
+																			<?php echo $_POST['name_s_K']; ?>
+																			<?php echo $_POST['name_m_K']; ?>
+																			<?php echo $_POST['mail_K']; ?>
+																			<?php echo $_POST['mail_af_K']; ?>
+																			<?php echo $_POST['category_K']; ?>
+																			<?php echo $_POST['title_K']; ?>
+																			<?php $data_main = $_POST['main_text_K']; echo nl2br($data_main); ?>
 					
-					<form action="./US19.php" method="POST" id="form001">
-						<div class="fooooorm1_2">
-							<p class="nameee">
-								氏名：&nbsp;
-							</p>
-							<p class="otoiawase">
-								<?php
-									echo $_POST['name_s'];
-								?>
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								<?php
-									echo $_POST['name_m'];
-								?>
-								&nbsp;&nbsp;様
-							</p>
-						</div>
-						<div class="fooooorm2_2">
-							<p class="nameee">
-								メールアドレス：&nbsp;
-							</p>
-							<p class="otoiawase">
-								<?php
-									echo $_POST['mail'];
-								?>
-								&nbsp;&nbsp;
-								<?php
-									echo $_POST['mail_af'];
-								?>
-							</p>
-						</div>
-						<div class="fooooorm4_3">
-							<p class="nameee">
-								カテゴリ：&nbsp;
-							</p>
-							<p class="otoiawase">
-								<?php
-									echo $_POST['category'];
-								?>
-							</p>
-						</div>
-						<div class="fooooorm5_4">
-							<p class="nameee">
-								タイトル：&nbsp;
-							</p>
-							<p class="otoiawase">
-								<?php
-									echo $_POST['title'];
-								?>
-							</p>
-						</div>
-						<div class="fooooorm6_5">
-							<p class="nameee">
-								本文：&nbsp;
-							</p>
-							<p class="otoiawase otoiawase_h">
-								<?php
-									$data_main = $_POST['main_text'];
-									echo nl2br($data_main);
-								?>
-							</p>
-						</div>
-						<div class="fooooorm7_6"  onClick="submiiiit_s()">
-							<p>送信</p>
-						</div>
-						<div class="fooooorm8" onClick="javascript:history.back();">
-							<p>戻る</p>
-						</div>
-						
-						<input type="hidden" name="name_s_K" value="<?php echo $_POST['name_s'] ?>">
-						<input type="hidden" name="name_m_K" value="<?php echo $_POST['name_m'] ?>">
-						<input type="hidden" name="mail_K" value="<?php echo $_POST['mail'] ?>">
-						<input type="hidden" name="mail_af_K" value="<?php echo $_POST['mail_af'] ?>">
-						<input type="hidden" name="category_K" value="<?php echo $_POST['category'] ?>">
-						<input type="hidden" name="title_K" value="<?php echo $_POST['title'] ?>">
-						<input type="hidden" name="main_text_K" value="<?php echo $_POST['main_text'] ?>">
-						
-					</form>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 				</div>
 <!-- フローティング操作ボタン -->

@@ -145,34 +145,55 @@ function submiiiit_s(){
 	target.submit();
 }
  
- //入力チェック
-function check_sub(){ 
-	var flag = 0
-	if(document.form1.name_s.value == ""){
-		flag = 1;
-	}
-	else if(document.form1.name_m.value == ""){
-		flag = 1;
-	}
-	else if(document.form1.mail.value == ""){
-		flag = 1;
-	}	
-	else if(document.form1.mail2.value == ""){
-		flag = 1;
-	}
-	else if(document.form1.title.value == ""){
-		flag = 1;
-	}
-	else if(document.form1.main_text.value == ""){
-		flag = 1;
-	}
-	if(flag){
-		window.alert('必須項目に未入力がありました');
-		return false; // 送信を中止
-	}
-	else{
-		var target = document.getElementById("form001");
-		target.method = "post";
-		target.submit();
-	}
-}
+										//入力チェック
+										function check_sub(){ 
+											var flag = 0
+											if(document.form1.name_s.value == ""){
+												flag = 1;
+											}
+											else if(document.form1.name_m.value == ""){
+												flag = 1;
+											}
+											else if(document.form1.mail.value == ""){
+												flag = 1;
+											}	
+											else if(document.form1.mail2.value == ""){
+												flag = 1;
+											}
+											else if(document.form1.title.value == ""){
+												flag = 1;
+											}
+											else if(document.form1.main_text.value == ""){
+												flag = 1;
+											}
+											if(flag){
+												window.alert('必須項目に未入力がありました');
+												return false; // 送信を中止
+											}
+											else{
+												check3();
+											}
+										}
+										function check3() {
+											var target1 = document.form1.mail.value;
+											var target2 = document.form1.mail2.value;
+											var target3 = document.form1.mail_af.value;
+											var target4 = document.form1.mail_af2.value;
+
+											if(target1 === target2){
+												// 完全一致のときの処理
+												if(target3 === target4){
+													var target = document.getElementById("form001");
+													target.method = "post";
+													target.submit();
+												}
+												else{
+													window.alert('入力したメールアドレスが一致しません'); // メールアドレス違いがあれば警告ダイアログを表示
+													return false; // 送信を中止
+												}
+											}
+											else{
+												window.alert('入力したメールアドレスが一致しません'); //メールアドレス違いがあれば警告ダイアログを表示
+												return false; // 送信を中止
+											}
+										}

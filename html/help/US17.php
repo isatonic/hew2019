@@ -87,7 +87,7 @@
 			<h2 class="Header">　　お問い合わせ</h2>
 				<div class="mype_main">
 					
-					<form action="./US18.php" method="POST" id="form001" name="form1" onSubmit="return check_sub()">
+					<form action="./US18.php" method="POST" id="form001" name="form1">
 						<div class="fooooorm1">
 							<p>
 								氏名（姓）：&nbsp;<input type="text" name="name_s" required maxlength="10" autofocus>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
