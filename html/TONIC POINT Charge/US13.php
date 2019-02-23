@@ -85,6 +85,7 @@
 			<img src="img/クレジットカードブランド.jpg" alt="クレジットカートブランド" class="creditB">
 			<div class="TONICarea">
 				<h3 class="Confirmation">&nbsp;&nbsp;&nbsp;入力内容をご確認ください。&nbsp;&nbsp;</h3>
+        <form action="">
 					<h3 class="chargeP2">チャージポイント数:</h3>
 					<div class="TP2">
 						<div class="tpshow">
@@ -132,7 +133,9 @@
 					</div>
 				<div class="nextpage_okok" onClick="location.href='US14.php?bk=1'" ><h3>&nbsp;&nbsp;決済する&nbsp;&nbsp;</h3></div><br>
 				<div class="nextpage_no" onClick="back()"><h3>&nbsp;&nbsp;戻る&nbsp;&nbsp;</h3></div><br>
+        </form>
 			</div>
+
 			
 			<h3 class="jump_ok">決済するをクリック後、決済が完了します。</h3>
 

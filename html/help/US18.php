@@ -87,7 +87,7 @@
 			<h2 class="Header">　　お問い合わせ内容確認</h2>
 				<div class="mype_main">
 					
-					<form action="./US19.php" method="POST" id="form001">
+					<form action="../controller/askQuestion.php" method="POST" id="form001">
 						<div class="fooooorm1_2">
 							<p class="nameee">
 								氏名：&nbsp;
