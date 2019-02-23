@@ -177,21 +177,13 @@ function submiiiit_s(){
 										function check3() {
 											var target1 = document.form1.mail.value;
 											var target2 = document.form1.mail2.value;
-											var target3 = document.form1.mail_af.value;
-											var target4 = document.form1.mail_af2.value;
 
 											if(target1 === target2){
 												// 完全一致のときの処理
-												if(target3 === target4){
 													var target = document.getElementById("form001");
 													target.method = "post";
 													target.submit();
 												}
-												else{
-													window.alert('入力したメールアドレスが一致しません'); // メールアドレス違いがあれば警告ダイアログを表示
-													return false; // 送信を中止
-												}
-											}
 											else{
 												window.alert('入力したメールアドレスが一致しません'); //メールアドレス違いがあれば警告ダイアログを表示
 												return false; // 送信を中止

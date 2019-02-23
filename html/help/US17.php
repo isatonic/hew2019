@@ -96,29 +96,13 @@
 						</div>
 						<div class="fooooorm2">
 							<p>
-								メールアドレス：&nbsp;<input type="text" name="mail" required maxlength="30" pattern="[a-z0-9._%+-]+$">
-								&nbsp;＠&nbsp;
-								<select name="mail_af" size="1">
-									<option value="@gmail.com">gmail.com</option>
-									<option value="@yahoo.co.jp">yahoo.co.jp</option>
-									<option value="@docomo.ne.jp">docomo.ne.jp</option>
-									<option value="@ezweb.ne.jp">ezweb.ne.jp</option>
-									<option value="@softbank.ne.jp">softbank.ne.jp</option>
-								</select>
+								メールアドレス：&nbsp;<input type="text" name="mail" required maxlength="60" pattern="^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$">
 							</p>
 						</div>
 						<div class="fooooorm3">
 							<p>
 								メールアドレス（確認）：&nbsp;
-								<input type="text" name="mail2" required maxlength="30" pattern="^[a-z0-9._%+-]+$">
-								&nbsp;＠&nbsp;
-								<select name="mail_af2" size="1">
-									<option value="@gmail.com">gmail.com</option>
-									<option value="@yahoo.co.jp">yahoo.co.jp</option>
-									<option value="@docomo.ne.jp">docomo.ne.jp</option>
-									<option value="@ezweb.ne.jp">ezweb.ne.jp</option>
-									<option value="@softbank.ne.jp">softbank.ne.jp</option>
-								</select>
+								<input type="text" name="mail2" required maxlength="30" pattern="^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$">
 							</p>
 						</div>
 						<div class="fooooorm4">
