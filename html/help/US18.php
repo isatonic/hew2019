@@ -111,10 +111,6 @@
 								<?php
 									echo $_POST['mail'];
 								?>
-								&nbsp;&nbsp;
-								<?php
-									echo $_POST['mail_af'];
-								?>
 							</p>
 						</div>
 						<div class="fooooorm4_3">
@@ -158,7 +154,6 @@
 						<input type="hidden" name="name_s_K" value="<?php echo $_POST['name_s'] ?>">
 						<input type="hidden" name="name_m_K" value="<?php echo $_POST['name_m'] ?>">
 						<input type="hidden" name="mail_K" value="<?php echo $_POST['mail'] ?>">
-						<input type="hidden" name="mail_af_K" value="<?php echo $_POST['mail_af'] ?>">
 						<input type="hidden" name="category_K" value="<?php echo $_POST['category'] ?>">
 						<input type="hidden" name="title_K" value="<?php echo $_POST['title'] ?>">
 						<input type="hidden" name="main_text_K" value="<?php echo $_POST['main_text'] ?>">

@@ -90,7 +90,6 @@
 																			echo $_POST['name_s_K'];>
 																			echo $_POST['name_m_K'];
 																			echo $_POST['mail_K'];
-																			echo $_POST['mail_af_K'];
 																			echo $_POST['category_K'];
 																			echo $_POST['title_K'];
 																			$data_main = $_POST['main_text_K']; 
