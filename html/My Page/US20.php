@@ -111,7 +111,9 @@ $upload_dir = "";
 						<div class="tonic_name">
 							<p class="simei">
                   <?php
-                  echo "{$data["user_info"]["lastName"]} ${data["user_info"]["firstName"]}";
+                  $sei = $data["user_info"]["lastName"];
+                  $mei = $data["user_info"]["firstName"];
+                  echo "$sei $mei";
                   ?>
 								<!-- ユーザ名 --> 様</p>
 						</div>
