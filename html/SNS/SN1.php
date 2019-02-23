@@ -1,21 +1,21 @@
 <?php
 session_start();
 require_once "../../vendor/autoload.php";
-if (!isset($_SESSION["id"])) {
-  // ログインページのurl
-    $url = "";
-//    header("Location: $url");
-
-    // debug
-    $user_id = "U123456";
-} else {
-    $user_id = $_SESSION["id"];
-}
-$pdo = new model\myPDO();
-$check = new model\physical\MessageCheck($pdo->getPDO());
-
-// 未読数
-//$notice = $check->check($user_id);
+//if (!isset($_SESSION["id"])) {
+//  // ログインページのurl
+//    $url = "";
+////    header("Location: $url");
+//
+//    // debug
+//    $user_id = "U123456";
+//} else {
+//    $user_id = $_SESSION["id"];
+//}
+//$pdo = new model\myPDO();
+//$check = new model\physical\MessageCheck($pdo->getPDO());
+//
+//// 未読数
+////$notice = $check->check($user_id);
 ?>
 <!DOCTYPE html>
 <html>
