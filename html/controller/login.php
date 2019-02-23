@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require_once "../../vendor/autoload.php";
 
 $pdo = new \model\myPDO();
 $data = new \model\Data($_POST);

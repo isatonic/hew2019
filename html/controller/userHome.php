@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require_once "../../vendor/autoload.php";
 $user = $_SESSION["id"];
 
 use model\myPDO;

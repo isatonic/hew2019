@@ -21,11 +21,15 @@ class MessageCheck extends ModelBase {
         return $this->execUpdate($new, $where);
     }
 
-    public function check(string $user, string $target) {
-        $want = ["lastCheck"];
-        $where = ["user" => $user, "target" => $target];
-        $rows = $this->getRows($want, $where);
-        return $rows[0]["lastCheck"];
+    public function check(string $user) {
+        $now = date('Y-m-d H:i:s');
+        $want = ["count(*) as count"];
+        $where = ["user" => $user];
+        $this->selectSql($want, $where);
+        $this->sql .= " and lastCheck < $now";
+        $this->setAssoc();
+        $ret = $this->returnRows();
+        return (int)$ret[0]["count"];
     }
 
 }

@@ -1,3 +1,22 @@
+<?php
+session_start();
+require_once "../../vendor/autoload.php";
+if (!isset($_SESSION["id"])) {
+  // ログインページのurl
+    $url = "";
+//    header("Location: $url");
+
+    // debug
+    $user_id = "U123456";
+} else {
+    $user_id = $_SESSION["id"];
+}
+$pdo = new model\myPDO();
+$check = new model\physical\MessageCheck($pdo->getPDO());
+
+// 未読数
+//$notice = $check->check($user_id);
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,7 +47,7 @@
 			<ul class="cd-main-nav">
 				<li><a href="about.html" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-				<li><a href="SN1.html">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+				<li><a href="SN1.php">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">カート</a></li>
 			</ul> 
 		</nav>
@@ -185,7 +204,7 @@
 														<h3 class="sns_name7"><div id="answer"></div></h3><!-- ユーザ名 -->
 														<br>
 														<h3 class="Are_you_ok">このユーザをブロックしますか？</h3>
-														<div class="block_ok" onClick="location.href='./SN1.html'"><h3>&nbsp;&nbsp;はい&nbsp;&nbsp;</h3></div><br><!-- ブロックのボタン -->
+														<div class="block_ok" onClick="location.href='SN1.php'"><h3>&nbsp;&nbsp;はい&nbsp;&nbsp;</h3></div><br><!-- ブロックのボタン -->
 														<div class="block_no"><h3>&nbsp;&nbsp;いいえ&nbsp;&nbsp;</h3></div><br><!-- ブロック撤回のボタン -->
 													</div>
 														<!-- 内容記述終わり -->

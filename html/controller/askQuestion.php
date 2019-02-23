@@ -1,5 +1,6 @@
 <?php
 
+require_once "../../vendor/autoload.php";
 $pdo = new \model\myPDO();
 $model = new \model\physical\Contact($pdo->getPDO());
 

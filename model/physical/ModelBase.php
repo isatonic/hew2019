@@ -193,7 +193,7 @@ abstract class ModelBase implements ModelBaseInterface {
             $condition[] = "$key = :$key";
         }
         foreach ($condition as $val2) {
-            $add .= implode("${andor} ", $val2);
+            $add .= implode(" ${andor} ", $val2);
         }
 
         return $add;

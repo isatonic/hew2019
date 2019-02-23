@@ -293,7 +293,7 @@ CREATE TABLE UserLimit (
 CREATE TABLE Friends (
     user   char(25),
     friend char(25),
-    flag   enum ('active', 'block'),
+    flag   enum ('wait', 'active', 'block'),
     PRIMARY KEY (user, friend),
     FOREIGN KEY (user) REFERENCES Users (id)
         ON UPDATE CASCADE

@@ -1,6 +1,7 @@
 <?php
 
 namespace model\logical;
+require_once "../../vendor/autoload.php";
 
 
 use model\DataInterface;

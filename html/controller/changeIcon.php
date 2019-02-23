@@ -9,6 +9,7 @@ if (isset($_SESSION["id"]) and !is_null($_SESSION["id"])) {
     $url = "";
     header("Location: ${url}");
 }
+require_once "../../vendor/autoload.php";
 
 $tmp = $_FILES['uploadfile']['tmp_name'];
 $target = "./icon/${user}.png";

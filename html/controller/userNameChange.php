@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require_once "../../vendor/autoload.php";
 if (!isset($_SESSION["id"]) or is_null($_SESSION["id"])) {
     // jump to login
     $url = "";

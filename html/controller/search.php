@@ -1,4 +1,5 @@
 <?php
+require_once "../../vendor/autoload.php";
 
 if (!isset($_POST["word"]) or is_null($_POST["word"])) {
     if (!isset($_COOKIE["isatonic_search"]) or is_null($_COOKIE["isatonic_search"])) {

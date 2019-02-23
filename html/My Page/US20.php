@@ -48,7 +48,7 @@ $upload_dir = "";
 			<ul class="cd-main-nav">
 				<li><a href="" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-				<li><a href="../SNS/SN1.html">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
+				<li><a href="../SNS/SN1.php">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
 				<li><a href="">カート</a></li>
 			</ul>
 		</nav>
@@ -131,12 +131,12 @@ $upload_dir = "";
 									echo '○件';
 								?></p>
 						</div>
-						<a href="../SNS/SN1.html">
+						<a href="../SNS/SN1.php">
 							<div class="messeage_gogo flat_button">
 								<p>メッセージ作成</p>
 							</div>
 						</a>
-						<a href="../SNS/SN1.html">
+						<a href="../SNS/SN1.php">
 							<div class="friend_search_go flat_button">
 								<p>フレンド検索</p>
 							</div>
