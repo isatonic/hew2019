@@ -21,7 +21,7 @@ if ($result === false) {
 } else {
     // ログイン成功
     $_SESSION["id"] = $result;
-    $url = "";
+    $url = "../index/index.html";
 }
 
 header("Location: " . $url, true, 302);
