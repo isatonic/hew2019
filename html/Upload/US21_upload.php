@@ -88,60 +88,22 @@
 			<h2 class="Header">　　アップロード</h2>
 				<div class="mype_main">
 					
-				<form action="US21_upload.php" method="post" enctype="multipart/form-data" id="form01">
-					<div class="category_1">
-						<p>カテゴリ選択：&nbsp;&nbsp;
-							
-							<select name="cate_1" size="1">
-								<option value="" selected>-選択してください-</option>
-								<option value="写真">写真</option>
-								<option value="イラスト">イラスト</option>
-							</select>
-							/
-							<select name="cate_2" size="1">
-								<option value="" selected>-選択してください-</option>
-								<option value="ビジネス">ビジネス</option>
-								<option value="スポーツ">スポーツ</option>
-								<option value="イベント">イベント</option>
-								<option value="動物">動物</option>
-								<option value="魚">魚</option>
-								<option value="植物">植物</option>
-								<option value="虫">虫</option>
-								<option value="鳥">鳥</option>
-								<option value="SF">SF</option>
-								<option value="料理">料理</option>
-								<option value="野菜">野菜</option>
-								<option value="楽器">楽器</option>
-								<option value="ファッション">ファッション</option>
-								<option value="風景">風景</option>
-								<option value="雑貨">雑貨</option>
-								<option value="文房具">文房具</option>
-								<option value="乗り物">乗り物</option>
-								<option value="家具">家具</option>
-								<option value="宇宙">宇宙</option>
-								<option value="空">空</option>
-								<option value="建物">建物</option>
-								<option value="人">人</option>
-							</select>
-						</p>
-					</div>
-					<div class="category_2">
-							<label class="up_file">
-								<p><i class="fas fa-file-upload"></i>&nbsp;写真を選択</p>
-								<input type="file" name="uploadfile" required>
-							</label>
-							&nbsp;&nbsp;
-					</div>
-						
-						
-						
-							<div class="up_submit" onClick="submits()">
-								<p>確認する</p>
-							</div>
-				</form>
-					<p></p>
 					
-					
+					<div class="upload_fin">
+						<?php
+						$tempfile = $_FILES['uploadfile']['tmp_name'];
+						$filename = 'images/' . $_FILES['uploadfile']['name'];
+						if (is_uploaded_file($tempfile)) {
+							if ( move_uploaded_file($tempfile , $filename )) {
+							echo "アイコン画像をアップロードしました。";
+							} else {
+								echo "ファイルをアップロードできません。";
+							}
+						} else {
+							echo "ファイルが選択されていません。";
+						} 
+						?>
+					</div>
 					
 					
 					

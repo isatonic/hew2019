@@ -335,6 +335,7 @@ body{
 	top: 5%;
 	left: 48.5%;
 	transform: translateX(-50%);
+	background: #D3D3D3;
 }
 .upload_pagego p{
 	font-size: 1.3em;

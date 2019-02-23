@@ -89,7 +89,6 @@
 						<?php
 						$tempfile = $_FILES['uploadfile']['tmp_name'];
 						$filename = 'images/' . $_FILES['uploadfile']['name'];
-
 						if (is_uploaded_file($tempfile)) {
 							if ( move_uploaded_file($tempfile , $filename )) {
 							echo "アイコン画像をアップロードしました。";
