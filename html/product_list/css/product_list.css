@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body{
+  animation: fadeIn 1s ease 0s 1 normal;
+  -webkit-animation: fadeIn 1s ease 0s 1 normal;
+  width: 100%;
+  background-color: #E7E7E7;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
+}
+/*フォント系統*/
+@font-face {
+  font-family: 'Myfont';
+  src: url("../font/FlopDesignFONT.otf");
+}
+.font{
+  font-family: 'Myfont', serif;
+}
+
+.main-content {
+  width: 100%;
+}
+
+/* ボタンの周り */
+.button-wrap {
+  height: 150px;
+  width: 75%;
+  margin: 30px auto;
+
+  /********** flexbox settings ***************/
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /*******************************************/
+
+  /* debug */
+  background-color: red;
+}
+
+/* ボタン */
+.controll-button {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  height: 80px;
+  width: 250px;
+  font-size: 30px;
+}
+
+/* 検索結果 */
+.product-list {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px;
+
+  /********** flexbox settings ***************/
+  /* 並ぶ方向 */
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  /* 溢れたら次の行へ */
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  /* 横方向のmargin */
+  justify-content: space-around;
+  /* 縦方向の位置合わせ */
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* 縦方向のmargin */
+  align-content: space-between;
+  /*******************************************/
+
+  /* debug */
+  background-color: blue;
+}
+
+.product {
+  object-fit: contain;
+  background-color: #ccc;
+  width: 200px;
+  height: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
