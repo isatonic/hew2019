@@ -47,7 +47,7 @@ $(function () {
 											var target1 = document.form1.pass_new.value;
 											var target2 = document.form1.pass_new2.value;
 
-											if(target1 != target2){
+											if(target1 === target2){
 												// 完全一致のときの処理
 												var target = document.getElementById("form1");
 												target.method = "post";

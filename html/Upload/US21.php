@@ -88,17 +88,17 @@
 			<h2 class="Header">　　アップロード</h2>
 				<div class="mype_main">
 					
-				<form action="US21_upload.php" method="post" enctype="multipart/form-data" id="form01">
+				<form action="US21_upload.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
 					<div class="category_1">
 						<p>カテゴリ選択：&nbsp;&nbsp;
 							
-							<select name="cate_1" size="1">
+							<select name="cate_1" size="1" class="borderr2">
 								<option value="" selected>-選択してください-</option>
 								<option value="写真">写真</option>
 								<option value="イラスト">イラスト</option>
 							</select>
-							/
-							<select name="cate_2" size="1">
+							&nbsp;/&nbsp;
+							<select name="cate_2" size="1" class="borderr2">
 								<option value="" selected>-選択してください-</option>
 								<option value="ビジネス">ビジネス</option>
 								<option value="スポーツ">スポーツ</option>
@@ -126,22 +126,44 @@
 						</p>
 					</div>
 					<div class="category_2">
-							<label class="up_file">
-								<p><i class="fas fa-file-upload"></i>&nbsp;写真を選択</p>
-								<input type="file" name="uploadfile" required>
-							</label>
+						<div id="btn">
+							<p><i class="fas fa-file-upload"></i>&nbsp;写真を選択</p>
+						</div>
+						<div class="view_box">
+							<input type="file" id="files" class="file" name="files">
+							<div class="placeholder">
+								<input type="text" id="filename" class="filename" placeholder="選択すると名前が表示されます..." readonly>
+							</div>
+						</div>
+						<div class="img_position">
+							<p>画像がここにプレビューされます...</p>
+						</div>
+						
+						
 							&nbsp;&nbsp;
 					</div>
-						
-						
-						
+					<div class="category_3">
+						<div class="title_img">
+							<p>タイトル：&nbsp;<input type="text" name="title" required maxlength="20" placeholder=" 20文字以内で記入してください"></p>
+						</div>
+						<div class="main_img">
+							<p>紹介テキスト：&nbsp;<textarea name="main_text" rows="3" cols="30" required maxlength="60" placeholder=" 60文字以内で記入してください"></textarea></p>
+						</div>
+						<div class="moneeeey">
+							<p>販売金額：&nbsp;<select name="cate_3" size="1" class="borderr">
+								<option value="" selected>-選択してください-</option>
+								<option value="600TP">６００TP</option>
+								<option value="700TP">７００TP</option>
+								<option value="800TP">８００TP</option>
+								<option value="900TP">９００TP</option>
+								<option value="1000TP">１０００TP</option>
+								</select></p>
+						</div>
+					</div>
 							<div class="up_submit" onClick="submits()">
-								<p>確認する</p>
+								<p>進む</p>
 							</div>
 				</form>
-					<p></p>
-					
-					
 					
 					
 					

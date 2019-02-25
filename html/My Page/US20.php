@@ -235,13 +235,13 @@
 									</div>
 									<div class="form-group">
 										<label>新パスワード (再確認)：</label>
-										<input type="password" class="form-control" name="confirm" oninput="CheckPassword(this)" required>
+										<input type="password" class="form-control" name="confirm" required>
 									</div>
 									<!-- <p>旧パスワード：<input type="text" name="pass_old" class="passed"></p>
 									<p>新パスワード：<input type="text" name="pass_new" class="passed"></p>
 									<p>新パスワード（確認）：<input type="text" name="pass_new2" class="passed"></p>
 									<!-- <input type="submit" value="変更"> -->
-									<button onClick="check()">変更</button>
+									<button onClick="check()" onClick="CheckPassword(this)" >変更</button>
 								</form>
 								
 							</div>
