@@ -158,8 +158,8 @@
 					</div>
 					
 					<div class="push_cre flat_button2" id="openModal3">
-						<p>｜投稿作品一覧</p>
-						<i class="fas fa-images fa-fw imafont"></i>
+						<p>｜投稿作品一覧・アップロード</p>
+						<i class="fas fa-images fa-fw imafont3"></i><i class="fas fa-upload fa-fw imafont2"></i>
 					</div>
 					
 					<div class="buy_cre flat_button2" id="openModal4">
@@ -186,26 +186,30 @@
 							<div class="modalContents">
 								
 								<!-- ユーザアイコンアップロード -->
-								<h1 class="icon_change">ユーザアイコン変更</h1>
-								<form action="US20_upload.php" method="post" enctype="multipart/form-data">
-									<input type="file" name="uploadfile" required>
-									<input type="submit" value="アップロード">
-								</form>
-								
+								<div class="user_imageee">
+									<h1 class="icon_change">ユーザアイコン変更</h1>
+									<form action="US20_upload.php" method="post" enctype="multipart/form-data">
+										<input type="file" name="uploadfile" required>
+										<input type="submit" value="アップロード">
+									</form>
+								</div>
 								<!-- ユーザ名 -->
-								<h1 class="username_change">ユーザ名変更</h1>
-								<form action="US20_name_change.php" method="post">
-									<input type="text" name="name_change" required>
-									<input type="submit" value="変更">
-								</form>
-								
+								<div class="user_nameee">
+									<h1 class="username_change">ユーザ名変更</h1>
+									<form action="US20_name_change.php" method="post">
+										<input type="text" name="name_change" required>
+										<input type="submit" value="変更">
+									</form>
+								</div>
 								<!-- ユーザーID -->
-								<h1 class="userid">ユーザーID</h1>
-								<p>
-									<?php 
-										echo '○○○○○○@yahoo.co.jp';
-									?>
-								</p>
+								<div class="user_iddd">
+									<h1 class="userid">ユーザーID</h1>
+									<p>
+										<?php 
+											echo '○○○○○○@yahoo.co.jp';
+										?>
+									</p>
+								</div>
 							</div>
 						<div id="closeModal" class="closeModal">
 						  ×
@@ -259,30 +263,38 @@
 								<div class="upload_pagego flat_button" onClick="location.href='../Upload/US21.php'">
 									<p>アップロード</p>
 								</div>
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
+								<div class="imgimg">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+								</div>
 							</div>
 						<div id="closeModal" class="closeModal">
 						  ×

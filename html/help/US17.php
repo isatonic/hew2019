@@ -108,7 +108,8 @@
 						<div class="fooooorm4">
 							<p>
 								カテゴリ：&nbsp;
-								<select name="category" size="1">
+								<select name="category" size="1" class="borderr2">
+									<option value="">-選択してください-</option>
 									<option value="動作環境">動作環境</option>
 									<option value="作品について">作品について</option>
 									<option value="退会">退会</option>

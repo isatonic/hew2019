@@ -289,6 +289,8 @@ body{
 
 .icon_change{
 	white-space: nowrap;
+	margin-left: 30px;
+	
 }
 
 /*パスワード変更*/
@@ -338,7 +340,7 @@ body{
 	background: #D3D3D3;
 }
 .upload_pagego p{
-	font-size: 1.3em;
+	font-size: 1.6em;
 	color: #42A5F5;
 	position: absolute;
 	top: 50%;
@@ -405,6 +407,24 @@ body{
 .imafont{
 	position: absolute;
 	left: 80%;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 5em;
+	color: #DFDFDF;
+	
+}
+.imafont2{
+	position: absolute;
+	left: 87%;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 5em;
+	color: #DFDFDF;
+	
+}
+.imafont3{
+	position: absolute;
+	left: 73%;
 	top: 50%;
 	transform: translateY(-50%);
 	font-size: 5em;
@@ -491,9 +511,6 @@ body{
 }
 .imageee{
 	margin: 15px 0 0 10px;
-}
-.imageee1_1{
-	margin: 100px 0 0 10px;
 }
 .imageee1{
 	margin: 15px 0 0 10px;
@@ -699,4 +716,61 @@ body{
   	right: 1rem;
   	cursor: pointer;
 	font-size: 3em;
+}
+
+
+
+.imgimg {
+	position: absolute;
+	top: 56%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 90%;
+	height: 83%;
+	overflow-y: auto;
+}
+.user_imageee {
+	position: absolute;
+	top: 27%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 90%;
+	height: 50%;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	border-radius: 3px;
+	background: #E4E4E4;
+}
+
+.user_nameee {
+	position: absolute;
+	top: 65%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 90%;
+	height: 19%;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	border-radius: 3px;
+	background: #E4E4E4;
+}
+
+.user_iddd {
+	position: absolute;
+	top: 88%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 90%;
+	height: 19%;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	border-radius: 3px;
+	background: #E4E4E4;
+}
+
+.userid {
+	margin-left: 30px;
+	font-size: 2.4em;
+}
+
+.username_change {
+	margin-left: 30px;
+	font-size: 2.4em;
 }
