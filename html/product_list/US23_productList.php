@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html amp lang="ja">
 <head>
-  <title>作品一覧 | ISATONIC</title>
   <meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <title>作品一覧 | ISATONIC</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -15,8 +16,10 @@
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="js/gooey.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="./css/product_list.css">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link rel="canonical" href="./US23_productList.php">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <link rel="stylesheet" href="./css/product_list.css">
 </head>
 <body>
 
@@ -95,29 +98,9 @@
 
   <!------------------------- 一覧 ---------------------------->
   <div class="product-list flex-container">
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
-    <a href=""><img class="product" src="./img/クレジットカードブランド.jpg" alt=""></a>
+    <div class="product-container">
+      <a href=""><amp-img class="product" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img></a>
+    </div>
   </div>
   <!----------------------------------------------------------->
 

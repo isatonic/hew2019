@@ -102,13 +102,17 @@ body{
   background-color: blue;
 }
 
-.product {
-  object-fit: contain;
+.product-container {
   background-color: #ccc;
-  width: 200px;
-  height: 200px;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 40px;
   margin-bottom: 40px;
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+amp-img.product img {
+  object-fit: contain;
 }
