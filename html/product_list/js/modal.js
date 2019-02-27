@@ -1,6 +1,6 @@
 // modal open/close
 $(function () {
-    $('#openModal').click(function () {
+    $('.openModal').click(function () {
         $('#modalArea').fadeIn();
     });
     $('#closeModal , #modalBg').click(function () {
