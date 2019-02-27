@@ -20,6 +20,7 @@
   <link rel="canonical" href="./US23_productList.php">
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   <link rel="stylesheet" href="./css/product_list.css">
+  <script src="./js/modal.js"></script>
 </head>
 <body>
 
@@ -99,10 +100,41 @@
   <!------------------------- 一覧 ---------------------------->
   <div class="product-list flex-container">
     <div class="product-container">
-      <a href=""><amp-img class="product" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img></a>
+      <amp-img id="openModal" class="product" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
     </div>
   </div>
   <!----------------------------------------------------------->
+
+  <section id="modalArea" class="modalArea">
+    <div id="modalBg" class="modalBg"></div>
+    <div class="modalWrapper">
+      <div class="modalContents flex-container">
+        <div class="image">
+          <div class="image-container flex-container">
+            <img class="thumbnail" src="./img/クレジットカードブランド.jpg" alt="">
+          </div>
+          <button class="report">この作品を通報する</button>
+        </div>
+        <div class="detail">
+          <div class="title">
+            あああ。このタイトルは二十文字までです。
+          </div>
+          <div class="comment">
+            コメントは六十文字までです。あああああああああああああああああああああああああああああああああああああああああああああ。
+          </div>
+          <div class="price">
+            <div class="display-area">
+              販売金額: 1000 P
+            </div>
+          </div>
+          <div class="submit"><button>カートに入れる</button></div>
+        </div>
+      </div>
+      <div id="closeModal" class="closeModal">
+        ×
+      </div>
+    </div>
+  </section>
 
 </div>
 
