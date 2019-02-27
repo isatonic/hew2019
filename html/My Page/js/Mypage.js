@@ -66,9 +66,7 @@ $(function () {
 												if(input1 != input2){
 													confirm.setCustomValidity("入力値が一致しません。");
 												}else{
-												var target = document.getElementById("form1");
-												target.method = "post";
-												target.submit();
+													submits_pass();
 												}
 											}
 
@@ -132,3 +130,5 @@ $(function () {
 		$('#modalArea7').fadeOut();
 	});
 });
+
+

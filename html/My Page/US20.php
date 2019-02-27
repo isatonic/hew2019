@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="css/style_MyPage.css">
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
+	<script src="js/ozawa.js"></script>
 	</head>	
 	<body>
     
@@ -188,17 +189,34 @@
 								<!-- ユーザアイコンアップロード -->
 								<div class="user_imageee">
 									<h1 class="icon_change">ユーザアイコン変更</h1>
-									<form action="US20_upload.php" method="post" enctype="multipart/form-data">
-										<input type="file" name="uploadfile" required>
-										<input type="submit" value="アップロード">
+									<form action="US20_upload.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
+											<div id="btn">
+												<p><i class="fas fa-file-upload"></i>&nbsp;写真を選択</p>
+											</div>
+											<div class="view_box">
+												<input type="file" id="files" class="file" name="files">
+												<div class="placeholder">
+													<input type="text" id="filename" class="filename" placeholder="選択すると名前が表示されます..." readonly>
+												</div>
+											</div>
+											<div class="img_position">
+												<p>画像がここにプレビューされます...</p>
+											</div>
+											<div class="up_submit" onClick="submits()">
+												<p>進む</p>
+											</div>
+										</div>
 									</form>
-								</div>
+
+
 								<!-- ユーザ名 -->
 								<div class="user_nameee">
 									<h1 class="username_change">ユーザ名変更</h1>
-									<form action="US20_name_change.php" method="post">
-										<input type="text" name="name_change" required>
-										<input type="submit" value="変更">
+									<form action="US20_name_change.php" method="post" id="form0001">
+										<input type="text" name="name_change" required maxlength="20">
+										<div class="up_submit2" onClick="submits_id()">
+												<p>変更</p>
+											</div>
 									</form>
 								</div>
 								<!-- ユーザーID -->
@@ -228,24 +246,25 @@
 								<form name="form1" id="form1" action="US20_pass_change.php" method="post" onSubmit="return check()">
 									
 									
-									
-									<div class="form-group">
-										<label>旧パスワード：</label>
-										<input type="password" class="form-control" name="password_old" id="password_old" required>
+									<div class="passgroup">
+										<div class="form-group">
+											<label>旧パスワード：</label>
+											<input type="password" class="form-control" name="password_old" id="password_old" required>
+										</div>
+										<br>
+										<div class="form-group">
+											<label>新パスワード：</label>
+											<input type="password" class="form-control" name="password" id="password" required>
+										</div>
+										<br>
+										<div class="form-group">
+											<label>新パスワード (再確認)：</label>
+											<input type="password" class="form-control" name="confirm" required>
+										</div>
 									</div>
-									<div class="form-group">
-										<label>新パスワード：</label>
-										<input type="password" class="form-control" name="password" id="password" required>
+									<div class="up_submit3" onClick="submits_pass()">
+										<p>変更</p>
 									</div>
-									<div class="form-group">
-										<label>新パスワード (再確認)：</label>
-										<input type="password" class="form-control" name="confirm" required>
-									</div>
-									<!-- <p>旧パスワード：<input type="text" name="pass_old" class="passed"></p>
-									<p>新パスワード：<input type="text" name="pass_new" class="passed"></p>
-									<p>新パスワード（確認）：<input type="text" name="pass_new2" class="passed"></p>
-									<!-- <input type="submit" value="変更"> -->
-									<button onClick="check()" onClick="CheckPassword(this)" >変更</button>
 								</form>
 								
 							</div>

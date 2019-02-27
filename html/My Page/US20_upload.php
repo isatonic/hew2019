@@ -87,8 +87,8 @@
 				<div class="mype_main">
 					<div class="upload_fin">
 						<?php
-						$tempfile = $_FILES['uploadfile']['tmp_name'];
-						$filename = 'images/' . $_FILES['uploadfile']['name'];
+						$tempfile = $_FILES['files']['tmp_name'];
+						$filename = 'images/' . $_FILES['files']['name'];
 						if (is_uploaded_file($tempfile)) {
 							if ( move_uploaded_file($tempfile , $filename )) {
 							echo "アイコン画像をアップロードしました。";
