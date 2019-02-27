@@ -100,7 +100,16 @@
   <!------------------------- 一覧 ---------------------------->
   <div class="product-list flex-container">
     <div class="product-container">
-      <amp-img id="openModal" class="product" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
+      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
+    </div>
+    <div class="product-container">
+      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
+    </div>
+    <div class="product-container">
+      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
+    </div>
+    <div class="product-container">
+      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
     </div>
   </div>
   <!----------------------------------------------------------->
