@@ -36,7 +36,8 @@ $upload_dir = "";
 	<link rel="stylesheet" href="css/style_MyPage.css">
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
-	</head>
+	<script src="js/ozawa.js"></script>
+	</head>	
 	<body>
 
     <div class="cd-main-content">
@@ -196,8 +197,8 @@ $upload_dir = "";
 					</div>
 
 					<div class="push_cre flat_button2" id="openModal3">
-						<p>｜投稿作品一覧</p>
-						<i class="fas fa-images fa-fw imafont"></i>
+						<p>｜投稿作品一覧・アップロード</p>
+						<i class="fas fa-images fa-fw imafont3"></i><i class="fas fa-upload fa-fw imafont2"></i>
 					</div>
 
 					<div class="buy_cre flat_button2" id="openModal4">
@@ -224,26 +225,47 @@ $upload_dir = "";
 							<div class="modalContents">
 
 								<!-- ユーザアイコンアップロード -->
-								<h1 class="icon_change">ユーザアイコン変更</h1>
-								<form action="../controller/changeIcon.php" method="post" enctype="multipart/form-data">
-									<input type="file" name="uploadfile" required>
-									<input type="submit" value="アップロード">
-								</form>
+								<div class="user_imageee">
+									<h1 class="icon_change">ユーザアイコン変更</h1>
+									<form action="US20_upload.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
+											<div id="btn">
+												<p><i class="fas fa-file-upload"></i>&nbsp;写真を選択</p>
+											</div>
+											<div class="view_box">
+												<input type="file" id="files" class="file" name="files">
+												<div class="placeholder">
+													<input type="text" id="filename" class="filename" placeholder="選択すると名前が表示されます..." readonly>
+												</div>
+											</div>
+											<div class="img_position">
+												<p>画像がここにプレビューされます...</p>
+											</div>
+											<div class="up_submit" onClick="submits()">
+												<p>進む</p>
+											</div>
+										</div>
+									</form>
+
 
 								<!-- ユーザ名 -->
-								<h1 class="username_change">ユーザ名変更</h1>
-								<form action="../controller/userNameChange.php" method="post">
-									<input type="text" name="name_change" required>
-									<input type="submit" value="変更">
-								</form>
-
+								<div class="user_nameee">
+									<h1 class="username_change">ユーザ名変更</h1>
+									<form action="US20_name_change.php" method="post" id="form0001">
+										<input type="text" name="name_change" required maxlength="20">
+										<div class="up_submit2" onClick="submits_id()">
+												<p>変更</p>
+											</div>
+									</form>
+								</div>
 								<!-- ユーザーID -->
-								<h1 class="userid">ユーザーID</h1>
-								<p>
-									<?php
-										echo $user;
-									?>
-								</p>
+								<div class="user_iddd">
+									<h1 class="userid">ユーザーID</h1>
+									<p>
+										<?php 
+											echo 'Uxxxxxxxx';
+										?>
+									</p>
+								</div>
 							</div>
 						<div id="closeModal" class="closeModal">
 						  ×
@@ -261,25 +283,26 @@ $upload_dir = "";
 								<h1 class="password_change">パスワード変更</h1>
 								<form name="form1" id="form1" action="US20_pass_change.php" method="post" onSubmit="return check()">
 
-
-
-									<div class="form-group">
-										<label>旧パスワード：</label>
-										<input type="password" class="form-control" name="password_old" id="password_old" required>
+									
+									<div class="passgroup">
+										<div class="form-group">
+											<label>旧パスワード：</label>
+											<input type="password" class="form-control" name="password_old" id="password_old" required>
+										</div>
+										<br>
+										<div class="form-group">
+											<label>新パスワード：</label>
+											<input type="password" class="form-control" name="password" id="password" required>
+										</div>
+										<br>
+										<div class="form-group">
+											<label>新パスワード (再確認)：</label>
+											<input type="password" class="form-control" name="confirm" required>
+										</div>
 									</div>
-									<div class="form-group">
-										<label>新パスワード：</label>
-										<input type="password" class="form-control" name="password" id="password" required>
+									<div class="up_submit3" onClick="submits_pass()">
+										<p>変更</p>
 									</div>
-									<div class="form-group">
-										<label>新パスワード (再確認)：</label>
-										<input type="password" class="form-control" name="confirm" oninput="CheckPassword(this)" required>
-									</div>
-									<!-- <p>旧パスワード：<input type="text" name="pass_old" class="passed"></p>
-									<p>新パスワード：<input type="text" name="pass_new" class="passed"></p>
-									<p>新パスワード（確認）：<input type="text" name="pass_new2" class="passed"></p>
-									<! -- <input type="submit" value="変更"> -->
-									<button type="submit" onClick="check()">変更</button>
 								</form>
 
 							</div>
@@ -300,33 +323,41 @@ $upload_dir = "";
                 <!--                  --><?php
                   //                  $product = $data["product"];
                   //                  foreach ($product as $row) {
-                  //                      echo "<img src='${upload_dir}/{$row['fileName']}' alt='' class='imageee'";
+                  //                      echo "<img src='${upload_dir}/{$row['fileName']}' alt='' class='imageee1'";
                   //                  }
                   //                  ?>
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1_1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
-								<img src="img/placeholder.png" alt="" class="imageee1">
+								<div class="imgimg">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+									<img src="img/placeholder.png" alt="" class="imageee1">
+								</div>
 							</div>
 						<div id="closeModal" class="closeModal">
 						  ×

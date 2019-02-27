@@ -47,7 +47,7 @@ $(function () {
 											var target1 = document.form1.pass_new.value;
 											var target2 = document.form1.pass_new2.value;
 
-											if(target1 != target2){
+											if(target1 === target2){
 												// 完全一致のときの処理
 												var target = document.getElementById("form1");
 												target.method = "post";
@@ -66,9 +66,7 @@ $(function () {
 												if(input1 != input2){
 													confirm.setCustomValidity("入力値が一致しません。");
 												}else{
-												var target = document.getElementById("form1");
-												target.method = "post";
-												target.submit();
+													submits_pass();
 												}
 											}
 
@@ -132,3 +130,5 @@ $(function () {
 		$('#modalArea7').fadeOut();
 	});
 });
+
+

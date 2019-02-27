@@ -289,8 +289,6 @@ body{
 
 .icon_change{
 	white-space: nowrap;
-	margin-left: 30px;
-	
 }
 
 /*パスワード変更*/
@@ -340,7 +338,7 @@ body{
 	background: #D3D3D3;
 }
 .upload_pagego p{
-	font-size: 1.6em;
+	font-size: 1.3em;
 	color: #42A5F5;
 	position: absolute;
 	top: 50%;
@@ -407,24 +405,6 @@ body{
 .imafont{
 	position: absolute;
 	left: 80%;
-	top: 50%;
-	transform: translateY(-50%);
-	font-size: 5em;
-	color: #DFDFDF;
-	
-}
-.imafont2{
-	position: absolute;
-	left: 87%;
-	top: 50%;
-	transform: translateY(-50%);
-	font-size: 5em;
-	color: #DFDFDF;
-	
-}
-.imafont3{
-	position: absolute;
-	left: 73%;
 	top: 50%;
 	transform: translateY(-50%);
 	font-size: 5em;
@@ -511,6 +491,9 @@ body{
 }
 .imageee{
 	margin: 15px 0 0 10px;
+}
+.imageee1_1{
+	margin: 100px 0 0 10px;
 }
 .imageee1{
 	margin: 15px 0 0 10px;
@@ -706,14 +689,6 @@ body{
   	background-color: #C6C6C6;
 	border-radius: 3px;
 }
-.modalWrapper{
-	width: 1300px;
-	height: 700px;
-}
-.modalWrapper2{
-	width: 700px;
-	height: 300px;
-}
 .modalWrapper7 {
   	width: 800px;
 	height: 500px;
@@ -724,254 +699,4 @@ body{
   	right: 1rem;
   	cursor: pointer;
 	font-size: 3em;
-}
-
-
-
-.imgimg {
-	position: absolute;
-	top: 56%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	width: 90%;
-	height: 83%;
-	overflow-y: auto;
-}
-.user_imageee {
-	position: absolute;
-	top: 27%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	width: 90%;
-	height: 50%;
-	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
-	border-radius: 3px;
-	background: #E4E4E4;
-}
-
-.user_nameee {
-	position: absolute;
-	top: 65%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	width: 90%;
-	height: 19%;
-	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
-	border-radius: 3px;
-	background: #E4E4E4;
-}
-.user_nameee input {
-	width: 300px;
-	height: 35px;
-	font-size: 1.7em;
-	position: absolute;
-	top: 75%;
-	left: 28%;
-	transform: translateY(-50%);
-	border-radius: 3px;
-	border: 2px solid #A9A9A9;
-	text-align: center;
-}
-.user_iddd {
-	position: absolute;
-	top: 88%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	width: 90%;
-	height: 19%;
-	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
-	border-radius: 3px;
-	background: #E4E4E4;
-}
-.userid {
-	margin-left: 30px;
-	font-size: 2.4em;
-}
-.user_iddd p {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 1.5em;
-	width: 500px;
-	border-bottom: solid 2px #A9A9A9;
-	text-align: center;
-}
-
-.username_change {
-	margin-left: 30px;
-	font-size: 2.4em;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.user_imageee input {
-	background: none;
-	box-shadow: none;
-	border: none;
-}
-#btn {
-	width: 200px;
-	height: 60px;
-	padding: 20px;
-	border: solid 2px #9F9F9F;
-	border-radius: 3px;
-	position: absolute;
-	top: 40%;
-	left: 55%;
-	transform: translate(-50%,-50%);
-	cursor: pointer;
-}
-#btn p {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	font-size: 1.5em;
-	white-space: nowrap;
-}
-#btn:hover,.up_submit:hover,.up_submit2:hover,.up_submit3:hover{
-	background: #ABABAB;
-}
-.placeholder {
-	position: absolute;
-	left: 70%;
-	top: 63%;
-	transform: translate(-50%,-50%);
-	cursor: pointer;
-	font-size: 1.2em;
-}
-.placeholder input{
-	width: 500px;
-	border-bottom: solid 2px #A9A9A9;
-	text-align: center;
-	cursor: pointer;
-}
-.img_view{
-	width: auto;
-	height: 200px;
-	max-width: 400px;
-	position: absolute;
-	top: 60%;
-	left: 22%;
-	transform: translate(-50%,-50%);
-	z-index: 100;
-}
-.layer{
-	width: 400px;
-	height: 200px;
-	background: #E4E4E4;
-	position: absolute;
-	top: 60%;
-	left: 22%;
-	transform: translate(-50%,-50%);
-	z-index: 98;
-}
-.img_position {
-	position: absolute;
-	width: 400px;
-	height: 200px;
-	border:  solid 2px #A9A9A9;
-	top: 60%;
-	left: 22%;
-	transform: translate(-50%,-50%);
-}
-.img_position p{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	font-size: 1.2em;
-	color: #7C7C7C;
-	white-space: nowrap;
-}
-.up_submit {
-	position: absolute;
-	top: 78%;
-	left: 70%;
-	transform: translateX(-50%);
-	width: 150px;
-	height: 50px;
-	padding: 20px;
-	border: solid 2px #9F9F9F;
-	border-radius: 3px;
-}
-.up_submit2 {
-	position: absolute;
-	top: 50%;
-	left: 70%;
-	transform: translateX(-50%);
-	width: 150px;
-	height: 50px;
-	padding: 20px;
-	border: solid 2px #9F9F9F;
-	border-radius: 3px;
-}
-.up_submit3 {
-	position: absolute;
-	top: 72%;
-	left: 84%;
-	transform: translateX(-50%);
-	width: 150px;
-	height: 50px;
-	padding: 20px;
-	border: solid 2px #9F9F9F;
-	border-radius: 3px;
-}
-.up_submit p,.up_submit2 p,.up_submit3 p{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	font-size: 1.4em;
-	cursor: pointer;
-}
-
-.password_change {
-	margin-left: 20px;
-	font-size: 2.4em;
-}
-
-.modalContents2 {
-	position: absolute;
-	top: 50%;
-	left: 47%;
-	transform: translate(-50%,-50%);
-	width: 88%;
-	height: 80%;
-	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
-	border-radius: 3px;
-	background: #E4E4E4;
-}
-
-.passgroup {
-	width: 500px;
-	height: 200px;
-	position: absolute;
-	top: 35%;
-	right: 40%;
-	text-align: right;
 }

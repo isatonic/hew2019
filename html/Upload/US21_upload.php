@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>My Page | ISATONIC</title>
+	<title>アップロード | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -15,8 +15,10 @@
     <script src="js/gooey.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style_MyPage.css">
+	<link rel="stylesheet" href="css/help_ozawa.css">
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
+	<script src="js/ozawa.js"></script>
 	</head>	
 	<body>
     
@@ -69,7 +71,7 @@
 					</li>
                     <li>
 						<a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-						<h4><a class="cd-nowrap" href="">5</a></h4>
+						<h4><a class="cd-nowrap" href="">5</a></h4>	
 					</li>
 
 				</ul>
@@ -83,26 +85,38 @@
         <script src="js/main.js"></script>
 		<script src="js/Mypage.js"></script>
 		<div class="font">
-			<h2 class="Header">　　My Page</h2>
+			<h2 class="Header">　　アップロード完了</h2>
 				<div class="mype_main">
+					
+					
 					<div class="upload_fin">
 						<?php
 						$tempfile = $_FILES['files']['tmp_name'];
 						$filename = 'images/' . $_FILES['files']['name'];
 						if (is_uploaded_file($tempfile)) {
 							if ( move_uploaded_file($tempfile , $filename )) {
-							echo "アイコン画像をアップロードしました。";
+							echo "画像をアップロードしました。";
 							} else {
-								echo "ファイルをアップロードできません。";
+								echo "画像をアップロードできません。";
 							}
 						} else {
 							echo "ファイルが選択されていません。";
 						} 
 						?>
 					</div>
+					
+					<?php
+					echo $_POST['cate_1'];
+					echo $_POST['cate_2'];
+					echo $_POST['title'];
+					echo $_POST['main_text'];
+					echo $_POST['cate_3'];
+					?>
+					
+					
 				</div>
 <!-- フローティング操作ボタン -->
-			<a id="fab" href="US20.php">
+			<a id="fab" href="US21.php">
 				<i class="fas fa-home"></i>
 			</a>
 			
