@@ -1,34 +1,7 @@
-@charset "UTF-8";
-
 .flex-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-body {
-  animation: fadeIn 1s ease 0s 1 normal;
-  -webkit-animation: fadeIn 1s ease 0s 1 normal;
-  width: 100%;
-  background-color: #E7E7E7;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0
-  }
-  100% {
-    opacity: 1
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0
-  }
-  100% {
-    opacity: 1
-  }
 }
 
 /*フォント系統*/

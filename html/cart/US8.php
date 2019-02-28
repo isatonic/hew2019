@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>HELP | ISATONIC</title>
+	<title>ショッピングカート | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,8 +16,11 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style_MyPage.css">
 	<link rel="stylesheet" href="css/help_ozawa.css">
+	<link rel="stylesheet" href="css/cart.css">
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
+	<script src="js/ozawa.js"></script>
+	<script src="js/cart.js"></script>
 	</head>	
 	<body>
     
@@ -87,20 +90,63 @@
         <script src="js/main.js"></script>
 		<script src="js/Mypage.js"></script>
 		<div class="font">
-			<h2 class="Header">　　Help</h2>
+			<h2 class="Header">　　ショピングカート</h2>
 				<div class="mype_main">
+					<form action="US9.php" method="post" id="form101" name="form101">
+						<div class="cartbar">
+							<p>　　　　　　　　 画像　　　　　　　　　　　　　　　　　　タイトル　　　　　　　　　　　　　　　　　価格　　　　　　　　　　　　　　　　 　削除ボタン　　　　</p>
+						</div>
+						<div class="flex-container flexxxxxxxxx">
+							
+						<!---------------------------------------------------------------------------カート内容↓-------------------------------------------------------------------->
+							<div class="cart_flex flex-container">
+									<div class="base_BOX_img flex-container flex_center">
+										<img src="img/1st.png" alt="">
+									</div>
 
-					<div class="fontttttt">
-						<p class="font1">FAQ</p>
-						<img src="./img/question.png" alt="" class="font1img" onClick="location.href='./US16.php'">
+									<div class="base_BOX flex-container flex_center">
+										<p class="nameeee">ああああああああああああああああああああ</p>
+									</div>
 
-						<p class="font2">CONTACT</p>
-						<img src="./img/faq.png" alt="" class="font2img" onClick="location.href='./US17.php'">
-					</div>
+									<div class="base_BOX2 flex-container flex_center">
+										<p class="tonic_PPP">1000TP</p>
+									</div>
 
+									<div class="base_BOX3 flex-container flex_center">
+										<div class="delete_B">
+											<p>削除</p>
+										</div>
+									</div>
+							</div>
+						<!---------------------------------------------------------------------------カート内容↑-------------------------------------------------------------------->
+							
+							
+							
+							
+							
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							<div class="up_submit" onClick="submits()">
+								<p>進む</p>
+							</div>
+				</form>
+					
+					
+					
+					
 				</div>
 <!-- フローティング操作ボタン -->
-			<a id="fab" href="US15.php">
+			<a id="fab" href="US8.php">
 				<i class="fas fa-home"></i>
 			</a>
 			

@@ -24,13 +24,16 @@
        <header class="cd-main-header animate-search">
 		<nav class="cd-main-nav-wrapper">
 			<a href="../index/index.html"><img src="img/LOGO/LOGO W.png" class="logo"></a>
-			<a href="" class="cd-search-trigger cd-text-replace">Search</a>
+			<a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
-				<li><a href="about.html" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-				<li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-				<li><a href="SN1.html">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-				<li><a href="">カート</a></li>
+				<li><a href="">ログイン</a></li>
+				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+				<li><a href="../Genre/US27.php">ジャンル検索</a></li>
+				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+				<li><a href="../SNS/SN1.html">SNS</a></li>
+				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+				<li><a href="../cart/US8.php">カート</a></li>
 			</ul> 
 		</nav>
 
@@ -40,8 +43,8 @@
     
 
 	<div id="search" class="cd-main-search">
-		<form action="" method="post">
-			<input type="search" placeholder="入力してください">
+    <form name="searchForm" action="" method="post">
+      <input type="search" placeholder="入力してください">
 
 		</form>
 
