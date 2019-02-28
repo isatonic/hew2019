@@ -25,11 +25,12 @@ class Upload extends LogicalBase {
             "title" => $Data->extend("title"),
             "author" => $Data->extend("author"),
             "price" => $Data->extend("price"),
+            "type" => $Data->extend("type"),
             "jenre" => $Data->extend("jenre"),
             "authorComment" => $Data->extend("comment"),
             "tags" => $Data->extend("tags")
         );
-        $this->upload_file = "../../html/upload/images/" . $this->data["fileName"];
+        $this->upload_file = "../../html/Upload/images/" . $this->data["fileName"];
     }
 
     private function createID($author) {

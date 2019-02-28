@@ -15,6 +15,7 @@ class Products extends ModelBase {
      * @param mixed[] $data {
      *      @type string    "id"            商品ID
      *      @type string    "fileName"      ファイル名
+     *      @type string    "type"          photo/paint
      *      @type string    "title"         タイトル
      *      @type string    "author"        作者のユーザID
      *      @type int       "price"         価格

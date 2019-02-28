@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
- 
-	<link rel="stylesheet" href="css/style-j.css">    
-	<script src="js/modernizr.js"></script> 
+
+	<link rel="stylesheet" href="css/style-j.css">
+	<script src="js/modernizr.js"></script>
 	<link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,15 +19,15 @@
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
 	<script src="js/ozawa.js"></script>
-	</head>	
+	</head>
 	<body>
-    
+
     <div class="cd-main-content">
        <header class="cd-main-header animate-search">
 		<nav class="cd-main-nav-wrapper">
         　　 <img src="img/LOGO/LOGO W.png" class="logo" alt="" onClick="location.href='../index/index.html'">
 			<a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
-			
+
 			<ul class="cd-main-nav">
 				<li><a href="">ログイン</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
@@ -41,8 +41,8 @@
 
 		<a href="" class="cd-nav-trigger cd-text-replace">Menu<span></span></a>
 	</header>
-	
-    
+
+
 
 	<div id="search" class="cd-main-search">
     <form name="searchForm" action="" method="post">
@@ -74,15 +74,15 @@
 					</li>
                     <li>
 						<a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-						<h4><a class="cd-nowrap" href="">5</a></h4>	
+						<h4><a class="cd-nowrap" href="">5</a></h4>
 					</li>
 
 				</ul>
-			</div> 
+			</div>
 		</div>
 
 		<a href="#0" class="close cd-text-replace">Close Form</a>
-	</div>  
+	</div>
         </div>
         <script src="js/jquery-2.1.4.js"></script>
         <script src="js/main.js"></script>
@@ -90,15 +90,15 @@
 		<div class="font">
 			<h2 class="Header">　　アップロード</h2>
 				<div class="mype_main">
-					
+
 				<form action="US21_upload.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
 					<div class="category_1">
 						<p>カテゴリ選択：&nbsp;&nbsp;
-							
+
 							<select name="cate_1" size="1" class="borderr2">
 								<option value="" selected>-選択してください-</option>
-								<option value="写真">写真</option>
-								<option value="イラスト">イラスト</option>
+								<option value="photo">写真</option>
+								<option value="paint">イラスト</option>
 							</select>
 							&nbsp;/&nbsp;
 							<select name="cate_2" size="1" class="borderr2">
@@ -141,8 +141,8 @@
 						<div class="img_position">
 							<p>画像がここにプレビューされます...</p>
 						</div>
-						
-						
+
+
 							&nbsp;&nbsp;
 					</div>
 					<div class="category_3">
@@ -155,11 +155,11 @@
 						<div class="moneeeey">
 							<p>販売金額：&nbsp;<select name="cate_3" size="1" class="borderr">
 								<option value="" selected>-選択してください-</option>
-								<option value="600TP">６００TP</option>
-								<option value="700TP">７００TP</option>
-								<option value="800TP">８００TP</option>
-								<option value="900TP">９００TP</option>
-								<option value="1000TP">１０００TP</option>
+								<option value="600">６００TP</option>
+								<option value="700">７００TP</option>
+								<option value="800">８００TP</option>
+								<option value="900">９００TP</option>
+								<option value="1000">１０００TP</option>
 								</select></p>
 						</div>
 					</div>
@@ -167,18 +167,18 @@
 								<p>進む</p>
 							</div>
 				</form>
-					
-					
-					
-					
+
+
+
+
 				</div>
 <!-- フローティング操作ボタン -->
 			<a id="fab" href="US21.php">
 				<i class="fas fa-home"></i>
 			</a>
-			
-			
-			
+
+
+
 
 		</div>
 	</body>
