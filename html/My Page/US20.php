@@ -243,7 +243,6 @@ $upload_dir = "";
 											<div class="up_submit" onClick="submits()">
 												<p>進む</p>
 											</div>
-										</div>
 									</form>
 
 
