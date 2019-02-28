@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>お問い合わせ | ISATONIC</title>
+	<title>ショッピングカート | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,8 +16,11 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style_MyPage.css">
 	<link rel="stylesheet" href="css/help_ozawa.css">
+	<link rel="stylesheet" href="css/cart.css">
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
+	<script src="js/ozawa.js"></script>
+	<script src="js/cart.js"></script>
 	</head>	
 	<body>
     
@@ -35,7 +38,7 @@
 				<li><a href="../SNS/SN1.html">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../cart/US8.php">カート</a></li>
-			</ul>
+			</ul> 
 		</nav>
 
 		<a href="" class="cd-nav-trigger cd-text-replace">Menu<span></span></a>
@@ -87,85 +90,63 @@
         <script src="js/main.js"></script>
 		<script src="js/Mypage.js"></script>
 		<div class="font">
-			<h2 class="Header">　　お問い合わせ内容確認</h2>
+			<h2 class="Header">　　ショピングカート</h2>
 				<div class="mype_main">
+					<form action="US9.php" method="post" id="form101" name="form101">
+						<div class="cartbar">
+							<p>　　　　　　　　 画像　　　　　　　　　　　　　　　　　　タイトル　　　　　　　　　　　　　　　　　価格　　　　　　　　　　　　　　　　 　削除ボタン　　　　</p>
+						</div>
+						<div class="flex-container flexxxxxxxxx">
+							
+						<!---------------------------------------------------------------------------カート内容↓-------------------------------------------------------------------->
+							<div class="cart_flex flex-container">
+									<div class="base_BOX_img flex-container flex_center">
+										<img src="img/1st.png" alt="">
+									</div>
+
+									<div class="base_BOX flex-container flex_center">
+										<p class="nameeee">ああああああああああああああああああああ</p>
+									</div>
+
+									<div class="base_BOX2 flex-container flex_center">
+										<p class="tonic_PPP">1000TP</p>
+									</div>
+
+									<div class="base_BOX3 flex-container flex_center">
+										<div class="delete_B">
+											<p>削除</p>
+										</div>
+									</div>
+							</div>
+						<!---------------------------------------------------------------------------カート内容↑-------------------------------------------------------------------->
+							
+							
+							
+							
+							
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							<div class="up_submit" onClick="submits()">
+								<p>進む</p>
+							</div>
+				</form>
 					
-					<form action="../controller/askQuestion.php" method="POST" id="form001">
-						<div class="fooooorm1_2">
-							<p class="nameee">
-								氏名：&nbsp;
-							</p>
-							<p class="otoiawase">
-								<?php
-									echo $_POST['name_s'];
-								?>
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								<?php
-									echo $_POST['name_m'];
-								?>
-								&nbsp;&nbsp;様
-							</p>
-						</div>
-						<div class="fooooorm2_2">
-							<p class="nameee">
-								メールアドレス：&nbsp;
-							</p>
-							<p class="otoiawase">
-								<?php
-									echo $_POST['mail'];
-								?>
-							</p>
-						</div>
-						<div class="fooooorm4_3">
-							<p class="nameee">
-								カテゴリ：&nbsp;
-							</p>
-							<p class="otoiawase">
-								<?php
-									echo $_POST['category'];
-								?>
-							</p>
-						</div>
-						<div class="fooooorm5_4">
-							<p class="nameee">
-								タイトル：&nbsp;
-							</p>
-							<p class="otoiawase">
-								<?php
-									echo $_POST['title'];
-								?>
-							</p>
-						</div>
-						<div class="fooooorm6_5">
-							<p class="nameee">
-								本文：&nbsp;
-							</p>
-							<p class="otoiawase otoiawase_h">
-								<?php
-									$data_main = $_POST['main_text'];
-									echo nl2br($data_main);
-								?>
-							</p>
-						</div>
-						<div class="fooooorm7_6"  onClick="submiiiit_s()">
-							<p>送信</p>
-						</div>
-						<div class="fooooorm8" onClick="javascript:history.back();">
-							<p>戻る</p>
-						</div>
-						
-						<input type="hidden" name="name_s_K" value="<?php echo $_POST['name_s'] ?>">
-						<input type="hidden" name="name_m_K" value="<?php echo $_POST['name_m'] ?>">
-						<input type="hidden" name="mail_K" value="<?php echo $_POST['mail'] ?>">
-						<input type="hidden" name="category_K" value="<?php echo $_POST['category'] ?>">
-						<input type="hidden" name="title_K" value="<?php echo $_POST['title'] ?>">
-						<input type="hidden" name="main_text_K" value="<?php echo $_POST['main_text'] ?>">
-						
-					</form>
+					
+					
 					
 				</div>
 <!-- フローティング操作ボタン -->
-			<a id="fab" href="US15.php">
+			<a id="fab" href="US8.php">
 				<i class="fas fa-home"></i>
 			</a>
 			

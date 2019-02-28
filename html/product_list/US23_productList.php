@@ -33,10 +33,13 @@
       <a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 
       <ul class="cd-main-nav">
-        <li><a href="" data-type="page-transition">ログイン&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-        <li><a href="">一覧&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-        <li><a href="../SNS/SN1.html">SNS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</a></li>
-        <li><a href="">カート</a></li>
+				<li><a href="" data-type="page-transition">ログイン</a></li>
+				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+				<li><a href="../Genre/US27.php">ジャンル検索</a></li>
+				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+				<li><a href="../SNS/SN1.html">SNS</a></li>
+				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
+				<li><a href="../cart/US8.php">カート</a></li>
       </ul>
     </nav>
 
@@ -136,7 +139,7 @@
               販売金額: 1000 P
             </div>
           </div>
-          <div class="submit"><button>カートに入れる</button></div>
+          <div class="submit" onClick="location.href='../cart/US8.php'"><button>カートに入れる</button></div>
         </div>
       </div>
       <div id="closeModal" class="closeModal">
