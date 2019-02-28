@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation as Serializer;
@@ -11,9 +13,10 @@ class AuthorList implements \IteratorAggregate, \Countable, \ArrayAccess
 {
     /**
      * @Serializer\Type("array<JMS\Serializer\Tests\Fixtures\Author>")
+     *
      * @var array
      */
-    protected $authors = array();
+    protected $authors = [];
 
     /**
      * @param Author $author
@@ -52,7 +55,7 @@ class AuthorList implements \IteratorAggregate, \Countable, \ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->authors[$offset]) ? $this->authors[$offset] : null;
+        return $this->authors[$offset] ?? null;
     }
 
     /**
@@ -74,5 +77,4 @@ class AuthorList implements \IteratorAggregate, \Countable, \ArrayAccess
     {
         unset($this->authors[$offset]);
     }
-
 }

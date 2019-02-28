@@ -6,8 +6,9 @@
 	},
 	"require": {
 		"phpmailer/phpmailer": "6.0.5",
-		"ext-pdo": "*"
-	},
+		"ext-pdo": "*",
+        "ext-json": "*"
+    },
 	"require-dev": {
 		"phpdocumentor/phpdocumentor": "^2.9"
 	}

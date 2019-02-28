@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -83,6 +85,4 @@ class ObjectWithNamespacesAndList
      * @XmlMap(inline = false, entry = "address", keyAttribute = "id")
      */
     public $addressesAlternativeD;
-
 }
-

@@ -1,23 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests;
 
 use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\Expression\ExpressionEvaluator;
 use JMS\Serializer\Handler\HandlerRegistry;
-use JMS\Serializer\JsonSerializationVisitor;
-use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\Tests\Fixtures\ContextualNamingStrategy;
-use JMS\Serializer\Tests\Fixtures\Person;
 use JMS\Serializer\Tests\Fixtures\PersonSecret;
 use JMS\Serializer\Tests\Fixtures\PersonSecretWithVariables;
+use JMS\Serializer\Type\ParserInterface;
+use JMS\Serializer\Visitor\Factory\JsonSerializationVisitorFactory;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\Filesystem\Filesystem;
 
-class SerializerBuilderTest extends \PHPUnit_Framework_TestCase
+class SerializerBuilderTest extends TestCase
 {
     /** @var SerializerBuilder */
     private $builder;
@@ -28,46 +29,63 @@ class SerializerBuilderTest extends \PHPUnit_Framework_TestCase
     {
         $serializer = $this->builder->build();
 
-        $this->assertEquals('"foo"', $serializer->serialize('foo', 'json'));
-        $this->assertEquals('<?xml version="1.0" encoding="UTF-8"?>
+        self::assertEquals('"foo"', $serializer->serialize('foo', 'json'));
+        self::assertEquals('<?xml version="1.0" encoding="UTF-8"?>
 <result><![CDATA[foo]]></result>
 ', $serializer->serialize('foo', 'xml'));
-        $this->assertEquals('foo
-', $serializer->serialize('foo', 'yml'));
 
-        $this->assertEquals('foo', $serializer->deserialize('"foo"', 'string', 'json'));
-        $this->assertEquals('foo', $serializer->deserialize('<?xml version="1.0" encoding="UTF-8"?><result><![CDATA[foo]]></result>', 'string', 'xml'));
+        self::assertEquals('foo', $serializer->deserialize('"foo"', 'string', 'json'));
+        self::assertEquals('foo', $serializer->deserialize('<?xml version="1.0" encoding="UTF-8"?><result><![CDATA[foo]]></result>', 'string', 'xml'));
     }
 
     public function testWithCache()
     {
-        $this->assertFileNotExists($this->tmpDir);
+        self::assertFileNotExists($this->tmpDir);
 
-        $this->assertSame($this->builder, $this->builder->setCacheDir($this->tmpDir));
+        self::assertSame($this->builder, $this->builder->setCacheDir($this->tmpDir));
         $serializer = $this->builder->build();
 
-        $this->assertFileExists($this->tmpDir);
-        $this->assertFileExists($this->tmpDir . '/annotations');
-        $this->assertFileExists($this->tmpDir . '/metadata');
+        self::assertFileExists($this->tmpDir);
+        self::assertFileExists($this->tmpDir . '/annotations');
+        self::assertFileExists($this->tmpDir . '/metadata');
 
         $factory = $this->getField($serializer, 'factory');
-        $this->assertAttributeSame(false, 'debug', $factory);
-        $this->assertAttributeNotSame(null, 'cache', $factory);
+        self::assertAttributeSame(false, 'debug', $factory);
+        self::assertAttributeNotSame(null, 'cache', $factory);
     }
 
     public function testDoesAddDefaultHandlers()
     {
         $serializer = $this->builder->build();
 
-        $this->assertEquals('"2020-04-16T00:00:00+0000"', $serializer->serialize(new \DateTime('2020-04-16', new \DateTimeZone('UTC')), 'json'));
+        self::assertEquals('"2020-04-16T00:00:00+00:00"', $serializer->serialize(new \DateTime('2020-04-16', new \DateTimeZone('UTC')), 'json'));
+        self::assertEquals('[1,2,3]', $serializer->serialize(new \ArrayIterator([1, 2, 3]), 'json'));
+    }
+
+    public function testCustomTypeParser()
+    {
+        $parserMock = $this->getMockBuilder(ParserInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $parserMock
+            ->method('parse')
+            ->willReturn(['name' => 'DateTimeImmutable', 'params' => [2 => 'd-Y-m']]);
+
+        $this->builder->setTypeParser($parserMock);
+
+        $serializer = $this->builder->build();
+
+        $result = $serializer->deserialize('"04-2020-10"', 'XXX', 'json');
+        self::assertInstanceOf(\DateTimeImmutable::class, $result);
+        self::assertEquals('2020-10-04', $result->format('Y-m-d'));
     }
 
     public function testDoesNotAddDefaultHandlersWhenExplicitlyConfigured()
     {
-        $this->assertSame($this->builder, $this->builder->configureHandlers(function (HandlerRegistry $registry) {
+        self::assertSame($this->builder, $this->builder->configureHandlers(static function (HandlerRegistry $registry) {
         }));
 
-        $this->assertEquals('{}', $this->builder->build()->serialize(new \DateTime('2020-04-16'), 'json'));
+        self::assertEquals('{}', $this->builder->build()->serialize(new \DateTime('2020-04-16'), 'json'));
     }
 
     /**
@@ -76,9 +94,9 @@ class SerializerBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDoesNotAddOtherVisitorsWhenConfiguredExplicitly()
     {
-        $this->assertSame(
+        self::assertSame(
             $this->builder,
-            $this->builder->setSerializationVisitor('json', new JsonSerializationVisitor(new CamelCaseNamingStrategy()))
+            $this->builder->setSerializationVisitor('json', new JsonSerializationVisitorFactory())
         );
 
         $this->builder->build()->serialize('foo', 'xml');
@@ -86,22 +104,22 @@ class SerializerBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testIncludeInterfaceMetadata()
     {
-        $this->assertFalse(
+        self::assertFalse(
             $this->getIncludeInterfaces($this->builder),
             'Interface metadata are not included by default'
         );
 
-        $this->assertTrue(
+        self::assertTrue(
             $this->getIncludeInterfaces($this->builder->includeInterfaceMetadata(true)),
             'Force including interface metadata'
         );
 
-        $this->assertFalse(
+        self::assertFalse(
             $this->getIncludeInterfaces($this->builder->includeInterfaceMetadata(false)),
             'Force not including interface metadata'
         );
 
-        $this->assertSame(
+        self::assertSame(
             $this->builder,
             $this->builder->includeInterfaceMetadata(true)
         );
@@ -122,9 +140,9 @@ class SerializerBuilderTest extends \PHPUnit_Framework_TestCase
 
         $serializer = $this->builder->build();
 
-        $result = $serializer->serialize(array('value' => null), 'json');
+        $result = $serializer->serialize(['value' => null], 'json');
 
-        $this->assertEquals('{"value":null}', $result);
+        self::assertEquals('{"value":null}', $result);
     }
 
     public function testSetDeserializationContext()
@@ -143,63 +161,64 @@ class SerializerBuilderTest extends \PHPUnit_Framework_TestCase
 
         $result = $serializer->deserialize('{"value":null}', 'array', 'json');
 
-        $this->assertEquals(array('value' => null), $result);
+        self::assertEquals(['value' => null], $result);
     }
 
     public function testSetCallbackSerializationContextWithSerializeNull()
     {
-        $this->builder->setSerializationContextFactory(function () {
+        $this->builder->setSerializationContextFactory(static function () {
             return SerializationContext::create()
                 ->setSerializeNull(true);
         });
 
         $serializer = $this->builder->build();
 
-        $result = $serializer->serialize(array('value' => null), 'json');
+        $result = $serializer->serialize(['value' => null], 'json');
 
-        $this->assertEquals('{"value":null}', $result);
+        self::assertEquals('{"value":null}', $result);
     }
 
     public function testSetCallbackSerializationContextWithNotSerializeNull()
     {
-        $this->builder->setSerializationContextFactory(function () {
+        $this->builder->setSerializationContextFactory(static function () {
             return SerializationContext::create()
                 ->setSerializeNull(false);
         });
 
         $serializer = $this->builder->build();
 
-        $result = $serializer->serialize(array('value' => null, 'not_null' => 'ok'), 'json');
+        $result = $serializer->serialize(['value' => null, 'not_null' => 'ok'], 'json');
 
-        $this->assertEquals('{"not_null":"ok"}', $result);
+        self::assertEquals('{"not_null":"ok"}', $result);
     }
 
     public function expressionFunctionProvider()
     {
         return [
             [
-                new ExpressionFunction('show_data', function () {
-                    return "true";
-                }, function () {
+                new ExpressionFunction('show_data', static function () {
+                    return 'true';
+                }, static function () {
                     return true;
                 }),
-                '{"name":"mike"}'
+                '{"name":"mike"}',
             ],
             [
-                new ExpressionFunction('show_data', function () {
-                    return "false";
-                }, function () {
+                new ExpressionFunction('show_data', static function () {
+                    return 'false';
+                }, static function () {
                     return false;
                 }),
-                '{"name":"mike","gender":"f"}'
-            ]
+                '{"name":"mike","gender":"f"}',
+            ],
         ];
     }
 
     /**
-     * @dataProvider expressionFunctionProvider
      * @param ExpressionFunction $function
-     * @param $json
+     * @param string $json
+     *
+     * @dataProvider expressionFunctionProvider
      */
     public function testExpressionEngine(ExpressionFunction $function, $json)
     {
@@ -214,7 +233,7 @@ class SerializerBuilderTest extends \PHPUnit_Framework_TestCase
         $person->gender = 'f';
         $person->name = 'mike';
 
-        $this->assertEquals($json, $serializer->serialize($person, 'json'));
+        self::assertEquals($json, $serializer->serialize($person, 'json'));
     }
 
     public function testExpressionEngineWhenDeserializing()
@@ -229,26 +248,10 @@ class SerializerBuilderTest extends \PHPUnit_Framework_TestCase
         $person->name = 'mike';
 
         $serialized = $serializer->serialize($person, 'json');
-        $this->assertEquals('{"name":"mike","gender":"f"}', $serialized);
+        self::assertEquals('{"name":"mike","gender":"f"}', $serialized);
 
         $object = $serializer->deserialize($serialized, PersonSecretWithVariables::class, 'json');
-        $this->assertEquals($person, $object);
-    }
-
-    public function testAdvancedNamingStrategy()
-    {
-        $this->builder->setAdvancedNamingStrategy(new ContextualNamingStrategy());
-        $serializer = $this->builder->build();
-
-        $person = new Person();
-        $person->name = "bar";
-
-        $json = $serializer->serialize($person, "json");
-        $this->assertEquals('{"NAME":"bar"}', $json);
-
-        $json = '{"Name": "bar"}';
-        $person = $serializer->deserialize($json, Person::class, "json");
-        $this->assertEquals("bar", $person->name);
+        self::assertEquals($person, $object);
     }
 
     protected function setUp()

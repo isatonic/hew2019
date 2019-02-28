@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Serializer\Doctrine;
 
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -16,17 +18,18 @@ use Doctrine\ORM\Tools\SchemaTool;
 use JMS\Serializer\Builder\CallbackDriverFactory;
 use JMS\Serializer\Builder\DefaultDriverFactory;
 use JMS\Serializer\Metadata\Driver\DoctrineTypeDriver;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Tests\Fixtures\Doctrine\SingleTableInheritance\Clazz;
-use JMS\Serializer\Tests\Fixtures\Doctrine\SingleTableInheritance\Excursion;
 use JMS\Serializer\Tests\Fixtures\Doctrine\SingleTableInheritance\Organization;
 use JMS\Serializer\Tests\Fixtures\Doctrine\SingleTableInheritance\Person;
 use JMS\Serializer\Tests\Fixtures\Doctrine\SingleTableInheritance\School;
 use JMS\Serializer\Tests\Fixtures\Doctrine\SingleTableInheritance\Student;
 use JMS\Serializer\Tests\Fixtures\Doctrine\SingleTableInheritance\Teacher;
+use PHPUnit\Framework\TestCase;
 
-class IntegrationTest extends \PHPUnit_Framework_TestCase
+class IntegrationTest extends TestCase
 {
     /** @var ManagerRegistry */
     private $registry;
@@ -38,20 +41,20 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
     {
         $school = new School();
         $json = $this->serializer->serialize($school, 'json');
-        $this->assertEquals('{"type":"school"}', $json);
+        self::assertEquals('{"type":"school"}', $json);
 
         $deserialized = $this->serializer->deserialize($json, Organization::class, 'json');
-        $this->assertEquals($school, $deserialized);
+        self::assertEquals($school, $deserialized);
     }
 
     public function testDiscriminatorIsInferredForGenericBaseClass()
     {
         $student = new Student();
         $json = $this->serializer->serialize($student, 'json');
-        $this->assertEquals('{"type":"student"}', $json);
+        self::assertEquals('{"type":"student"}', $json);
 
         $deserialized = $this->serializer->deserialize($json, Person::class, 'json');
-        $this->assertEquals($student, $deserialized);
+        self::assertEquals($student, $deserialized);
     }
 
     public function testDiscriminatorIsInferredFromDoctrine()
@@ -62,7 +65,7 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $student1 = new Student();
         $student2 = new Student();
         $teacher = new Teacher();
-        $class = new Clazz($teacher, array($student1, $student2));
+        $class = new Clazz($teacher, [$student1, $student2]);
 
         $em->persist($student1);
         $em->persist($student2);
@@ -72,10 +75,10 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $em->clear();
 
         $reloadedClass = $em->find(get_class($class), $class->getId());
-        $this->assertNotSame($class, $reloadedClass);
+        self::assertNotSame($class, $reloadedClass);
 
         $json = $this->serializer->serialize($reloadedClass, 'json');
-        $this->assertEquals('{"id":1,"teacher":{"id":1,"type":"teacher"},"students":[{"id":2,"type":"student"},{"id":3,"type":"student"}]}', $json);
+        self::assertEquals('{"id":1,"teacher":{"id":1,"type":"teacher"},"students":[{"id":2,"type":"student"},{"id":3,"type":"student"}]}', $json);
     }
 
     protected function setUp()
@@ -84,7 +87,7 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $entityManager = $this->createEntityManager($connection);
 
         $this->registry = $registry = new SimpleManagerRegistry(
-            function ($id) use ($connection, $entityManager) {
+            static function ($id) use ($connection, $entityManager) {
                 switch ($id) {
                     case 'default_connection':
                         return $connection;
@@ -100,8 +103,8 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
 
         $this->serializer = SerializerBuilder::create()
             ->setMetadataDriverFactory(new CallbackDriverFactory(
-                function (array $metadataDirs, Reader $annotationReader) use ($registry) {
-                    $defaultFactory = new DefaultDriverFactory();
+                static function (array $metadataDirs, Reader $annotationReader) use ($registry) {
+                    $defaultFactory = new DefaultDriverFactory(new IdenticalPropertyNamingStrategy());
 
                     return new DoctrineTypeDriver($defaultFactory->createDriver($metadataDirs, $annotationReader), $registry);
                 }
@@ -122,36 +125,32 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
 
     private function createConnection()
     {
-        $con = DriverManager::getConnection(array(
+        return DriverManager::getConnection([
             'driver' => 'pdo_sqlite',
             'memory' => true,
-        ));
-
-        return $con;
+        ]);
     }
 
     private function createEntityManager(Connection $con)
     {
         $cfg = new Configuration();
-        $cfg->setMetadataDriverImpl(new AnnotationDriver(new AnnotationReader(), array(
+        $cfg->setMetadataDriverImpl(new AnnotationDriver(new AnnotationReader(), [
             __DIR__ . '/../../Fixtures/Doctrine/SingleTableInheritance',
-        )));
+        ]));
         $cfg->setAutoGenerateProxyClasses(true);
         $cfg->setProxyNamespace('JMS\Serializer\DoctrineProxy');
         $cfg->setProxyDir(sys_get_temp_dir() . '/serializer-test-proxies');
 
-        $em = EntityManager::create($con, $cfg);
-
-        return $em;
+        return EntityManager::create($con, $cfg);
     }
 }
 
 class SimpleManagerRegistry extends AbstractManagerRegistry
 {
-    private $services = array();
+    private $services = [];
     private $serviceCreator;
 
-    public function __construct($serviceCreator, $name = 'anonymous', array $connections = array('default' => 'default_connection'), array $managers = array('default' => 'default_manager'), $defaultConnection = null, $defaultManager = null, $proxyInterface = 'Doctrine\Common\Persistence\Proxy')
+    public function __construct($serviceCreator, $name = 'anonymous', array $connections = ['default' => 'default_connection'], array $managers = ['default' => 'default_manager'], $defaultConnection = null, $defaultManager = null, $proxyInterface = 'Doctrine\Common\Persistence\Proxy')
     {
         if (null === $defaultConnection) {
             $defaultConnection = key($connections);

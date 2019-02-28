@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures\Doctrine;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -15,6 +17,7 @@ class Author
 
     /**
      * @ORM\Column(type="string")
+     *
      * @SerializedName("full_name")
      */
     private $name;

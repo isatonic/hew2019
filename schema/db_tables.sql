@@ -44,6 +44,7 @@ CREATE TABLE Products (
     price         int          NOT NULL,
     title         varchar(64)  NOT NULL,
     fileName      varchar(255) NOT NULL,
+    jenre         enum ('ビジネス', 'スポーツ', 'イベント', '動物', '魚', '植物', '虫', 'SF', '料理', '野菜', '楽器', 'ファッション', '風景', '雑貨', '文房具', '乗り物', '家具', '宇宙', '空', '建物', '人'),
     authorComment varchar(255),
     FOREIGN KEY (author) REFERENCES Users (id)
         ON DELETE SET NULL

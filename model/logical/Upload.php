@@ -20,15 +20,24 @@ class Upload extends LogicalBase {
         $this->Products = new Products($this->pdo, $Data->extend("author"));
         $this->Tag = new Tag($this->pdo);
         $this->data = array(
-            "id" => "P" . substr($Data->extend("author"), 2) . time(),
-            "filename" => $Data->extend("filename"),
+            "id" => $this->createID($Data->extend("author")),
+            "fileName" => $this->createID($Data->extend("author")) . $this->getType($Data->extend("filename")),
             "title" => $Data->extend("title"),
             "author" => $Data->extend("author"),
             "price" => $Data->extend("price"),
+            "jenre" => $Data->extend("jenre"),
             "authorComment" => $Data->extend("comment"),
             "tags" => $Data->extend("tags")
         );
-        $this->upload_file = "../../html/upload/" . $this->data["filename"];
+        $this->upload_file = "../../html/upload/images/" . $this->data["fileName"];
+    }
+
+    private function createID($author) {
+        return "P" . substr($author, 2) . time();
+    }
+
+    private function getType($filename) {
+        return substr($filename, strrpos($filename, '.') + 1);
     }
 
     public function transaction() {

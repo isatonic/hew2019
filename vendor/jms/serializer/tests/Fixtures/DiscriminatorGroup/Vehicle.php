@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures\DiscriminatorGroup;
 
 use JMS\Serializer\Annotation as Serializer;
@@ -19,6 +21,6 @@ abstract class Vehicle
 
     public function __construct($km)
     {
-        $this->km = (integer)$km;
+        $this->km = (int) $km;
     }
 }

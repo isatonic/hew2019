@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Handler;
 
 use JMS\Serializer\Handler\DateHandler;
 use JMS\Serializer\JsonDeserializationVisitor;
 use JMS\Serializer\SerializationContext;
-use JMS\Serializer\VisitorInterface;
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
+use PHPUnit\Framework\TestCase;
 
-class DateHandlerTest extends \PHPUnit_Framework_TestCase
+class DateHandlerTest extends TestCase
 {
     /**
      * @var DateHandler
@@ -34,14 +37,16 @@ class DateHandlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getParams
      * @param array $params
+     *
+     * @doesNotPerformAssertions
+     * @dataProvider getParams
      */
     public function testSerializeDate(array $params)
     {
         $context = $this->getMockBuilder(SerializationContext::class)->getMock();
 
-        $visitor = $this->getMockBuilder(VisitorInterface::class)->getMock();
+        $visitor = $this->getMockBuilder(SerializationVisitorInterface::class)->getMock();
         $visitor->method('visitString')->with('2017-06-18');
 
         $datetime = new \DateTime('2017-06-18 14:30:59', $this->timezone);
@@ -51,12 +56,10 @@ class DateHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testTimePartGetsRemoved()
     {
-        $visitor = $this->getMockBuilder(JsonDeserializationVisitor::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $visitor = new JsonDeserializationVisitor();
 
         $type = ['name' => 'DateTime', 'params' => ['Y-m-d', '', 'Y-m-d|']];
-        $this->assertEquals(
+        self::assertEquals(
             \DateTime::createFromFormat('Y-m-d|', '2017-06-18', $this->timezone),
             $this->handler->deserializeDateTimeFromJson($visitor, '2017-06-18', $type)
         );
@@ -64,28 +67,26 @@ class DateHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testTimePartGetsPreserved()
     {
-        $visitor = $this->getMockBuilder(JsonDeserializationVisitor::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $visitor = new JsonDeserializationVisitor();
 
         $expectedDateTime = \DateTime::createFromFormat('Y-m-d', '2017-06-18', $this->timezone);
         // if the test is executed exactly at midnight, it might not detect a possible failure since the time component will be "00:00:00
         // I know, this is a bit paranoid
-        if ($expectedDateTime->format("H:i:s") === "00:00:00") {
+        if ('00:00:00' === $expectedDateTime->format('H:i:s')) {
             sleep(1);
             $expectedDateTime = \DateTime::createFromFormat('Y-m-d', '2017-06-18', $this->timezone);
         }
 
         // no custom deserialization format specified
         $type = ['name' => 'DateTime', 'params' => ['Y-m-d']];
-        $this->assertEquals(
+        self::assertEquals(
             $expectedDateTime,
             $this->handler->deserializeDateTimeFromJson($visitor, '2017-06-18', $type)
         );
 
         // custom deserialization format specified
         $type = ['name' => 'DateTime', 'params' => ['Y-m-d', '', 'Y-m-d']];
-        $this->assertEquals(
+        self::assertEquals(
             $expectedDateTime,
             $this->handler->deserializeDateTimeFromJson($visitor, '2017-06-18', $type)
         );
@@ -93,12 +94,9 @@ class DateHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testTimeZoneGetsPreservedWithUnixTimestamp()
     {
-        $visitor = $this->getMockBuilder(JsonDeserializationVisitor::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $visitor = new JsonDeserializationVisitor();
 
-
-        $timestamp = time();
+        $timestamp = (string) time();
         $timezone = 'Europe/Brussels';
         $type = ['name' => 'DateTime', 'params' => ['U', $timezone]];
 
@@ -107,7 +105,7 @@ class DateHandlerTest extends \PHPUnit_Framework_TestCase
 
         $actualDateTime = $this->handler->deserializeDateTimeFromJson($visitor, $timestamp, $type);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedDateTime->format(\DateTime::RFC3339),
             $actualDateTime->format(\DateTime::RFC3339)
         );
@@ -115,12 +113,9 @@ class DateHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testImmutableTimeZoneGetsPreservedWithUnixTimestamp()
     {
-        $visitor = $this->getMockBuilder(JsonDeserializationVisitor::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $visitor = new JsonDeserializationVisitor();
 
-
-        $timestamp = time();
+        $timestamp = (string) time();
         $timezone = 'Europe/Brussels';
         $type = ['name' => 'DateTimeImmutable', 'params' => ['U', $timezone]];
 
@@ -129,7 +124,7 @@ class DateHandlerTest extends \PHPUnit_Framework_TestCase
 
         $actualDateTime = $this->handler->deserializeDateTimeImmutableFromJson($visitor, $timestamp, $type);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedDateTime->format(\DateTime::RFC3339),
             $actualDateTime->format(\DateTime::RFC3339)
         );

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Metadata;
 
 use JMS\Serializer\Metadata\PropertyMetadata;
@@ -18,5 +20,4 @@ class PropertyMetadataTest extends AbstractPropertyMetadataTest
         $restoredMeta = unserialize(serialize($meta));
         $this->assertEquals($meta, $restoredMeta);
     }
-
 }

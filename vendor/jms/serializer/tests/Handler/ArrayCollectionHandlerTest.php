@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Handler;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -7,16 +9,20 @@ use JMS\Serializer\Handler\ArrayCollectionHandler;
 use JMS\Serializer\Metadata\ClassMetadata;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Tests\Fixtures\ExclusionStrategy\AlwaysExcludeExclusionStrategy;
-use JMS\Serializer\VisitorInterface;
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use Metadata\MetadataFactoryInterface;
+use PHPUnit\Framework\TestCase;
 
-class ArrayCollectionHandlerTest extends \PHPUnit_Framework_TestCase
+class ArrayCollectionHandlerTest extends TestCase
 {
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSerializeArray()
     {
         $handler = new ArrayCollectionHandler();
 
-        $visitor = $this->getMockBuilder(VisitorInterface::class)->getMock();
+        $visitor = $this->getMockBuilder(SerializationVisitorInterface::class)->getMock();
         $visitor->method('visitArray')->with(['foo'])->willReturn(['foo']);
 
         $context = $this->getMockBuilder(SerializationContext::class)->getMock();
@@ -27,11 +33,14 @@ class ArrayCollectionHandlerTest extends \PHPUnit_Framework_TestCase
         $handler->serializeCollection($visitor, $collection, $type, $context);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSerializeArraySkipByExclusionStrategy()
     {
         $handler = new ArrayCollectionHandler(false);
 
-        $visitor = $this->getMockBuilder(VisitorInterface::class)->getMock();
+        $visitor = $this->getMockBuilder(SerializationVisitorInterface::class)->getMock();
         $visitor->method('visitArray')->with([])->willReturn([]);
 
         $context = $this->getMockBuilder(SerializationContext::class)->getMock();
@@ -41,7 +50,6 @@ class ArrayCollectionHandlerTest extends \PHPUnit_Framework_TestCase
 
         $context->method('getExclusionStrategy')->willReturn(new AlwaysExcludeExclusionStrategy());
         $context->method('getMetadataFactory')->willReturn($factoryMock);
-
 
         $type = ['name' => 'ArrayCollection', 'params' => []];
 

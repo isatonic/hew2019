@@ -16,7 +16,16 @@ $data = new \model\Data($_POST);
 $model = new \model\logical\SearchProduct($pdo, $data);
 
 $result = $model->transaction();
-$_POST["searchResult"] = $result;
 
-$url = "";
+/////////// JSONで渡す場合
+if ($result == null) {
+    $result = array();
+}
+$json = new \model\JSONenc($result);
+$ret = $json->ret();
+/////////////////////////////
+
+$_POST["searchResult"] = $ret;
+
+$url = "../product_list/US23_productList.php";
 header("Location: " . $url, true, 302);

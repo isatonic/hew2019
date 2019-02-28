@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Serializer\EventDispatcher;
 
 use JMS\Serializer\EventDispatcher\LazyEventDispatcher;
@@ -20,9 +22,9 @@ abstract class LazyEventDispatcherTest extends EventDispatcherTest
         $a = new MockListener();
         $this->registerListenerService('a', $a);
 
-        $this->assertFalse($this->dispatcher->hasListeners('foo', 'Foo', 'json'));
+        self::assertFalse($this->dispatcher->hasListeners('foo', 'Foo', 'json'));
         $this->dispatcher->addListener('foo', ['a', 'foo']);
-        $this->assertTrue($this->dispatcher->hasListeners('foo', 'Foo', 'json'));
+        self::assertTrue($this->dispatcher->hasListeners('foo', 'Foo', 'json'));
     }
 
     public function testDispatchWithListenerAsService()
@@ -37,14 +39,14 @@ abstract class LazyEventDispatcherTest extends EventDispatcherTest
         $b = new MockListener();
         $this->registerListenerService('b', $b);
 
-        $this->dispatcher->addListener('pre', array('b', 'bar'), 'Bar');
-        $this->dispatcher->addListener('pre', array('b', 'foo'), 'Foo');
-        $this->dispatcher->addListener('pre', array('b', 'all'));
+        $this->dispatcher->addListener('pre', ['b', 'bar'], 'Bar');
+        $this->dispatcher->addListener('pre', ['b', 'foo'], 'Foo');
+        $this->dispatcher->addListener('pre', ['b', 'all']);
 
-        $b->bar($this->event, 'pre', 'bar', 'json', $this->dispatcher);
-        $b->all($this->event, 'pre', 'bar', 'json', $this->dispatcher);
-        $b->foo($this->event, 'pre', 'foo', 'json', $this->dispatcher);
-        $b->all($this->event, 'pre', 'foo', 'json', $this->dispatcher);
+        $b->bar($this->event, 'pre', 'Bar', 'json', $this->dispatcher);
+        $b->all($this->event, 'pre', 'Bar', 'json', $this->dispatcher);
+        $b->foo($this->event, 'pre', 'Foo', 'json', $this->dispatcher);
+        $b->all($this->event, 'pre', 'Foo', 'json', $this->dispatcher);
         $b->_replay();
         $this->dispatch('pre', 'Bar');
         $this->dispatch('pre', 'Foo');

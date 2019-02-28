@@ -1,3 +1,8 @@
+<?php
+if (!isset($_POST["searchResult"])) {
+  echo "debug: 検索なし。 ../controller/search.php にリダイレクトを推奨。";
+}
+?>
 <!DOCTYPE html>
 <html amp lang="ja">
 <head>
@@ -21,6 +26,11 @@
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   <link rel="stylesheet" href="./css/product_list.css">
   <script src="./js/modal.js"></script>
+  <script type="text/javascript">
+    var phpjson = <?php echo $_POST["searchResult"];?>;
+  </script>
+  <script src="./js/addCart.js"></script>
+  <script src="./js/setModal.js"></script>
 </head>
 <body>
 
@@ -92,25 +102,17 @@
   <!----------------------- ボタン ---------------------------->
   <div class="button-wrap flex-container">
       <button class="controll-button">ジャンル検索</button>
-      <button class="controll-button">新作順</button>
+      <button class="controll-button" id="sortNew">新作順</button>
       <button class="controll-button">ランキング順</button>
   </div>
   <!----------------------------------------------------------->
 
   <!------------------------- 一覧 ---------------------------->
-  <div class="product-list flex-container">
-    <div class="product-container">
-      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
-    </div>
-    <div class="product-container">
-      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
-    </div>
-    <div class="product-container">
-      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
-    </div>
-    <div class="product-container">
-      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>
-    </div>
+  <div class="product-list flex-container" id="product-list">
+    <script src="js/productListing.js"></script>
+<!--    <div class="product-container">-->
+<!--      <amp-img class="product openModal" layout="fill" src="./img/クレジットカードブランド.jpg" alt=""></amp-img>-->
+<!--    </div>-->
   </div>
   <!----------------------------------------------------------->
 
@@ -120,12 +122,12 @@
       <div class="modalContents flex-container">
         <div class="image">
           <div class="image-container flex-container">
-            <img class="thumbnail" src="./img/クレジットカードブランド.jpg" alt="">
+            <img class="thumbnail" id="detail-thumbnail" src="./img/placeholder.png" alt="">
           </div>
           <button class="report">この作品を通報する</button>
         </div>
         <div class="detail">
-          <div class="title">
+          <div class="title" id="detail-title">
             あああ。このタイトルは二十文字までです。
           </div>
           <div class="comment">
@@ -136,7 +138,7 @@
               販売金額: 1000 P
             </div>
           </div>
-          <div class="submit"><button>カートに入れる</button></div>
+          <div class="submit"><button id="cartButton" onclick="addCart();">カートに入れる</button></div>
         </div>
       </div>
       <div id="closeModal" class="closeModal">

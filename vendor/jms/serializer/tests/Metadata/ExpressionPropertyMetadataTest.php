@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Metadata;
 
 use JMS\Serializer\Metadata\ExpressionPropertyMetadata;

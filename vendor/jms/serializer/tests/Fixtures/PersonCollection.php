@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -25,6 +27,6 @@ class PersonCollection
 
     public function __construct()
     {
-        $this->persons = new ArrayCollection;
+        $this->persons = new ArrayCollection();
     }
 }

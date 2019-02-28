@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation\Type;
@@ -44,9 +46,7 @@ class ObjectWithXmlKeyValuePairsWithType
                 'key_02' => 'Two',
                 'key_03' => 'Three',
             ],
-            [
-                'Four',
-            ]
+            ['Four']
         );
     }
 }

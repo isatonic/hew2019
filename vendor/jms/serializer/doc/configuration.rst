@@ -8,6 +8,12 @@ Configuration
     using another framework, there also might be a module, or other special integration. Please check packagist, or
     whatever registry usually holds such information for your framework.
 
+
+If you are using the standalone library and you want to use annotations, the annotation registry must be initialized::
+
+    Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
+
+
 Constructing a Serializer
 -------------------------
 
@@ -72,7 +78,7 @@ replaced with ``.``. So, if you class would be named ``Vendor\Package\Foo``, the
 at ``$someDir/Vendor.Package.Foo.(xml|yml)``. For more information, see the :doc:`reference <reference>`.
 
 Setting a default SerializationContext factory
---------------------------------------------
+----------------------------------------------
 To avoid to pass an instance of SerializationContext
 every time you call method ``serialize()`` (or ``toArray()``),
 you can set a ``SerializationContextFactory`` to the Serializer.

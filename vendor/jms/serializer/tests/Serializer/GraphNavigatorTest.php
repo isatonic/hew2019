@@ -1,24 +1,42 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Serializer;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use JMS\Serializer\Accessor\DefaultAccessorStrategy;
 use JMS\Serializer\Construction\UnserializeObjectConstructor;
+use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\EventDispatcher\EventDispatcher;
-use JMS\Serializer\GraphNavigator;
+use JMS\Serializer\Exclusion\ExclusionStrategyInterface;
+use JMS\Serializer\GraphNavigator\DeserializationGraphNavigator;
+use JMS\Serializer\GraphNavigator\SerializationGraphNavigator;
+use JMS\Serializer\GraphNavigatorInterface;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\Metadata\Driver\AnnotationDriver;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use JMS\Serializer\SerializationContext;
+use JMS\Serializer\Visitor\DeserializationVisitorInterface;
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use Metadata\MetadataFactory;
+use PHPUnit\Framework\TestCase;
 
-class GraphNavigatorTest extends \PHPUnit_Framework_TestCase
+class GraphNavigatorTest extends TestCase
 {
     private $metadataFactory;
     private $handlerRegistry;
     private $objectConstructor;
     private $dispatcher;
-    private $navigator;
+    private $serializationNavigator;
+    private $deserializationNavigator;
     private $context;
+    private $deserializationContext;
+    private $accessor;
+
+    private $serializationVisitor;
+    private $deserializationVisitor;
 
     /**
      * @expectedException JMS\Serializer\Exception\RuntimeException
@@ -26,48 +44,40 @@ class GraphNavigatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testResourceThrowsException()
     {
-        $this->context->expects($this->any())
-            ->method('getDirection')
-            ->will($this->returnValue(GraphNavigator::DIRECTION_SERIALIZATION));
-
-        $this->navigator->accept(STDIN, null, $this->context);
+        $this->serializationNavigator->accept(STDIN, null);
     }
 
     public function testNavigatorPassesInstanceOnSerialization()
     {
-        $object = new SerializableClass;
+        $object = new SerializableClass();
         $metadata = $this->metadataFactory->getMetadataForClass(get_class($object));
 
         $self = $this;
+        $this->context = $this->getMockBuilder(SerializationContext::class)->getMock();
         $context = $this->context;
         $exclusionStrategy = $this->getMockBuilder('JMS\Serializer\Exclusion\ExclusionStrategyInterface')->getMock();
         $exclusionStrategy->expects($this->once())
             ->method('shouldSkipClass')
-            ->will($this->returnCallback(function ($passedMetadata, $passedContext) use ($metadata, $context, $self) {
+            ->will($this->returnCallback(static function ($passedMetadata, $passedContext) use ($metadata, $context, $self) {
                 $self->assertSame($metadata, $passedMetadata);
                 $self->assertSame($context, $passedContext);
+                return false;
             }));
         $exclusionStrategy->expects($this->once())
             ->method('shouldSkipProperty')
-            ->will($this->returnCallback(function ($propertyMetadata, $passedContext) use ($context, $metadata, $self) {
+            ->will($this->returnCallback(static function ($propertyMetadata, $passedContext) use ($context, $metadata, $self) {
                 $self->assertSame($metadata->propertyMetadata['foo'], $propertyMetadata);
                 $self->assertSame($context, $passedContext);
+                return false;
             }));
 
         $this->context->expects($this->once())
             ->method('getExclusionStrategy')
             ->will($this->returnValue($exclusionStrategy));
 
-        $this->context->expects($this->any())
-            ->method('getDirection')
-            ->will($this->returnValue(GraphNavigator::DIRECTION_SERIALIZATION));
-
-        $this->context->expects($this->any())
-            ->method('getVisitor')
-            ->will($this->returnValue($this->getMockBuilder('JMS\Serializer\VisitorInterface')->getMock()));
-
-        $this->navigator = new GraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->objectConstructor, $this->dispatcher);
-        $this->navigator->accept($object, null, $this->context);
+        $navigator = new SerializationGraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->accessor, $this->dispatcher);
+        $navigator->initialize($this->serializationVisitor, $this->context);
+        $navigator->accept($object, null);
     }
 
     public function testNavigatorPassesNullOnDeserialization()
@@ -75,17 +85,19 @@ class GraphNavigatorTest extends \PHPUnit_Framework_TestCase
         $class = __NAMESPACE__ . '\SerializableClass';
         $metadata = $this->metadataFactory->getMetadataForClass($class);
 
+        $this->context = $this->getMockBuilder(DeserializationContext::class)->getMock();
+
         $context = $this->context;
-        $exclusionStrategy = $this->getMockBuilder('JMS\Serializer\Exclusion\ExclusionStrategyInterface')->getMock();
+        $exclusionStrategy = $this->getMockBuilder(ExclusionStrategyInterface::class)->getMock();
         $exclusionStrategy->expects($this->once())
             ->method('shouldSkipClass')
-            ->with($metadata, $this->callback(function ($navigatorContext) use ($context) {
+            ->with($metadata, $this->callback(static function ($navigatorContext) use ($context) {
                 return $navigatorContext === $context;
             }));
 
         $exclusionStrategy->expects($this->once())
             ->method('shouldSkipProperty')
-            ->with($metadata->propertyMetadata['foo'], $this->callback(function ($navigatorContext) use ($context) {
+            ->with($metadata->propertyMetadata['foo'], $this->callback(static function ($navigatorContext) use ($context) {
                 return $navigatorContext === $context;
             }));
 
@@ -93,24 +105,20 @@ class GraphNavigatorTest extends \PHPUnit_Framework_TestCase
             ->method('getExclusionStrategy')
             ->will($this->returnValue($exclusionStrategy));
 
-        $this->context->expects($this->any())
-            ->method('getDirection')
-            ->will($this->returnValue(GraphNavigator::DIRECTION_DESERIALIZATION));
-
-        $this->context->expects($this->any())
-            ->method('getVisitor')
-            ->will($this->returnValue($this->getMockBuilder('JMS\Serializer\VisitorInterface')->getMock()));
-
-        $this->navigator = new GraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->objectConstructor, $this->dispatcher);
-        $this->navigator->accept('random', array('name' => $class, 'params' => array()), $this->context);
+        $navigator = new DeserializationGraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->objectConstructor, $this->accessor, $this->dispatcher);
+        $navigator->initialize($this->deserializationVisitor, $this->context);
+        $navigator->accept('random', ['name' => $class, 'params' => []]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNavigatorChangeTypeOnSerialization()
     {
-        $object = new SerializableClass;
+        $object = new SerializableClass();
         $typeName = 'JsonSerializable';
 
-        $this->dispatcher->addListener('serializer.pre_serialize', function ($event) use ($typeName) {
+        $this->dispatcher->addListener('serializer.pre_serialize', static function ($event) use ($typeName) {
             $type = $event->getType();
             $type['name'] = $typeName;
             $event->setType($type['name'], $type['params']);
@@ -118,27 +126,38 @@ class GraphNavigatorTest extends \PHPUnit_Framework_TestCase
 
         $this->handlerRegistry->registerSubscribingHandler(new TestSubscribingHandler());
 
-        $this->context->expects($this->any())
-            ->method('getDirection')
-            ->will($this->returnValue(GraphNavigator::DIRECTION_SERIALIZATION));
-
-        $this->context->expects($this->any())
-            ->method('getVisitor')
-            ->will($this->returnValue($this->getMockBuilder('JMS\Serializer\VisitorInterface')->getMock()));
-
-        $this->navigator = new GraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->objectConstructor, $this->dispatcher);
-        $this->navigator->accept($object, null, $this->context);
+        $navigator = new SerializationGraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->accessor, $this->dispatcher);
+        $navigator->initialize($this->serializationVisitor, $this->context);
+        $navigator->accept($object, null);
     }
 
     protected function setUp()
     {
-        $this->context = $this->getMockBuilder('JMS\Serializer\Context')->getMock();
+        $this->deserializationVisitor = $this->getMockBuilder(DeserializationVisitorInterface::class)->getMock();
+        $this->serializationVisitor = $this->getMockBuilder(SerializationVisitorInterface::class)->getMock();
+
+        $this->context = $this->getMockBuilder(SerializationContext::class)
+            ->enableOriginalConstructor()
+            ->setMethodsExcept(['getExclusionStrategy'])
+            ->getMock();
+
+        $this->deserializationContext = $this->getMockBuilder(DeserializationContext::class)
+            ->enableOriginalConstructor()
+            ->setMethodsExcept(['getExclusionStrategy'])
+            ->getMock();
+
         $this->dispatcher = new EventDispatcher();
+        $this->accessor = new DefaultAccessorStrategy();
         $this->handlerRegistry = new HandlerRegistry();
         $this->objectConstructor = new UnserializeObjectConstructor();
 
-        $this->metadataFactory = new MetadataFactory(new AnnotationDriver(new AnnotationReader()));
-        $this->navigator = new GraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->objectConstructor, $this->dispatcher);
+        $this->metadataFactory = new MetadataFactory(new AnnotationDriver(new AnnotationReader(), new IdenticalPropertyNamingStrategy()));
+
+        $this->serializationNavigator = new SerializationGraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->accessor, $this->dispatcher);
+        $this->serializationNavigator->initialize($this->serializationVisitor, $this->context);
+
+        $this->deserializationNavigator = new DeserializationGraphNavigator($this->metadataFactory, $this->handlerRegistry, $this->objectConstructor, $this->accessor, $this->dispatcher);
+        $this->deserializationNavigator->initialize($this->deserializationVisitor, $this->deserializationContext);
     }
 }
 
@@ -151,11 +170,12 @@ class TestSubscribingHandler implements SubscribingHandlerInterface
 {
     public static function getSubscribingMethods()
     {
-        return array(array(
+        return [[
             'type' => 'JsonSerializable',
             'format' => 'foo',
-            'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
-            'method' => 'serialize'
-        ));
+            'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
+            'method' => 'serialize',
+        ],
+        ];
     }
 }

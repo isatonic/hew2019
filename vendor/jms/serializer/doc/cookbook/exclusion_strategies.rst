@@ -189,8 +189,7 @@ You can override groups on specific paths::
         ),
 
         'friends' => array( // Override the groups for the friends of John
-            'manager_group' // Serialize John friends' managers.
-
+            'manager_group', // Serialize John friends' managers.
             'manager' => array( // Override the groups for the John friends' manager
                 'Default', // This would be the default if you did not override the groups of the manager property.
             ),
@@ -310,7 +309,7 @@ To enable this feature you have to set the Expression Evaluator when initializin
 
 .. _symfony expression language: https://github.com/symfony/expression-language
 
-By default the serializer exposes three variables (`object`, `context` and `property_metadata` for use in an expression. This enables you to create custom exclusion strategies similar to i.e. the [GroupExclusionStrategy](https://github.com/schmittjoh/serializer/blob/master/src/Exclusion/GroupsExclusionStrategy.php). In the below example, `someMethod` would receive all three variables.
+By default the serializer exposes three variables (`object`, `context` and `property_metadata` for use in an expression. This enables you to create custom exclusion strategies similar to i.e. the `GroupExclusionStrategy`_. In the below example, `someMethod` would receive all three variables.
 
 .. code-block :: php
 
@@ -328,3 +327,5 @@ By default the serializer exposes three variables (`object`, `context` and `prop
          */
         private $name2;
     }
+
+.. _GroupExclusionStrategy: https://github.com/schmittjoh/serializer/blob/master/src/Exclusion/GroupsExclusionStrategy.php
