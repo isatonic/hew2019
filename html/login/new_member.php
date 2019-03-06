@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>ログイン | ISATONIC</title>
+	<title>新規会員登録 | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -89,33 +89,80 @@
 		<script src="js/Mypage.js"></script>
 		<div class="font">
 					
-					<div class="wrap">
+					<div class="wrap2">
 						<div class="container font_center">
-							<h1>ログイン画面</h1>
+							<h1>新規会員登録</h1>
 							<br>
-							<form　method="post" action="../controller/login.php">
-								<input type="mailadr" placeholder="メールアドレス">
-								<input type="password" minlength="8" maxlength="16" placeholder="パスワード(8以上16文字以下)">
-								<input type="submit" value="ログイン"/>
-							<form>
-							<p>
-								<?php
-									echo "えらあああああああ";
-								?>
-							</p>
-						</div>
-						<div class="menu_login">
-							<div class="pw_forget">
-								<a href="./pass_new.php"><p>パスワード忘れた方へ</p></a>
-							</div>
-							<div class="new_member">
-								<a href="./new_member.php"><p>新規会員登録</p></a>
-							</div>
 							
+						<form　method="post" action="../controller/regist.php">
+							<input type="text" placeholder="ニックネーム(2文字以上)"/>
+				<div class="centerrr">
+                <input type="text" placeholder="性" class="ee" max="10">
+                   <input type="text" placeholder="名" class="rr">
+				</div>
+
+                <input type="radio" value="男"class="aa" name="gender"><p class="cc">:男</p>
+                <input type="radio" value="女"class="bb" name="gender"><p class="dd">:女</p>
+                <br>
+                <input type="text" class="ll" placeholder="西暦"/>
+                <select name="month"style="color:#000000"class="qq" >
+                  <option value="">生月を選択してください!</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+                <select name="day"style="color:#000000"class="pp">
+                  <option value="">生日を選択してください!</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  </select>
+                  <br/>
+                <input type="text" name="email" placeholder="メールアドレス"/>
+                <input type="password" placeholder="パスワード(8文字以上~16文字以下)"/>
+                <input type="password" placeholder="パスワード(確認)"/>
+                <input type="submit" value="登録"/>
 						</div>
 						
 					
-					
+							</form>
 					</div>
 
 			
