@@ -1,3 +1,10 @@
+<?php
+if (!isset($_POST["login_err"]) or is_null($_POST["login_err"])) {
+  $msg = "";
+} else {
+  $msg = $_POST["login_err"];
+}
+?>
 <html>
 	<head>
 	<title>ログイン | ISATONIC</title>
@@ -93,14 +100,14 @@
 						<div class="container font_center">
 							<h1>ログイン画面</h1>
 							<br>
-							<form　method="post" action="../controller/login.php">
-								<input type="mailadr" placeholder="メールアドレス">
+							<form method="post" action="../controller/login.php">
+								<input type="text" placeholder="メールアドレス">
 								<input type="password" minlength="8" maxlength="16" placeholder="パスワード(8以上16文字以下)">
 								<input type="submit" value="ログイン"/>
 							<form>
 							<p>
 								<?php
-									echo "えらあああああああ";
+									echo $msg;
 								?>
 							</p>
 						</div>
