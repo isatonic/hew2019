@@ -14,14 +14,16 @@ class Upload extends LogicalBase {
     private $data;
     private $Products;
     private $Tag;
+    private $fileID;
 
     public function __construct(myPDO $myPDO, DataInterface $Data) {
         parent::__construct($myPDO, $Data);
+        $this->createID($Data->extend("author"));
         $this->Products = new Products($this->pdo, $Data->extend("author"));
         $this->Tag = new Tag($this->pdo);
         $this->data = array(
-            "id" => $this->createID($Data->extend("author")),
-            "fileName" => $this->createID($Data->extend("author")) . $this->getType($Data->extend("filename")),
+            "id" => $this->fileID,
+            "fileName" => $this->fileID . "." . $this->getType($Data->extend("filename")),
             "title" => $Data->extend("title"),
             "author" => $Data->extend("author"),
             "price" => $Data->extend("price"),
@@ -34,7 +36,7 @@ class Upload extends LogicalBase {
     }
 
     private function createID($author) {
-        return "P" . substr($author, 2) . time();
+        $this->fileID = "P" . substr($author, 2) . time();
     }
 
     private function getType($filename) {

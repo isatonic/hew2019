@@ -11,17 +11,18 @@ $result = $model->transaction();
 
 if ($result === false) {
     // IDまたはパスワードが違う
-    $url = "";
-} else if (is_object($result)) {
-    // 何かしらのエラー
-    $url = "";
+    $_POST["login_err"] = "IDまたはパスワードが違います。";
+    header("Location: ", true, 302);
 } else if ($result === "limited") {
     // ユーザ制限中
-    $url = "";
+    $_POST["login_err"] = "利用が一時的に制限されています。";
+    header("Location: ", true, 302);
+} else if (is_object($result)) {
+    // 何かしらのエラー
+    $_POST["login_err"] = "エラーが発生しました。";
+    header("Location: ", true, 302);
 } else {
     // ログイン成功
     $_SESSION["id"] = $result;
-    $url = "../index/index.html";
+    header("Location: ../index/index.html", true, 302);
 }
-
-header("Location: " . $url, true, 302);

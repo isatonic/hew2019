@@ -1,6 +1,10 @@
 <?php
 session_start();
 require_once "../../vendor/autoload.php";
+if (!isset($_SESSION["id"]) or is_null($_SESSION["id"])) {
+    // go to LOGIN
+    header("");
+}
 $user = $_SESSION["id"];
 
 $pdo = new \model\myPDO();
