@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (isset($_POST["id"])) {
+  header("Location: ../index/index.html", true, 302);
+}
 if (!isset($_POST["login_err"]) or is_null($_POST["login_err"])) {
   $msg = "";
 } else {
