@@ -111,3 +111,33 @@
 
 
 
+.submit_items {
+	
+}
+
+.margin_1 {
+	width: 95%;
+	height: auto;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	margin-top: 50px;
+	background: #CFCFCF;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+.margin_1 img{
+	width: 200px;
+	height: auto;
+	
+}
+.exshow {
+	background: #D14749;
+	position: absolute;
+	top: 57%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 1600px;
+	height: 500px;
+}
