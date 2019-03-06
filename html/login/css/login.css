@@ -8,6 +8,7 @@
         }
 input{
 	border-radius: 3px;
+	text-align: center;
 }
         .wrap {
             width: 100%;
@@ -41,7 +42,7 @@ input{
             color: #FFFFFF;
             font-weight: 500;
         }
-        .container input {
+        .container input,.container select,.toggle-buttons {
             width: 320px;
             display: block;
             height: 36px;
@@ -54,6 +55,20 @@ input{
             -moz-transition: all 0s ease-in 0.1ms;
             transition: all 0s ease-in 0.1ms;
         }
+		.name_1,.name_2 {
+            width: 160px;
+            display: block;
+            height: 36px;
+            border: 0;
+            outline: 0;
+            padding: 6px 10px;
+            line-height: 24px;
+            margin: 32px auto;
+            -webkit-transition: all 0s ease-in 0.1ms;
+            -moz-transition: all 0s ease-in 0.1ms;
+            transition: all 0s ease-in 0.1ms;
+        }
+
         .container input[type="text"] , .container input[type="password"]  {
             background-color: #FFFFFF;
             font-size: 16px;
@@ -129,89 +144,86 @@ input{
 
 
 
-
-
-
-
-
-
-
-
-
-    select.pp{
+    select{
       display: block;
       background-color: #ffFFFF;
-      margin:auto;
-      margin-top:-165.2px;
-      margin-right: 0% auto;
-    transform: translate(120%, 87%);
     bottom:0;
     border:1px solid #ffffff;
     width:100px;
     height:38px;
-    }
-    select.qq{
-      display: block;
-      background-color: #ffffff;
-      margin:auto;
-      top:-164.5px;
-      right: 3%;
-      transform: translate(21%, -246.5%);
-    bottom:0;
-    border:1px solid #ffffff;
-    width:100px;
-    height:38px;
-    }
-    input.aa{
-      display: block;
-      margin:auto;
-      top:-64.5px;
-      right: 3%;
-      transform: translate(-921%, 135%);
-    bottom:0;
+		border-radius: 3px;
+}
 
-    }
-    p.cc{
-      display: block;
-      text-align: center;
-      margin:auto;
-      margin-top:10.5px;
-      margin-left: -200px;
-      right: 33%;
-      transform: translate(1%, -46%);
-    bottom:0;
 
-    }
-    input.bb{
-      display: block;
-      margin:auto;
-      top:-64.5px;
-      right: 3%;
-      transform: translate(221%, -185%);
-    bottom:0;
-
-    }
-    p.dd{
-      display: block;
-      text-align: center;
-      margin:auto;
-      margin-top:-32.5px;
-      margin-left: 100px;
-      right: 33%;
-      transform: translate(1%, -45%);
-    bottom:0;
-
-    }
     option{
       background-color: #FFFFFF;
     }
 
+.container input[type='text'].name_1 {
+          width: 150px;
+          text-align: center;
+          display: block;
+          height: 36px;
+          border: 0;
+          outline: 0;
+          padding: 6px 10px;
+          line-height: 24px;
+          margin:32px auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+          margin-right: -50% auto;
+        transform: translate(-56.5%, -56.5%);
+          -webkit-transition: all 0s ease-in 0.1ms;
+          -moz-transition: all 0s ease-in 0.1ms;
+          transition: all 0s ease-in 0.1ms;
       }
-
-.centerrr {
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-
+      .container input[type='text'].name_2 {
+          width: 150px;
+          display: block;
+          text-align: center;
+          height: 36px;
+          border: 0;
+          outline: 0;
+          margin:32px auto;
+          margin-top:-126px;
+          margin-right: -53% auto;
+		  margin-bottom: 50px;
+          transform: translate(54.5%, 54.5%);
+          -webkit-transition: all 0s ease-in 0.1ms;
+          -moz-transition: all 0s ease-in 0.1ms;
+          transition: all 0s ease-in 0.1ms;
+      }
+.container select.name_1 {
+          width: 150px;
+          text-align: center;
+          display: block;
+          height: 36px;
+          border: 0;
+          outline: 0;
+          padding: 6px 10px;
+          line-height: 24px;
+          margin:32px auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+          margin-right: -50% auto;
+        transform: translate(-56.5%, -56.5%);
+          -webkit-transition: all 0s ease-in 0.1ms;
+          -moz-transition: all 0s ease-in 0.1ms;
+          transition: all 0s ease-in 0.1ms;
+      }
+      .container select.name_2 {
+          width: 150px;
+          display: block;
+          text-align: center;
+          height: 36px;
+          border: 0;
+          outline: 0;
+          margin:32px auto;
+          margin-top:-126px;
+          margin-right: -53% auto;
+		  margin-bottom: 50px;
+          transform: translate(54.5%, 54.5%);
+          -webkit-transition: all 0s ease-in 0.1ms;
+          -moz-transition: all 0s ease-in 0.1ms;
+          transition: all 0s ease-in 0.1ms;
+      }
