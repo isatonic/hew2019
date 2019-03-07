@@ -33,8 +33,6 @@
 			<ul class="cd-main-nav">
 				<li><a href="../login/login.php">ログイン</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-				<li><a href="../Genre/US27.php">ジャンル検索</a></li>
-				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../SNS/SN1.html">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../cart/US8.php">カート</a></li>
@@ -49,39 +47,7 @@
 	<div id="search" class="cd-main-search">
     <form name="searchForm" action="" method="post">
       <input type="search" placeholder="入力してください">
-
-		</form>
-
-		<div class="cd-search-suggestions">
-			<div class="news">
-				<h3>News</h3>
-				<ul>
-					<li>
-						<a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-						<h4><a class="cd-nowrap" href="">1</a></h4>
-					</li>
-
-					<li>
-						<a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-						<h4><a class="cd-nowrap" href="">2</a></h4>
-					</li>
-
-					<li>
-						<a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-						<h4><a class="cd-nowrap" href="">3</a></h4>
-					</li>
-   					<li>
-						<a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-						<h4><a class="cd-nowrap" href="">4</a></h4>
-					</li>
-                    <li>
-						<a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-						<h4><a class="cd-nowrap" href="">5</a></h4>	
-					</li>
-
-				</ul>
-			</div> 
-		</div>
+	</form>
 
 		<a href="#0" class="close cd-text-replace">Close Form</a>
 	</div>  
