@@ -21,16 +21,18 @@ class Login extends LogicalBase {
     }
 
     public function transaction() {
-        if ($this->Auth->check($this->Data->extend("pass"), $this->Data->extend("id"))) {
-            try {
-                if ($this->UserLimit->check($this->Data->extend("id")) === true) {
-                    return $this->Data->extend("id");
-                } else {
-                    return "limited";
-                }
-            } catch (\Exception $e) {
-                return $e;
-            }
+        $id = $this->Auth->check($this->Data->extend("pass"), $this->Data->extend("email"));
+        if ($id != false) {
+            return $id;
+//            try {
+//                if ($this->UserLimit->check($id) === true) {
+//                    return $id;
+//                } else {
+//                    return "limited";
+//                }
+//            } catch (\Exception $e) {
+//                return $e;
+//            }
         } else {
             return false;
         }

@@ -227,3 +227,7 @@ input{
           -moz-transition: all 0s ease-in 0.1ms;
           transition: all 0s ease-in 0.1ms;
       }
+
+      .error_message {
+        color: red;
+      }

@@ -3,14 +3,18 @@
 session_start();
 require_once "../../vendor/autoload.php";
 
-$pdo = new \model\myPDO();
-$data = new \model\Data($_POST);
-$model = new \model\logical\Login($pdo, $data);
+$pdo = new model\myPDO();
+$post = array(
+    "pass" => $_POST["pass"],
+    "email" => $_POST["email"]
+);
+$data = new model\Data($post);
+$model = new model\logical\Login($pdo, $data);
 
 $result = $model->transaction();
 
 if ($result === false) {
-    // IDまたはパスワードが違う
+    // 登録されていない or IDまたはパスワードが違う
     $_POST["login_err"] = "IDまたはパスワードが違います。";
     header("Location: ", true, 302);
 } else if ($result === "limited") {
@@ -19,7 +23,7 @@ if ($result === false) {
     header("Location: ", true, 302);
 } else if (is_object($result)) {
     // 何かしらのエラー
-    $_POST["login_err"] = "エラーが発生しました。";
+    $_POST["login_err"] = "ログイン中にエラーが発生しました。";
     header("Location: ", true, 302);
 } else {
     // ログイン成功

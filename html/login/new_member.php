@@ -1,3 +1,10 @@
+<?php
+if (isset($_POST["regist_err"])) {
+  $msg = $_POST["regist_err"];
+} else {
+  $msg = "";
+}
+?>
 <html>
 	<head>
 	<title>新規会員登録 | ISATONIC</title>
@@ -94,20 +101,27 @@
 							<h1>新規会員登録</h1>
 							<br>
 
+              <div class="error_message">
+                <p>
+                    <?php
+                    echo $msg;
+                    ?>
+                </p>
+              </div>
 						<form method="post" action="../controller/regist.php">
-							<input type="text" placeholder="ニックネーム(2文字以上)"/>
-									<input type="text" placeholder="性" max="10" class="name_1">
-									<input type="text" placeholder="名" max="10" class="name_2">
+							<input type="text" name="userName" placeholder="ニックネーム(2文字以上)" required />
+									<input type="text" name="lastName" placeholder="姓" max="10" class="name_1" required>
+									<input type="text" name="firstName" placeholder="名" max="10" class="name_2" required>
 
-							<select name="gender" style="color:#666666;text-align: center;">
+							<select name="gender" style="color:#666666;text-align: center;" required>
 								  <option value="">-- 性別 --</option>
-								  <option value="男性">男性</option>
-								  <option value="女性">女性</option>
+								  <option value="m">男性</option>
+								  <option value="f">女性</option>
 								</select>
-								<input type="text" class="ll" placeholder="西暦"/>
+								<input type="text" name="year" class="ll" placeholder="誕生年" required/>
 
-								<select name="month" style="color:#666666;text-align: center;" class="name_1">
-								  <option value="">-- 月 --</option>
+								<select name="month" style="color:#666666;text-align: center;" class="name_1" required>
+								  <option value="">-- 誕生月 --</option>
 								  <option value="1">1</option>
 								  <option value="2">2</option>
 								  <option value="3">3</option>
@@ -121,8 +135,8 @@
 								  <option value="11">11</option>
 								  <option value="12">12</option>
 								</select>
-								<select name="day" style="color:#666666;text-align: center;" class="name_2">
-								  <option value="">-- 日 --</option>
+								<select name="day" style="color:#666666;text-align: center;" class="name_2" required>
+								  <option value="">-- 誕生日 --</option>
 								  <option value="1">1</option>
 								  <option value="2">2</option>
 								  <option value="3">3</option>
@@ -155,9 +169,10 @@
 								  <option value="30">30</option>
 								  <option value="31">31</option>
 								  </select>
-								<input type="text" name="email" placeholder="メールアドレス"/>
-								<input type="password" placeholder="パスワード(8文字以上~16文字以下)"/>
-								<input type="password" placeholder="パスワード(確認)"/>
+								<input type="text" name="email" placeholder="メールアドレス" required/>
+								<input type="password" name="pass" placeholder="パスワード(8文字以上~16文字以下)" required/>
+								<input type="password" name="pass_confirm" placeholder="パスワード(確認)" required/>
+              <input type="hidden" name="type" value="user">
 								<input type="submit" value="登録"/>
             </form>
 						</div>

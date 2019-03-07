@@ -18,7 +18,7 @@ class UserRegist extends LogicalBase {
     private $Grade;
     private $Wallet;
     private $Password;
-    private $Verify;
+//    private $Verify;
 
     public function __construct(myPDO $myPDO, DataInterface $Data) {
         parent::__construct($myPDO, $Data);
@@ -29,22 +29,39 @@ class UserRegist extends LogicalBase {
         $this->pdo->beginTransaction();
         try {
             $id = $this->User->regist($this->Data->get());
+            if ($id == false) {
+                $this->pdo->rollBack();
+                exit("User error");
+            }
 
             $this->UserDetail = new UserDetails($this->pdo, $id);
-            $this->UserDetail->regist($this->Data->extend("userName"));
+            if (!$this->UserDetail->regist($this->Data->extend("userName"))) {
+                $this->pdo->rollBack();
+                exit("UserDetails error");
+            }
 
             $this->Password = new Password($this->pdo, $id);
-            $this->Password->regist($this->Data->extend("password"));
+            if (!$this->Password->regist($this->Data->extend("pass"), $id)) {
+                $this->pdo->rollBack();
+                exit("Password error");
+            }
 
             $this->Grade = new Grade($this->pdo, $id);
-            $this->Grade->init();
+            if (!$this->Grade->init($id)) {
+                $this->pdo->rollBack();
+                exit("Grade init error");
+            }
 
             $this->Wallet = new Wallet($this->pdo, $id);
-            $this->Wallet->init();
+            if (!$this->Wallet->init($id)) {
+                $this->pdo->rollBack();
+                exit("Wallet init error");
+            }
 
-            $this->Verify = new MailVerify($this->pdo, $id);
-            $this->Verify->add($this->Data->extend("email"));
+//            $this->Verify = new MailVerify($this->pdo, $id);
+//            $this->Verify->add($this->Data->extend("email"));
 
+            $this->pdo->commit();
             return $id;
         } catch (\PDOException $e) {
             $code = $e->getCode();

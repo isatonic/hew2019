@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_POST["id"])) {
-  header("Location: ../index/index.html", true, 302);
+if (isset($_SESSION["id"])) {
+  header("Location: ../My Page/US20.php", true, 302);
 }
 if (!isset($_POST["login_err"]) or is_null($_POST["login_err"])) {
   $msg = "";
@@ -105,8 +105,8 @@ if (!isset($_POST["login_err"]) or is_null($_POST["login_err"])) {
 							<h1>ログイン画面</h1>
 							<br>
 							<form method="post" action="../controller/login.php">
-								<input type="text" placeholder="メールアドレス">
-								<input type="password" minlength="8" maxlength="16" placeholder="パスワード(8以上16文字以下)">
+								<input type="text" name="email" placeholder="メールアドレス">
+								<input type="password" name="pass" minlength="8" maxlength="16" placeholder="パスワード(8以上16文字以下)">
 								<input type="submit" value="ログイン"/>
 							<form>
 							<p>

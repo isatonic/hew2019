@@ -1,12 +1,12 @@
 <?php
 session_start();
 // ログインページのurl
-$login_url = "";
-if (isset($_SESSION["id"]) and !is_null($_SESSION["id"])) {
-    $user = $_SESSION["id"];
-} else {
+$login_url = "../login/login.php";
+if (!isset($_SESSION["id"]) or is_null($_SESSION["id"])) {
     // login required
-//     header("Location: ${url}");
+    header("Location: ../login/login.php");
+} else {
+    $user = $_SESSION["id"];
 }
 if (isset($_POST["home_data"]) and !is_null($_POST["home_data"])) {
     $data = $_POST["home_data"];
@@ -264,7 +264,7 @@ $upload_dir = "";
 									<h1 class="userid">ユーザーID</h1>
 									<p>
 										<?php 
-											echo 'Uxxxxxxxx';
+											echo "{$_SESSION['id']}";
 										?>
 									</p>
 								</div>

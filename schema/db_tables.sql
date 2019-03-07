@@ -19,6 +19,7 @@ CREATE TABLE Users (
     id        char(25) PRIMARY KEY,
     regDate   datetime DEFAULT CURRENT_TIMESTAMP,
     birth     date                                                            NOT NULL,
+    gender    enum ('m', 'f')                                                 NOT NULL,
     firstName varchar(32)                                                     NOT NULL,
     lastName  varchar(32)                                                     NOT NULL,
     email     varchar(255) UNIQUE,
@@ -308,7 +309,7 @@ CREATE TABLE Friends (
 ;
 
 CREATE VIEW Auth AS
-    SELECT U.id AS id, P.pass AS pass, U.flag AS flag
+    SELECT U.id AS id, U.email as email, P.pass AS pass, U.flag AS flag
         FROM Users U,
              Password P
         WHERE U.id = P.id

@@ -37,7 +37,7 @@ abstract class ModelBase implements ModelBaseInterface {
      */
     public function __construct(PDO $pdo, string $user = null) {
         $this->db = $pdo;
-        $this->table_name = get_class($this);
+        $this->table_name = substr(get_class($this), strrpos(get_class($this), '\\') + 1);
 
         if ($user != null) {
             $this->user_id = $user;
@@ -88,7 +88,8 @@ abstract class ModelBase implements ModelBaseInterface {
         $this->selectSql($want, $where, $order);
         $this->exec($where);
         $this->setAssoc();
-        $this->returnRows();
+//        $this->returnRows();
+        return $this->rows;
     }
 
     protected function execInsert(array $data) {
@@ -143,8 +144,8 @@ abstract class ModelBase implements ModelBaseInterface {
         $sql = sprintf(
             "INSERT INTO %s (%s) VALUES (%s)",
             $this->table_name,
-            implode(',', $fields),
-            implode(',', $values)
+            implode(', ', $fields),
+            implode(', ', $values)
         );
         $this->sql = $sql;
     }
@@ -192,8 +193,10 @@ abstract class ModelBase implements ModelBaseInterface {
         foreach ($where as $key => $val) {
             $condition[] = "$key = :$key";
         }
-        foreach ($condition as $val2) {
-            $add .= implode(" ${andor} ", $val2);
+        if (count($condition) > 1) {
+            $add .= implode(" ${andor} ", $condition);
+        } else {
+            $add .= $condition[0];
         }
 
         return $add;
@@ -235,7 +238,7 @@ abstract class ModelBase implements ModelBaseInterface {
      * @return string
      */
     protected function setUser(string $user = null) {
-        if ($user == null) {
+        if ($user === null) {
             return $this->user_id;
         } else {
             return $user;
