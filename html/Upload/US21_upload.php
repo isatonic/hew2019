@@ -1,3 +1,17 @@
+<?php
+session_start();
+if (isset($_SESSION["isatonic_upload_result"])) {
+    if ($_SESSION["isatonic_upload_result"]) {
+        $msg = "画像をアップロードしました。";
+    } else {
+        $msg = "アップロードに失敗しました。";
+    }
+    unset($_SESSION["isatonic_upload_result"]);
+} else {
+//    echo "debug: US21.php にリダイレクト";
+    header("Location: ./US21.php", true, 302);
+}
+?>
 <html>
 	<head>
 	<title>アップロード | ISATONIC</title>
@@ -57,42 +71,11 @@
 		<div class="font">
 			<h2 class="Header">　　アップロード結果</h2>
 				<div class="mype_main">
-					
-					
 					<div class="upload_fin">
 						<?php
-            if (isset($_POST["upload_result"])) {
-                if ($_POST["upload_result"]) {
-                    echo "画像をアップロードしました。";
-                } else {
-                    echo "アップロードに失敗しました。";
-                }
-            } else {
-              echo "debug: US21.php にリダイレクト";
-            }
-//						$tempfile = $_FILES['files']['tmp_name'];
-//						$filename = 'images/' . $_FILES['files']['name'];
-//						if (is_uploaded_file($tempfile)) {
-//							if ( move_uploaded_file($tempfile , $filename )) {
-//							echo "画像をアップロードしました。";
-//							} else {
-//								echo "画像をアップロードできません。";
-//							}
-//						} else {
-//							echo "ファイルが選択されていません。";
-//						}
+            echo $msg;
 						?>
 					</div>
-					
-<!--					--><?php
-//					echo $_POST['cate_1'];
-//					echo $_POST['cate_2'];
-//					echo $_POST['title'];
-//					echo $_POST['main_text'];
-//					echo $_POST['cate_3'];
-//					?>
-					
-					
 				</div>
 <!-- フローティング操作ボタン -->
 			<a id="fab" href="US21.php">

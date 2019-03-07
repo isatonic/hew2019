@@ -39,7 +39,7 @@ CREATE TABLE UserDetails (
 ;
 
 CREATE TABLE Products (
-    id            char(35) PRIMARY KEY,
+    id            char(50) PRIMARY KEY,
     author        char(25),
     postDate      datetime DEFAULT CURRENT_TIMESTAMP,
     price         int          NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE ContactTags (
 ;
 
 CREATE TABLE Tag (
-    product char(35),
+    product char(50),
     tagID   char(6),
     PRIMARY KEY (product, tagID),
     FOREIGN KEY (product) REFERENCES Products (id)
@@ -92,7 +92,7 @@ CREATE TABLE Tag (
 ;
 
 CREATE TABLE Cart (
-    product char(35),
+    product char(50),
     user    char(25),
     PRIMARY KEY (product, user),
     FOREIGN KEY (product) REFERENCES Products (id)
@@ -106,7 +106,7 @@ CREATE TABLE Cart (
 ;
 
 CREATE TABLE Purchase (
-    product      char(35),
+    product      char(50),
     buyer        char(25),
     purchaseDate datetime DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (product, buyer),
@@ -122,7 +122,7 @@ CREATE TABLE Purchase (
 
 CREATE TABLE ProductReport (
     reporter   char(25),
-    product    char(35),
+    product    char(50),
     reportDate datetime DEFAULT CURRENT_TIMESTAMP,
     flag       enum ('unconfirm', 'progress', 'complete', 'hold') NOT NULL,
     reason     varchar(255),

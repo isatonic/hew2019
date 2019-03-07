@@ -15,7 +15,7 @@ if (isset($_POST["home_data"]) and !is_null($_POST["home_data"])) {
 //    header("Location: ${url}");
 }
 // 作品を格納するディレクトリ
-$upload_dir = "";
+$upload_dir = "../uploaded_files/";
 ?>
 <html>
 	<head>
@@ -292,7 +292,7 @@ $upload_dir = "";
                 <!--                  --><?php
                   //                  $product = $data["product"];
                   //                  foreach ($product as $row) {
-                  //                      echo "<img src='${upload_dir}/{$row['fileName']}' alt='' class='imageee1'";
+                  //                      echo "<img src='${upload_dir}{$row['fileName']}' alt='' class='imageee1'";
                   //                  }
                   //                  ?>
 								<div class="imgimg">

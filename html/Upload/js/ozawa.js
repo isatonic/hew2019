@@ -1,5 +1,5 @@
 function submits(){
-	var flag = 0
+	var flag = 0;
 	if(document.form01.cate_1.value == ""){ 
 		flag = 1;
 	}

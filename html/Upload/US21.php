@@ -59,7 +59,7 @@
 			<h2 class="Header">　　アップロード</h2>
 				<div class="mype_main">
 
-				<form action="US21_upload.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
+				<form action="../controller/upload.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
 					<div class="category_1">
 						<p>カテゴリ選択：&nbsp;&nbsp;
 

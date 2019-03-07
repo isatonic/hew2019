@@ -36,7 +36,7 @@ class Users extends ModelBase {
         }
         $prefix .= substr($data["email"], 0, 1);
         $Data = array(
-            "id" => uniqid($prefix, true),
+            "id" => str_replace('.', '-', uniqid($prefix, true)),
             "birth" => $data["birth"],
             "gender" => $data["gender"],
             "firstName" => $data["firstName"],
