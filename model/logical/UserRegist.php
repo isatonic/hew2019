@@ -5,7 +5,7 @@ require_once "../../vendor/autoload.php";
 use model\DataInterface;
 use model\myPDO;
 use model\physical\Grade;
-use model\physical\MailVerify;
+//use model\physical\MailVerify;
 use model\physical\Password;
 use model\physical\UserDetails;
 use model\physical\Users;
