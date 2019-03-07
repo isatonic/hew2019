@@ -8,7 +8,7 @@ if (!isset($_POST["searchResult"])) {
 <head>
   <meta charset="utf-8">
   <script async src="https://cdn.ampproject.org/v0.js"></script>
-  <title>作品一覧 | ISATONIC</title>
+  <title>検索結果 | ISATONIC</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -43,9 +43,7 @@ if (!isset($_POST["searchResult"])) {
       <a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 
       <ul class="cd-main-nav">
-				<li><a href="" data-type="page-transition">ログイン</a></li>
-				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-				<li><a href="../Genre/US27.php">ジャンル検索</a></li>
+				<li><a href="../login/login.php">ログイン</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../SNS/SN1.html">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
@@ -63,36 +61,6 @@ if (!isset($_POST["searchResult"])) {
 
     </form>
 
-    <div class="cd-search-suggestions">
-      <div class="news">
-        <h3>News</h3>
-        <ul>
-          <li>
-            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-            <h4><a class="cd-nowrap" href="">1</a></h4>
-          </li>
-
-          <li>
-            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-            <h4><a class="cd-nowrap" href="">2</a></h4>
-          </li>
-
-          <li>
-            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-            <h4><a class="cd-nowrap" href="">3</a></h4>
-          </li>
-          <li>
-            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-            <h4><a class="cd-nowrap" href="">4</a></h4>
-          </li>
-          <li>
-            <a class="image-wrapper" href=""><img src="img/placeholder.png" alt=""></a>
-            <h4><a class="cd-nowrap" href="">5</a></h4>
-          </li>
-
-        </ul>
-      </div>
-    </div>
 
     <a href="#0" class="close cd-text-replace">Close Form</a>
   </div>

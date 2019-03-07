@@ -80,12 +80,21 @@ input{
             color: #666666;
             background-color: #FFFFFF;
         }
-        .container input:focus {
-            width: 400px;
-        }
         .container input[type='submit']:hover {
             cursor: pointer;
-            width: 400px;
+            width: 380px;
+			font-size: 1.2em;
+			-webkit-transition: 0.5s ease-in-out;
+			-moz-transition: 0.5s ease-in-out;
+			-o-transition: 0.5s ease-in-out;
+			transition: 0.5s ease-in-out;
+        }
+		.container input[type='submit'] {
+            cursor: pointer;
+			-webkit-transition: 0.5s ease-in-out;
+			-moz-transition: 0.5s ease-in-out;
+			-o-transition: 0.5s ease-in-out;
+			transition: 0.5s ease-in-out;
         }
 
 .font_center{
@@ -112,7 +121,12 @@ input{
 	transform: translate(-50%,-50%);
 	
 }
-
+.pw_forget:hover,.new_member:hover{
+	cursor: pointer;
+}
+.pw_forget:active,.new_member:active{
+	margin-top: 2px;
+}
 .pw_forget {
 	position: absolute;
 	top: 50%;
