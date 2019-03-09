@@ -21,11 +21,12 @@ body{
 }
 /*SNS系統*/
 body{
-	background-image: url("../img/LOGO/LOGO BT.png");
+	/*background-image: url("../img/LOGO/LOGO BT.png");
 	background-position: center 60%; 
 	background-repeat: no-repeat;
 	background-attachment: fixed; 
-	background-size: 30%;
+	background-size: 30%;*/
+	background: #DBDBDB;
 	
 }
 @font-face {
@@ -58,39 +59,80 @@ body{
 /*配置*/
 .box {
 	position: absolute;
-	top: 27%;
-	left: 15%;
-	padding: 30px;
+	top: 30%;
+	left: 50%;
+	width: 1200px;
+	height: 60px;
+	transform: translate(-50%,-50%);
     text-align: center;
+	cursor: pointer;
+}
+
+.circle h1,.box2 h1,.box3 h1{
+	color: #333333;
 }
 .box2 {
 	position: absolute;
-	top: 44%;
-	left: 15%;
-	padding: 30px;
+	top: 62.5%;
+	left: 50%;
+	transform: translate(-50%,-50%);
     text-align: center;
+	background: #607D8B;
+	border-radius: 3px;
+	width: 450px;
+	height: 550px;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	cursor: pointer;
 }
 .box3 {
 	position: absolute;
-	top: 61%;
-	left: 15%;
-	padding: 30px;
+	top: 62.5%;
+	left: 25%;
+	transform: translate(-50%,-50%);
     text-align: center;
+	background: #607D8B;
+	border-radius: 3px;
+	width: 450px;
+	height: 550px;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	cursor: pointer;
+
 }
 .boxmini {
 	position: absolute;
-	top: 25%;
-	right: 18%;
-	padding: 30px;
+	top: 28.2%;
+	left: 60%;
+	transform: translate(-50%,-50%);
     text-align: center;
+	z-index: 10;
+	width: auto;
+	height: 50px;
+	border-radius: 3px;
+	border: solid 2px #666666;
+	cursor: pointer;
+}
+.boxmini:hover{
+	background: #42A5F5;
+	border: solid 2px #919191;
+	-webkit-transition: 0.5s ease-in-out;
+	-moz-transition: 0.5s ease-in-out;
+	-o-transition: 0.5s ease-in-out;
+	transition: 0.5s ease-in-out;
 }
 .circle {
 	position: absolute;
-	top: 50%;
-	right: 20%;
-	padding: 30px;
+	top: 62.5%;
+	right: 25%;
+	transform: translate(50%,-50%);
 	text-align: center;
+	background: #607D8B;
+	border-radius: 3px;
+	width: 450px;
+	height: 550px;
+	box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+	cursor: pointer;
 }
+
 .closeModal {
 	position: absolute;
 	top: 0.5rem;
@@ -135,6 +177,7 @@ height:500px→60%
 	height: 85%;
 	padding: 10px 30px;
 	background-color: #fff;
+	border-radius: 3px;
 }
 .modalWrapper_block {	
 	position: absolute;
@@ -181,8 +224,60 @@ height:500px→60%
 
 /* 以下ボタン系統 */
 
+.messeage{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.newmesseages{
+	position: absolute;
+	top: -48%;
+	left: 37%;
+	transform: translateX(-50%);
+	z-index: 10;
+}
+.messeage::before{
+	content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 60px;
+    margin:  auto auto 20px auto;
+    text-align: center;
+    background-image: -webkit-linear-gradient(left, transparent, #A9A9A9 25%, #A9A9A9 75%, transparent);
+    background-image: linear-gradient(to right, transparent, #A9A9A9 25%, #A9A9A9 75%, transparent);
+    background-position: center;
+    background-repeat: no-repeat;
+	z-index: 9;
+}
+
+.messeage:hover{
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*メッセージを確認する*/
-#openModal{
+/*#openModal{
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
@@ -206,10 +301,10 @@ height:500px→60%
     top: -webkit-calc(95% - 3px);
     top: calc(95% - 3px);
 }
-
+*/
 
 /*フレンド一覧*/
-#openModal_Friend_List{
+/*#openModal_Friend_List{
 	text-decoration: none;
 	color: #668ad8;
 	width: 250px;
@@ -236,7 +331,7 @@ height:500px→60%
 
 
 /*新規メッセージ作成*/
-#openModal_Friend_Select {
+/*#openModal_Friend_Select {
     padding: 0.5em 1em;
     text-decoration: none;
 	border-top: solid 4px #FFA000;
@@ -251,20 +346,19 @@ height:500px→60%
 	justify-content: center;
 }
 #openModal_Friend_Select:active {/*ボタンを押したとき*/
-    -ms-transform: translateY(4px);
+/*    -ms-transform: translateY(4px);
     -webkit-transform: translateY(4px);
     transform: translateY(4px);/*下に動く*/
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
-    border-bottom: none;
-	}
-#openModal_Friend_Select:hover {/*ボタンに触れたとき*/
-    background: #ffc25c;
+  /*/*  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+   /* border-bottom: none;
+	}*/
+/*#openModal_Friend_Select:hover {/*ボタンに触れたとき*/
+  /*  background: #ffc25c;
     color: #FFF;
-}
-
+}*/
 
 /*フレンド検索*/
-#openModal_Friend_Search {
+/*#openModal_Friend_Search {
     padding: 0.5em 1em;
     text-decoration: none;
     color: #FFA000;
@@ -277,38 +371,19 @@ height:500px→60%
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-#openModal_Friend_Search:active {/*ボタンを押したとき*/
+}*/
+/*#openModal_Friend_Search:active {
     -ms-transform: translateY(4px);
     -webkit-transform: translateY(4px);
-    transform: translateY(4px);/*下に動く*/
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
     border-bottom: none;
 }
-#openModal_Friend_Search:hover {/*ボタンに触れたとき*/
+#openModal_Friend_Search:hover {
     background: #ffc25c;
     color: #FFF;
-}
+}*/
 
-
-/*新着メッセージ表示*/
-.messeage{
-    position: relative;
-    font-weight: bold;
-    padding: 8px 10px 5px 10px;
-    text-decoration: none;
-    color: #FFA000;
-    background: #fff1da;
-    border-bottom: solid 4px #FFA000;
-    border-radius: 40px 40px 0 0;
-	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
-    transition: .4s;
-	width: 430px;
-	height: 120px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 
 
 
@@ -873,4 +948,22 @@ input[type="radio"]{
     background: #67C5FF;
 	color: #FFF;
     border: double 5px #0005FF;
+}
+
+
+
+
+.fas,.far {
+	color: #D3D3D3;
+	margin-top: 140px;
+	font-size: 15em;
+	margin-bottom: 20px;
+}
+.fa-book{
+	margin-bottom: 25px;
+}
+
+#openModal {
+	position: relative;
+	bottom: 11px;
 }

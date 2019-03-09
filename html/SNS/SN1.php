@@ -35,6 +35,7 @@ require_once "../../vendor/autoload.php";
     <script src="js/gooey.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/style_SNS.css">
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	</head>
 	<body>
     
@@ -77,7 +78,7 @@ require_once "../../vendor/autoload.php";
 			
 			<div class="boxmini">
 				<div id="openModal">
-				<h1>&nbsp;&nbsp;メッセージを確認する&nbsp;&nbsp;</h1>
+				<h2>&nbsp;&nbsp;メッセージへ&nbsp;&nbsp;</h2>
 				</div>
 			</div>
 <!-- モーダルエリアここから -->
@@ -105,12 +106,13 @@ require_once "../../vendor/autoload.php";
 			
 			<div class="box">
 				<div class="messeage">
-				<h1>新着メッセージ ○件</h1>
-			</div>
+				</div>
+			<h1 class="newmesseages">新着：　<?php echo "---" ?>　件　｜</h1>
 			</div>
 			
 			<div id="openModal_Friend_List" class="circle">
-			<h1>フレンド<br>一覧</h1>
+			<i class="fas fa-book"></i>
+			<h1>フレンド一覧</h1>
 			</div>
 <!-- モーダルエリアここから -->
 			<section id="modalArea_Friend_List" class="modalArea">
@@ -186,10 +188,9 @@ require_once "../../vendor/autoload.php";
 			
 				
 			</div>
-			<div class="box2">
-				<div id="openModal_Friend_Select">
+			<div class="box2" id="openModal_Friend_Select">
+				<i class="far fa-envelope"></i>
 				<h1>新規メッセージ作成</h1>
-				</div>
 			</div>
 <!-- モーダルエリアここから -->
 			<section id="modalArea_Friend_Select" class="modalArea">
@@ -214,10 +215,9 @@ require_once "../../vendor/autoload.php";
 <!-- モーダルエリアここまで -->
 			
 			
-			<div class="box3">
-				<div id="openModal_Friend_Search">
+			<div class="box3" id="openModal_Friend_Search">
+				<i class="fas fa-user-friends"></i>
 				<h1>フレンド検索</h1>
-				</div>
 			</div>
 <!-- モーダルエリアここから -->
 			<section id="modalArea_Friend_Search" class="modalArea">
@@ -229,7 +229,7 @@ require_once "../../vendor/autoload.php";
 						</div>
 						<div class="search_friend">
 							<div class="search_content">
-							  <form>				
+							  <form action="">				
 								<input type="text" value="" placeholder="IDまたはユーザ名を入力してください">
 								<button type="submit">Search</button>
 							  </form>
