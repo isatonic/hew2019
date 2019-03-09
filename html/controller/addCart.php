@@ -9,9 +9,9 @@ $data = new \model\Data($_POST);
 $Cart = new \model\physical\Cart($pdo->getPDO(), $_SESSION["id"]);
 if ($Cart->add($data->extend("product"), $user)) {
     // カートに追加成功
-    $url = "";
+    header("Location: ./getCart.php", true, 302);
 } else {
     // 失敗
-    $url = "";
+    $_SESSION["isatonic_addCart_err"] = "商品をカートに追加することができませんでした。\\nすでにカート内に存在するか、商品が削除された可能性があります。";
+    header("Location: ./search.php", true, 302);
 }
-header("Location: " . $url, true, 302);

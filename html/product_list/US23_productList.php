@@ -35,6 +35,15 @@ if (!isset($_SESSION["isatonic_searchResult"])) {
     var phpjson = <?php echo $searchResult;?>;
     console.table(phpjson);
   </script>
+  <script type="text/javascript" defer>
+      <?php
+      if (isset($_SESSION["isatonic_addCart_err"])) {
+          $err_msg = $_SESSION["isatonic_addCart_err"];
+          unset($_SESSION["isatonic_addCart_err"]);
+          echo "alert('$err_msg');";
+      }
+      ?>
+  </script>
   <script src="./js/addCart.js"></script>
   <script src="./js/setModal.js"></script>
 </head>
