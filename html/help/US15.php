@@ -57,6 +57,14 @@
 			<h2 class="Header">　　Help</h2>
 				<div class="mype_main">
 
+					
+					<div class="box">
+						<div class="messeage"></div>
+						<h1 class="newmesseages">只今、ISATONICでは障害およびメンテナンス予定はございません。</h1>
+					</div>
+
+					
+					
 					<div class="fontttttt">
 						<p class="font1">FAQ</p>
 						<img src="./img/question.png" alt="" class="font1img" onClick="location.href='./US16.php'">
