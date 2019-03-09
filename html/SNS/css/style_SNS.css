@@ -112,12 +112,12 @@ body{
 	cursor: pointer;
 }
 .boxmini:hover{
-	background: #42A5F5;
+	background: #91CAF9;
 	border: solid 2px #919191;
-	-webkit-transition: 0.5s ease-in-out;
-	-moz-transition: 0.5s ease-in-out;
-	-o-transition: 0.5s ease-in-out;
-	transition: 0.5s ease-in-out;
+	-webkit-transition: 0.3s ease-in-out;
+	-moz-transition: 0.3s ease-in-out;
+	-o-transition: 0.3s ease-in-out;
+	transition: 0.3s ease-in-out;
 }
 .circle {
 	position: absolute;
