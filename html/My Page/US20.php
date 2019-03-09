@@ -214,6 +214,7 @@ $upload_dir = "../uploaded_files/";
 												<p>進む</p>
 											</div>
 									</form>
+								</div>
 
 
 								<!-- ユーザ名 -->
