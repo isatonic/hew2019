@@ -86,11 +86,11 @@ if (!isset($_SESSION["isatonic_searchResult"])) {
 <div class="main-content">
 
   <!----------------------- ボタン ---------------------------->
-  <div class="button-wrap flex-container">
+  <!--<div class="button-wrap flex-container">
       <button class="controll-button">ジャンル検索</button>
       <button class="controll-button" id="sortNew">新作順</button>
       <button class="controll-button">ランキング順</button>
-  </div>
+  </div>-->
   <!----------------------------------------------------------->
 
   <!------------------------- 一覧 ---------------------------->
