@@ -108,6 +108,7 @@ body{
 	width: auto;
 	height: 50px;
 	border-radius: 3px;
+	background: #B5B5B5;
 	border: solid 2px #666666;
 	cursor: pointer;
 }
@@ -954,7 +955,7 @@ input[type="radio"]{
 
 
 .fas,.far {
-	color: #D3D3D3;
+	color: #DDDDDD;
 	margin-top: 140px;
 	font-size: 15em;
 	margin-bottom: 20px;
