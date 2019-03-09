@@ -64,17 +64,16 @@
 	border-radius: 3px;
 	border: solid 2px #A9A9A9;
 	cursor: pointer;
+	background-color: #DADADA;
+	font-size: 2em;;
+	text-align: center;
+	line-height: 80px;
 }
 .delete_B:active {
 	margin-top: 10px;
 }
 .delete_B:hover {
 	background: #ABABAB;
-}
-.delete_B p {
-	font-size: 2em;;
-	text-align: center;
-	line-height: 80px;
 }
 .base_BOX,.base_BOX2,.base_BOX3 {
 	height: 150px;;
@@ -133,11 +132,54 @@
 	
 }
 .exshow {
-	background: #D14749;
 	position: absolute;
 	top: 57%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 	width: 1600px;
 	height: 500px;
+}
+
+.point_have,.goukei,.zandaka {
+	width: 100%;
+	height: 90px;
+	margin-top: 40px;
+}
+
+.point_have_2,.goukei_2,.zandaka_2 {
+	position: relative;
+	top: 50%;
+	left: 20%;
+	transform: translate(-50%,-50%);
+	width: 200px;
+	height: 50px;
+}
+.point_have_2 p,.goukei_2 p,.zandaka_2 p {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	white-space: nowrap;
+	border-bottom: solid 2px #000;
+	font-size: 2em;
+}
+
+.under_bar {
+	border-bottom: solid 2px #666;
+	margin: 50px;
+}
+.point_have_3,.goukei_3,.zandaka_3 {
+	position: relative;
+	left: 80%;
+	bottom: 32%;
+	transform: translate(-50%,0%);
+	width: 200px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+}
+.point_have_3 p,.goukei_3 p,.zandaka_3 p {
+	white-space: nowrap;
+	font-size: 2em;
+	
 }

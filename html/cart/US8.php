@@ -1,4 +1,4 @@
-<html>
+<?php $item_id = 'はろー'; ?><html>
 	<head>
 	<title>ショッピングカート | ISATONIC</title>
 	<meta charset="utf-8">
@@ -62,13 +62,12 @@
 						<div class="cartbar">
 							<p>　　　　　　　　 画像　　　　　　　　　　　　　　　　　　タイトル　　　　　　　　　　　　　　　　　価格　　　　　　　　　　　　　　　　 　削除ボタン　　　　</p>
 						</div>
-					<form action="US8_delete.php" method="post" id="form201" name="form201">
+					<form action="US9.php" method="post" id="form301" name="form301">
 						<div class="flex-container flexxxxxxxxx">
 												
 							
 						<!---------------------------------------------------------------------------カート内容↓-------------------------------------------------------------------->
 							<div class="cart_flex flex-container">
-									<input type="checkbox" form="submit_items" class="submit_items" value="<?php $value; ?>">
 									<div class="base_BOX_img flex-container flex_center">
 										<img src="img/1st.png" alt="">
 									</div>
@@ -81,18 +80,17 @@
 										<p class="tonic_PPP">1000TP</p>
 									</div>
 
-									<input type="hidden" value="<?php $value; ?>">
 									<div class="base_BOX3 flex-container flex_center">
-										<div class="delete_B" onClick="submit_delete()">
-											<p>削除</p>
-										</div>
+										<input type="submit" form="delete_form" class="delete_B" value="削除">
 									</div>
+							<input type="hidden" name=item_checkes[] value="<?php echo "aaaaaaa"; ?>">
+							<input type="hidden" name=item_delete form="delete_form" value="<?php echo "cccccccccccccccc"; ?>">
+							
 							</div>
 						<!---------------------------------------------------------------------------カート内容↑-------------------------------------------------------------------->
 							
 						<!---------------------------------------------------------------------------カート内容↓-------------------------------------------------------------------->
 							<div class="cart_flex flex-container">
-									<input type="checkbox" form="submit_items" class="submit_items" value="<?php $value; ?>">
 									<div class="base_BOX_img flex-container flex_center">
 										<img src="img/6th.png" alt="">
 									</div>
@@ -105,34 +103,33 @@
 										<p class="tonic_PPP">700TP</p>
 									</div>
 
-									<input type="hidden" value="<?php $value; ?>">
 									<div class="base_BOX3 flex-container flex_center">
-										<div class="delete_B" onClick="submit_delete()">
-											<p>削除</p>
-										</div>
+										<input type="submit" form="delete_form" class="delete_B" value="削除">
 									</div>
+								<input type="hidden" name=item_checkes[] value="<?php echo "bbbbbbbbbb"; ?>">
+								<input type="hidden" name=item_delete form="delete_form" value="<?php echo "dddddddddddd"; ?>">
 							</div>
 						<!---------------------------------------------------------------------------カート内容↑-------------------------------------------------------------------->
-							
-							</form>	
 						</div>
-					
-					
-
 						
 						
-						
-						
-						
-						
-						
-						
-						<form action="US9.php" method="POST" id="form301" name="form301">
-							<input id="submit_items" type="hidden" value="チェックボックスをつけたものをまとめてアーカイブ">
-						</form>
-							<div class="up_submit" onClick="submit_itemsGO()">
+						<div class="up_submit" onClick="submit_itemsGO()">
 								<p>進む</p>
-							</div>
+						</div>
+						
+							</form>	
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<form action="US8_delete.php" id="delete_form" method="POST"></form>
 					
 					
 					

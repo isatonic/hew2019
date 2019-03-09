@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>購入画面 | ISATONIC</title>
+	<title>購入 | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -58,38 +58,58 @@
 		<div class="font">
 			<h2 class="Header">　　購入画面</h2>
 				<div class="mype_main">
-					<form action="US10.php" method="post" id="form401" name="form401">
-						<div class="flex-container flexxxxxxxxx">
+
+					<div class="flex-container flexxxxxxxxx">
 							<!----------------------------------- 画像 ------------------------------------------->
 							<div class="flex-container2 margin_1">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
-							<img src="img/1st.png" alt="">
 							<img src="img/1st.png" alt="">
 							<img src="img/1st.png" alt="">
 							</div>
 							<!----------------------------------- 画像 ------------------------------------------->
 
-						</div>
-					</form>
+					</div>
 					
 					<div class="exshow">
+						<div class="point_have">
+							<div class="point_have_2">
+								<p>　所持ポイント　</p>
+							</div>
+							<div class="point_have_3">
+							<p>
+								<?php
+								echo "50000TP";
+								?>
+							</p>
+							</div>
+						</div>
+						<div class="goukei">
+							<div class="goukei_2">
+								<p>　　　合計　　　</p>
+							</div>
+							<div class="goukei_3">
+							<p>
+								<?php
+								echo "1300TP";
+								?>
+							</p>
+							</div>
+						</div>
 						
+						<p class="under_bar">　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</p>
 						
-						<?php
-							
-						?>
-						
-						
+						<div class="zandaka">
+							<div class="zandaka_2">
+								<p>　　　残高　　　</p>
+							</div>
+							<div class="zandaka_3">
+							<p>
+								<?php
+								echo "48700TP";
+								?>
+							</p>
+							</div>
+						</div>
 					</div>
-
 						
 						
 						
@@ -98,11 +118,18 @@
 						
 						
 						
-						<form action="US9.php" method="POST" id="form301" name="form301">
-							<input id="submit_items" type="hidden" value="チェックボックスをつけたものをまとめてアーカイブ">
+						<form action="US11.php" method="POST" id="form401" name="form401">
+							<?php
+								$item_c = $_POST['item_checkes']; 
+								print_r($item_c) ; //配列の中のデータを表示したいなあああああああああああああああ
+							?>
+							<input type="hidden" name="item_checkes2[]" value="<?php print_r($item_c) ; ?>">
 						</form>
-							<div class="up_submit" onClick="submit_itemsGO()">
-								<p>進む</p>
+							<div class="up_submit_2" onClick="buybuy_items()">
+								<p>購入する</p>
+							</div>
+							<div class="tonic_point_c_2" onClick="location.href='../TONIC POINT Charge/US12.html'">
+								<p>TONIC POINT チャージ</p>
 							</div>
 					
 					

@@ -469,7 +469,7 @@ textarea {
 	left: 50%;
 	transform: translate(-50%,-50%);
 }
-#btn:hover,.up_submit:hover{
+#btn:hover,.up_submit:hover,.up_submit_2:hover,.tonic_point_c_2:hover{
 	background: #ABABAB;
 }
 .placeholder {
@@ -594,6 +594,39 @@ textarea {
 	border-radius: 3px;
 }
 .up_submit p{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 1.8em;
+	cursor: pointer;
+}
+
+
+.up_submit_2 {
+	position: absolute;
+	top: 88%;
+	left: 65%;
+	transform: translateX(-50%);
+	width: 230px;
+	height: 70px;
+	padding: 20px;
+	border: solid 2px #9F9F9F;
+	border-radius: 3px;
+}
+.tonic_point_c_2 {
+	position: absolute;
+	top: 88%;
+	left: 35%;
+	transform: translateX(-50%);
+	width: 350px;
+	height: 70px;
+	padding: 20px;
+	border: solid 2px #9F9F9F;
+	border-radius: 3px;
+	white-space: nowrap;
+}
+.up_submit_2 p,.tonic_point_c_2 p{
 	position: absolute;
 	top: 50%;
 	left: 50%;
