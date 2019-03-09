@@ -54,7 +54,7 @@ if (!isset($_SESSION["isatonic_searchResult"])) {
     <nav class="cd-main-nav-wrapper">
 　　 <img src="img/LOGO/LOGO W.png" class="logo" alt="" onClick="location.href='../index/index.html'">
 
-      <!--------------------- 検索ボタン ------------>
+      <!--------------------- 検索ボタン ----------------------------->
       <a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 
       <ul class="cd-main-nav">
