@@ -1,6 +1,11 @@
 <?php
-if (!isset($_POST["searchResult"])) {
-  echo "debug: 検索なし。 ../controller/search.php にリダイレクトを推奨。";
+session_start();
+if (!isset($_SESSION["isatonic_searchResult"])) {
+//  echo "debug: 検索なし。 ../controller/search.php にリダイレクトを推奨。";
+    header("Location: ../controller/search.php", true, 302);
+} else {
+  $searchResult = $_SESSION["isatonic_searchResult"];
+  unset($_SESSION["isatonic_searchResult"]);
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +32,8 @@ if (!isset($_POST["searchResult"])) {
   <link rel="stylesheet" href="./css/product_list.css">
   <script src="./js/modal.js"></script>
   <script type="text/javascript">
-    var phpjson = <?php echo $_POST["searchResult"];?>;
+    var phpjson = <?php echo $searchResult;?>;
+    console.table(phpjson);
   </script>
   <script src="./js/addCart.js"></script>
   <script src="./js/setModal.js"></script>
@@ -101,15 +107,15 @@ if (!isset($_POST["searchResult"])) {
           <div class="title" id="detail-title">
             あああ。このタイトルは二十文字までです。
           </div>
-          <div class="comment">
+          <div class="comment" id="detail-comment">
             コメントは六十文字までです。あああああああああああああああああああああああああああああああああああああああああああああ。
           </div>
           <div class="price">
-            <div class="display-area">
+            <div class="display-area" id="detail-price">
               販売金額: 1000 P
             </div>
           </div>
-          <div class="submit"><button id="cartButton" onclick="addCart();">カートに入れる</button></div>
+          <div class="submit"><button id="cartButton" value="" onclick="addCart(this);">カートに入れる</button></div>
         </div>
       </div>
       <div id="closeModal" class="closeModal">

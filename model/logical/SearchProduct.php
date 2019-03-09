@@ -11,15 +11,16 @@ use model\physical\Products;
 class SearchProduct extends LogicalBase {
 
     private $Products;
+    private $words;
     // private $Tag;
 
     public function __construct(myPDO $myPDO, DataInterface $Data) {
         parent::__construct($myPDO, $Data);
         $this->Products = new Products($this->pdo);
+        $this->words = explode(" ", $Data->extend("word"));
     }
 
     public function transaction() {
-        $ret = $this->Products->searchFromTitle($this->Data->extend("word"));
-        return $ret;
+        return $this->Products->searchFromTitle($this->words);
     }
 }

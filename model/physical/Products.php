@@ -58,7 +58,7 @@ class Products extends ModelBase {
         return $this->getRows($wants);
     }
 
-    public function searchFromTitle(string $words) {
+    public function searchFromTitle(array $words) {
         $wants = array(
             "id",
             "fileName",
@@ -68,11 +68,36 @@ class Products extends ModelBase {
             "price",
             "authorComment"
         );
-        $where = array(
-            "title" => "%${words}%"
-        );
+        $where = array();
+        foreach ($words as $word) {
+            $where = array(
+                "title" => "'%${word}%'"
+            );
+        }
         $order = ["id" => "asc"];
-        return $this->getRows($wants, $where, $order);
+        $sql = sprintf("SELECT %s FROM %s", implode(", ", $wants), $this->table_name);
+//        $sql .= $this->addWhere($where, "or");
+        $add = " WHERE ";
+        $condition = array();
+        foreach ($where as $key => $val) {
+            $condition[] = "$key LIKE $val";
+        }
+        if (count($condition) > 1) {
+            $add .= implode(" or ", $condition);
+        } else {
+            $add .= $condition[0];
+        }
+        $sql .= $add;
+        $sql .= " ORDER BY ";
+        $set = array();
+        foreach ($order as $key3 => $val3) {
+            $set[] = "$key3 $val3";
+        }
+        $sql .= implode(", ", $set);
+        $this->sql = $sql;
+        $this->exec($where);
+        $this->setAssoc();
+        return $this->rows;
     }
 
     public function searchFromComment(string $words) {

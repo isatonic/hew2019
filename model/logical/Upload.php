@@ -17,6 +17,7 @@ class Upload extends LogicalBase {
     private $fileID;
     private $tmp_file;
     private $fileType;
+    private $filename;
 
     public function __construct(myPDO $myPDO, DataInterface $Data) {
         parent::__construct($myPDO, $Data);
@@ -25,18 +26,19 @@ class Upload extends LogicalBase {
         $this->setType();
         $this->Products = new Products($this->pdo, $Data->extend("author"));
         $this->Tag = new Tag($this->pdo);
+        $this->filename = $this->fileID . "." . $this->fileType;
         $this->data = array(
-            "id" => $this->fileID,
-            "fileName" => $this->fileID . "." . $this->fileType,
-            "title" => $Data->extend("title"),
-            "author" => $Data->extend("author"),
+            "id" => $this->pdo->quote($this->fileID),
+            "fileName" => $this->pdo->quote($this->filename),
+            "title" => $this->pdo->quote($Data->extend("title")),
+            "author" => $this->pdo->quote($Data->extend("author")),
             "price" => $Data->extend("price"),
-            "type" => $Data->extend("type"),
-            "jenre" => $Data->extend("jenre"),
-            "authorComment" => $Data->extend("comment")
+            "type" => $this->pdo->quote($Data->extend("type")),
+            "jenre" => $this->pdo->quote($Data->extend("jenre")),
+            "authorComment" => $this->pdo->quote($Data->extend("comment"))
 //            "tags" => $Data->extend("tags")
         );
-        $this->upload_file = "../uploaded_files/" . $this->data["fileName"];
+        $this->upload_file = "../uploaded_files/" . $this->filename;
     }
 
     private function createID($author) {
@@ -44,8 +46,6 @@ class Upload extends LogicalBase {
     }
 
     public function transaction() {
-        echo "tmp: $this->tmp_file<br>\n";
-        echo "target: $this->upload_file<br>\n";
         $this->pdo->beginTransaction();
         try {
             if ($this->Products->regist($this->data)) {

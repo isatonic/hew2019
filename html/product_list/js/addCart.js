@@ -8,7 +8,7 @@ function addCart(value) {
 
     request.type = 'hidden'; //入力フォームが表示されないように
     request.name = 'product';
-    request.value = value;
+    request.value = value.value;
 
     form.appendChild(request);
     document.body.appendChild(form);

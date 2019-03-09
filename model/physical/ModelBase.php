@@ -25,6 +25,7 @@ abstract class ModelBase implements ModelBaseInterface {
     protected $sql;
     /** @var \PDOStatement */
     protected $stmt;
+    /** @var \PDOStatement */
     protected $result;
     protected $rows;
 
@@ -55,22 +56,26 @@ abstract class ModelBase implements ModelBaseInterface {
         if ($sql == null) {
             $sql = $this->sql;
         }
-        $stmt = $this->db->prepare($sql);
+//        $stmt = $this->db->prepare($sql);
 
-        // toDO: SQL Injection 対策
-        if ($params != null) {
-            foreach ($params as $key => $val) {
-                $stmt->bindValue(':' . $key, $val);
-            }
-        }
+//        if ($params != null) {
+//            $arr = [];
+//            foreach ($params as $key => $val) {
+//                $this->stmt->bindValue(':' . $key, $val);
+////                $arr[":{$key}"] = $val;
+//            }
+////            $this->result = $stmt->execute($arr);
+//            $this->result = $this->db->query($stmt);
+//        } else {
+//            $this->result = $stmt->execute();
+//        }
 
-        $this->result = $stmt->execute();
-        $this->stmt = $stmt;
+        $this->result = $this->db->query($sql);
     }
 
     protected function setAssoc() {
         $rows = array();
-        while ($row = $this->stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $this->result->fetch(PDO::FETCH_ASSOC)) {
             $rows[] = $row;
         }
         $this->rows = $rows;
@@ -122,9 +127,7 @@ abstract class ModelBase implements ModelBaseInterface {
             foreach ($order as $key3 => $val3) {
                 $set[] = "$key3 $val3";
             }
-            foreach ($set as $val4) {
-                $sql .= implode(", ", $val4);
-            }
+            $sql .= implode(", ", $set);
         }
         $this->sql = $sql;
     }
@@ -139,7 +142,7 @@ abstract class ModelBase implements ModelBaseInterface {
         $values = array();
         foreach ($data as $key => $val) {
             $fields[] = $key;
-            $values[] = ':' . $key;
+            $values[] = $val;
         }
         $sql = sprintf(
             "INSERT INTO %s (%s) VALUES (%s)",
@@ -191,7 +194,7 @@ abstract class ModelBase implements ModelBaseInterface {
         $add = " WHERE ";
         $condition = array();
         foreach ($where as $key => $val) {
-            $condition[] = "$key = :$key";
+            $condition[] = "$key LIKE '$val'";
         }
         if (count($condition) > 1) {
             $add .= implode(" ${andor} ", $condition);
