@@ -164,7 +164,6 @@ amp-img.product img {
 .modalContents .image-container.flex-container {
   width: 350px;
   height: 350px;
-  border-radius: 50px;
   background-color: #A0A0A0;
   margin: 150px auto 20px auto;
   /********** flexbox settings ***************/
@@ -188,6 +187,8 @@ amp-img.product img {
 }
 
 .modalContents .image-container img.thumbnail {
+  height: 350px;
+  width: 350px;
   object-fit: contain;
 }
 
