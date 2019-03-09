@@ -70,7 +70,7 @@ require_once "../../vendor/autoload.php";
         <script src="js/jquery-2.1.4.js"></script>
         <script src="js/main.js"></script>
 		<div class="font">
-        <h2 class="Header">　　SNSTOP</h2>
+        <h2 class="Header">　　SNSトップページ</h2>
 		
 		<script src="js/popup.js"></script>
 		<div class="box_wrap">
