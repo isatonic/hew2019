@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation\Type;
@@ -31,5 +33,4 @@ class SimpleClassObject
      * @XmlElement(namespace="http://new.foo.example.org")
      */
     public $moo;
-
 }

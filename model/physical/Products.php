@@ -15,6 +15,7 @@ class Products extends ModelBase {
      * @param mixed[] $data {
      *      @type string    "id"            商品ID
      *      @type string    "fileName"      ファイル名
+     *      @type string    "type"          photo/paint
      *      @type string    "title"         タイトル
      *      @type string    "author"        作者のユーザID
      *      @type int       "price"         価格
@@ -55,6 +56,96 @@ class Products extends ModelBase {
             "authorComment"
         );
         return $this->getRows($wants);
+    }
+
+    public function searchFromTitle(array $words) {
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "author",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $where = array();
+        foreach ($words as $word) {
+            $where = array(
+                "title" => "'%${word}%'"
+            );
+        }
+        $order = ["id" => "asc"];
+        $sql = sprintf("SELECT %s FROM %s", implode(", ", $wants), $this->table_name);
+//        $sql .= $this->addWhere($where, "or");
+        $add = " WHERE ";
+        $condition = array();
+        foreach ($where as $key => $val) {
+            $condition[] = "$key LIKE $val";
+        }
+        if (count($condition) > 1) {
+            $add .= implode(" or ", $condition);
+        } else {
+            $add .= $condition[0];
+        }
+        $sql .= $add;
+        $sql .= " ORDER BY ";
+        $set = array();
+        foreach ($order as $key3 => $val3) {
+            $set[] = "$key3 $val3";
+        }
+        $sql .= implode(", ", $set);
+        $this->sql = $sql;
+        $this->exec($where);
+        $this->setAssoc();
+        return $this->rows;
+    }
+
+    public function searchFromComment(string $words) {
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "author",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $where = array(
+            "authorComment" => "%${words}%"
+        );
+        $order = ["id" => "asc"];
+        return $this->getRows($wants, $where, $order);
+    }
+
+    public function searchFromID(string $id) {
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "author",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $where = array(
+            "id" => $id
+        );
+        $order = ["id" => "asc"];
+        return $this->getRows($wants, $where, $order);
+    }
+
+    public function searchFromAuthor(string $author) {
+        $wants = array(
+            "id",
+            "fileName",
+            "title",
+            "postDate",
+            "price",
+            "authorComment"
+        );
+        $where = ["author" => $author];
+        $order = ["postDate" => "ASC"];
+        return $this->getRows($wants, $where, $order);
     }
 
     /**

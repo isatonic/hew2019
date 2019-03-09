@@ -25,6 +25,7 @@ abstract class ModelBase implements ModelBaseInterface {
     protected $sql;
     /** @var \PDOStatement */
     protected $stmt;
+    /** @var \PDOStatement */
     protected $result;
     protected $rows;
 
@@ -37,7 +38,7 @@ abstract class ModelBase implements ModelBaseInterface {
      */
     public function __construct(PDO $pdo, string $user = null) {
         $this->db = $pdo;
-        $this->table_name = get_class($this);
+        $this->table_name = substr(get_class($this), strrpos(get_class($this), '\\') + 1);
 
         if ($user != null) {
             $this->user_id = $user;
@@ -55,22 +56,26 @@ abstract class ModelBase implements ModelBaseInterface {
         if ($sql == null) {
             $sql = $this->sql;
         }
-        $stmt = $this->db->prepare($sql);
+//        $stmt = $this->db->prepare($sql);
 
-        // toDO: SQL Injection 対策
-        if ($params != null) {
-            foreach ($params as $key => $val) {
-                $stmt->bindValue(':' . $key, $val);
-            }
-        }
+//        if ($params != null) {
+//            $arr = [];
+//            foreach ($params as $key => $val) {
+//                $this->stmt->bindValue(':' . $key, $val);
+////                $arr[":{$key}"] = $val;
+//            }
+////            $this->result = $stmt->execute($arr);
+//            $this->result = $this->db->query($stmt);
+//        } else {
+//            $this->result = $stmt->execute();
+//        }
 
-        $this->result = $stmt->execute();
-        $this->stmt = $stmt;
+        $this->result = $this->db->query($sql);
     }
 
     protected function setAssoc() {
         $rows = array();
-        while ($row = $this->stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $this->result->fetch(PDO::FETCH_ASSOC)) {
             $rows[] = $row;
         }
         $this->rows = $rows;
@@ -88,7 +93,8 @@ abstract class ModelBase implements ModelBaseInterface {
         $this->selectSql($want, $where, $order);
         $this->exec($where);
         $this->setAssoc();
-        $this->returnRows();
+//        $this->returnRows();
+        return $this->rows;
     }
 
     protected function execInsert(array $data) {
@@ -121,9 +127,7 @@ abstract class ModelBase implements ModelBaseInterface {
             foreach ($order as $key3 => $val3) {
                 $set[] = "$key3 $val3";
             }
-            foreach ($set as $val4) {
-                $sql .= implode(", ", $val4);
-            }
+            $sql .= implode(", ", $set);
         }
         $this->sql = $sql;
     }
@@ -138,13 +142,13 @@ abstract class ModelBase implements ModelBaseInterface {
         $values = array();
         foreach ($data as $key => $val) {
             $fields[] = $key;
-            $values[] = ':' . $key;
+            $values[] = $val;
         }
         $sql = sprintf(
             "INSERT INTO %s (%s) VALUES (%s)",
             $this->table_name,
-            implode(',', $fields),
-            implode(',', $values)
+            implode(', ', $fields),
+            implode(', ', $values)
         );
         $this->sql = $sql;
     }
@@ -154,8 +158,9 @@ abstract class ModelBase implements ModelBaseInterface {
      *
      * @param array $where
      */
-    protected function deleteSql(array $where = null) {
-        $sql = sprintf("DELETE FROM %s", $this->table_name);
+    protected function deleteSql(array $where) {
+        $sql = sprintf(/** @lang text */
+            "DELETE FROM %s", $this->table_name);
         if ($where != null) {
             $sql .= $this->addWhere($where);
         }
@@ -177,21 +182,24 @@ abstract class ModelBase implements ModelBaseInterface {
         foreach ($data as $key => $val) {
             $keyval[] = "${key}=${val}";
         }
-        $sql = sprintf("UPDATE $this->table_name SET %s", implode(", ", $keyval));
+        $sql = sprintf(/** @lang text */
+            "UPDATE $this->table_name SET %s", implode(", ", $keyval));
         if ($where != null) {
             $sql .= $this->addWhere($where);
         }
         $this->sql = $sql;
     }
 
-    protected function addWhere(array $where) {
+    protected function addWhere(array $where, string $andor = "and") {
         $add = " WHERE ";
         $condition = array();
         foreach ($where as $key => $val) {
-            $condition[] = "$key = :$key";
+            $condition[] = "$key LIKE '$val'";
         }
-        foreach ($condition as $val2) {
-            $add .= implode("and ", $val2);
+        if (count($condition) > 1) {
+            $add .= implode(" ${andor} ", $condition);
+        } else {
+            $add .= $condition[0];
         }
 
         return $add;
@@ -233,7 +241,7 @@ abstract class ModelBase implements ModelBaseInterface {
      * @return string
      */
     protected function setUser(string $user = null) {
-        if ($user == null) {
+        if ($user === null) {
             return $this->user_id;
         } else {
             return $user;

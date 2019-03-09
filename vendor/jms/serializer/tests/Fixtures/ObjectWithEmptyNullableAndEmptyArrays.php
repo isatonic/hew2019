@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation as Serializer;
@@ -17,7 +19,6 @@ class ObjectWithEmptyNullableAndEmptyArrays
      * @Serializer\Type("array")
      */
     public $empty_inline = [];
-
 
     /**
      * @Serializer\XmlList(inline = true, entry = "comment")
@@ -54,7 +55,6 @@ class ObjectWithEmptyNullableAndEmptyArrays
      * @Serializer\Type("array")
      */
     public $empty_not_inline_skip = [];
-
 
     /**
      * @Serializer\XmlList(inline = false, entry = "comment", skipWhenEmpty=false)

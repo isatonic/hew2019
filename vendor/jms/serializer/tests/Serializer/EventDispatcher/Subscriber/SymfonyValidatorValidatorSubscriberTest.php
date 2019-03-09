@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Serializer\EventDispatcher\Subscriber;
 
 use JMS\Serializer\DeserializationContext;
@@ -8,10 +10,11 @@ use JMS\Serializer\EventDispatcher\ObjectEvent;
 use JMS\Serializer\EventDispatcher\Subscriber\SymfonyValidatorSubscriber;
 use JMS\Serializer\EventDispatcher\Subscriber\SymfonyValidatorValidatorSubscriber;
 use JMS\Serializer\SerializerBuilder;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 
-class SymfonyValidatorValidatorSubscriberTest extends \PHPUnit_Framework_TestCase
+class SymfonyValidatorValidatorSubscriberTest extends TestCase
 {
     private $validator;
 
@@ -20,16 +23,16 @@ class SymfonyValidatorValidatorSubscriberTest extends \PHPUnit_Framework_TestCas
 
     public function testValidate()
     {
-        $obj = new \stdClass;
+        $obj = new \stdClass();
 
         $this->validator->expects($this->once())
             ->method('validate')
-            ->with($obj, null, array('foo'))
+            ->with($obj, null, ['foo'])
             ->will($this->returnValue(new ConstraintViolationList()));
 
-        $context = DeserializationContext::create()->setAttribute('validation_groups', array('foo'));
+        $context = DeserializationContext::create()->setAttribute('validation_groups', ['foo']);
 
-        $this->subscriber->onPostDeserialize(new ObjectEvent($context, $obj, array()));
+        $this->subscriber->onPostDeserialize(new ObjectEvent($context, $obj, []));
     }
 
     /**
@@ -38,16 +41,16 @@ class SymfonyValidatorValidatorSubscriberTest extends \PHPUnit_Framework_TestCas
      */
     public function testValidateThrowsExceptionWhenListIsNotEmpty()
     {
-        $obj = new \stdClass;
+        $obj = new \stdClass();
 
         $this->validator->expects($this->once())
             ->method('validate')
-            ->with($obj, null, array('foo'))
-            ->will($this->returnValue(new ConstraintViolationList(array(new ConstraintViolation('foo', 'foo', array(), 'a', 'b', 'c')))));
+            ->with($obj, null, ['foo'])
+            ->will($this->returnValue(new ConstraintViolationList([new ConstraintViolation('foo', 'foo', [], 'a', 'b', 'c')])));
 
-        $context = DeserializationContext::create()->setAttribute('validation_groups', array('foo'));
+        $context = DeserializationContext::create()->setAttribute('validation_groups', ['foo']);
 
-        $this->subscriber->onPostDeserialize(new ObjectEvent($context, $obj, array()));
+        $this->subscriber->onPostDeserialize(new ObjectEvent($context, $obj, []));
     }
 
     public function testValidatorIsNotCalledWhenNoGroupsAreSet()
@@ -55,19 +58,19 @@ class SymfonyValidatorValidatorSubscriberTest extends \PHPUnit_Framework_TestCas
         $this->validator->expects($this->never())
             ->method('validate');
 
-        $this->subscriber->onPostDeserialize(new ObjectEvent(DeserializationContext::create(), new \stdClass, array()));
+        $this->subscriber->onPostDeserialize(new ObjectEvent(DeserializationContext::create(), new \stdClass(), []));
     }
 
     public function testValidationIsOnlyPerformedOnRootObject()
     {
         $this->validator->expects($this->once())
             ->method('validate')
-            ->with($this->isInstanceOf('JMS\Serializer\Tests\Fixtures\AuthorList'), null, array('Foo'))
+            ->with($this->isInstanceOf('JMS\Serializer\Tests\Fixtures\AuthorList'), null, ['Foo'])
             ->will($this->returnValue(new ConstraintViolationList()));
 
         $subscriber = $this->subscriber;
         $list = SerializerBuilder::create()
-            ->configureListeners(function (EventDispatcher $dispatcher) use ($subscriber) {
+            ->configureListeners(static function (EventDispatcher $dispatcher) use ($subscriber) {
                 $dispatcher->addSubscriber($subscriber);
             })
             ->build()
@@ -75,18 +78,14 @@ class SymfonyValidatorValidatorSubscriberTest extends \PHPUnit_Framework_TestCas
                 '{"authors":[{"full_name":"foo"},{"full_name":"bar"}]}',
                 'JMS\Serializer\Tests\Fixtures\AuthorList',
                 'json',
-                DeserializationContext::create()->setAttribute('validation_groups', array('Foo'))
+                DeserializationContext::create()->setAttribute('validation_groups', ['Foo'])
             );
 
-        $this->assertCount(2, $list);
+        self::assertCount(2, $list);
     }
 
     protected function setUp()
     {
-        if (!interface_exists('Symfony\Component\Validator\Validator\ValidatorInterface')) {
-            $this->markTestSkipped('Symfony\Component\Validator\Validator\ValidatorInterface ^2.6|^3.0 is not available');
-        }
-
         $this->validator = $this->getMockBuilder('Symfony\Component\Validator\Validator\ValidatorInterface')->getMock();
         $this->subscriber = new SymfonyValidatorValidatorSubscriber($this->validator);
     }

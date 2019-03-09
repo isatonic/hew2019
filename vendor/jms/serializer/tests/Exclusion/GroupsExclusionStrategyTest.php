@@ -1,18 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Exclusion;
 
 use JMS\Serializer\Exclusion\GroupsExclusionStrategy;
 use JMS\Serializer\Metadata\StaticPropertyMetadata;
 use JMS\Serializer\SerializationContext;
+use PHPUnit\Framework\TestCase;
 
-class GroupsExclusionStrategyTest extends \PHPUnit_Framework_TestCase
+class GroupsExclusionStrategyTest extends TestCase
 {
     /**
-     * @dataProvider getExclusionRules
      * @param array $propertyGroups
      * @param array $groups
-     * @param $exclude
+     * @param bool $exclude
+     *
+     * @dataProvider getExclusionRules
      */
     public function testUninitializedContextIsWorking(array $propertyGroups, array $groups, $exclude)
     {
@@ -20,7 +24,7 @@ class GroupsExclusionStrategyTest extends \PHPUnit_Framework_TestCase
         $metadata->groups = $propertyGroups;
 
         $strat = new GroupsExclusionStrategy($groups);
-        $this->assertEquals($strat->shouldSkipProperty($metadata, SerializationContext::create()), $exclude);
+        self::assertEquals($strat->shouldSkipProperty($metadata, SerializationContext::create()), $exclude);
     }
 
     public function getExclusionRules()

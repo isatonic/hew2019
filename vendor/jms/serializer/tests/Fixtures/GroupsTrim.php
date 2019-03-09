@@ -1,9 +1,8 @@
 <?php
 
-namespace JMS\Serializer\Tests\Fixtures;
+declare(strict_types=1);
 
-use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\Groups;
+namespace JMS\Serializer\Tests\Fixtures;
 
 class GroupsTrim
 {

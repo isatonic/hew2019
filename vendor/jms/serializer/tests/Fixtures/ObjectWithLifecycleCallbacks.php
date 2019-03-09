@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation\Exclude;
@@ -52,7 +54,7 @@ class ObjectWithLifecycleCallbacks
      */
     private function afterDeserialization()
     {
-        list($this->firstname, $this->lastname) = explode(' ', $this->name);
+        [$this->firstname, $this->lastname] = explode(' ', $this->name);
         $this->name = null;
     }
 }

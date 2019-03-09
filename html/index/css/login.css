@@ -1,0 +1,138 @@
+@charset "UTF-8";
+@import "base_style.css";
+@import "../layui/css/layui.css";
+@import "../layui/css/layui.mobile.css";
+@import "header.css";
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.panels {
+  min-height: calc(100vh - 80px);
+  overflow: hidden;
+  display: flex;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.panel {
+  background-color: #6b0f9c;
+  color: #000;
+  text-align: center;
+  align-items: center;
+  transition: font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+  flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+  background 0.2s;
+  font-size: 20px;
+  background-size: cover;
+  background-position: center;
+  flex: 2;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel1 {
+  background: #666;
+}
+
+.panel2 {
+  background: #909090;
+}
+
+
+.panel > * {
+  margin: 0;
+  transition: transform 0.5s;
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel > :first-child {
+  transform: translateY(-100%);
+}
+
+.panel.open-active > :first-child {
+  transform: translateY(0);
+}
+
+
+.panelb > *:first-child {
+  transform: translateX(-500%);
+}
+
+.panelb.open-active > *:first-child {
+  transform: translateX(0);
+}
+
+
+.panel > :last-child {
+  transform: translateY(100%);
+}
+
+.panel.open-active > :last-child {
+  transform: translateY(0);
+}
+
+.panel p {
+  font-size: 0.8em;
+  opacity: 0.3;
+  text-shadow: #090909 1px 1px 0;
+}
+
+.panel p:nth-child(2) {
+  font-size: 2.5em;
+}
+
+.panel.open {
+  flex: 5;
+  font-size: 40px;
+}
+
+.panelb p {
+  border-style: solid;
+  border-width: 5px;
+  font-size: 0.8em;
+}
+
+.panelb.open {
+  flex: 5;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+#tcwindow {
+  width: 400px;
+  padding: 10px 30px;
+}
+
+#lostpw {
+  font-size: 10px;
+  color: #333;
+}
+
+.panel p a:hover {
+  color: #FFFFFF;
+}
+
+/*select {*/
+/*background-color: transparent;*/
+/*cursor: pointer;*/
+/*}*/

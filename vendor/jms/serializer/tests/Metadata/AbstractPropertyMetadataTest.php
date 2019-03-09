@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Metadata;
 
-abstract class AbstractPropertyMetadataTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class AbstractPropertyMetadataTest extends TestCase
 {
     protected function setNonDefaultMetadataValues($metadata)
     {
@@ -28,5 +32,4 @@ abstract class AbstractPropertyMetadataTest extends \PHPUnit_Framework_TestCase
         $metadata->maxDepth = 1;
         $metadata->excludeIf = 'expr';
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation as Serializer;
@@ -8,14 +10,16 @@ use JMS\Serializer\Annotation\Type;
 class InlineChildWithGroups
 {
     /**
-     * @Type("string")
      * @Serializer\Groups({"a"})
+     *
+     * @Type("string")
      */
     public $a = 'a';
 
     /**
-     * @Type("string")
      * @Serializer\Groups({"b"})
+     *
+     * @Type("string")
      */
     public $b = 'b';
 }

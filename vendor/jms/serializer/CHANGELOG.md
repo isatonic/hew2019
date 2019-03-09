@@ -1,6 +1,194 @@
 # Change Log
 
-## [1.13.0](https://github.com/schmittjoh/serializer/tree/1.13.0)
+## [2.2.0](https://github.com/schmittjoh/serializer/tree/2.2.0)
+
+**Implemented enhancements:**
+
+- Add Iterator Handler [\#1034](https://github.com/schmittjoh/serializer/pull/1034) ([scyzoryck](https://github.com/scyzoryck))
+
+
+**Fixed bugs:**
+
+- xmlRootPrefix missing from unserialized metadata [\#1050](https://github.com/schmittjoh/serializer/issues/1050)
+- Non-locale aware encoding of doubles, closes \#1041 [\#1042](https://github.com/schmittjoh/serializer/pull/1042) ([Grundik](https://github.com/Grundik))
+
+**Closed issues:**
+
+- Using @Until and @Since on class level [\#1048](https://github.com/schmittjoh/serializer/issues/1048)
+- Add use of annotation registry to docs [\#1044](https://github.com/schmittjoh/serializer/issues/1044)
+- Values of type "double" should not use locale-specific encoding [\#1041](https://github.com/schmittjoh/serializer/issues/1041)
+- Serialize Generator [\#1023](https://github.com/schmittjoh/serializer/issues/1023)
+
+**Merged pull requests:**
+
+- Test on php 7.3 [\#1054](https://github.com/schmittjoh/serializer/pull/1054) ([goetas](https://github.com/goetas))
+- xmlRootPrefix missing from unserialized metadata [\#1053](https://github.com/schmittjoh/serializer/pull/1053) ([goetas](https://github.com/goetas))
+- Allow @Since and @Until within @VirtualProperty on class level [\#1049](https://github.com/schmittjoh/serializer/pull/1049) ([tjveldhuizen](https://github.com/tjveldhuizen))
+- Document use of AnnotationRegistry [\#1047](https://github.com/schmittjoh/serializer/pull/1047) ([andig](https://github.com/andig))
+- Fix result of code example [\#1039](https://github.com/schmittjoh/serializer/pull/1039) ([henrikthesing](https://github.com/henrikthesing))
+
+## [2.1.0](https://github.com/schmittjoh/serializer/tree/2.1.0)
+
+**Implemented enhancements:**
+
+- Add compilable expression language [\#1010](https://github.com/schmittjoh/serializer/pull/1010) ([goetas](https://github.com/goetas))
+
+**Closed issues:**
+
+- Compile error  Declaration of \[...\] must be compatible with \[...\] [\#1024](https://github.com/schmittjoh/serializer/issues/1024)
+- Exclude field for depth [\#1022](https://github.com/schmittjoh/serializer/issues/1022)
+- Add class properties inheritance for extending classes \(e.g. XmlRoot\) [\#396](https://github.com/schmittjoh/serializer/issues/396)
+
+**Merged pull requests:**
+
+- fixed typo [\#1029](https://github.com/schmittjoh/serializer/pull/1029) ([sasezaki](https://github.com/sasezaki))
+
+## [2.0.2](https://github.com/schmittjoh/serializer/tree/2.0.2) (2018-12-12)
+**Fixed bugs:**
+
+- jms serialzier 2.0 Error in debug mode [\#1018](https://github.com/schmittjoh/serializer/issues/1018)
+- AbstractDoctrineTypeDriver::normalizeFieldType\(\) must be of the type string, null given [\#1015](https://github.com/schmittjoh/serializer/issues/1015)
+- internal classes have false in reflection::getFilename\(\) [\#1013](https://github.com/schmittjoh/serializer/pull/1013) ([chregu](https://github.com/chregu))
+
+**Closed issues:**
+
+- DateTime converted to ArrayObject instead of string in custom visitor class [\#1017](https://github.com/schmittjoh/serializer/issues/1017)
+
+**Merged pull requests:**
+
+- Doctrine driver normalizeFieldType method does not handle nulls [\#1020](https://github.com/schmittjoh/serializer/pull/1020) ([goetas](https://github.com/goetas))
+- fixed a typo [\#1014](https://github.com/schmittjoh/serializer/pull/1014) ([themasch](https://github.com/themasch))
+
+## [2.0.1](https://github.com/schmittjoh/serializer/tree/2.0.1) (2018-11-29)
+**Fixed bugs:**
+
+- BC Break on deserialize with non existing properties in JSON payload? [\#1011](https://github.com/schmittjoh/serializer/issues/1011)
+
+**Merged pull requests:**
+
+- when a typed array is missing, do not try to de-serialize it [\#1012](https://github.com/schmittjoh/serializer/pull/1012) ([goetas](https://github.com/goetas))
+- Update UPGRADING.md [\#1008](https://github.com/schmittjoh/serializer/pull/1008) ([kunicmarko20](https://github.com/kunicmarko20))
+
+## [2.0.0](https://github.com/schmittjoh/serializer/tree/2.0.0) (2018-11-09)
+**Implemented enhancements:**
+
+- Move serialization info to the serialization context class [\#1006](https://github.com/schmittjoh/serializer/pull/1006) ([goetas](https://github.com/goetas))
+- Upgrade to Doctrine CS 5.0 [\#1002](https://github.com/schmittjoh/serializer/pull/1002) ([Majkl578](https://github.com/Majkl578))
+- Add travis build for docs [\#997](https://github.com/schmittjoh/serializer/pull/997) ([kunicmarko20](https://github.com/kunicmarko20))
+
+**Merged pull requests:**
+
+- Added missing comma in 'Overriding Groups' example [\#1001](https://github.com/schmittjoh/serializer/pull/1001) ([skuhnow](https://github.com/skuhnow))
+
+## [2.0.0-RC1](https://github.com/schmittjoh/serializer/tree/2.0.0-RC1) (2018-10-17)
+
+**Merged pull requests:**
+
+- Fixed typo in documentation \(stdclass.rst\) [\#998](https://github.com/schmittjoh/serializer/pull/998) ([moritzwachter](https://github.com/moritzwachter))
+- Improve handlers doc [\#996](https://github.com/schmittjoh/serializer/pull/996) ([kunicmarko20](https://github.com/kunicmarko20))
+
+## [2.0.0-beta1](https://github.com/schmittjoh/serializer/tree/2.0.0-beta1) (2018-09-12)
+
+**Breaking changes:**
+
+- I want to change the default group used when overriding groups of deeper branches [\#898](https://github.com/schmittjoh/serializer/issues/898)
+- NullAwareVisitorInterface::isNull second argument [\#823](https://github.com/schmittjoh/serializer/issues/823)
+- Simplify deep group exclusion strategy [\#946](https://github.com/schmittjoh/serializer/pull/946) ([goetas](https://github.com/goetas))
+- Discriminator property serialization when parent is in discriminator map [\#879](https://github.com/schmittjoh/serializer/pull/879) ([supersmile2009](https://github.com/supersmile2009))
+
+**Implemented enhancements:**
+
+- Change license to MIT [\#950](https://github.com/schmittjoh/serializer/issues/950)
+- Do not instantiate visitors in the serialization builder [\#613](https://github.com/schmittjoh/serializer/issues/613)
+- Possible to prefix the root element while serializing? [\#506](https://github.com/schmittjoh/serializer/issues/506)
+- Add logo [\#976](https://github.com/schmittjoh/serializer/pull/976) ([goetas](https://github.com/goetas))
+- Implementation deserialization of Inline property [\#974](https://github.com/schmittjoh/serializer/pull/974) ([scyzoryck](https://github.com/scyzoryck))
+- Code style [\#971](https://github.com/schmittjoh/serializer/pull/971) ([goetas](https://github.com/goetas))
+- Make access strategies aware of the context [\#962](https://github.com/schmittjoh/serializer/pull/962) ([goetas](https://github.com/goetas))
+- Distinguish between metadata errors and run time errors [\#948](https://github.com/schmittjoh/serializer/pull/948) ([goetas](https://github.com/goetas))
+- Allow inline lists and maps [\#944](https://github.com/schmittjoh/serializer/pull/944) ([goetas](https://github.com/goetas))
+- Move property ordering strategy out of Metadata [\#938](https://github.com/schmittjoh/serializer/pull/938) ([Majkl578](https://github.com/Majkl578))
+- Do not use property metadata to get/set object values [\#934](https://github.com/schmittjoh/serializer/pull/934) ([goetas](https://github.com/goetas))
+- Type hints and final clases [\#930](https://github.com/schmittjoh/serializer/pull/930) ([goetas](https://github.com/goetas))
+- Added graph navigator factories [\#929](https://github.com/schmittjoh/serializer/pull/929) ([goetas](https://github.com/goetas))
+- No global graph navigator [\#925](https://github.com/schmittjoh/serializer/pull/925) ([goetas](https://github.com/goetas))
+- Allow instance of event filtering  [\#924](https://github.com/schmittjoh/serializer/pull/924) ([goetas](https://github.com/goetas))
+- Move accessors to graph navigator [\#923](https://github.com/schmittjoh/serializer/pull/923) ([goetas](https://github.com/goetas))
+- Make PHPUnit stricter, drop redundant defaults [\#919](https://github.com/schmittjoh/serializer/pull/919) ([Majkl578](https://github.com/Majkl578))
+- Base exception should extend Throwable [\#911](https://github.com/schmittjoh/serializer/pull/911) ([Majkl578](https://github.com/Majkl578))
+- Port TypeParser to Hoa\Compiler [\#900](https://github.com/schmittjoh/serializer/pull/900) ([Majkl578](https://github.com/Majkl578))
+- \[2.0\]  better handling when something gets excluded  [\#895](https://github.com/schmittjoh/serializer/pull/895) ([goetas](https://github.com/goetas))
+
+**Fixed bugs:**
+
+- XmlDeserializationVisitor references undefined property PropertyMetadata::$reflection [\#958](https://github.com/schmittjoh/serializer/issues/958)
+- Invalid sprintf usage in DefaultAccessorStrategy [\#957](https://github.com/schmittjoh/serializer/issues/957)
+- Serializer::handleDeserializeResult\(\) changes the result after using Visitor::visitArray\(\) [\#710](https://github.com/schmittjoh/serializer/issues/710)
+- setGroups add new ExclusionStrategy instead of overwriting it [\#486](https://github.com/schmittjoh/serializer/issues/486)
+- GraphNavigator using \LogicException without serializer namespace [\#473](https://github.com/schmittjoh/serializer/issues/473)
+- Serialize doctrine entities load linked entities even if the max depth should stop this behavior [\#407](https://github.com/schmittjoh/serializer/issues/407)
+- HandlerCallback inconsistent behaviour [\#324](https://github.com/schmittjoh/serializer/issues/324)
+- Max Depth possible issue [\#272](https://github.com/schmittjoh/serializer/issues/272)
+- MaxDepth shows empty array property [\#148](https://github.com/schmittjoh/serializer/issues/148)
+- Custom Serialization handlers give an invalid result on top level [\#95](https://github.com/schmittjoh/serializer/issues/95)
+- Deserialization to ArrayCollection not working as expected [\#9](https://github.com/schmittjoh/serializer/issues/9)
+- Avoid duplicate exclusion strategies in the context [\#922](https://github.com/schmittjoh/serializer/pull/922) ([goetas](https://github.com/goetas))
+
+**Closed issues:**
+
+- Revert fix for \#43 \(JSON representation of empty objects\) [\#942](https://github.com/schmittjoh/serializer/issues/942)
+- Update jms/metadata [\#936](https://github.com/schmittjoh/serializer/issues/936)
+- Property access should not rely on PropertyMetadata but only on AccessorStrategyInterface [\#932](https://github.com/schmittjoh/serializer/issues/932)
+- Adopt some coding standard [\#914](https://github.com/schmittjoh/serializer/issues/914)
+- Replace in-house EventDispatcher by an existing one [\#912](https://github.com/schmittjoh/serializer/issues/912)
+- Risky tests in master [\#910](https://github.com/schmittjoh/serializer/issues/910)
+- Move resolveMetadata from the GraphNavigator [\#906](https://github.com/schmittjoh/serializer/issues/906)
+- Remove Context::getDirection\(\) [\#905](https://github.com/schmittjoh/serializer/issues/905)
+- \[2.0 proposal\] Moving non-essential components to separate packages [\#902](https://github.com/schmittjoh/serializer/issues/902)
+- \[2.0 proposal\] Splitting Navigator/Visitor [\#901](https://github.com/schmittjoh/serializer/issues/901)
+- Virtual property is excluded when the name equals to an excluded property [\#896](https://github.com/schmittjoh/serializer/issues/896)
+- Consider @var annotation for type inference when deserializing  [\#893](https://github.com/schmittjoh/serializer/issues/893)
+- Consider hoa/compiler [\#892](https://github.com/schmittjoh/serializer/issues/892)
+- setSerialiseNull\(true\) + exclusion strategies still include data [\#852](https://github.com/schmittjoh/serializer/issues/852)
+- Serializing a self-referencing object returns null [\#845](https://github.com/schmittjoh/serializer/issues/845)
+- Allow generators as return type for SubscribingHandlerInterface::getSubscribingMethods [\#832](https://github.com/schmittjoh/serializer/issues/832)
+- Add control to deserialization of null values [\#821](https://github.com/schmittjoh/serializer/issues/821)
+- serialize null should be a boolean in the context [\#740](https://github.com/schmittjoh/serializer/issues/740)
+- Allow data access to Property naming strategy [\#717](https://github.com/schmittjoh/serializer/issues/717)
+- Custom handler works with array of objects but fails to serialize one object [\#700](https://github.com/schmittjoh/serializer/issues/700)
+- Deprecate set\*ContextFactory in the Serializer to keep it immutable [\#691](https://github.com/schmittjoh/serializer/issues/691)
+- Remove Symfony Validator \<2.6 support [\#687](https://github.com/schmittjoh/serializer/issues/687)
+- Remove PHP metadata driver [\#686](https://github.com/schmittjoh/serializer/issues/686)
+- Prevent doctrine proxy loading for virtual types by default [\#685](https://github.com/schmittjoh/serializer/issues/685)
+- Inconsistency between serializing arrays and objects key names [\#655](https://github.com/schmittjoh/serializer/issues/655)
+- Can't hint interface using @Type to trigger custom handler [\#631](https://github.com/schmittjoh/serializer/issues/631)
+- Event Listeners are "lowercasing" class names for event match [\#624](https://github.com/schmittjoh/serializer/issues/624)
+- JSON/YAML encoding changes [\#617](https://github.com/schmittjoh/serializer/issues/617)
+- Remove PhpCollection and PhpOption and use arrays instead [\#616](https://github.com/schmittjoh/serializer/issues/616)
+- Remove handler callback  [\#615](https://github.com/schmittjoh/serializer/issues/615)
+- MaxDepth exclusion strategy for OneToMany \(ArrayCollection\) type triggers too many doctrine queries. [\#500](https://github.com/schmittjoh/serializer/issues/500)
+- Permit \(optional\) inheritance of HandlerCallback functions [\#499](https://github.com/schmittjoh/serializer/issues/499)
+- Serialized name based on the format [\#456](https://github.com/schmittjoh/serializer/issues/456)
+- obsolete strategies when calling Context::setVersion/setGroups more than once [\#98](https://github.com/schmittjoh/serializer/issues/98)
+
+**Merged pull requests:**
+
+- Fixed typo typo in UPGRADING.md [\#973](https://github.com/schmittjoh/serializer/pull/973) ([sweoggy](https://github.com/sweoggy))
+- Nullable exclusion strategy [\#965](https://github.com/schmittjoh/serializer/pull/965) ([goetas](https://github.com/goetas))
+- Revert https://github.com/schmittjoh/serializer/pull/113 [\#949](https://github.com/schmittjoh/serializer/pull/949) ([goetas](https://github.com/goetas))
+- This deprecates the set/has data functions in the json serialization [\#945](https://github.com/schmittjoh/serializer/pull/945) ([goetas](https://github.com/goetas))
+- Use jms/metadata 2.0 [\#940](https://github.com/schmittjoh/serializer/pull/940) ([goetas](https://github.com/goetas))
+- Short arrays, static asserts [\#927](https://github.com/schmittjoh/serializer/pull/927) ([Majkl578](https://github.com/Majkl578))
+- Move data handling from graph navigator to visitor [\#920](https://github.com/schmittjoh/serializer/pull/920) ([goetas](https://github.com/goetas))
+- Fix risky tests [\#918](https://github.com/schmittjoh/serializer/pull/918) ([goetas](https://github.com/goetas))
+- Enable strict mode, fix type juggling and drop some runtime coercion broken by design [\#916](https://github.com/schmittjoh/serializer/pull/916) ([Majkl578](https://github.com/Majkl578))
+- Upgrade PHPUnit [\#915](https://github.com/schmittjoh/serializer/pull/915) ([Majkl578](https://github.com/Majkl578))
+- Upcoming 2.0 [\#743](https://github.com/schmittjoh/serializer/pull/743) ([goetas](https://github.com/goetas))
+- Update configuration link to use reStructuredText link format [\#986](https://github.com/schmittjoh/serializer/pull/986) ([kinow](https://github.com/kinow))
+- Fix syntax for PHP code block [\#985](https://github.com/schmittjoh/serializer/pull/985) ([kinow](https://github.com/kinow))
+- Use reStructuredText link format [\#984](https://github.com/schmittjoh/serializer/pull/984) ([kinow](https://github.com/kinow))
+
+## [1.13.0](https://github.com/schmittjoh/serializer/tree/1.13.0) (2018-07-25)
 
 **Implemented enhancements:**
 

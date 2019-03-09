@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Serializer\EventDispatcher;
 
 use Symfony\Component\DependencyInjection\Container;

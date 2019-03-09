@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation as Serializer;
@@ -16,10 +18,10 @@ class Input
 
     public function __construct($attributes = null)
     {
-        $this->attributes = $attributes ?: array(
+        $this->attributes = $attributes ?: [
             'type' => 'text',
             'name' => 'firstname',
             'value' => 'Adrien',
-        );
+        ];
     }
 }

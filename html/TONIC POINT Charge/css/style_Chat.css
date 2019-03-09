@@ -1,0 +1,281 @@
+/*フェードイン*/
+body{
+	animation: fadeIn 3s ease 0s 1 normal;
+    -webkit-animation: fadeIn 3s ease 0s 1 normal;
+			background: #C7C7C7;
+}
+@keyframes fadeIn {
+    0% {
+		background: #FFF;
+		opacity: 0
+	}
+    100% {
+		background: #C7C7C7;
+		opacity: 1
+	}
+}
+@-webkit-keyframes fadeIn {
+    0% {
+		background: #FFF;
+		opacity: 0
+	}
+    100% {
+		background: #C7C7C7;
+		opacity: 1
+	}
+}
+
+
+/*チャットエリア*/
+.chat_bigarea{
+	position: absolute;
+	left: 45.5%;
+	transform: translateX(-50%);
+	width: 68%;
+	height: 50%;
+	margin-top: 20px;
+	background-color: rgb(243,243,243,0.8);
+	border-radius: 30px 0px 0px 30px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	overflow-y: auto;
+}
+/*チャット*/
+/*吹き出し*/
+.balloon5 {
+    width: 900px;
+    margin: 1.5em 0;
+	margin-bottom: 25px;
+	margin-left: 20px;
+}
+.faceicon {
+    float: left;
+    margin-right: -90px;
+	width: 90px;
+	height: 90px;
+    border: solid 3px #d7ebfe;
+    border-radius: 50%;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+}
+/*アイコン*/
+.img{
+	position: absolute;
+	left: -100%;
+	right: -100%;
+	top: -100%;
+ 	bottom: -100%;
+ 	margin: auto;
+	/*position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	max-width: 82%;
+	max-height: 82%;*/
+}
+/*相手のメッセージ吹き出しの中身*/
+.balloon5 .chatting {
+    width: 100%;
+}
+.says {
+    display: inline-block;
+    position: relative; 
+    margin: 15px 0 0 105px;
+    padding: 18px 13px;
+    border-radius: 12px;
+    background: #d7ebfe;
+	max-width: 850px;
+}
+.says:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 18px; 
+    left: -24px;
+    border: 12px solid transparent;
+    border-right: 12px solid #d7ebfe;
+}
+.says .messeage_nan {
+    margin: 0;
+    padding: 0;
+	word-break: break-all;
+}
+/*自分のメッセージ*/
+.balloon6 .chatting2 {
+    width: 100%;
+}
+.says2 {
+    display: inline-block;
+    position: relative; 
+    margin: 15px 0 10px 150px;
+    padding: 18px 13px;
+    border-radius: 12px;
+    background: #d7ebfe;
+	max-width: 850px;
+}
+.says2:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 18px; 
+    right: -24px;
+    border: 12px solid transparent;
+    border-right: 12px solid #d7ebfe;
+	transform: scale(-1, 1);
+}
+.says2 .messeage_nan2 {
+    margin: 0;
+    padding: 0;
+	word-break: break-all;
+}
+
+
+/*更新ボタン*/
+.F5{
+	position: absolute;
+	left: 84.5%;
+	transform: translateX(-50%);
+	width: 120px;
+	height: 130px;
+	margin-top: 320px;
+	background-color: rgb(243,243,243,0.8);
+	border-radius: 0px 0px 30px 0px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.refresh{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 125%;
+	font-weight: bold;
+}
+.F5:hover{
+	opacity:0.5;
+	cursor: pointer;
+}
+.F5:active{
+	margin-top: 325px;
+}
+
+
+/*メッセージバー*/
+/*親*/
+.in_messeage_in{
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 79%;
+	width: 60%;
+	height: 90px;
+	margin-top: 20px;
+	border-radius: 20px;
+	background: #FFF;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.2);
+
+}
+/*子*/
+.in_messeage form{
+	height:50px;
+	width:850px;
+	position:relative;
+}
+.in_messeage form input[type=text]{/*検索の中の文字*/
+	font-size: 25px;
+	width: 850px;
+	height:50px;
+	padding:4px 165px 4px 20px;
+	border:none;
+	-webkit-border-radius:32px;
+	-moz-border-radius:32px;
+	border-radius:32px;
+	-webkit-appearance: none;
+	outline: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position:absolute;
+	background:#EEEEEE;
+	top:0;
+	right:0;
+	backface-visibility: hidden;
+	-webkit-transition: 0.25s ease-out;
+	-moz-transition: 0.25s ease-out;
+	-o-transition: 0.25s ease-out;
+	transition: 0.25s ease-out;
+}
+.in_messeage form input[type=text]:focus{
+	background:#F6F6F6;
+}
+.in_messeage form button{
+	font-size: 19px;
+	width: 150px;
+	height: 50px;
+	color:#fff;
+	border:none;
+	-webkit-border-radius:16px;
+	-moz-border-radius:16px;
+	border-radius:16px;
+	background:#1B73BA;
+	display:inline-block;
+	-webkit-appearance: none;
+	outline: 0;
+	position:absolute;
+	top:0;
+	right:0;
+	cursor:pointer;
+	backface-visibility: hidden;
+	-webkit-transition: 0.3s ease-out;
+	-moz-transition: 0.3s ease-out;
+	-o-transition: 0.3s ease-out;
+	transition: 0.3s ease-out;
+}
+.in_messeage form button:hover{
+	opacity:0.8;
+}
+/*フォームの位置*/
+.in_messeage{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+
+/*送信相手表示*/
+.sendmes{
+	position: absolute;
+	left: 84.5%;
+	transform: translateX(-50%);
+	width: 120px;
+	height: 270px;
+	margin-top: 20px;
+	background-color: rgb(243,243,243,0.8);
+	border-radius: 0px 30px 0px 0px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+/*アイコンの位置*/
+.position{
+	position: absolute;
+	margin-top: 70px;
+	left: 50%;
+	top: 25%;
+	transform: translate(-50%,-50%);
+}
+.sendmes_name h3{
+	white-space: nowrap;
+	font-size: 21px;
+	position: absolute;
+	left: 50%;
+	top: 5%;
+	transform: translateX(-50%) scale(0.8, 1);
+}
+.sendmes_name p{
+	white-space: nowrap;
+	font-size: 20px;
+	position: absolute;
+	left: 50%;
+	top: 80%;
+	transform: translateX(-50%) scale(0.8, 1);
+	
+}

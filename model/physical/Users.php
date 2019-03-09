@@ -2,12 +2,18 @@
 
 namespace model\physical;
 
+use PDO;
+
 /**
  * Usersテーブル操作クラス
  *
  * @package model\physical
  */
 class Users extends ModelBase {
+
+    public function __construct(PDO $pdo, ?string $user = null) {
+        parent::__construct($pdo, $user);
+    }
 
     /**
      * ユーザ登録
@@ -29,16 +35,17 @@ class Users extends ModelBase {
             $prefix = "U";
         }
         $prefix .= substr($data["email"], 0, 1);
-        $data = array(
-            "id" => uniqid($prefix, true),
+        $Data = array(
+            "id" => str_replace('.', '-', uniqid($prefix, true)),
             "birth" => $data["birth"],
+            "gender" => $data["gender"],
             "firstName" => $data["firstName"],
             "lastName" => $data["lastName"],
             "email" => $data["email"],
-            "flag" => "verifying"
+            "flag" => "active"
         );
-        if ($this->execInsert($data)) {
-            return $data["id"];
+        if ($this->execInsert($Data)) {
+            return $Data["id"];
         } else {
             return false;
         }
@@ -138,6 +145,13 @@ class Users extends ModelBase {
         } else {
             return false;
         }
+    }
+
+    public function getIdByMail(string $email) {
+        $want = ["id"];
+        $where = ["email" => $email];
+        $rows = $this->getRows($want, $where);
+        return $rows[0]["id"];
     }
 
 }

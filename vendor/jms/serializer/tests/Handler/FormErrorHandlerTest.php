@@ -1,44 +1,56 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Handler;
 
+use JMS\Serializer\GraphNavigatorInterface;
 use JMS\Serializer\Handler\FormErrorHandler;
 use JMS\Serializer\JsonSerializationVisitor;
-use JMS\Serializer\Naming\CamelCaseNamingStrategy;
-use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
+use JMS\Serializer\SerializationContext;
+use JMS\Serializer\Visitor\Factory\JsonSerializationVisitorFactory;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Translation\Translator;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Validation;
 
-class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
+class FormErrorHandlerTest extends TestCase
 {
     /**
-     * @var \JMS\Serializer\Handler\FormErrorHandler
+     * @var FormErrorHandler
      */
     protected $handler;
 
     /**
-     * @var \JMS\Serializer\VisitorInterface
+     * @var JsonSerializationVisitor
      */
     protected $visitor;
 
     /**
-     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+     * @var EventDispatcherInterface
      */
     protected $dispatcher;
 
     /**
-     * @var \Symfony\Component\Form\FormFactoryInterface
+     * @var FormFactoryInterface
      */
     protected $factory;
 
     public function setUp()
     {
         $this->handler = new FormErrorHandler(new Translator('en'));
-        $this->visitor = new JsonSerializationVisitor(new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy()));
+        $navigator = $this->getMockBuilder(GraphNavigatorInterface::class)->getMock();
+        $context = SerializationContext::create();
+        $this->visitor = (new JsonSerializationVisitorFactory())->getVisitor($navigator, $context);
         $this->dispatcher = new EventDispatcher();
         $this->factory = $this->getMockBuilder('Symfony\Component\Form\FormFactoryInterface')->getMock();
     }
@@ -54,9 +66,9 @@ class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
     public function testSerializeEmptyFormError()
     {
         $form = $this->createForm();
-        $json = json_encode($this->handler->serializeFormToJson($this->visitor, $form, array()));
+        $json = json_encode($this->handler->serializeFormToJson($this->visitor, $form, []));
 
-        $this->assertSame('{}', $json);
+        self::assertSame('{}', $json);
     }
 
     public function testErrorHandlerWithoutTranslator()
@@ -64,28 +76,49 @@ class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $this->handler = new FormErrorHandler();
         $form = $this->createForm();
         $form->addError(new FormError('error!'));
-        $json = json_encode($this->handler->serializeFormToJson($this->visitor, $form, array()));
+        $json = json_encode($this->handler->serializeFormToJson($this->visitor, $form, []));
 
-        $this->assertSame(json_encode(array(
-            'errors' => array(
-                'error!',
-            ),
-        )), $json);
+        self::assertSame(json_encode([
+            'errors' => ['error!'],
+        ]), $json);
     }
 
     public function testSerializeHasFormError()
     {
         $form = $this->createForm();
         $form->addError(new FormError('error!'));
-        $json = json_encode($this->handler->serializeFormToJson($this->visitor, $form, array()));
+        $json = json_encode($this->handler->serializeFormToJson($this->visitor, $form, []));
 
-        $this->assertSame(json_encode(array(
-            'errors' => array(
-                'error!',
-            ),
-        )), $json);
+        self::assertSame(json_encode([
+            'errors' => ['error!'],
+        ]), $json);
     }
 
+    public function testSerializeFormWithData()
+    {
+        $formFactoryBuilder = Forms::createFormFactoryBuilder();
+        $formFactoryBuilder->addExtension(new ValidatorExtension(Validation::createValidator()));
+
+        $formFactory = $formFactoryBuilder->getFormFactory();
+        $builer = $formFactory->createNamedBuilder('foo', FormType::class);
+
+        $builer->add('url', TextType::class);
+        $builer->add('txt', TextType::class, [
+            'constraints' => [
+                new Length(['min' => 10]),
+            ],
+        ]);
+
+        $form = $builer->getForm();
+
+        $form->submit([
+            'url' => 'hi',
+            'txt' => 'hello',
+        ]);
+
+        $data = json_encode($this->handler->serializeFormToJson($this->visitor, $form, []));
+        self::assertSame('{"children":{"url":{},"txt":{"errors":["This value is too short. It should have 10 characters or more."]}}}', $data);
+    }
 
     public function testSerializeChildElements()
     {
@@ -98,18 +131,15 @@ class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $form->addError(new FormError('error!'));
         $form->get('date')->addError(new FormError('child-error'));
 
-        $json = json_encode($this->handler->serializeFormToJson($this->visitor, $form, array()));
+        $json = json_encode($this->handler->serializeFormToJson($this->visitor, $form, []));
 
-        $this->assertSame(json_encode(array(
-            'errors' => array(
-                'error!',
-            ),
+        self::assertSame(json_encode([
+            'errors' => ['error!'],
             'children' => [
                 'child' => new \stdClass(),
-                'date' => ['errors' => ['child-error']]
-            ]
-        )), $json);
-
+                'date' => ['errors' => ['child-error']],
+            ],
+        ]), $json);
     }
 
     public function testDefaultTranslationDomain()
@@ -132,7 +162,7 @@ class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $formError->expects($this->once())->method('getMessagePluralization')->willReturn(null);
         $formError->expects($this->once())->method('getMessageParameters')->willReturn([]);
 
-        $this->invokeMethod($handler, 'getErrorMessage', [$formError,]);
+        $this->invokeMethod($handler, 'getErrorMessage', [$formError]);
     }
 
     public function testDefaultTranslationDomainWithPluralTranslation()
@@ -156,7 +186,7 @@ class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $formError->expects($this->exactly(2))->method('getMessagePluralization')->willReturn(0);
         $formError->expects($this->once())->method('getMessageParameters')->willReturn([]);
 
-        $this->invokeMethod($handler, 'getErrorMessage', [$formError,]);
+        $this->invokeMethod($handler, 'getErrorMessage', [$formError]);
     }
 
     public function testCustomTranslationDomain()
@@ -179,7 +209,7 @@ class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $formError->expects($this->once())->method('getMessagePluralization')->willReturn(null);
         $formError->expects($this->once())->method('getMessageParameters')->willReturn([]);
 
-        $this->invokeMethod($handler, 'getErrorMessage', [$formError,]);
+        $this->invokeMethod($handler, 'getErrorMessage', [$formError]);
     }
 
     public function testCustomTranslationDomainWithPluralTranslation()
@@ -203,8 +233,7 @@ class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $formError->expects($this->exactly(2))->method('getMessagePluralization')->willReturn(0);
         $formError->expects($this->once())->method('getMessageParameters')->willReturn([]);
 
-        $this->invokeMethod($handler, 'getErrorMessage', [$formError,]);
-
+        $this->invokeMethod($handler, 'getErrorMessage', [$formError]);
     }
 
     /**
@@ -214,7 +243,7 @@ class FormErrorHandlerTest extends \PHPUnit_Framework_TestCase
      *
      * @return FormBuilder
      */
-    protected function getBuilder($name = 'name', EventDispatcherInterface $dispatcher = null, $dataClass = null)
+    protected function getBuilder($name = 'name', ?EventDispatcherInterface $dispatcher = null, $dataClass = null)
     {
         return new FormBuilder($name, $dataClass, $dispatcher ?: $this->dispatcher, $this->factory);
     }

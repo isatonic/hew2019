@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation\Type;
@@ -16,7 +18,7 @@ class Comment
      */
     private $text;
 
-    public function __construct(Author $author = null, $text)
+    public function __construct(?Author $author = null, $text)
     {
         $this->author = $author;
         $this->text = $text;

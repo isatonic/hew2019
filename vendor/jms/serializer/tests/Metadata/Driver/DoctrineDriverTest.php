@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Metadata\Driver;
 
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -8,23 +10,31 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver as DoctrineDriver;
 use JMS\Serializer\Metadata\Driver\AnnotationDriver;
 use JMS\Serializer\Metadata\Driver\DoctrineTypeDriver;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
+use JMS\Serializer\Tests\Fixtures\Doctrine\BlogPostWithEmbedded;
+use PHPUnit\Framework\TestCase;
 
-class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
+class DoctrineDriverTest extends TestCase
 {
     public function getMetadata()
     {
         $refClass = new \ReflectionClass('JMS\Serializer\Tests\Fixtures\Doctrine\BlogPost');
-        $metadata = $this->getDoctrineDriver()->loadMetadataForClass($refClass);
+        return $this->getDoctrineDriver()->loadMetadataForClass($refClass);
+    }
 
-        return $metadata;
+    public function testMetadataForEmbedded()
+    {
+        $refClass = new \ReflectionClass(BlogPostWithEmbedded::class);
+        $meta = $this->getDoctrineDriver()->loadMetadataForClass($refClass);
+        self::assertNotNull($meta);
     }
 
     public function testTypelessPropertyIsGivenTypeFromDoctrineMetadata()
     {
         $metadata = $this->getMetadata();
 
-        $this->assertEquals(
-            array('name' => 'DateTime', 'params' => array()),
+        self::assertEquals(
+            ['name' => 'DateTime', 'params' => []],
             $metadata->propertyMetadata['createdAt']->type
         );
     }
@@ -32,8 +42,8 @@ class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
     public function testSingleValuedAssociationIsProperlyHinted()
     {
         $metadata = $this->getMetadata();
-        $this->assertEquals(
-            array('name' => 'JMS\Serializer\Tests\Fixtures\Doctrine\Author', 'params' => array()),
+        self::assertEquals(
+            ['name' => 'JMS\Serializer\Tests\Fixtures\Doctrine\Author', 'params' => []],
             $metadata->propertyMetadata['author']->type
         );
     }
@@ -42,10 +52,13 @@ class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
     {
         $metadata = $this->getMetadata();
 
-        $this->assertEquals(
-            array('name' => 'ArrayCollection', 'params' => array(
-                array('name' => 'JMS\Serializer\Tests\Fixtures\Doctrine\Comment', 'params' => array()))
-            ),
+        self::assertEquals(
+            [
+                'name' => 'ArrayCollection',
+                'params' => [
+                    ['name' => 'JMS\Serializer\Tests\Fixtures\Doctrine\Comment', 'params' => []],
+                ],
+            ],
             $metadata->propertyMetadata['comments']->type
         );
     }
@@ -55,8 +68,8 @@ class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
         $metadata = $this->getMetadata();
 
         // This would be guessed as boolean but we've overriden it to integer
-        $this->assertEquals(
-            array('name' => 'integer', 'params' => array()),
+        self::assertEquals(
+            ['name' => 'integer', 'params' => []],
             $metadata->propertyMetadata['published']->type
         );
     }
@@ -64,7 +77,7 @@ class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
     public function testUnknownDoctrineTypeDoesNotResultInAGuess()
     {
         $metadata = $this->getMetadata();
-        $this->assertNull($metadata->propertyMetadata['slug']->type);
+        self::assertNull($metadata->propertyMetadata['slug']->type);
     }
 
     public function testNonDoctrineEntityClassIsNotModified()
@@ -81,7 +94,7 @@ class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
             $plainMetadata->createdAt = $doctrineMetadata->createdAt;
         }
 
-        $this->assertEquals($plainMetadata, $doctrineMetadata);
+        self::assertEquals($plainMetadata, $doctrineMetadata);
     }
 
     public function testExcludePropertyNoPublicAccessorException()
@@ -89,22 +102,22 @@ class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
         $first = $this->getAnnotationDriver()
             ->loadMetadataForClass(new \ReflectionClass('JMS\Serializer\Tests\Fixtures\ExcludePublicAccessor'));
 
-        $this->assertArrayHasKey('id', $first->propertyMetadata);
-        $this->assertArrayNotHasKey('iShallNotBeAccessed', $first->propertyMetadata);
+        self::assertArrayHasKey('id', $first->propertyMetadata);
+        self::assertArrayNotHasKey('iShallNotBeAccessed', $first->propertyMetadata);
     }
 
     public function testVirtualPropertiesAreNotModified()
     {
         $doctrineMetadata = $this->getMetadata();
-        $this->assertNull($doctrineMetadata->propertyMetadata['ref']->type);
+        self::assertNull($doctrineMetadata->propertyMetadata['ref']->type);
     }
 
     public function testGuidPropertyIsGivenStringType()
     {
         $metadata = $this->getMetadata();
 
-        $this->assertEquals(
-            array('name' => 'string', 'params' => array()),
+        self::assertEquals(
+            ['name' => 'string', 'params' => []],
             $metadata->propertyMetadata['id']->type
         );
     }
@@ -118,17 +131,17 @@ class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
             new DoctrineDriver(new AnnotationReader(), __DIR__ . '/../../Fixtures/Doctrine')
         );
 
-        $conn = array(
+        $conn = [
             'driver' => 'pdo_sqlite',
             'memory' => true,
-        );
+        ];
 
         return EntityManager::create($conn, $config);
     }
 
     public function getAnnotationDriver()
     {
-        return new AnnotationDriver(new AnnotationReader());
+        return new AnnotationDriver(new AnnotationReader(), new IdenticalPropertyNamingStrategy());
     }
 
     protected function getDoctrineDriver()

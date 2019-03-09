@@ -1,9 +1,11 @@
 Serializer
 ==========
 
+.. image:: logo-small.png
+
 Introduction
 ------------
-This library allows you to (de-)serialize data of any complexity. Currently, it supports XML, JSON, and YAML.
+This library allows you to (de-)serialize data of any complexity. Currently, it supports XML and JSON.
 
 It also provides you with a rich tool-set to adapt the output to your specific needs.
 
@@ -13,7 +15,7 @@ Built-in features include:
 - Supports many built-in PHP types (such as dates)
 - Integrates with Doctrine ORM, et. al.
 - Supports versioning, e.g. for APIs
-- Configurable via PHP, XML, YAML, or Doctrine Annotations
+- Configurable via XML, YAML, or Doctrine Annotations
 
 Installation
 ------------
@@ -32,6 +34,7 @@ For standalone projects usage of the provided builder is encouraged::
     $serializer = JMS\Serializer\SerializerBuilder::create()->build();
     $jsonContent = $serializer->serialize($data, 'json');
     echo $jsonContent; // or return it in a Response
+
 
 Documentation
 -------------

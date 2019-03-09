@@ -46,7 +46,7 @@ property. If this is not defined, the property will be translated from camel-cas
 to a lower-cased underscored name, e.g. camelCase -> camel_case.
 
 Note that this annotation is not used when you're using any other naming 
-stategy than the default configuration (which includes the 
+strategy than the default configuration (which includes the 
 ``SerializedNameAnnotationStrategy``). In order to re-enable the annotation, you
 will need to wrap your custom strategy with the ``SerializedNameAnnotationStrategy``.
 
@@ -258,6 +258,9 @@ In this example:
 - ``firstName`` is exposed using the ``object.getFirstName()`` expression (``exp`` can contain any valid symfony expression).
 
 
+``@VirtualProperty()`` can also have an optional property ``name``, used to define the internal property name
+(for sorting proposes as example). When not specified, it defaults to the method name with the "get" prefix removed.
+
 .. note ::
 
     This only works for serialization and is completely ignored during deserialization.
@@ -267,9 +270,7 @@ In this example:
 This annotation can be defined on a property to indicate that the data of the property
 should be inlined.
 
-**Note**: This only works for serialization, the serializer will not be able to deserialize
-objects with this annotation. Also, AccessorOrder will be using the name of the property
-to determine the order.
+**Note**: AccessorOrder will be using the name of the property to determine the order.
 
 @ReadOnly
 ~~~~~~~~~
@@ -292,26 +293,6 @@ object has been serialized.
 ~~~~~~~~~~~~~~~~
 This annotation can be defined on a method which is supposed to be called after
 the object has been deserialized.
-
-@HandlerCallback
-~~~~~~~~~~~~~~~~
-This annotation can be defined on a method if serialization/deserialization is handled
-by the object itself.
-
-.. code-block :: php
-
-    <?php
-
-    class Article
-    {
-        /**
-         * @HandlerCallback("xml", direction = "serialization")
-         */
-        public function serializeToXml(XmlSerializationVisitor $visitor)
-        {
-            // custom logic here
-        }
-    }
 
 @Discriminator
 ~~~~~~~~~~~~~~
@@ -403,8 +384,26 @@ Available Types:
 | ArrayCollection<K, V>                                    | Similar to array<K, V>, but will be deserialized |
 |                                                          | into Doctrine's ArrayCollection class.           |
 +----------------------------------------------------------+--------------------------------------------------+
+| Generator                                                | Similar to array, but will be deserialized       |
+|                                                          | into Generator class.                            |
++----------------------------------------------------------+--------------------------------------------------+
+| Generator<T>                                             | Similar to array<T>, but will be deserialized    |
+|                                                          | into Generator class.                            |
++----------------------------------------------------------+--------------------------------------------------+
+| Generator<K, V>                                          | Similar to array<K, V>, but will be deserialized |
+|                                                          | into Generator class.                            |
++----------------------------------------------------------+--------------------------------------------------+
+| ArrayIterator                                            | Similar to array, but will be deserialized       |
+|                                                          | into ArrayIterator class.                        |
++----------------------------------------------------------+--------------------------------------------------+
+| ArrayIterator<T>                                         | Similar to array<T>, but will be deserialized    |
+|                                                          | into ArrayIterator class.                        |
++----------------------------------------------------------+--------------------------------------------------+
+| ArrayIterator<K, V>                                      | Similar to array<K, V>, but will be deserialized |
+|                                                          | into ArrayIterator class.                        |
++----------------------------------------------------------+--------------------------------------------------+
 
-(*) If the standalone jms/serializer is used then default format is `\DateTime::ISO8601` (which is not compatible with ISO-8601 despite the name). For jms/serializer-bundle the default format is `\DateTime::ATOM` (the real ISO-8601 format) but it can be changed in [configuration](https://jmsyst.com/bundles/JMSSerializerBundle/master/configuration#configuration-block-2-0).
+(*) If the standalone jms/serializer is used then default format is `\DateTime::ISO8601` (which is not compatible with ISO-8601 despite the name). For jms/serializer-bundle the default format is `\DateTime::ATOM` (the real ISO-8601 format) but it can be changed in `configuration`_.
 
 Examples:
 
@@ -463,6 +462,8 @@ Examples:
          */
         private $keyValueStore;
     }
+
+.. _configuration: https://jmsyst.com/bundles/JMSSerializerBundle/master/configuration#configuration-block-2-0
 
 @XmlRoot
 ~~~~~~~~
@@ -539,6 +540,7 @@ Available Options:
 +-------------------------------------+--------------------------------------------------+
 
 Example for "attribute":
+
 .. code-block :: php
 
     <?php
@@ -563,6 +565,7 @@ Resulting XML:
 Example for "cdata":
 
 .. code-block :: php
+
     <?php
 
     use JMS\Serializer\Annotation\Discriminator;

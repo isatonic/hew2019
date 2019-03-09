@@ -1,0 +1,17 @@
+#gooey-v .open-button,
+#gooey-v .gooey-menu-item {
+    margin-top: 50em;
+	margin-left:20px;
+}
+
+@media (max-width: 780px) {
+    #gooey-v .open-button,
+    #gooey-v .gooey-menu-item {
+        margin-top: 0;
+    }
+    #gooey-v {
+        margin-top: 29em;
+    }
+   
+}
+

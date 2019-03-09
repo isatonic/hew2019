@@ -20,8 +20,8 @@ class Cart extends ModelBase {
     public function add(string $product, string $who = null) {
         $who = $this->setUser($who);
         $data = array(
-            "product" => $product,
-            "user" => $who
+            "product" => $this->db->quote($product),
+            "user" => $this->db->quote($who)
         );
 
         return $this->execInsert($data);

@@ -15,23 +15,26 @@ class Auth extends ModelBase {
     /**
      * パスワード認証
      *
-     * @param string      $pass 入力パスワード
-     * @param string|null $id   ユーザID
+     * @param string $pass 入力パスワード
+     * @param string $email
      *
      * @return bool
      */
-    public function check(string $pass, string $id = null) {
+    public function check(string $pass, string $email) {
         $wants = array(
+            "id",
             "pass",
             "flag"
         );
-        $where["id"] = $id;
+        $where["email"] = $email;
         $rows = $this->getRows($wants, $where);
 
         if ($rows != null) {
-            if ($rows[0]["flag"] != "active") {
+            if ($rows[0]["flag"] == "active") {
                 $hash = $rows[0]["pass"];
-                return password_verify($pass, $hash);
+                if (password_verify($pass, $hash)) {
+                    return $rows[0]["id"];
+                }
             }
         }
         return false;

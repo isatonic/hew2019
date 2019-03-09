@@ -1,26 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation\AccessorOrder;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\SkipWhenEmpty;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\SkipWhenEmpty;
 
 /**
  * @AccessorOrder("custom", custom = {"prop_name", "existField", "foo" })
  */
 class ObjectWithVirtualProperties
 {
-
     /**
      * @Type("string")
      */
     protected $existField = 'value';
 
     /**
-     *
      * @VirtualProperty
      */
     public function getVirtualValue()

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JMS\Serializer\Tests\Fixtures;
 
 use JMS\Serializer\Annotation\SerializedName;
@@ -31,7 +33,7 @@ class Log
         $this->authors->add(new Author('John Doe'));
 
         $author = new Author('Foo Bar');
-        $this->comments = array();
+        $this->comments = [];
         $this->comments[] = new Comment($author, 'foo');
         $this->comments[] = new Comment($author, 'bar');
         $this->comments[] = new Comment($author, 'baz');

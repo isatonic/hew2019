@@ -1,9 +1,16 @@
 {
-  "require": {
-    "phpmailer/phpmailer": "6.0.5",
-    "ext-pdo": "*"
-  },
-  "require-dev": {
-    "phpdocumentor/phpdocumentor": "^2.9"
-  }
+	"autoload": {
+		"psr-4": {
+			"model\\": "./model/"
+		}
+	},
+	"require": {
+		"phpmailer/phpmailer": "6.0.5",
+		"ext-pdo": "*",
+        "ext-json": "*",
+        "ext-exif": "*"
+    },
+	"require-dev": {
+		"phpdocumentor/phpdocumentor": "^2.9"
+	}
 }
