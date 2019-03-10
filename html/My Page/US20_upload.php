@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 	<head>
 	<title>My Page | ISATONIC</title>
@@ -57,17 +60,12 @@
 				<div class="mype_main">
 					<div class="upload_fin">
 						<?php
-						$tempfile = $_FILES['files']['tmp_name'];
-						$filename = 'images/' . $_FILES['files']['name'];
-						if (is_uploaded_file($tempfile)) {
-							if ( move_uploaded_file($tempfile , $filename )) {
-							echo "アイコン画像をアップロードしました。";
-							} else {
-								echo "ファイルをアップロードできません。";
-							}
-						} else {
-							echo "ファイルが選択されていません。";
-						} 
+            if (!isset($_SESSION["isatonic_icon_up_msg"])) {
+              header("Location: ./US20.php", true, 302);
+            } else {
+                echo $_SESSION["isatonic_icon_up_msg"];
+                unset($_SESSION["isatonic_icon_up_msg"]);
+            }
 						?>
 					</div>
 				</div>

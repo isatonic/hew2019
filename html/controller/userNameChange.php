@@ -4,8 +4,8 @@ session_start();
 require_once "../../vendor/autoload.php";
 if (!isset($_SESSION["id"]) or is_null($_SESSION["id"])) {
     // jump to login
-    $url = "";
-    header("Location: ${url}");
+    $url = "../login/login.php";
+    header("Location: ${url}", true, 302);
 } else {
     $user = $_SESSION["id"];
 }
@@ -21,7 +21,7 @@ $data = array(
 if ($UserDetail->changeInfo($data, $user)) {
     // success
      $url = "../My Page/US20_name_change.php";
-     header("Location: ${url}");
+     header("Location: ${url}", true, 302);
 } else {
     // error
     echo "ERROR";

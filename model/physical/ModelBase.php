@@ -112,10 +112,10 @@ abstract class ModelBase implements ModelBaseInterface {
     protected function execUpdate(array $new, array $param) {
         $this->updateSql($new, $param);
         $this->exec($param);
-        if ($this->getResult() != false) {
-            return true;
-        } else {
+        if ($this->getResult() === false) {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -184,14 +184,14 @@ abstract class ModelBase implements ModelBaseInterface {
     protected function updateSql(array $data, array $where) {
         $keyval = array();
         foreach ($data as $key => $val) {
-            $keyval[] = "${key}=${val}";
+            $keyval[] = "${key} = ${val}";
         }
         $sql = sprintf(/** @lang text */
             "UPDATE $this->table_name SET %s", implode(", ", $keyval));
         if ($where != null) {
             $sql .= $this->addWhere($where);
         }
-        $this->sql = $sql;
+        $this->sql = $sql . ";";
     }
 
     protected function addWhere(array $where, string $andor = "and") {

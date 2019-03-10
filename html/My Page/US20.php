@@ -23,16 +23,6 @@ if (file_exists($icon_dir . $user . ".png")) {
 ?>
 <html>
 	<head>
-      <?php
-      // リロード(F5)した時に再度DBにアクセス
-      if (is_null($homeData)) {
-          echo <<<RD
-      <script>
-        window.location = "../controller/userHome.php";
-      </script>
-RD;
-      }
-      ?>
 	<title>My Page | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -51,7 +41,26 @@ RD;
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
 	<script src="js/ozawa.js"></script>
-	</head>	
+    <script type="text/javascript">
+        <?php
+        if (isset($_SESSION["isatonic_pass_change_err"])) {
+            $err_msg = $_SESSION["isatonic_pass_change_err"];
+            unset($_SESSION["isatonic_pass_change_err"]);
+            echo "alert('$err_msg');";
+        }
+        ?>
+    </script>
+      <?php
+      // リロード(F5)した時に再度DBにアクセス
+      if (is_null($homeData)) {
+          echo <<<RD
+      <script>
+        window.location = "../controller/userHome.php";
+      </script>
+RD;
+      }
+      ?>
+	</head>
 	<body>
 
     <div class="cd-main-content">
@@ -212,7 +221,7 @@ RD;
 								<!-- ユーザアイコンアップロード -->
 								<div class="user_imageee">
 									<h1 class="icon_change">ユーザアイコン変更</h1>
-									<form action="US20_upload.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
+									<form action="../controller/changeIcon.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
 											<div id="btn">
 												<p><i class="fas fa-file-upload"></i>&nbsp;写真を選択</p>
 											</div>
@@ -235,7 +244,7 @@ RD;
 								<!-- ユーザ名 -->
 								<div class="user_nameee">
 									<h1 class="username_change">ユーザ名変更</h1>
-									<form action="US20_name_change.php" method="post" id="form0001">
+									<form action="../controller/userNameChange.php" method="post" id="form0001">
 										<input type="text" name="name_change" required maxlength="20">
 										<div class="up_submit2" onClick="submits_id()">
 												<p>変更</p>
@@ -266,7 +275,7 @@ RD;
 
 								<!-- ユーザ名 -->
 								<h1 class="password_change">パスワード変更</h1>
-								<form name="form1" id="form1" action="US20_pass_change.php" method="post" onSubmit="return check()">
+								<form name="form1" id="form1" action="../controller/userPassChange.php" method="post" onSubmit="return check()">
 
 									
 									<div class="passgroup">
@@ -307,9 +316,12 @@ RD;
 								</div>
 								<div class="imgimg">
                     <?php
-                    $product = $data["product"];
-                    foreach ($product as $row) {
-                        echo "<img src='${upload_dir}{$row['fileName']}' alt='' class='imageee1'";
+                    if (is_null($data["product"])) {
+                      echo "投稿された作品はありません。";
+                    } else {
+                        foreach ($data["product"] as $row) {
+                            echo "<img src='${upload_dir}{$row['fileName']}' alt='' class='imageee1'";
+                        }
                     }
                     ?>
 <!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
@@ -357,9 +369,12 @@ RD;
 							<div class="modalContents4">
 <!--                <img src="img/placeholder.png" alt="" class="imageee">-->
                   <?php
-                  $buyHistory = $data["buyHistory"];
-                  foreach ($buyHistory as $row) {
-                    echo "<img src='${upload_dir}/{$row['productData']['fileName']}' alt='' class='imageee'";
+                  if (is_null($data["buyHistory"])) {
+                    echo "購入した商品はありません。";
+                  } else {
+                      foreach ($data["buyHistory"] as $row) {
+                          echo "<img src='${upload_dir}/{$row['productData']['fileName']}' alt='' class='imageee'";
+                      }
                   }
                   ?>
 							</div>
