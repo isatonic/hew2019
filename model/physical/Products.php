@@ -143,7 +143,7 @@ class Products extends ModelBase {
             "price",
             "authorComment"
         );
-        $where = ["author" => $this->db->quote($author)];
+        $where = ["author" => $author];
         $order = ["postDate" => "ASC"];
         return $this->getRows($wants, $where, $order);
     }

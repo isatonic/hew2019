@@ -59,7 +59,7 @@ class UserDetails extends ModelBase {
      */
     public function getUserName(string $id = null) {
         $id = $this->setUser($id);
-        $wants = ["userName", "icon"];
+        $wants = ["userName"];
         $where = ["id" => $id];
         $rows = $this->getRows($wants, $where);
         if (!is_null($rows)) {

@@ -1,24 +1,38 @@
 <?php
 session_start();
-// ログインページのurl
-$login_url = "../login/login.php";
 if (!isset($_SESSION["id"]) or is_null($_SESSION["id"])) {
     // login required
-    header("Location: ../login/login.php");
-} else {
-    $user = $_SESSION["id"];
+    header("Location: ../login/login.php", true, 302);
 }
-if (isset($_POST["home_data"]) and !is_null($_POST["home_data"])) {
-    $data = $_POST["home_data"];
+$user = $_SESSION["id"];
+if (isset($_SESSION["isatonic_home_data"]) and !is_null($_SESSION["isatonic_home_data"])) {
+    $homeData = $_SESSION["isatonic_home_data"];
+    unset($_SESSION["isatonic_home_data"]);
 } else {
-    // login required
-//    header("Location: ${url}");
+  header("../controller/userHome.php", true, 302);
 }
 // 作品を格納するディレクトリ
 $upload_dir = "../uploaded_files/";
+// アイコンを格納するディレクトリ
+$icon_dir = "./icon/";
+if (file_exists($icon_dir . $user . ".png")) {
+  $icon = $icon_dir . $user .".png";
+} else {
+  $icon = $icon_dir . "icon_default.png";
+}
 ?>
 <html>
 	<head>
+      <?php
+      // リロード(F5)した時に再度DBにアクセス
+      if (is_null($homeData)) {
+          echo <<<RD
+      <script>
+        window.location = "../controller/userHome.php";
+      </script>
+RD;
+      }
+      ?>
 	<title>My Page | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -77,13 +91,13 @@ $upload_dir = "../uploaded_files/";
 				<div class="mype_main">
 					<div class="mype_name">
 						<div class="photo">
-							<img src="./icon/<?php echo $user;?>.png" alt="アイコン"> <!-- ユーザのアイコン -->
+							<img src="<?php echo $icon;?>" alt="アイコン"> <!-- ユーザのアイコン -->
 						</div>
 						<div class="tonic_name">
 							<p class="simei">
                   <?php
-                  $sei = $data["user_info"]["lastName"];
-                  $mei = $data["user_info"]["firstName"];
+                  $sei = $homeData["user_info"]["lastName"];
+                  $mei = $homeData["user_info"]["firstName"];
                   echo "$sei $mei";
                   ?>
 								<!-- ユーザ名 --> 様</p>
@@ -91,7 +105,7 @@ $upload_dir = "../uploaded_files/";
 						<div class="nicname">
 							<p class="user_name">
                   <?php
-                  echo $data["usr_detail"];
+                  echo $homeData["user_detail"];
                   ?>
               </p>
 						</div>
@@ -116,7 +130,8 @@ $upload_dir = "../uploaded_files/";
 					<div class="mype_tonicG">
 						<div class="t-grade">
 							<p>T-Grade</p>
-              <img src="img/6th.png">
+              <img src="img/6th.png" alt="グレード">
+              <!-- TODO: グレード 1st~5th の画像を追加してコメントアウト -->
 <!--                --><?php
 //                $grade = (int)$data["grade"];
 //                switch ($grade) {
@@ -132,7 +147,7 @@ $upload_dir = "../uploaded_files/";
 //                    default:
 //                      $grade = "{$grade}th";
 //                }
-//                echo "<img src='./img/{$grade}.png"
+//                echo "<img src='./img/{$grade}.png' alt='グレード'>"
 //                ?>
 						</div>
 					</div>
@@ -143,7 +158,7 @@ $upload_dir = "../uploaded_files/";
 						<div class="inner_tonic_point">
 							<p>
 							<?php
-								echo $data["point"];
+								echo $homeData["point"];
 							?>
 								 P
 							</p>
@@ -214,6 +229,7 @@ $upload_dir = "../uploaded_files/";
 												<p>進む</p>
 											</div>
 									</form>
+                </div>
 
 
 								<!-- ユーザ名 -->
@@ -289,43 +305,43 @@ $upload_dir = "../uploaded_files/";
 								<div class="upload_pagego flat_button" onClick="location.href='../Upload/US21.php'">
 									<p>アップロード</p>
 								</div>
-                <!--                  --><?php
-                  //                  $product = $data["product"];
-                  //                  foreach ($product as $row) {
-                  //                      echo "<img src='${upload_dir}{$row['fileName']}' alt='' class='imageee1'";
-                  //                  }
-                  //                  ?>
 								<div class="imgimg">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
+                    <?php
+                    $product = $data["product"];
+                    foreach ($product as $row) {
+                        echo "<img src='${upload_dir}{$row['fileName']}' alt='' class='imageee1'";
+                    }
+                    ?>
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
 								</div>
 							</div>
 						<div id="closeModal" class="closeModal">
@@ -339,13 +355,13 @@ $upload_dir = "../uploaded_files/";
 					  <div id="modalBg4" class="modalBg4"></div>
 						<div class="modalWrapper4">
 							<div class="modalContents4">
-                <img src="img/placeholder.png" alt="" class="imageee">
-<!--                  --><?php
-//                  $buyHistory = $data["buyHistory"];
-//                  foreach ($buyHistory as $row) {
-//                    echo "<img src='${upload_dir}/{$row['productData']['fileName']}' alt='' class='imageee'";
-//                  }
-//                  ?>
+<!--                <img src="img/placeholder.png" alt="" class="imageee">-->
+                  <?php
+                  $buyHistory = $data["buyHistory"];
+                  foreach ($buyHistory as $row) {
+                    echo "<img src='${upload_dir}/{$row['productData']['fileName']}' alt='' class='imageee'";
+                  }
+                  ?>
 							</div>
 						<div id="closeModal" class="closeModal">
 						  ×

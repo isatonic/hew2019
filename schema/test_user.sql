@@ -44,7 +44,7 @@ INSERT isatonic.Users(id, regDate, birth, gender, firstName, lastName, email, fl
 
 INSERT isatonic.UserDetails(id, userName)
     VALUES ('Uu5c84d7c4bc3de0-98005632',
-            'ISATONIC')
+            'testUser')
 ;
 
 INSERT isatonic.Password(id, pass)
