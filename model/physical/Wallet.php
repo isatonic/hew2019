@@ -20,7 +20,11 @@ class Wallet extends ModelBase {
      */
     public function init(string $id = null) {
         $data["user"] = $id;
-        return $this->execInsert($data);
+        $esc_data = [];
+        foreach ($data as $key => $val) {
+            $esc_data[$key] = $this->db->quote($val);
+        }
+        return $this->execInsert($esc_data);
     }
 
     /**
@@ -35,7 +39,7 @@ class Wallet extends ModelBase {
         $wants = ["point"];
         $where = ["user" => $user];
         $rows = $this->getRows($wants, $where);
-        $point = $rows[0]["point"];
+        $point = (int)$rows[0]["point"];
 
         return $point;
     }
@@ -56,6 +60,7 @@ class Wallet extends ModelBase {
         );
         $where["user"] = $user;
 
+        echo "wallet: ";
         return $this->execUpdate($data, $where);
     }
 

@@ -112,7 +112,11 @@ abstract class ModelBase implements ModelBaseInterface {
     protected function execUpdate(array $new, array $param) {
         $this->updateSql($new, $param);
         $this->exec($param);
-        return $this->getResult();
+        if ($this->getResult() != false) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

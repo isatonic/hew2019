@@ -3,10 +3,10 @@ session_start();
 if (isset($_SESSION["id"])) {
   header("Location: ../My Page/US20.php", true, 302);
 }
-if (!isset($_POST["login_err"]) or is_null($_POST["login_err"])) {
+if (!isset($_SESSION["isatonic_login_err"]) or is_null($_SESSION["isatonic_login_err"])) {
   $msg = "";
 } else {
-  $msg = $_POST["login_err"];
+  $msg = $_SESSION["isatonic_login_err"];
 }
 ?>
 <html>

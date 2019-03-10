@@ -148,7 +148,7 @@ $upload_dir = "../uploaded_files/";
 								 P
 							</p>
 						</div>
-						<a href="../TONIC POINT Charge/US12.html">
+						<a href="../TONIC%20POINT%20Charge/US12.php">
 							<div class="tonic_point_charge flat_button">
 								<p>チャージする</p>
 							</div>

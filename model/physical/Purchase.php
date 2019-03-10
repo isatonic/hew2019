@@ -20,11 +20,15 @@ class Purchase extends ModelBase {
     public function buy(string $product, string $user = null) {
         $user = $this->setUser($user);
         $data = array(
-            "buyer" => $user,
-            "product" => $product
+            "buyer" => $this->db->quote($user),
+            "product" => $this->db->quote($product)
         );
 
-        return $this->execInsert($data);
+        if ($this->execInsert($data) != false) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -42,7 +42,11 @@ class Cart extends ModelBase {
             "product" => $product
         );
 
-        return $this->execDelete($params);
+        if ($this->execDelete($params) != false) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

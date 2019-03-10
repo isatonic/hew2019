@@ -1,5 +1,28 @@
-<?php $item_id = 'はろー'; ?><html>
+<?php
+session_start();
+if (!isset($_SESSION["id"])) {
+    header("Location: ../login/login.php", true, 302);
+}
+
+if (!isset($_SESSION["isatonic_cart_list"])) {
+    header("../controller/getCart.php", true, 302);
+} else {
+    $list = $_SESSION["isatonic_cart_list"];
+}
+unset($_SESSION["isatonic_cart_list"]);
+?>
+<html>
 	<head>
+      <?php
+      // リロード(F5)した時に再度DBにアクセス
+      if (is_null($list)) {
+          echo <<<RD
+      <script>
+        window.location = "../controller/getCart.php";
+      </script>
+RD;
+      }
+      ?>
 	<title>ショッピングカート | ISATONIC</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -62,60 +85,55 @@
 						<div class="cartbar">
 							<p>　　　　　　　　 画像　　　　　　　　　　　　　　　　　　タイトル　　　　　　　　　　　　　　　　　価格　　　　　　　　　　　　　　　　 　削除ボタン　　　　</p>
 						</div>
-					<form action="US9.php" method="post" id="form301" name="form301">
+					<form action="../controller/detailCart.php" method="post" id="form301" name="form301">
 						<div class="flex-container flexxxxxxxxx">
-												
-							
-						<!---------------------------------------------------------------------------カート内容↓-------------------------------------------------------------------->
-							<div class="cart_flex flex-container">
-									<div class="base_BOX_img flex-container flex_center">
-										<img src="img/1st.png" alt="">
-									</div>
 
-									<div class="base_BOX flex-container flex_center">
-										<p class="nameeee">ああああああああああああああああああああ</p>
-									</div>
+                <?php
+                if ($list === false) {
+                  echo <<<OUT
+                    <div class="cart_flex flex-container">
+                      <div class="msg">カートは空です。</div>
+                    </div>
+                    <div class="up_submit"><p>購入</p></div>
+OUT;
 
-									<div class="base_BOX2 flex-container flex_center">
-										<p class="tonic_PPP">1000TP</p>
-									</div>
+                } else {
+                    foreach ($list as $row) {
+                        echo <<<OUT
+                      <div class="cart_flex flex-container">
+                          <div class="base_BOX_img flex-container flex_center">
+                            <img src="../uploaded_files/{$row['fileName']}" alt="">
+                          </div>
 
-									<div class="base_BOX3 flex-container flex_center">
-										<input type="submit" form="delete_form" class="delete_B" value="削除">
-									</div>
-							<input type="hidden" name=item_checkes[] value="<?php echo "aaaaaaa"; ?>">
-							<input type="hidden" name=item_delete form="delete_form" value="<?php echo "cccccccccccccccc"; ?>">
-							
-							</div>
-						<!---------------------------------------------------------------------------カート内容↑-------------------------------------------------------------------->
-							
-						<!---------------------------------------------------------------------------カート内容↓-------------------------------------------------------------------->
-							<div class="cart_flex flex-container">
-									<div class="base_BOX_img flex-container flex_center">
-										<img src="img/6th.png" alt="">
-									</div>
+                          <div class="base_BOX flex-container flex_center">
+                            <p class="nameeee">{$row["title"]}</p>
+                          </div>
 
-									<div class="base_BOX flex-container flex_center">
-										<p class="nameeee">うううううううううううううううううううう</p>
-									</div>
+                          <div class="base_BOX2 flex-container flex_center">
+                            <p class="tonic_PPP">{$row["price"]}TP</p>
+                          </div>
 
-									<div class="base_BOX2 flex-container flex_center">
-										<p class="tonic_PPP">700TP</p>
-									</div>
+                          <div class="base_BOX3 flex-container flex_center">
+                            <input type="submit" form="delete_form" class="delete_B" value="削除">
+                          </div>
+                          <input type="hidden" name=item_checkes[] value="{$row["product"]}">
+                          <input type="hidden" name=item_delete form="delete_form" value="{$row["product"]}">
+                      </div>
+OUT;
 
-									<div class="base_BOX3 flex-container flex_center">
-										<input type="submit" form="delete_form" class="delete_B" value="削除">
-									</div>
-								<input type="hidden" name=item_checkes[] value="<?php echo "bbbbbbbbbb"; ?>">
-								<input type="hidden" name=item_delete form="delete_form" value="<?php echo "dddddddddddd"; ?>">
-							</div>
-						<!---------------------------------------------------------------------------カート内容↑-------------------------------------------------------------------->
-						</div>
+                    }
+                    echo <<<BUTTON
+                        <div class="up_submit" onclick="submit_itemsGO()"><p>購入</p></div>
+BUTTON;
+
+
+                }
+                ?>
+
 						
-						
-						<div class="up_submit" onClick="submit_itemsGO()">
-								<p>進む</p>
-						</div>
+<!--						<div class="up_submit" onClick="submit_itemsGO()">-->
+<!--								<p>購入</p>-->
+<!--						</div>-->
 						
 							</form>	
 						
@@ -129,7 +147,7 @@
 						
 						
 						
-						<form action="US8_delete.php" id="delete_form" method="POST"></form>
+						<form action="../controller/removeCart.php" id="delete_form" method="POST"></form>
 					
 					
 					

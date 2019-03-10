@@ -26,34 +26,47 @@ class Buy extends LogicalBase {
     public function __construct(myPDO $myPDO, DataInterface $Data) {
         parent::__construct($myPDO, $Data);
         $this->buyer = $this->Data->extend("buyer");
-        $this->sellers = $this->listSellers();
-        $this->Cart = new Cart($this->pdo, $this->Data->extend("buyer"));
-        $this->BuyerWallet = new Wallet($this->pdo, $this->buyer);
-        $this->Purchase = new Purchase($this->pdo, $this->buyer);
-        $this->SellerWallets = new Wallet($this->pdo);
         $this->Grade = new Grade($this->pdo);
+        $this->sellers = $this->listSellers();
+        $this->Cart = new Cart($this->pdo, $this->pdo->quote($this->Data->extend("buyer")));
+        $this->products = $this->Cart->get($this->buyer);
+        $this->BuyerWallet = new Wallet($this->pdo, $this->buyer);
+        $this->Purchase = new Purchase($this->pdo, $this->pdo->quote($this->buyer));
+        $this->SellerWallets = new Wallet($this->pdo);
 //        $this->products = $Data->extend("products");
 //        $this->pointSum = $Data->extend("point");
         $this->pointSum = $this->costSum();
     }
 
-    public function transaction() {
+    public function transaction(): bool {
         $this->pdo->beginTransaction();
         try {
             $enoughPoint = $this->BuyerWallet->usePoint($this->pointSum);
             if ($enoughPoint) {
                 foreach ($this->products as $product) {
-                    $this->Cart->remove($product);
-                    $this->Purchase->buy($product);
+                    if (!$this->Cart->remove($product, $this->Data->extend("buyer"))) {
+                        $this->pdo->rollBack();
+                        return false;
+                    }
+                    if (!$this->Purchase->buy($product, $this->Data->extend("buyer"))) {
+                        $this->pdo->rollBack();
+                        return false;
+                    }
                 }
-                $this->payment();
-                $this->pdo->commit();
-                return true;
+                if ($this->payment()) {
+                    $this->pdo->commit();
+                    return true;
+                } else {
+                    $this->pdo->rollBack();
+                    return false;
+                }
             }
         } catch (\PDOException $e) {
             $this->pdo->rollBack();
+            return false;
         }
 
+        $this->pdo->rollBack();
         return false;
     }
 
@@ -86,8 +99,11 @@ class Buy extends LogicalBase {
 
     private function payment() {
         foreach ($this->sellers as $id => $point) {
-            $this->SellerWallets->charge($point, $id);
+            if (!$this->SellerWallets->charge($point, $id)) {
+                return false;
+            }
         }
+        return true;
     }
 
     private function listSellers() {
@@ -95,14 +111,17 @@ class Buy extends LogicalBase {
             SELECT p.author as seller, sum(p.price) as sum
             FROM Cart c
             INNER JOIN Products p ON c.product = p.id
-            WHERE c.user = $this->buyer
+            WHERE c.user = {$this->pdo->quote($this->buyer)}
             GROUP BY p.author
             ORDER BY p.author ASC;
 SQL;
         $ret = array();
-        foreach ($this->pdo->query($sql) as $row) {
+//        var_dump($this->pdo->query($sql));
+//        exit();
+        $re = $this->pdo->query($sql);
+        foreach ($re as $row) {
             $rate = $this->checkGrade($row["seller"]);
-            $ret[$row["seller"]] = $row["sum"] * $rate;
+            $ret[$row["seller"]] = (int)$row["sum"] * $rate;
         }
 
         return $ret;
@@ -111,14 +130,19 @@ SQL;
 
     public function costSum() {
         $sql = <<<SQL
-            SELECT sum(p.price) as sum
+            SELECT c.user, sum(p.price) as sum
             FROM Cart c
             INNER JOIN Products p ON c.product = p.id
-            WHERE c.user = {$this->buyer};
+            WHERE c.user LIKE {$this->pdo->quote($this->buyer)}
+            GROUP BY c.user;
 SQL;
 
         $res = $this->pdo->query($sql);
-        return $res[0]["sum"];
+        $arr = [];
+        foreach ($res as $row) {
+            $arr["sum"] = (int)$row["sum"];
+        }
+        return $arr["sum"];
 
     }
 }
