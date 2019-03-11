@@ -345,7 +345,9 @@ RD;
                 echo "購入した商品はありません。";
             } else {
                 foreach ($homeData["buyHistory"] as $row) {
-                    echo "<img src='${upload_dir}/{$row['productData']['fileName']}' alt='' class='imageee'";
+                    echo <<<IMG
+                        <img src="${upload_dir}{$row['productData'][0]['fileName']}" alt="" class="imageee">
+IMG;
                 }
             }
             ?>

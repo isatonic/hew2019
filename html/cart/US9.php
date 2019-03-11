@@ -153,13 +153,25 @@ RW;
 						<form action="../controller/buy.php" method="POST" id="form401" name="form401">
 <!--							<input type="hidden" name="item_checkes2[]" value="">-->
 						</form>
+            <?php
+            if ($balance >= 0) {
+              echo <<<QT
 							<div class="up_submit_2" onClick="buybuy_items()">
 								<p>購入する</p>
 							</div>
+QT;
+            } else {
+              echo <<<DT
+							<div class="up_submit_2">
+								<p>ポイント不足</p>
+							</div>
+DT;
+            }
+            ?>
 							<div class="tonic_point_c_2" onClick="location.href='../TONIC POINT Charge/US12.php'">
 								<p>TONIC POINT チャージ</p>
 							</div>
-					
+
 					
 					
 					

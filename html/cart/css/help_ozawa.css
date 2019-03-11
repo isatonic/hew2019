@@ -613,6 +613,7 @@ textarea {
 	padding: 20px;
 	border: solid 2px #9F9F9F;
 	border-radius: 3px;
+	white-space: nowrap;
 }
 .tonic_point_c_2 {
 	position: absolute;

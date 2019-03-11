@@ -38,7 +38,7 @@ class Buy extends LogicalBase {
         $this->pointSum = $this->costSum();
     }
 
-    public function transaction(): bool {
+    public function transaction() {
         $this->pdo->beginTransaction();
         try {
             $enoughPoint = $this->BuyerWallet->usePoint($this->pointSum);
@@ -50,7 +50,7 @@ class Buy extends LogicalBase {
                     }
                     if (!$this->Purchase->buy($product, $this->Data->extend("buyer"))) {
                         $this->pdo->rollBack();
-                        return false;
+                        return $product;
                     }
                 }
                 if ($this->payment()) {

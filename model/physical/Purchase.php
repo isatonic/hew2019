@@ -52,4 +52,11 @@ class Purchase extends ModelBase {
         return $this->getRows($wants, $where, $order);
     }
 
+    public function search(string $product, string $user = null) {
+        $user = $this->setUser($user);
+        $wants = ["product"];
+        $where = ["buyer" => $user, "product" => $product];
+
+        return $this->getRows($wants, $where);
+    }
 }

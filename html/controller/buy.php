@@ -8,7 +8,12 @@ $pdo = new \model\myPDO();
 $data = new \model\Data(["buyer" => $user]);
 $Buy = new \model\logical\Buy($pdo, $data);
 
-if ($Buy->transaction()) {
+$ret = $Buy->transaction();
+
+if (is_string($ret)) {
+    var_dump($ret);
+    exit();
+} else if ($ret == true) {
     // ok
     header("Location: ../cart/US11.php", true, 302);
 } else {
