@@ -6,4 +6,5 @@ if (!isset($_SESSION["id"])) {
 }
 
 unset($_SESSION["id"]);
+unset($_SESSION["username"]);
 header("Location: ../login/login.php", true, 302);

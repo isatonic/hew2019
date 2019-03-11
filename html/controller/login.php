@@ -28,5 +28,8 @@ if ($result === false) {
 } else {
     // ログイン成功
     $_SESSION["id"] = $result;
-    header("Location: ../index/index.html", true, 302);
+    $Detail = new \model\physical\UserDetails($pdo->getPDO(), $result);
+    $_SESSION["username"] = $Detail->getUserName($result);
+
+    header("Location: ../index/index.php", true, 302);
 }

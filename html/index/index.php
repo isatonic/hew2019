@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION["username"])) {
+  $username = $_SESSION["username"];
+} else {
+  $username = "ログイン";
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -50,11 +58,11 @@
   <!----------------------------- header ------------------------------------>
   <header class="cd-main-header animate-search">
     <nav class="cd-main-nav-wrapper">
-      <img src="img/LOGO/LOGO%20W.png" alt="" class="logooooo" onClick="location.href='./index.html'">
+      <img src="img/LOGO/LOGO%20W.png" alt="" class="logooooo" onClick="location.href='index.php'">
       <a href="../product_list/US23_productList.php" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
-				<li><a href="../login/login.php">ログイン</a></li>
+				<li><a href="../login/login.php"><?php echo $username;?></a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../SNS/SN1.php">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>

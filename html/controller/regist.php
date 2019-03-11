@@ -35,6 +35,6 @@ if ($result == false) {
 } else {
     // 登録成功
     $_SESSION["id"] = $result;
-    header("Location: ../index/index.html", true, 302);
+    header("Location: ../index/index.php", true, 302);
 }
 

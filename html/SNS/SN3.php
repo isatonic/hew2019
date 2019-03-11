@@ -23,7 +23,7 @@
     <div class="cd-main-content">
        <header class="cd-main-header animate-search">
 		<nav class="cd-main-nav-wrapper">
-			<a href="../index/index.html"><img src="img/LOGO/LOGO W.png" class="logo"></a>
+			<a href="../index/index.php"><img src="img/LOGO/LOGO W.png" class="logo"></a>
 			<a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">

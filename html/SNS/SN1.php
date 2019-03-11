@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once "../../vendor/autoload.php";
+if (!isset($_SESSION["id"])) {
+    header("Location: ../login/login.php", true, 302);
+}
 //if (!isset($_SESSION["id"])) {
 //  // ログインページのurl
 //    $url = "";
@@ -42,7 +45,7 @@ require_once "../../vendor/autoload.php";
     <div class="cd-main-content">
        <header class="cd-main-header animate-search">
 		<nav class="cd-main-nav-wrapper">
-			<a href="../index/index.html"><img src="img/LOGO/LOGO W.png" class="logo" alt=""></a>
+			<a href="../index/index.php"><img src="img/LOGO/LOGO W.png" class="logo" alt=""></a>
 			<a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
