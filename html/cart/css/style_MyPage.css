@@ -400,6 +400,19 @@ body{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);
 	position: absolute;
 	top: 85%;
+	left: 88%;
+}
+#fab2 {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: #42A5F5;
+    text-align: center;
+    border-radius: 50%;
+    transition: .2s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);
+	position: absolute;
+	top: 85%;
 	left: 89%;
 }
 

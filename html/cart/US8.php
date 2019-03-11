@@ -154,7 +154,7 @@ BUTTON;
 					
 				</div>
 <!-- フローティング操作ボタン -->
-			<a id="fab" href="US8.php">
+			<a id="fab2" href="US8.php">
 				<i class="fas fa-home"></i>
 			</a>
 			
