@@ -195,13 +195,25 @@ require_once "../../vendor/autoload.php";
 <!-- モーダルエリアここから -->
 			<section id="modalArea_Friend_Select" class="modalArea">
 				<div id="modalBg_Friend_Select" class="modalBg"></div>
-					<div class="modalWrapper">
-						<h2 class="Header2">　　Create Messeage</h2>
+					<div class="modalWrapper size_change">
+						<h2 class="Header2">　　新規メッセージ作成</h2>
 						<div id="closeModal_Friend_Select" class="closeModal">
 							×
 						</div>
-						<div class="modalWrapper4">
-							<!-- 内容記述 -->
+						<div class="modalWrapper4 flex-container">
+							<!-- 内容記述 -->　　　 <!---------------------------デザイン後で変更します、とりあえずこれで。--------------------------------->
+						<div class="inbox3">
+							<img src="img/SNSアイコン.png" alt="アイコン" class="sns_top_image3"><!-- トプ画のこと -->
+							<h3  class="sns_name3">NAME HOGEHGOE</h3><!-- ユーザ名 -->
+							<div class="go_chat" onClick="location.href='./SN3.php'"><h3>&nbsp;&nbsp;　 　選択　 　&nbsp;&nbsp;</h3></div><br><!-- メッセージへのボタン -->
+						</div>	
+						
+						<div class="inbox3">
+							<img src="img/SNSアイコン.png" alt="アイコン" class="sns_top_image3"><!-- トプ画のこと -->
+							<h3  class="sns_name3">NAME HOGEHGOE</h3><!-- ユーザ名 -->
+							<div class="go_chat" onClick="location.href='./SN3.php'"><h3>&nbsp;&nbsp;　 　選択　 　&nbsp;&nbsp;</h3></div><br><!-- メッセージへのボタン -->
+						</div>	
+						
 						<div class="inbox3">
 							<img src="img/SNSアイコン.png" alt="アイコン" class="sns_top_image3"><!-- トプ画のこと -->
 							<h3  class="sns_name3">NAME HOGEHGOE</h3><!-- ユーザ名 -->
