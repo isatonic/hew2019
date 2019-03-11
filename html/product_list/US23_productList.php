@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (isset($_SESSION["username"])) {
+  $username = $_SESSION["username"];
+} else {
+  $username = "ログイン";
+}
 if (!isset($_SESSION["isatonic_searchResult"])) {
 //  echo "debug: 検索なし。 ../controller/search.php にリダイレクトを推奨。";
     header("Location: ../controller/search.php", true, 302);
@@ -58,7 +63,7 @@ if (!isset($_SESSION["isatonic_searchResult"])) {
       <a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 
       <ul class="cd-main-nav">
-				<li><a href="../login/login.php">ログイン</a></li>
+				<li><a href="../login/login.php"><?php echo $username;?></a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../SNS/SN1.php">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>

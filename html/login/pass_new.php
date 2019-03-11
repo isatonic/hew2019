@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION["username"])) {
+  $username = $_SESSION["username"];
+} else {
+  $username = "ログイン";
+}
+?>
 <html>
 	<head>
 	<title>パスワード再設定 | ISATONIC</title>
@@ -29,7 +37,7 @@
 			<a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
-				<li><a href="./login.php">ログイン</a></li>
+				<li><a href="./login.php"><?php echo $username;?></a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../SNS/SN1.php">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
