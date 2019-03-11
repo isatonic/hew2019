@@ -128,7 +128,7 @@ class Products extends ModelBase {
             "authorComment"
         );
         $where = array(
-            "id" => $this->db->quote($id)
+            "id" => $id
         );
         $order = ["id" => "asc"];
         return $this->getRows($wants, $where, $order);

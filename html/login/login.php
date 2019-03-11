@@ -7,6 +7,7 @@ if (!isset($_SESSION["isatonic_login_err"]) or is_null($_SESSION["isatonic_login
   $msg = "";
 } else {
   $msg = $_SESSION["isatonic_login_err"];
+  unset($_SESSION["isatonic_login_err"]);
 }
 ?>
 <html>
