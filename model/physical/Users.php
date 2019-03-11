@@ -44,7 +44,11 @@ class Users extends ModelBase {
             "email" => $data["email"],
             "flag" => "active"
         );
-        if ($this->execInsert($Data)) {
+        $esc_data = array();
+        foreach ($Data as $key => $val) {
+            $esc_data["$key"] = $this->db->quote($val);
+        }
+        if ($this->execInsert($esc_data)) {
             return $Data["id"];
         } else {
             return false;

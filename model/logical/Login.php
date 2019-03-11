@@ -22,7 +22,7 @@ class Login extends LogicalBase {
 
     public function transaction() {
         $id = $this->Auth->check($this->Data->extend("pass"), $this->Data->extend("email"));
-        if ($id != false) {
+        if ($id !== false) {
             return $id;
 //            try {
 //                if ($this->UserLimit->check($id) === true) {

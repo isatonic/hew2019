@@ -13,6 +13,13 @@ $Cart = new \model\physical\CartList($pdo->getPDO(), $usr);
 
 $ret = $Cart->get();
 
-echo "<pre>";
-var_dump($ret);
-echo "</pre>";
+if (isset($_SESSION["isatonic_cart_list"])) {
+    unset($_SESSION["isatonic_cart_list"]);
+}
+
+if ($ret == NULL) {
+    $_SESSION["isatonic_cart_list"] = false;
+} else {
+    $_SESSION["isatonic_cart_list"] = $ret;
+}
+header("Location: ../cart/US8.php", true, 302);

@@ -40,4 +40,24 @@ class Auth extends ModelBase {
         return false;
     }
 
+    public function checkWithID(string $pass, string $id) {
+        $wants = array(
+            "id",
+            "pass",
+            "flag"
+        );
+        $where["id"] = $id;
+        $rows = $this->getRows($wants, $where);
+
+        if ($rows != null) {
+            if ($rows[0]["flag"] == "active") {
+                $hash = $rows[0]["pass"];
+                if (password_verify($pass, $hash)) {
+                    return $rows[0]["id"];
+                }
+            }
+        }
+        return false;
+    }
+
 }

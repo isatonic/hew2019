@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION["id"])) {
+    header("Location: ../login/login.php");
+}
+if (!isset($_POST["pointtp"])) {
+  header("Location: ./US12.php");
+}
+$_SESSION["isatonic_charge_point"] = $_POST["pointtp"];
+?>
 <html>
 	<head>
 	<title>TONIC POINTチャージ確認画面 | ISATONIC</title>
@@ -27,7 +37,7 @@
 			<ul class="cd-main-nav">
 				<li><a href="../login/login.php">ログイン</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-				<li><a href="../SNS/SN1.html">SNS</a></li>
+				<li><a href="../SNS/SN1.php">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../cart/US8.php">カート</a></li>
 			</ul>
@@ -39,7 +49,7 @@
     
 
 	<div id="search" class="cd-main-search">
-    <form name="searchForm" action="" method="post">
+    <form name="searchForm" action="../controller/search.php" method="post">
       <input type="search" placeholder="入力してください">
 
 		</form>
@@ -61,7 +71,7 @@
 						<div class="tpshow">
 							<?php
 								echo $_POST['pointtp'];
-							?>	
+							?>
 						</div>
 					</div>
 				
@@ -101,7 +111,8 @@
 							?>
 						</div>
 					</div>
-				<div class="nextpage_okok" onClick="location.href='US14.php?bk=1'" ><h3>&nbsp;&nbsp;決済する&nbsp;&nbsp;</h3></div><br>
+<!--				<div class="nextpage_okok" onClick="location.href='US14.php?bk=1'" ><h3>&nbsp;&nbsp;決済する&nbsp;&nbsp;</h3></div><br>-->
+          <div class="nextpage_okok" onClick="location.href='../controller/charge.php'" ><h3>&nbsp;&nbsp;決済する&nbsp;&nbsp;</h3></div><br>
 				<div class="nextpage_no" onClick="back()"><h3>&nbsp;&nbsp;戻る&nbsp;&nbsp;</h3></div><br>
         </form>
 			</div>

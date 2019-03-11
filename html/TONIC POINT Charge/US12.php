@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["id"])) {
+  header("Location: ../login/login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,7 +34,7 @@
 			<ul class="cd-main-nav">
 				<li><a href="../login/login.php">ログイン</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-				<li><a href="../SNS/SN1.html">SNS</a></li>
+				<li><a href="../SNS/SN1.php">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../cart/US8.php">カート</a></li>
 			</ul>
@@ -40,7 +46,7 @@
     
 
 	<div id="search" class="cd-main-search">
-    <form name="searchForm" action="" method="post">
+    <form name="searchForm" action="../controller/search.php" method="post">
       <input type="search" placeholder="入力してください">
 
 		</form>

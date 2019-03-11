@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 	<head>
 	<title>My Page | ISATONIC</title>
@@ -29,7 +32,7 @@
 			<ul class="cd-main-nav">
 				<li><a href="../login/login.php">ログイン</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-				<li><a href="../SNS/SN1.html">SNS</a></li>
+				<li><a href="../SNS/SN1.php">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../cart/US8.php">カート</a></li>
 			</ul>
@@ -41,7 +44,7 @@
     
 
 	<div id="search" class="cd-main-search">
-    <form name="searchForm" action="" method="post">
+    <form name="searchForm" action="../controller/search.php" method="post">
       <input type="search" placeholder="入力してください">
 
 		</form>
@@ -57,17 +60,12 @@
 				<div class="mype_main">
 					<div class="upload_fin">
 						<?php
-						$tempfile = $_FILES['files']['tmp_name'];
-						$filename = 'images/' . $_FILES['files']['name'];
-						if (is_uploaded_file($tempfile)) {
-							if ( move_uploaded_file($tempfile , $filename )) {
-							echo "アイコン画像をアップロードしました。";
-							} else {
-								echo "ファイルをアップロードできません。";
-							}
-						} else {
-							echo "ファイルが選択されていません。";
-						} 
+            if (!isset($_SESSION["isatonic_icon_up_msg"])) {
+              header("Location: ./US20.php", true, 302);
+            } else {
+                echo $_SESSION["isatonic_icon_up_msg"];
+                unset($_SESSION["isatonic_icon_up_msg"]);
+            }
 						?>
 					</div>
 				</div>

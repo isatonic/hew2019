@@ -21,8 +21,12 @@ class UserDetails extends ModelBase {
             "id" => $this->user_id,
             "userName" => $userName
         );
+        $esc_data = [];
+        foreach ($data as $key => $val) {
+            $esc_data[$key] = $this->db->quote($val);
+        }
 
-        return $this->execInsert($data);
+        return $this->execInsert($esc_data);
     }
 
     /**
@@ -37,7 +41,11 @@ class UserDetails extends ModelBase {
         $id = $this->setUser($id);
         $where["id"] = $id;
 
-        return $this->execUpdate($data, $where);
+        $esc_data = [];
+        foreach ($data as $key => $val) {
+            $esc_data[$key] = $this->db->quote($val);
+        }
+        return $this->execUpdate($esc_data, $where);
     }
 
     /**
@@ -51,7 +59,7 @@ class UserDetails extends ModelBase {
      */
     public function getUserName(string $id = null) {
         $id = $this->setUser($id);
-        $wants = ["userName", "icon"];
+        $wants = ["userName"];
         $where = ["id" => $id];
         $rows = $this->getRows($wants, $where);
         if (!is_null($rows)) {

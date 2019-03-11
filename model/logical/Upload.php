@@ -50,7 +50,6 @@ class Upload extends LogicalBase {
         try {
             if ($this->Products->regist($this->data)) {
                 if (is_uploaded_file($this->tmp_file)) {
-                    echo "upload successful<br>\n";
                     // アップロードできている
                     if (move_uploaded_file($this->tmp_file, $this->upload_file)) {
                         // 保存成功

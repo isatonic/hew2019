@@ -1,21 +1,25 @@
 <?php
 session_start();
-// ログインページのurl
-$login_url = "../login/login.php";
 if (!isset($_SESSION["id"]) or is_null($_SESSION["id"])) {
     // login required
-    header("Location: ../login/login.php");
-} else {
-    $user = $_SESSION["id"];
+    header("Location: ../login/login.php", true, 302);
 }
-if (isset($_POST["home_data"]) and !is_null($_POST["home_data"])) {
-    $data = $_POST["home_data"];
+$user = $_SESSION["id"];
+if (isset($_SESSION["isatonic_home_data"]) and !is_null($_SESSION["isatonic_home_data"])) {
+    $homeData = $_SESSION["isatonic_home_data"];
+    unset($_SESSION["isatonic_home_data"]);
 } else {
-    // login required
-//    header("Location: ${url}");
+  header("../controller/userHome.php", true, 302);
 }
 // 作品を格納するディレクトリ
 $upload_dir = "../uploaded_files/";
+// アイコンを格納するディレクトリ
+$icon_dir = "./icon/";
+if (file_exists($icon_dir . $user . ".png")) {
+  $icon = $icon_dir . $user .".png";
+} else {
+  $icon = $icon_dir . "icon_default.png";
+}
 ?>
 <html>
 	<head>
@@ -37,7 +41,26 @@ $upload_dir = "../uploaded_files/";
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<script src="js/Mypage.js"></script>
 	<script src="js/ozawa.js"></script>
-	</head>	
+    <script type="text/javascript">
+        <?php
+        if (isset($_SESSION["isatonic_pass_change_err"])) {
+            $err_msg = $_SESSION["isatonic_pass_change_err"];
+            unset($_SESSION["isatonic_pass_change_err"]);
+            echo "alert('$err_msg');";
+        }
+        ?>
+    </script>
+      <?php
+      // リロード(F5)した時に再度DBにアクセス
+      if (is_null($homeData)) {
+          echo <<<RD
+      <script>
+        window.location = "../controller/userHome.php";
+      </script>
+RD;
+      }
+      ?>
+	</head>
 	<body>
 
     <div class="cd-main-content">
@@ -49,7 +72,7 @@ $upload_dir = "../uploaded_files/";
 			<ul class="cd-main-nav">
 				<li><a href="../login/login.php">ログイン</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
-				<li><a href="../SNS/SN1.html">SNS</a></li>
+				<li><a href="../SNS/SN1.php">SNS</a></li>
 				<li><h4 style="color: #FFF;position: relative;top: -5%;">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</h4></li>
 				<li><a href="../cart/US8.php">カート</a></li>
 			</ul> 
@@ -61,7 +84,7 @@ $upload_dir = "../uploaded_files/";
 
 
 	<div id="search" class="cd-main-search">
-    <form name="searchForm" action="" method="post">
+    <form name="searchForm" action="../controller/search.php" method="post">
       <input type="search" placeholder="入力してください">
 
 		</form>
@@ -77,13 +100,13 @@ $upload_dir = "../uploaded_files/";
 				<div class="mype_main">
 					<div class="mype_name">
 						<div class="photo">
-							<img src="./icon/<?php echo $user;?>.png" alt="アイコン"> <!-- ユーザのアイコン -->
+							<img src="<?php echo $icon;?>" alt="アイコン"> <!-- ユーザのアイコン -->
 						</div>
 						<div class="tonic_name">
 							<p class="simei">
                   <?php
-                  $sei = $data["user_info"]["lastName"];
-                  $mei = $data["user_info"]["firstName"];
+                  $sei = $homeData["user_info"]["lastName"];
+                  $mei = $homeData["user_info"]["firstName"];
                   echo "$sei $mei";
                   ?>
 								<!-- ユーザ名 --> 様</p>
@@ -91,7 +114,7 @@ $upload_dir = "../uploaded_files/";
 						<div class="nicname">
 							<p class="user_name">
                   <?php
-                  echo $data["usr_detail"];
+                  echo $homeData["user_detail"];
                   ?>
               </p>
 						</div>
@@ -116,7 +139,8 @@ $upload_dir = "../uploaded_files/";
 					<div class="mype_tonicG">
 						<div class="t-grade">
 							<p>T-Grade</p>
-              <img src="img/6th.png">
+              <img src="img/6th.png" alt="グレード">
+              <!-- TODO: グレード 1st~5th の画像を追加してコメントアウト -->
 <!--                --><?php
 //                $grade = (int)$data["grade"];
 //                switch ($grade) {
@@ -132,7 +156,7 @@ $upload_dir = "../uploaded_files/";
 //                    default:
 //                      $grade = "{$grade}th";
 //                }
-//                echo "<img src='./img/{$grade}.png"
+//                echo "<img src='./img/{$grade}.png' alt='グレード'>"
 //                ?>
 						</div>
 					</div>
@@ -143,12 +167,12 @@ $upload_dir = "../uploaded_files/";
 						<div class="inner_tonic_point">
 							<p>
 							<?php
-								echo $data["point"];
+								echo $homeData["point"];
 							?>
 								 P
 							</p>
 						</div>
-						<a href="../TONIC POINT Charge/US12.html">
+						<a href="../TONIC%20POINT%20Charge/US12.php">
 							<div class="tonic_point_charge flat_button">
 								<p>チャージする</p>
 							</div>
@@ -197,7 +221,7 @@ $upload_dir = "../uploaded_files/";
 								<!-- ユーザアイコンアップロード -->
 								<div class="user_imageee">
 									<h1 class="icon_change">ユーザアイコン変更</h1>
-									<form action="US20_upload.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
+									<form action="../controller/changeIcon.php" method="post" enctype="multipart/form-data" id="form01" name="form01">
 											<div id="btn">
 												<p><i class="fas fa-file-upload"></i>&nbsp;写真を選択</p>
 											</div>
@@ -214,12 +238,13 @@ $upload_dir = "../uploaded_files/";
 												<p>進む</p>
 											</div>
 									</form>
+								</div>
 
 
 								<!-- ユーザ名 -->
 								<div class="user_nameee">
 									<h1 class="username_change">ユーザ名変更</h1>
-									<form action="US20_name_change.php" method="post" id="form0001">
+									<form action="../controller/userNameChange.php" method="post" id="form0001">
 										<input type="text" name="name_change" required maxlength="20">
 										<div class="up_submit2" onClick="submits_id()">
 												<p>変更</p>
@@ -250,7 +275,7 @@ $upload_dir = "../uploaded_files/";
 
 								<!-- ユーザ名 -->
 								<h1 class="password_change">パスワード変更</h1>
-								<form name="form1" id="form1" action="US20_pass_change.php" method="post" onSubmit="return check()">
+								<form name="form1" id="form1" action="../controller/userPassChange.php" method="post" onSubmit="return check()">
 
 									
 									<div class="passgroup">
@@ -289,43 +314,46 @@ $upload_dir = "../uploaded_files/";
 								<div class="upload_pagego flat_button" onClick="location.href='../Upload/US21.php'">
 									<p>アップロード</p>
 								</div>
-                <!--                  --><?php
-                  //                  $product = $data["product"];
-                  //                  foreach ($product as $row) {
-                  //                      echo "<img src='${upload_dir}{$row['fileName']}' alt='' class='imageee1'";
-                  //                  }
-                  //                  ?>
 								<div class="imgimg">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
-									<img src="img/placeholder.png" alt="" class="imageee1">
+                    <?php
+                    if (is_null($data["product"])) {
+                      echo "投稿された作品はありません。";
+                    } else {
+                        foreach ($data["product"] as $row) {
+                            echo "<img src='${upload_dir}{$row['fileName']}' alt='' class='imageee1'";
+                        }
+                    }
+                    ?>
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
+<!--									<img src="img/placeholder.png" alt="" class="imageee1">-->
 								</div>
 							</div>
 						<div id="closeModal" class="closeModal">
@@ -339,13 +367,16 @@ $upload_dir = "../uploaded_files/";
 					  <div id="modalBg4" class="modalBg4"></div>
 						<div class="modalWrapper4">
 							<div class="modalContents4">
-                <img src="img/placeholder.png" alt="" class="imageee">
-<!--                  --><?php
-//                  $buyHistory = $data["buyHistory"];
-//                  foreach ($buyHistory as $row) {
-//                    echo "<img src='${upload_dir}/{$row['productData']['fileName']}' alt='' class='imageee'";
-//                  }
-//                  ?>
+<!--                <img src="img/placeholder.png" alt="" class="imageee">-->
+                  <?php
+                  if (is_null($data["buyHistory"])) {
+                    echo "購入した商品はありません。";
+                  } else {
+                      foreach ($data["buyHistory"] as $row) {
+                          echo "<img src='${upload_dir}/{$row['productData']['fileName']}' alt='' class='imageee'";
+                      }
+                  }
+                  ?>
 							</div>
 						<div id="closeModal" class="closeModal">
 						  ×
