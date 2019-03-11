@@ -400,7 +400,7 @@ body{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);
 	position: absolute;
 	top: 85%;
-	left: 88%;
+	left: 85%;
 }
 #fab2 {
     display: block;
@@ -416,24 +416,24 @@ body{
 	left: 89%;
 }
 
-#fab i {
+#fab i,#fab2 i {
 	color: white;
 	line-height: 100px;
 	vertical-align: middle;
 	font-size: 35px;
 	transition: .2s;
 }
-#fab:hover {
+#fab:hover,#fab2:hover {
 	background:#536dfe;/*背景色を変更*/
 	box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);/*浮き上がる*/
 }
 
-#fab:hover i {
+#fab:hover i,#fab2:hover i {
 	-webkit-transform: rotate(360deg);
 	transform: rotate(360deg);/*回転角度*/
 }
 
-#fab:hover .fas:before {
+#fab:hover .fas:before , #fab2:hover .fas:before {
 	content: '\f104';/*変更後のアイコン*/
 	font-size: 45px;
 }
