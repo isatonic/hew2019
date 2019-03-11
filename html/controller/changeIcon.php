@@ -5,14 +5,15 @@ if (isset($_SESSION["id"]) and !is_null($_SESSION["id"])) {
     $user = $_SESSION["id"];
 } else {
     // login required
-    // ログインページのurl
-    $url = "";
-    header("Location: ${url}");
+    header("Location: ../login/login.php", true, 302);
 }
 require_once "../../vendor/autoload.php";
 
-$tmp = $_FILES['uploadfile']['tmp_name'];
-$target = "./icon/${user}.png";
+if (!isset($_FILES['files']['tmp_name'])) {
+    header("Location: ../My Page/US20.php", true, 302);
+}
+$tmp = $_FILES['files']['tmp_name'];
+$target = "../My Page/icon/${user}.png";
 
 if (is_uploaded_file($tmp)) {
     if (move_uploaded_file($tmp, $target)) {
@@ -27,4 +28,5 @@ if (is_uploaded_file($tmp)) {
     $msg = "ファイルが選択されていません。";
 }
 
-include "../My Page/US20_upload.php";
+$_SESSION["isatonic_icon_up_msg"] = $msg;
+header("Location: ../My Page/US20_upload.php", true, 302);

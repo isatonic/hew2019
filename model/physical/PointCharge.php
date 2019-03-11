@@ -20,7 +20,7 @@ class PointCharge extends ModelBase {
     public function charge(int $point, string $user = null) {
         $user = $this->setUser($user);
         $data = array(
-            "user" => $user,
+            "user" => $this->db->quote($user),
             "point" => $point
         );
 

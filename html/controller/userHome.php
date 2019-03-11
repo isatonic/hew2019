@@ -2,6 +2,9 @@
 
 session_start();
 require_once "../../vendor/autoload.php";
+if (!isset($_SESSION["id"])) {
+    header("Location: ../login/login.php");
+}
 $user = $_SESSION["id"];
 
 use model\myPDO;
@@ -9,7 +12,10 @@ use model\Data;
 use model\logical\UserHome;
 
 $mypdo = new myPDO();
-$input = new Data(["id" => $user]);
+
+$arr = ["id" => $user];
+$input = new Data($arr);
+
 $UserHome = new UserHome($mypdo, $input);
 
 /**
@@ -27,8 +33,7 @@ $UserHome = new UserHome($mypdo, $input);
  *      "flag" => フラグ(activeになるはず)
  *  ],
  *  "user_detail" => [
- *      "userName" => サービス内での表示名,
- *      "icon" => アイコンのパス
+ *      "userName" => サービス内での表示名
  *  ],
  *  "point" => 所持Tポイント,
  *  "buyHistory" => [
@@ -53,13 +58,11 @@ $UserHome = new UserHome($mypdo, $input);
  */
 $data = $UserHome->transaction();
 
-if ($data) {
+if ($data != false) {
     // OK
-    $url = "";
-    $_POST["home_data"] = $data;
-    header("Location: " . $url, true, 302);
+    $_SESSION["isatonic_home_data"] = $data;
+    header("Location: ../My Page/US20.php", true, 302);
 } else {
     // ユーザが存在しないなど
-    $url = "";
-    header("Location: " . $url, true, 302);
+    exit("Error occured while fetching user data (controller/userHome.php)");
 }

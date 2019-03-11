@@ -75,12 +75,7 @@
 					</p>
 				</div>
 				
-				<?php
-					$item_c2 = ($_POST['item_checkes2']); 
-					print_r($item_c2) ; //配列の中のデータを表示したいなあああああああああああああああ
-				?>
-				
-				
+
 			</div>
 
 		</div>

@@ -4,16 +4,10 @@ session_start();
 $user = $_SESSION["id"];
 require_once "../../vendor/autoload.php";
 
+$post = ["product" => $_POST["item_delete"]];
 $pdo = new \model\myPDO();
-$data = new \model\Data($_POST);
+$data = new \model\Data($post);
 $Cart = new \model\physical\Cart($pdo->getPDO(), $user);
 
-if ($Cart->remove($data->extend("product"))) {
-    // カートからの削除成功
-    $url = "";
-} else {
-    // 削除失敗
-    $url = "";
-}
-
-header("Location: " . $url, true, 302);
+$Cart->remove($data->extend("product"));
+header("Location: ./getCart.php", true, 302);

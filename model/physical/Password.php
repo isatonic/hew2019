@@ -33,7 +33,11 @@ class Password extends ModelBase {
             "pass" => password_hash($pass, PASSWORD_DEFAULT)
         );
 
-        return $this->execInsert($data);
+        $esc_data = [];
+        foreach ($data as $key => $val) {
+            $esc_data[$key] = $this->db->quote($val);
+        }
+        return $this->execInsert($esc_data);
     }
 
     /**
@@ -49,9 +53,17 @@ class Password extends ModelBase {
         $data = array(
             "pass" => password_hash($pass, PASSWORD_DEFAULT)
         );
-        $where["user"] = $user;
+        $where["id"] = $user;
 
-        return $this->execUpdate($data, $where);
+        $esc_data = [];
+        foreach ($data as $key => $val) {
+            $esc_data[$key] = $this->db->quote($val);
+        }
+//        $esc_where = [];
+//        foreach ($where as $key => $val) {
+//            $esc_where[$key] = $this->db->quote($val);
+//        }
+        return $this->execUpdate($esc_data, $where);
     }
 
 }

@@ -15,16 +15,16 @@ $result = $model->transaction();
 
 if ($result === false) {
     // 登録されていない or IDまたはパスワードが違う
-    $_POST["login_err"] = "IDまたはパスワードが違います。";
-    header("Location: ", true, 302);
+    $_SESSION["isatonic_login_err"] = "IDまたはパスワードが違います。";
+    header("Location: ../login/login.php", true, 302);
 } else if ($result === "limited") {
     // ユーザ制限中
-    $_POST["login_err"] = "利用が一時的に制限されています。";
-    header("Location: ", true, 302);
+    $_SESSION["isatonic login_err"] = "利用が一時的に制限されています。";
+    header("Location: ../login/login.php", true, 302);
 } else if (is_object($result)) {
     // 何かしらのエラー
-    $_POST["login_err"] = "ログイン中にエラーが発生しました。";
-    header("Location: ", true, 302);
+    $_SESSION["isatonic login_err"] = "ログイン中にエラーが発生しました。";
+    header("Location: ../login/login.php", true, 302);
 } else {
     // ログイン成功
     $_SESSION["id"] = $result;

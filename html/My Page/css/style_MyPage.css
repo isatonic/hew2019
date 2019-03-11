@@ -511,9 +511,15 @@ body{
 }
 .imageee{
 	margin: 15px 0 0 10px;
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
 }
 .imageee1{
 	margin: 15px 0 0 10px;
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
 }
 
 /*売上確認*/

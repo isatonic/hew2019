@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 	<head>
 	<title>My Page | ISATONIC</title>
@@ -59,8 +62,12 @@
 
 						<p class="pass_fin">
                 <?php
-                // 参照: ../controller/userPassChange.php
-                echo $msg;
+                if (!isset($_SESSION["isatonic_pass_change_msg"])) {
+                  header("Location: ./US20.php", true, 302);
+                } else {
+                  echo $_SESSION["isatonic_pass_change_msg"];
+                  unset($_SESSION["isatonic_pass_change_msg"]);
+                }
                 ?>
             </p>
 						

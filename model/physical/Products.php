@@ -26,7 +26,7 @@ class Products extends ModelBase {
      */
     public function regist($data) {
         if (!isset($data["author"]) or is_null($data["author"])) {
-            $data["author"] = $this->user_id;
+            $data["author"] = $this->db->quote($this->user_id);
         }
 
         return $this->execInsert($data);
@@ -128,7 +128,7 @@ class Products extends ModelBase {
             "authorComment"
         );
         $where = array(
-            "id" => $id
+            "id" => $this->db->quote($id)
         );
         $order = ["id" => "asc"];
         return $this->getRows($wants, $where, $order);
@@ -157,7 +157,7 @@ class Products extends ModelBase {
      */
     public function remove(string $id) {
         $params = array(
-            "id" => $id
+            "id" => $this->db->quote($id)
         );
 
         return $this->execDelete($params);

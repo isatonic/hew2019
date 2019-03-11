@@ -20,7 +20,11 @@ class Grade extends ModelBase {
      */
     public function init(string $id = null) {
         $data["user"] = $id;
-        return $this->execInsert($data);
+        $esc_data = [];
+        foreach ($data as $key => $val) {
+            $esc_data[$key] = $this->db->quote($val);
+        }
+        return $this->execInsert($esc_data);
     }
 
     /**
@@ -72,7 +76,7 @@ class Grade extends ModelBase {
         $user = $this->setUser($user);
         $nowPoint = $this->getPoint($user);
         $data["gpoint"] = $point + $nowPoint["gpoint"];
-        $where["user"] = $user;
+        $where["user"] = $this->db->quote($user);
 
         return $this->execUpdate($data, $where);
     }
