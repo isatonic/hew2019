@@ -229,9 +229,9 @@ require_once "../../vendor/autoload.php";
 						</div>
 						<div class="search_friend">
 							<div class="search_content">
-							  <form action="">				
+							  <form id="user_search_form">
 								<input type="text" value="" placeholder="IDまたはユーザ名を入力してください">
-								<button type="submit">Search</button>
+								<button type="submit" id="user_search_button">Search</button>
 							  </form>
 							</div>
 						</div>
