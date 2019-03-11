@@ -94,7 +94,7 @@ if (!isset($_SESSION["isatonic_login_err"]) or is_null($_SESSION["isatonic_login
 					
 					
 					</div>
-
+		</div>
 			
 			
 	</body>
