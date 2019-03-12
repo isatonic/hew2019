@@ -14,6 +14,9 @@ if (!isset($_FILES['files']['tmp_name'])) {
 }
 $tmp = $_FILES['files']['tmp_name'];
 $target = "../My Page/icon/${user}.png";
+if (is_file($target)) {
+    unlink($target);
+}
 
 if (is_uploaded_file($tmp)) {
     if (move_uploaded_file($tmp, $target)) {

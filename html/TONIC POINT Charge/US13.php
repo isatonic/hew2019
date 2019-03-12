@@ -60,7 +60,7 @@ $_SESSION["isatonic_charge_point"] = $_POST["pointtp"];
 
 	<div id="search" class="cd-main-search">
     <form name="searchForm" action="../controller/search.php" method="post">
-      <input type="search" placeholder="入力してください">
+      <input type="search" name="word" placeholder="入力してください">
 
 		</form>
 
