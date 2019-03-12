@@ -72,7 +72,7 @@ if (isset($_SESSION["username"])) {
     <a href="" class="cd-nav-trigger cd-text-replace">Menu<span></span></a>
     <div id="search" class="cd-main-search">
       <form action="../controller/search.php" method="post">
-        <input type="search" placeholder="入力してください">
+        <input type="search" name="word" placeholder="入力してください">
       </form>
 
       <a href="#0" class="close cd-text-replace">Close Form</a>

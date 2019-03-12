@@ -77,7 +77,7 @@ if (!isset($_SESSION["isatonic_searchResult"])) {
 
   <div id="search" class="cd-main-search">
     <form name="searchForm" action="../controller/search.php" method="post">
-      <input type="search" placeholder="入力してください">
+      <input type="search" name="word" placeholder="入力してください">
 
     </form>
 
