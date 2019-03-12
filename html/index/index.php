@@ -5,6 +5,11 @@ if (isset($_SESSION["username"])) {
 } else {
   $username = "ログイン";
 }
+//if (!isset($_SESSION["isatonic_top_files"])) {
+//    header("Location: ./getFiles.php", true, 302);
+//} else {
+//    $files = $_SESSION["isatonic_top_files"];
+//}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -58,7 +63,7 @@ if (isset($_SESSION["username"])) {
   <!----------------------------- header ------------------------------------>
   <header class="cd-main-header animate-search">
     <nav class="cd-main-nav-wrapper">
-      <img src="img/LOGO/LOGO%20W.png" alt="" class="logooooo" onClick="location.href='index.php'">
+      <img src="img/LOGO/LOGO%20W.png" alt="" class="logooooo" onClick="location.href='./getFiles.php'">
       <a href="../product_list/US23_productList.php" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">
@@ -149,11 +154,21 @@ if (isset($_SESSION["username"])) {
       }, 4500);
 
       // set image
-      for (let i = 1; i < 176; i++) {
+      for (let i = 0; i < 400; i++) {
           newArray.push({
-              image: "../testimage_forIndex/" + i + ".png"
+              image: "../testimage_forIndex/from_db/" + i + ".png"
           });
       }
+<!--      --><?php
+//          foreach ($files as $file) {
+//            echo <<<SCR
+//           newArray.push({
+//               image: "$file"
+//           });
+//SCR;
+//          }
+//          unset($_SESSION["isatonic_top_files"]);
+//      ?>
 
 
       let tb = [];
