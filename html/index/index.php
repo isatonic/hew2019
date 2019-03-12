@@ -10,6 +10,18 @@ if (isset($_SESSION["username"])) {
 //} else {
 //    $files = $_SESSION["isatonic_top_files"];
 //}
+if (!isset($_SESSION["isatonic_top_fetch_flag"]) or $_SESSION["isatonic_top_fetch_flag"] != 1) {
+  header("Location: ./getFiles.php", true, 302);
+}
+unset($_SESSION["isatonic_top_fetch_flag"]);
+$dir = "../testimage_forIndex/from_db";
+$file_num = 0;
+foreach(glob("$dir/*") as $file){
+    if(is_file($file)){
+      $file_num++;
+    }
+}
+//var_dump($file_num);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -154,7 +166,7 @@ if (isset($_SESSION["username"])) {
       }, 4500);
 
       // set image
-      for (let i = 0; i < 400; i++) {
+      for (let i = 0; i < <?php echo $file_num;?> + 1; i++) {
           newArray.push({
               image: "../testimage_forIndex/from_db/" + i + ".png"
           });

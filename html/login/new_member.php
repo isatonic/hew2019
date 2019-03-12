@@ -5,8 +5,9 @@ if (isset($_SESSION["username"])) {
 } else {
   $username = "ログイン";
 }
-if (isset($_POST["regist_err"])) {
-  $msg = $_POST["regist_err"];
+if (isset($_SESSION["regist_err"])) {
+  $msg = $_SESSION["regist_err"];
+  unset($_SESSION["regist_err"]);
 } else {
   $msg = "";
 }

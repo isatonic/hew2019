@@ -5,8 +5,11 @@ require_once "../../vendor/autoload.php";
 
 $pdo = new model\myPDO();
 
+if (isset($_SESSION["regist_err"])) {
+    unset($_SESSION["regist_err"]);
+}
 if ($_POST["pass"] != $_POST["pass_confirm"]) {
-    $_POST["regist_err"] = "パスワードが一致しません。";
+    $_SESSION["regist_err"] = "パスワードが一致しません。";
     header("Location: ../login/new_member.php");
 }
 
@@ -27,14 +30,18 @@ if ($_POST["type"] == "user") {
 }
 
 $result = $model->transaction();
-
+if ($result === "already") {
+    $_SESSION["regist_err"] = "メールアドレスがすでに登録されています。";
+    header("Location: ../login/new_member.php", true, 302);
+}
 if ($result == false) {
     // 登録失敗
-    $_POST["regist_err"] = "登録に失敗しました。";
-    header("Location: ../login/new_member.php");
+    $_SESSION["regist_err"] = "登録に失敗しました。";
+    header("Location: ../login/new_member.php", true, 302);
 } else {
     // 登録成功
     $_SESSION["id"] = $result;
-    header("Location: ../index/index.php", true, 302);
+    $_SESSION["username"] = $data["userName"];
+    header("Location: ../login/login.php", true, 302);
 }
 

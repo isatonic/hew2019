@@ -41,7 +41,7 @@ if (isset($_SESSION["username"])) {
     <div class="cd-main-content">
        <header class="cd-main-header animate-search">
 		<nav class="cd-main-nav-wrapper">
-        　　 <img src="img/LOGO/LOGO W.png" class="logo" alt="" onClick="location.href='../index/index.php'">
+        　　 <img src="img/LOGO/LOGO W.png" class="logo" alt="" onClick="location.href='../index/getFiles.php'">
 			<a href="javascript:searchForm.submit()" class="cd-search-trigger cd-text-replace">Search</a>
 			
 			<ul class="cd-main-nav">

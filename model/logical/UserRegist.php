@@ -31,6 +31,7 @@ class UserRegist extends LogicalBase {
             $id = $this->User->regist($this->Data->get());
             if ($id == false) {
                 $this->pdo->rollBack();
+                return "already";
                 exit("User error");
             }
 
