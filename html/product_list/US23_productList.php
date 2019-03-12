@@ -115,7 +115,7 @@ if (!isset($_SESSION["isatonic_searchResult"])) {
           <div class="image-container flex-container">
             <img class="thumbnail" id="detail-thumbnail" src="./img/placeholder.png" alt="">
           </div>
-          <button class="report">この作品を通報する</button>
+         <!-- <button class="report">この作品を通報する</button>-->
         </div>
         <div class="detail">
           <div class="title" id="detail-title">
